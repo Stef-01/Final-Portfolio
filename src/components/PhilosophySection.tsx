@@ -66,7 +66,7 @@ const wordBoxes = [
 
 export function PhilosophySection() {
   return (
-    <div className="w-full max-w-[1400px] px-8 py-20">
+    <div className="w-full max-w-[1280px] px-8 py-16">
       <div className="flex flex-row items-center justify-between gap-20">
         {/* Left side - Animated Browser Window */}
         <motion.div 
@@ -158,14 +158,13 @@ export function PhilosophySection() {
                   }}
                   animate={{
                     y: [box.y, box.y - 8, box.y],
-                    rotate: [box.rotate, box.rotate + 3, box.rotate]
-                  }}
-                  // @ts-ignore
-                  transition={{
-                    duration: 3 + index * 0.3,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    ease: "easeInOut"
+                    rotate: [box.rotate, box.rotate + 3, box.rotate],
+                    transition: {
+                      duration: 3 + index * 0.3,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut"
+                    }
                   }}
                 >
                   <div className="flex items-center gap-2">
@@ -190,20 +189,19 @@ export function PhilosophySection() {
               whileInView={{ scale: 1, rotate: -8 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.7, type: "spring", bounce: 0.6 }}
-              whileHover={{ 
-                scale: 1.1, 
+              whileHover={{
+                scale: 1.1,
                 rotate: 0,
                 transition: { duration: 0.2 }
               }}
               animate={{
                 y: [0, -5, 0],
-                rotate: [-8, -5, -8]
-              }}
-              // @ts-ignore
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                repeatType: "reverse"
+                rotate: [-8, -5, -8],
+                transition: {
+                  duration: 2.5,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }
               }}
             >
               <span className="font-['Caveat',_cursive] text-black text-[20px]">
@@ -220,13 +218,12 @@ export function PhilosophySection() {
               transition={{ duration: 0.8, delay: 0.8 }}
               animate={{
                 x: [0, 3, 0],
-                y: [0, -2, 0]
-              }}
-              // @ts-ignore
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "reverse"
+                y: [0, -2, 0],
+                transition: {
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }
               }}
             >
               <svg width="60" height="40" viewBox="0 0 60 40" fill="none">
@@ -292,8 +289,8 @@ export function PhilosophySection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <motion.p 
-              className="font-['Clash_Grotesk:Regular',_sans-serif] text-gray-300 text-[20px] leading-relaxed"
+            <motion.p
+              className="font-['Clash_Grotesk:Regular',_sans-serif] text-gray-300 text-[19px] leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -301,9 +298,9 @@ export function PhilosophySection() {
             >
               I partner with healthcare innovators, researchers, and communities to reimagine health systems — from AI-powered precision medicine tools to equitable implementation strategies for Indigenous health.
             </motion.p>
-            
-            <motion.p 
-              className="font-['Clash_Grotesk:Medium',_sans-serif] text-white text-[22px] leading-relaxed"
+
+            <motion.p
+              className="font-['Clash_Grotesk:Medium',_sans-serif] text-white text-[20px] leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

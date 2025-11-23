@@ -2402,7 +2402,7 @@ function Frame2147227246() {
 
 function HomePage({ currentPage, onNavigate }: { currentPage: string; onNavigate: (page: string) => void }) {
   return (
-    <div className="w-full box-border content-stretch flex flex-col gap-40 items-center justify-start p-0 bg-[rgba(0,0,0,1)]">
+    <div className="w-full box-border content-stretch flex flex-col gap-32 items-center justify-start p-0 bg-[rgba(0,0,0,1)]">
       <Frame1 currentPage={currentPage} onNavigate={onNavigate} />
       <Frame17 />
       <Frame2147227218 />
