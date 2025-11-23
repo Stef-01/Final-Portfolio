@@ -51,9 +51,9 @@ export function LatestWork() {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <div className="box-border content-stretch flex flex-col gap-[80px] items-center justify-start p-0 relative shrink-0 max-w-[1440px] w-full px-8 py-20">
+    <div className="box-border content-stretch flex flex-col gap-[60px] items-center justify-start p-0 relative shrink-0 max-w-[1720px] w-full px-8">
       {/* Header */}
-      <motion.div
+      <motion.div 
         className="box-border content-stretch flex flex-col gap-5 items-center justify-start p-0 relative shrink-0 max-w-[750px] w-full"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -68,9 +68,9 @@ export function LatestWork() {
               preserveAspectRatio="none"
               viewBox="0 0 17 17"
             >
-              <path
-                d="M8.5 0L10.2451 6.75486L17 8.5L10.2451 10.2451L8.5 17L6.75486 10.2451L0 8.5L6.75486 6.75486L8.5 0Z"
-                fill="white"
+              <path 
+                d="M8.5 0L10.2451 6.75486L17 8.5L10.2451 10.2451L8.5 17L6.75486 10.2451L0 8.5L6.75486 6.75486L8.5 0Z" 
+                fill="white" 
               />
             </svg>
           </div>
@@ -89,141 +89,162 @@ export function LatestWork() {
       </motion.div>
 
       {/* Project Cards */}
-      <div className="flex flex-col gap-16 w-full items-center">
+      <div className="flex flex-col gap-10 w-full items-center">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            className="relative max-w-[1100px] w-full group"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="relative max-w-[900px] w-full cursor-pointer"
+            initial={{ opacity: 0, y: 80, rotateX: 15 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{
-              duration: 0.7,
-              delay: index * 0.12,
-              ease: [0.25, 0.1, 0.25, 1]
+              duration: 0.8,
+              delay: index * 0.15,
+              type: "spring",
+              stiffness: 80
             }}
             onHoverStart={() => setHoveredId(project.id)}
             onHoverEnd={() => setHoveredId(null)}
           >
             <motion.div
-              className="relative bg-gradient-to-br from-gray-50 to-white rounded-[32px] overflow-visible cursor-pointer"
+              className="bg-[#f5f5f5] rounded-[40px] overflow-hidden shadow-2xl"
+              style={{ backgroundColor: project.backgroundColor }}
               animate={{
-                y: hoveredId === project.id ? -8 : 0,
+                y: hoveredId === project.id ? -10 : 0,
+                scale: hoveredId === project.id ? 1.02 : 1,
               }}
-              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{
-                boxShadow: hoveredId === project.id
-                  ? "0 20px 60px -10px rgba(0, 0, 0, 0.15), 0 8px 20px -6px rgba(0, 0, 0, 0.1)"
-                  : "0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.05)"
-              }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
             >
-              {/* Content Container */}
-              <div className="p-12 pb-8">
-                {/* Header Section */}
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-center gap-5">
-                    <motion.div
-                      className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl flex items-center justify-center text-[28px] shadow-lg"
-                      animate={{
-                        rotate: hoveredId === project.id ? [0, -5, 5, 0] : 0
-                      }}
-                      transition={{ duration: 0.5 }}
-                    >
+              {/* Header Section */}
+              <div className="p-10 pb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center text-[24px]">
                       {project.icon}
-                    </motion.div>
-                    <div>
-                      <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[48px] text-gray-900 leading-none mb-2">
-                        {project.title}
-                      </h3>
-                      <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[17px] text-gray-600 leading-relaxed max-w-[650px]">
-                        {project.description}
-                      </p>
                     </div>
+                    <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[42px] text-black">
+                      {project.title}
+                    </h3>
                   </div>
                   <motion.div
-                    className="w-14 h-14 rounded-full bg-gray-900 flex items-center justify-center cursor-pointer flex-shrink-0"
-                    animate={{
-                      scale: hoveredId === project.id ? 1.1 : 1,
-                      rotate: hoveredId === project.id ? -45 : 0
-                    }}
-                    transition={{ duration: 0.3 }}
+                    className="w-14 h-14 rounded-full bg-black flex items-center justify-center cursor-pointer"
+                    whileHover={{ scale: 1.1, rotate: -45 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <ArrowRight className="w-6 h-6 text-white" />
                   </motion.div>
                 </div>
-
-                {/* Images Section */}
-                <div className="mt-8">
-                  <div className="flex gap-5">
-                    {/* Image 1 */}
-                    <motion.div
-                      className="relative rounded-[20px] overflow-hidden shadow-lg"
-                      style={{
-                        width: "55%",
-                        aspectRatio: "16/10"
-                      }}
-                      animate={{
-                        scale: hoveredId === project.id ? 1.02 : 1
-                      }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      <div
-                        className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center"
-                      >
-                        <div className="text-center">
-                          <div className="text-[56px] mb-3 opacity-90">{project.icon}</div>
-                          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] text-white text-[28px] opacity-90">
-                            {project.title}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* Image 2 */}
-                    <motion.div
-                      className="relative rounded-[20px] overflow-hidden shadow-lg"
-                      style={{
-                        width: "45%",
-                        aspectRatio: "4/3"
-                      }}
-                      animate={{
-                        scale: hoveredId === project.id ? 1.02 : 1
-                      }}
-                      transition={{ duration: 0.4, delay: 0.05 }}
-                    >
-                      <div
-                        className="w-full h-full flex items-center justify-center"
-                        style={{
-                          background: index === 0
-                            ? "linear-gradient(135deg, #047857 0%, #10b981 100%)"
-                            : index === 1
-                            ? "linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)"
-                            : index === 2
-                            ? "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)"
-                            : "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)"
-                        }}
-                      >
-                        <div className="text-white/90 text-[72px]">
-                          {index === 1 ? "⚡" : index === 2 ? "◎" : index === 3 ? "🎁" : "💼"}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </div>
+                <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[18px] text-gray-600 leading-relaxed max-w-[700px]">
+                  {project.description}
+                </p>
               </div>
 
-              {/* Subtle top accent line */}
+              {/* Images Section */}
+              <div className="px-10 pb-10">
+                <motion.div 
+                  className="flex gap-4 overflow-hidden"
+                  animate={{
+                    x: hoveredId === project.id ? -10 : 0
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {/* Image 1 - Larger */}
+                  <motion.div
+                    className="relative rounded-2xl overflow-hidden flex-shrink-0 shadow-xl"
+                    style={{
+                      width: index % 2 === 0 ? "420px" : "320px",
+                      height: "280px"
+                    }}
+                    whileHover={{ scale: 1.05, zIndex: 10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div 
+                      className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-white"
+                    >
+                      <div className="text-center p-8">
+                        <div className="text-[48px] mb-2">{project.icon}</div>
+                        <div className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[32px]">
+                          {project.title}
+                        </div>
+                        <div className="font-['Clash_Grotesk:Regular',_sans-serif] text-[14px] text-gray-400 mt-2">
+                          View Project
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Image 2 - Smaller or Larger based on index */}
+                  <motion.div
+                    className="relative rounded-2xl overflow-hidden flex-shrink-0 shadow-xl"
+                    style={{
+                      width: index % 2 === 0 ? "320px" : "480px",
+                      height: "280px"
+                    }}
+                    whileHover={{ scale: 1.05, zIndex: 10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div 
+                      className="w-full h-full flex items-center justify-center"
+                      style={{
+                        background: index === 0 
+                          ? "linear-gradient(135deg, #1a5f3f 0%, #2d8659 100%)"
+                          : index === 1
+                          ? "linear-gradient(135deg, #4338ca 0%, #7c3aed 100%)"
+                          : index === 2
+                          ? "linear-gradient(135deg, #1e293b 0%, #475569 100%)"
+                          : "linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%)"
+                      }}
+                    >
+                      <div className="text-white/80 text-[64px]">
+                        {index === 1 ? "⚡" : index === 2 ? "◎" : index === 3 ? "🎁" : "💼"}
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
+
+              {/* Animated Border */}
               <motion.div
-                className="absolute top-0 left-8 right-8 h-1 rounded-full bg-gradient-to-r from-transparent via-gray-900 to-transparent"
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{
-                  scaleX: hoveredId === project.id ? 1 : 0,
-                  opacity: hoveredId === project.id ? 0.1 : 0
+                className="absolute inset-0 rounded-[40px] pointer-events-none"
+                style={{
+                  border: "2px solid transparent",
                 }}
-                transition={{ duration: 0.4 }}
+                animate={{
+                  borderColor: hoveredId === project.id 
+                    ? "rgba(235, 255, 87, 0.5)" 
+                    : "rgba(0, 0, 0, 0.05)"
+                }}
+                transition={{ duration: 0.3 }}
               />
             </motion.div>
+
+            {/* Card stack effect - shadow cards behind */}
+            <motion.div
+              className="absolute inset-0 bg-white/50 rounded-[40px] -z-10"
+              style={{
+                top: "12px",
+                left: "12px",
+                right: "-12px",
+                bottom: "-12px",
+              }}
+              animate={{
+                y: hoveredId === project.id ? 8 : 6,
+                opacity: hoveredId === project.id ? 0.8 : 0.5
+              }}
+            />
+            <motion.div
+              className="absolute inset-0 bg-white/30 rounded-[40px] -z-20"
+              style={{
+                top: "24px",
+                left: "24px",
+                right: "-24px",
+                bottom: "-24px",
+              }}
+              animate={{
+                y: hoveredId === project.id ? 16 : 12,
+                opacity: hoveredId === project.id ? 0.6 : 0.3
+              }}
+            />
           </motion.div>
         ))}
       </div>

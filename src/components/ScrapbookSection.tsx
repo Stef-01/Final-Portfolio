@@ -174,17 +174,17 @@ export function ScrapbookSection() {
   };
 
   return (
-    <div className="bg-[#0a0a0c] relative w-full min-h-screen py-24 overflow-hidden">
+    <div className="bg-[#0a0a0c] relative w-full min-h-screen py-20 overflow-hidden">
       {/* Central Text */}
-      <motion.div
+      <motion.div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] text-center pointer-events-none"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.h2
-          className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[72px] leading-[1.1] text-white mb-4"
+        <motion.h2 
+          className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[80px] leading-[1.1] text-white mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -194,8 +194,8 @@ export function ScrapbookSection() {
           <br />
           something awesome
         </motion.h2>
-        <motion.p
-          className="font-['Clash_Grotesk:Regular',_sans-serif] text-[26px] text-gray-400 italic"
+        <motion.p 
+          className="font-['Clash_Grotesk:Regular',_sans-serif] text-[28px] text-gray-400 italic"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -298,7 +298,7 @@ export function ScrapbookSection() {
                   </motion.button>
 
                   <div className="text-center">
-                    <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[19px] text-gray-800 mb-2 leading-tight">
+                    <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[20px] text-gray-800 mb-2 leading-tight">
                       {item.title}
                     </h3>
                     <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[13px] text-gray-600 leading-snug">
@@ -338,7 +338,7 @@ export function ScrapbookSection() {
 
       {/* Playful hint text */}
       <motion.div
-        className="text-center mt-8 text-gray-500 font-['Clash_Grotesk:Regular',_sans-serif] text-[17px]"
+        className="text-center mt-8 text-gray-500 font-['Clash_Grotesk:Regular',_sans-serif] text-[18px]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -387,17 +387,17 @@ export function ScrapbookSection() {
 
               {/* Content */}
               <div className="space-y-6">
-                <motion.h2
-                  className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[38px] text-gray-900 pr-12"
+                <motion.h2 
+                  className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[42px] text-gray-900 pr-12"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
                   {selectedItem.title}
                 </motion.h2>
-
-                <motion.p
-                  className="font-['Clash_Grotesk:Medium',_sans-serif] text-[19px] text-gray-700"
+                
+                <motion.p 
+                  className="font-['Clash_Grotesk:Medium',_sans-serif] text-[20px] text-gray-700"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -405,15 +405,15 @@ export function ScrapbookSection() {
                   {selectedItem.description}
                 </motion.p>
 
-                <motion.div
+                <motion.div 
                   className="h-px bg-gray-300"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 0.3 }}
                 />
 
-                <motion.p
-                  className="font-['Clash_Grotesk:Regular',_sans-serif] text-[17px] text-gray-600 leading-relaxed"
+                <motion.p 
+                  className="font-['Clash_Grotesk:Regular',_sans-serif] text-[18px] text-gray-600 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
