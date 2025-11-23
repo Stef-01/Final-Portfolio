@@ -14,12 +14,12 @@ const navItems = [
 
 export function Navigation({ currentPage, onNavigate }: NavigationProps) {
   return (
-    <nav className="flex gap-8">
+    <nav className="flex gap-10">
       {navItems.map((item, index) => (
         <motion.button
           key={item.id}
           onClick={() => onNavigate(item.id)}
-          className={`font-['Clash_Grotesk:Medium',_sans-serif] text-[18px] relative transition-colors ${
+          className={`font-['Clash_Grotesk:Medium',_sans-serif] text-[17px] relative transition-colors ${
             currentPage === item.id ? "text-[#EBFF57]" : "text-white hover:text-[#EBFF57]"
           }`}
           initial={{ opacity: 0, y: -10 }}
