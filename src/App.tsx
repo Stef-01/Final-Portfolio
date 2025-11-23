@@ -140,7 +140,7 @@ function Frame2147227220() {
 
 function Frame5() {
   return (
-    <div className="box-border content-stretch flex flex-col gap-5 items-center justify-start leading-[0] not-italic p-0 relative shrink-0 text-[#ffffff] text-center w-full">
+    <div className="box-border content-stretch flex flex-col gap-5 items-center justify-start leading-[0] not-italic p-0 relative shrink-0 text-gray-900 text-center w-full">
       <motion.div
         className="font-['Clash_Grotesk:Medium',_sans-serif] min-w-full relative shrink-0 text-[82px]"
         style={{ width: "min-content" }}
@@ -167,17 +167,17 @@ function Frame5() {
 function Frame6() {
   return (
     <motion.div 
-      className="bg-[#ebff57] box-border content-stretch flex flex-row gap-2.5 items-center justify-center px-[30px] py-[15px] relative rounded-[62px] shrink-0 cursor-pointer"
+      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 box-border content-stretch flex flex-row gap-2.5 items-center justify-center px-[30px] py-[15px] relative rounded-[62px] shrink-0 cursor-pointer"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, delay: 0.6, type: "spring", stiffness: 200 }}
       whileHover={{ 
         scale: 1.05,
-        boxShadow: "0 0 30px rgba(235, 255, 87, 0.5)"
+        boxShadow: "0 10px 40px -5px rgba(79, 70, 229, 0.4)"
       }}
       whileTap={{ scale: 0.95 }}
     >
-      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#0a0a0c] text-[24px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-white text-[24px] text-center text-nowrap">
         <p className="block leading-[normal] whitespace-pre">Get Started</p>
       </div>
     </motion.div>
@@ -200,7 +200,7 @@ function Frame8() {
   const menuItems = ["Home", "About Us", "Our Service", "Portfolio"];
   
   return (
-    <div className="box-border content-stretch flex flex-row font-['Clash_Grotesk:Regular',_sans-serif] gap-[55px] items-center justify-start leading-[0] not-italic p-0 relative shrink-0 text-[#ffffff] text-[20px] text-center text-nowrap">
+    <div className="box-border content-stretch flex flex-row font-['Clash_Grotesk:Regular',_sans-serif] gap-[55px] items-center justify-start leading-[0] not-italic p-0 relative shrink-0 text-gray-600 text-[20px] text-center text-nowrap">
       {menuItems.map((item, index) => (
         <motion.div 
           key={item}
@@ -210,7 +210,7 @@ function Frame8() {
           transition={{ duration: 0.5, delay: index * 0.1 }}
           whileHover={{ 
             scale: 1.1,
-            color: "#ebff57"
+            color: "#1a1a1a"
           }}
         >
           <p className="block leading-[normal] text-nowrap whitespace-pre">
@@ -225,17 +225,17 @@ function Frame8() {
 function Frame9() {
   return (
     <motion.div 
-      className="bg-[#ebff57] box-border content-stretch flex flex-row gap-2.5 items-center justify-center px-[30px] py-[15px] relative rounded-[62px] shrink-0 cursor-pointer"
+      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 box-border content-stretch flex flex-row gap-2.5 items-center justify-center px-[30px] py-[15px] relative rounded-[62px] shrink-0 cursor-pointer"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.4 }}
       whileHover={{ 
         scale: 1.05,
-        boxShadow: "0 0 20px rgba(235, 255, 87, 0.4)"
+        boxShadow: "0 10px 40px -5px rgba(79, 70, 229, 0.4)"
       }}
       whileTap={{ scale: 0.95 }}
     >
-      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#0a0a0c] text-[24px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-white text-[24px] text-center text-nowrap">
         <p className="block leading-[normal] whitespace-pre">Contact Us</p>
       </div>
     </motion.div>
@@ -245,9 +245,9 @@ function Frame9() {
 function Frame10({ currentPage, onNavigate }: { currentPage: string; onNavigate: (page: string) => void }) {
   return (
     <div
-      className="absolute bg-[#0a0a0c] box-border content-stretch flex flex-row items-center justify-between px-[5vw] py-5 top-0 w-full left-0 z-50"
+      className="absolute bg-white/95 backdrop-blur-md box-border content-stretch flex flex-row items-center justify-between px-[5vw] py-5 top-0 w-full left-0 z-50"
     >
-      <div className="absolute border border-[rgba(255,255,255,0.1)] border-solid inset-0 pointer-events-none" />
+      <div className="absolute border border-gray-200 border-solid inset-0 pointer-events-none" />
       <Navigation currentPage={currentPage} onNavigate={onNavigate} />
       <Frame9 />
     </div>
@@ -270,7 +270,7 @@ function Group1() {
                 <path
                   d="M1 113.5V1H205.5V113.5H1Z"
                   id="Vector 1"
-                  stroke="var(--stroke-0, #EBFF57)"
+                  stroke="var(--stroke-0, #3b82f6)"
                 />
               </svg>
             </div>
@@ -289,10 +289,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -310,10 +310,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -331,10 +331,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -352,10 +352,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -373,10 +373,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -394,10 +394,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -415,10 +415,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -436,10 +436,10 @@ function Group1() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -452,7 +452,7 @@ function Group1() {
 function Bold() {
   return (
     <div className="h-[61px] relative w-[113px]" data-name="Bold.">
-      <div className="absolute bottom-0 font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] left-[-10.619%] not-italic right-[-9.735%] text-[#ffffff] text-[49.188px] text-center text-nowrap top-0">
+      <div className="absolute bottom-0 font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] left-[-10.619%] not-italic right-[-9.735%] text-gray-900 text-[49.188px] text-center text-nowrap top-0">
         <p className="block leading-[normal] whitespace-pre">UI/UX</p>
       </div>
     </div>
@@ -497,7 +497,7 @@ function Group4() {
                 <path
                   d="M1 114V1H260V114H1Z"
                   id="Vector 1"
-                  stroke="var(--stroke-0, #EBFF57)"
+                  stroke="var(--stroke-0, #3b82f6)"
                 />
               </svg>
             </div>
@@ -516,10 +516,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -537,10 +537,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -558,10 +558,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -579,10 +579,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -600,10 +600,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -621,10 +621,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -642,10 +642,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -663,10 +663,10 @@ function Group4() {
               <circle
                 cx="7"
                 cy="7"
-                fill="var(--fill-0, #0A0A0C)"
+                fill="var(--fill-0, #ffffff)"
                 id="Ellipse 3414"
                 r="6.5"
-                stroke="var(--stroke-0, #EBFF57)"
+                stroke="var(--stroke-0, #3b82f6)"
               />
             </svg>
           </div>
@@ -691,7 +691,7 @@ function Group3() {
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="flex-none rotate-[10.792deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[49.188px] text-center text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[49.188px] text-center text-nowrap">
             <p className="block leading-[normal] whitespace-pre">Design</p>
           </div>
         </div>
@@ -762,7 +762,7 @@ function Frame2147227222() {
 
 function Frame1({ currentPage, onNavigate }: { currentPage: string; onNavigate: (page: string) => void }) {
   return (
-    <div className="bg-[#0a0a0c] h-[974px] relative shrink-0 w-full">
+    <div className="bg-gradient-to-b from-white via-gray-50/30 to-white h-[974px] relative shrink-0 w-full">
       <MaskGroup />
       <Frame2147227221 />
       <Frame2147227220 />
@@ -777,7 +777,7 @@ function Frame1({ currentPage, onNavigate }: { currentPage: string; onNavigate: 
 
 function Frame2147227226() {
   return (
-    <div className="box-border content-stretch flex flex-row font-['Clash_Grotesk:Regular',_sans-serif] gap-5 items-center justify-center leading-[0] not-italic p-0 relative shrink-0 text-[#ffffff] text-[52px] text-center text-nowrap max-w-[1000px] w-full">
+    <div className="box-border content-stretch flex flex-row font-['Clash_Grotesk:Regular',_sans-serif] gap-5 items-center justify-center leading-[0] not-italic p-0 relative shrink-0 text-gray-900 text-[52px] text-center text-nowrap max-w-[1000px] w-full">
       <div className="relative shrink-0">
         <p className="block leading-[1.116] text-nowrap whitespace-pre">
           Health Systems Designer
@@ -809,7 +809,7 @@ function Frame12() {
 function Frame15() {
   return (
     <div className="box-border content-stretch flex flex-row gap-5 items-start justify-start p-0 relative shrink-0 w-full">
-      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[62px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[62px] text-center text-nowrap">
         <p className="block leading-[1.116] whitespace-pre">
           and 30+ completed projects, specializing in
         </p>
@@ -837,13 +837,13 @@ function Frame13() {
 function Frame16() {
   return (
     <div className="box-border content-stretch flex flex-row gap-5 items-start justify-start p-0 relative shrink-0">
-      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[62px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[62px] text-center text-nowrap">
         <p className="block leading-[1.116] whitespace-pre">
           Skilled in research,
         </p>
       </div>
       <Frame13 />
-      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[62px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[62px] text-center text-nowrap">
         <p className="block leading-[1.116] whitespace-pre">
           wireframing, prototyping,
         </p>
@@ -878,7 +878,7 @@ function Frame17() {
         <Frame15 />
       </motion.div>
       <motion.div
-        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#ffffff] text-[62px] text-center"
+        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-gray-900 text-[62px] text-center"
         style={{ width: "min-content" }}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -898,7 +898,7 @@ function Frame17() {
         <Frame16 />
       </motion.div>
       <motion.div
-        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#ffffff] text-[62px] text-center"
+        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-gray-900 text-[62px] text-center"
         style={{ width: "min-content" }}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -926,7 +926,7 @@ function Frame18() {
           <path d={svgPaths.p2608d400} fill="var(--fill-0, white)" id="*" />
         </svg>
       </div>
-      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[24px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[24px] text-center text-nowrap">
         <p className="block leading-[1.116] whitespace-pre">Our Service</p>
       </div>
     </div>
@@ -938,7 +938,7 @@ function Frame2147227217() {
     <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start p-0 relative shrink-0 max-w-[605px] w-full">
       <Frame18 />
       <div
-        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#ffffff] text-[48px] text-left"
+        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-gray-900 text-[48px] text-left"
         style={{ width: "min-content" }}
       >
         <p className="block leading-[1.116]">
@@ -1007,364 +1007,364 @@ function Group() {
     >
       <div className="absolute flex h-[15.508px] items-center justify-center left-[76.082px] top-[159.708px] w-[10.551px]">
         <div className="flex-none rotate-[188.715deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">E</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.602px] items-center justify-center left-[64.583px] top-[157.062px] w-[10.172px]">
         <div className="flex-none rotate-[196.441deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">x</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[16.022px] items-center justify-center left-[54.636px] top-[153.563px] w-[12.361px]">
         <div className="flex-none rotate-[204.313deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">p</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[13.807px] items-center justify-center left-[47.655px] top-[150.396px] w-[9.77px]">
         <div className="flex-none rotate-[210.727deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">l</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.751px] items-center justify-center left-[38.903px] top-[145.104px] w-[14.282px]">
         <div className="flex-none rotate-[216.849deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">o</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[13.329px] items-center justify-center left-[31.306px] top-[139.269px] w-[13.004px]">
         <div className="flex-none rotate-[223.701deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">r</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.597px] items-center justify-center left-[25.025px] top-[133.195px] w-[15.6px]">
         <div className="flex-none rotate-[230.552deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[10.857px] items-center justify-center left-[21.541px] top-[129.391px] w-[13.964px]">
         <div className="flex-none rotate-[236.675deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.758px] items-center justify-center left-[14.495px] top-[117.979px] w-[17.549px]">
         <div className="flex-none rotate-[244.401deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">M</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[10.781px] items-center justify-center left-[10.552px] top-[108.079px] w-[15.786px]">
         <div className="flex-none rotate-[253.876deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">o</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[6.498px] items-center justify-center left-[8.745px] top-[99.725px] w-[14.885px]">
         <div className="flex-none rotate-[260.727deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">r</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[7.664px] items-center justify-center left-[8.232px] top-[91.877px] w-[14.676px]">
         <div className="flex-none rotate-[267.579deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[4.453px] items-center justify-center left-[8.376px] top-[86.319px] w-[14.589px]">
         <div className="flex-none rotate-[273.701deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[10.8px] items-center justify-center left-[8.854px] top-[74.688px] w-[15.625px]">
         <div className="flex-none rotate-[279.824deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">S</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[11.103px] items-center justify-center left-[11.054px] top-[63.592px] w-[15.856px]">
         <div className="flex-none rotate-[287.696deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[9.83px] items-center justify-center left-[14.764px] top-[54.095px] w-[14.849px]">
         <div className="flex-none rotate-[294.547deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">r</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[12.88px] items-center justify-center left-[18.494px] top-[45.745px] w-[15.607px]">
         <div className="flex-none rotate-[301.107deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">v</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[10.896px] items-center justify-center left-[24.093px] top-[41.394px] w-[13.192px]">
         <div className="flex-none rotate-[306.938deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">i</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.44px] items-center justify-center left-[28.165px] top-[33.329px] w-[14.882px]">
         <div className="flex-none rotate-[312.769deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">c</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.587px] items-center justify-center left-[35.618px] top-[25.591px] w-[14.621px]">
         <div className="flex-none rotate-[320.349deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.559px] items-center justify-center left-[44.598px] top-[19.836px] w-[13.074px]">
         <div className="flex-none rotate-[327.638deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">s</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.436px] items-center justify-center left-[52.845px] top-[17.254px] w-[9.645px]">
         <div className="flex-none rotate-[333.177deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.649px] items-center justify-center left-[58.624px] top-[14.655px] w-[8.759px]">
         <div className="flex-none rotate-[337.551deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.776px] items-center justify-center left-[64.601px] top-[12.512px] w-[7.822px]">
         <div className="flex-none rotate-[341.924deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.819px] items-center justify-center left-[71.063px] top-[9.732px] w-[11.234px]">
         <div className="flex-none rotate-[348.192deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">E</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.807px] items-center justify-center left-[82.775px] top-[8.618px] w-[7.368px]">
         <div className="flex-none rotate-[355.918deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">x</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.826px] items-center justify-center left-[92.526px] top-[8.596px] w-[7.998px]">
         <div className="flex-none rotate-[3.79deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">p</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.661px] items-center justify-center left-[102.733px] top-[9.709px] w-[5.317px]">
         <div className="flex-none rotate-[10.204deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">l</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.796px] items-center justify-center left-[107.714px] top-[10.947px] w-[10.823px]">
         <div className="flex-none rotate-[16.327deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">o</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.896px] items-center justify-center left-[116.751px] top-[14.399px] w-[9.557px]">
         <div className="flex-none rotate-[23.178deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">r</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.993px] items-center justify-center left-[123.053px] top-[17.95px] w-[13.316px]">
         <div className="flex-none rotate-[30.03deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[13.703px] items-center justify-center left-[131.204px] top-[23.813px] w-[11.341px]">
         <div className="flex-none rotate-[36.152deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[17.705px] items-center justify-center left-[135.303px] top-[27.934px] w-[17.599px]">
         <div className="flex-none rotate-[43.878deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">M</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.256px] items-center justify-center left-[144.739px] top-[39.342px] w-[15.762px]">
         <div className="flex-none rotate-[53.354deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">o</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[10.825px] items-center justify-center left-[150.264px] top-[48.624px] w-[14.592px]">
         <div className="flex-none rotate-[60.205deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">r</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[12.114px] items-center justify-center left-[153.673px] top-[56.283px] w-[16.005px]">
         <div className="flex-none rotate-[67.056deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[7.545px] items-center justify-center left-[157.211px] top-[66.735px] w-[14.797px]">
         <div className="flex-none rotate-[73.179deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[6.55px] items-center justify-center left-[158.663px] top-[72.914px] w-[14.814px]">
         <div className="flex-none rotate-[77.552deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[5.518px] items-center justify-center left-[159.73px] top-[79.209px] w-[14.744px]">
         <div className="flex-none rotate-[81.925deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[8.918px] items-center justify-center left-[160.499px] top-[85.933px] w-[14.65px]">
         <div className="flex-none rotate-[88.194deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">E</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[7.81px] items-center justify-center left-[159.865px] top-[96.196px] w-[14.97px]">
         <div className="flex-none rotate-[95.92deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">x</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[10.289px] items-center justify-center left-[157.865px] top-[104.779px] w-[15.659px]">
         <div className="flex-none rotate-[103.792deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">p</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[7.61px] items-center justify-center left-[155.737px] top-[114.675px] w-[14.476px]">
         <div className="flex-none rotate-[110.206deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">l</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[12.712px] items-center justify-center left-[151.872px] top-[119.433px] w-[16.03px]">
         <div className="flex-none rotate-[116.328deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">o</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[11.419px] items-center justify-center left-[147.256px] top-[127.845px] w-[14.362px]">
         <div className="flex-none rotate-[123.18deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">r</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.664px] items-center justify-center left-[142.194px] top-[133.584px] w-[15.561px]">
         <div className="flex-none rotate-[130.031deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[12.825px] items-center justify-center left-[138.905px] top-[140.755px] w-[12.516px]">
         <div className="flex-none rotate-[136.154deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[17.86px] items-center justify-center left-[128.778px] top-[144.316px] w-[17.028px]">
         <div className="flex-none rotate-[143.88deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">M</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[16.03px] items-center justify-center left-[119.592px] top-[151.972px] w-[12.766px]">
         <div className="flex-none rotate-[153.355deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">o</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.974px] items-center justify-center left-[111.632px] top-[156.079px] w-[8.857px]">
         <div className="flex-none rotate-[160.206deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">r</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[15.607px] items-center justify-center left-[103.973px] top-[158.403px] w-[10.106px]">
         <div className="flex-none rotate-[167.058deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">e</p>
           </div>
         </div>
       </div>
       <div className="absolute flex h-[14.708px] items-center justify-center left-[99.467px] top-[160.352px] w-[5.215px]">
         <div className="flex-none rotate-[173.18deg]">
-          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-[#ffffff] text-[12.707px] text-left text-nowrap">
+          <div className="font-['Clash_Grotesk:Semibold',_sans-serif] leading-[0] not-italic relative text-gray-900 text-[12.707px] text-left text-nowrap">
             <p className="block leading-[normal] whitespace-pre">&nbsp;</p>
           </div>
         </div>
@@ -1443,7 +1443,7 @@ function Frame() {
 
 function Frame2147227213() {
   return (
-    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-[#ffffff] text-left w-full">
+    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-gray-900 text-left w-full">
       <div className="font-['Clash_Grotesk:Medium',_sans-serif] relative shrink-0 text-[32px] w-full">
         <p className="block leading-[1.116]">Website Design</p>
       </div>
@@ -1529,7 +1529,7 @@ function Frame4() {
 
 function Frame2147227216() {
   return (
-    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-[#ffffff] text-left w-full">
+    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-gray-900 text-left w-full">
       <div className="font-['Clash_Grotesk:Medium',_sans-serif] relative shrink-0 text-[32px] w-full">
         <p className="block leading-[1.116]">Application design</p>
       </div>
@@ -1632,7 +1632,7 @@ function Frame11() {
 
 function Frame2147227228() {
   return (
-    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-[#ffffff] text-left w-full">
+    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-gray-900 text-left w-full">
       <div className="font-['Clash_Grotesk:Medium',_sans-serif] relative shrink-0 text-[32px] w-full">
         <p className="block leading-[1.116]">Graphic Design</p>
       </div>
@@ -1690,7 +1690,7 @@ function Frame14() {
 
 function Frame2147227232() {
   return (
-    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-[#ffffff] text-left w-full">
+    <div className="box-border content-stretch flex flex-col gap-5 items-start justify-start leading-[0] not-italic p-0 relative shrink-0 text-gray-900 text-left w-full">
       <div className="font-['Clash_Grotesk:Medium',_sans-serif] relative shrink-0 text-[32px] text-nowrap">
         <p className="block leading-[1.116] whitespace-pre">Logo Design</p>
       </div>
@@ -1792,7 +1792,7 @@ function Frame19() {
           <path d={svgPaths.p2608d400} fill="var(--fill-0, white)" id="*" />
         </svg>
       </div>
-      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[24px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[24px] text-center text-nowrap">
         <p className="block leading-[1.116] whitespace-pre">Our Latest Work</p>
       </div>
     </div>
@@ -1810,7 +1810,7 @@ function Frame2147227234() {
     >
       <Frame19 />
       <div
-        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#ffffff] text-[62px] text-center"
+        className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-gray-900 text-[62px] text-center"
         style={{ width: "min-content" }}
       >
         <p className="block leading-[1.116]">
@@ -1910,7 +1910,7 @@ function Frame2147229267() {
 function Frame2147229269() {
   return (
     <div className="box-border content-stretch flex flex-row items-center justify-between p-0 relative shrink-0 w-full">
-      <div className="font-['Clash_Grotesk:Light',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[18px] text-left text-nowrap uppercase">
+      <div className="font-['Clash_Grotesk:Light',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[18px] text-left text-nowrap uppercase">
         <p className="block leading-[1.116] whitespace-pre">Branding</p>
       </div>
       <Frame2147229267 />
@@ -1922,7 +1922,7 @@ function Frame2147229270() {
   return (
     <div className="box-border content-stretch flex flex-col gap-3 items-start justify-start p-0 relative shrink-0 w-[768px]">
       <Frame2147229269 />
-      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[32px] text-left w-full">
+      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[32px] text-left w-full">
         <p className="block leading-[1.116]">{`Lorem Ipsum is simply dummy text of the printing and `}</p>
       </div>
     </div>
@@ -1992,7 +1992,7 @@ function Frame2147227245() {
           ease: "linear"
         }}
       >
-        <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[130px] text-left text-nowrap uppercase">
+        <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[130px] text-left text-nowrap uppercase">
           <p className="block leading-[1.363] whitespace-pre">INSTAGRAM</p>
         </div>
         <motion.div 
@@ -2010,7 +2010,7 @@ function Frame2147227245() {
             <path d={svgPaths.p25b9d700} fill="var(--fill-0, #EBFF57)" id="*" />
           </svg>
         </motion.div>
-        <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[130px] text-left text-nowrap uppercase">
+        <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[130px] text-left text-nowrap uppercase">
           <p className="block leading-[1.363] whitespace-pre">FACEBOOK</p>
         </div>
         <motion.div 
@@ -2028,7 +2028,7 @@ function Frame2147227245() {
             <path d={svgPaths.p25b9d700} fill="var(--fill-0, #EBFF57)" id="*" />
           </svg>
         </motion.div>
-        <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[130px] text-left uppercase w-[444px]">
+        <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[130px] text-left uppercase w-[444px]">
           <p className="block leading-[1.363]">TWITER</p>
         </div>
         <motion.div 
@@ -2056,7 +2056,7 @@ function Frame1410116654() {
     <div className="basis-0 bg-[#252525] grow h-[62px] min-h-px min-w-px relative rounded-[30px] shrink-0">
       <div className="relative size-full">
         <div className="box-border content-stretch flex flex-row gap-2.5 h-[62px] items-start justify-start px-5 py-[21px] relative w-full">
-          <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[16px] text-center text-nowrap">
+          <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[16px] text-center text-nowrap">
             <p className="block leading-[20px] whitespace-pre">Full Name</p>
           </div>
         </div>
@@ -2070,7 +2070,7 @@ function Frame1410116655() {
     <div className="basis-0 bg-[#252525] grow h-[62px] min-h-px min-w-px relative rounded-[30px] shrink-0">
       <div className="relative size-full">
         <div className="box-border content-stretch flex flex-row gap-2.5 h-[62px] items-start justify-start px-5 py-[21px] relative w-full">
-          <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[16px] text-center text-nowrap">
+          <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[16px] text-center text-nowrap">
             <p className="block leading-[20px] whitespace-pre">Email</p>
           </div>
         </div>
@@ -2091,7 +2091,7 @@ function Frame1410116657() {
 function Frame1410116656() {
   return (
     <div className="bg-[#252525] box-border content-stretch flex flex-row gap-2.5 h-[190px] items-start justify-start px-5 py-[21px] relative rounded-[30px] shrink-0 w-[842px]">
-      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[16px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[16px] text-center text-nowrap">
         <p className="block leading-[20px] whitespace-pre">Message</p>
       </div>
     </div>
@@ -2101,15 +2101,15 @@ function Frame1410116656() {
 function Frame20() {
   return (
     <motion.div 
-      className="bg-[#ebff57] box-border content-stretch flex flex-row gap-2.5 items-center justify-center px-[30px] py-[15px] relative rounded-[62px] shrink-0 cursor-pointer"
+      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 box-border content-stretch flex flex-row gap-2.5 items-center justify-center px-[30px] py-[15px] relative rounded-[62px] shrink-0 cursor-pointer"
       whileHover={{ 
         scale: 1.05,
-        boxShadow: "0 0 30px rgba(235, 255, 87, 0.5)"
+        boxShadow: "0 10px 40px -5px rgba(79, 70, 229, 0.4)"
       }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#0a0a0c] text-[24px] text-center text-nowrap">
+      <div className="font-['Clash_Grotesk:Medium',_sans-serif] leading-[0] not-italic relative shrink-0 text-white text-[24px] text-center text-nowrap">
         <p className="block leading-[normal] whitespace-pre">Submit</p>
       </div>
     </motion.div>
@@ -2128,7 +2128,7 @@ function Frame1410116658() {
 
 function Frame21() {
   return (
-    <div className="bg-neutral-900 box-border content-stretch flex flex-row font-['Clash_Grotesk:Regular',_sans-serif] gap-10 h-[25px] items-start justify-start leading-[0] not-italic p-0 relative rounded-[60px] shrink-0 text-[#ffffff] text-[20px] text-center text-nowrap">
+    <div className="bg-neutral-900 box-border content-stretch flex flex-row font-['Clash_Grotesk:Regular',_sans-serif] gap-10 h-[25px] items-start justify-start leading-[0] not-italic p-0 relative rounded-[60px] shrink-0 text-gray-900 text-[20px] text-center text-nowrap">
       <div className="relative shrink-0">
         <p className="block leading-[normal] text-nowrap whitespace-pre">
           About Us
@@ -2151,7 +2151,7 @@ function Frame21() {
 function Frame22() {
   return (
     <div className="box-border content-stretch flex flex-row gap-5 items-start justify-start p-0 relative shrink-0">
-      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[18px] text-center text-nowrap">
+      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-gray-900 text-[18px] text-center text-nowrap">
         <p className="block leading-[20px] whitespace-pre">Privacy Policy</p>
       </div>
       <div className="flex h-[21px] items-center justify-center relative shrink-0 w-[0px]">
@@ -2176,7 +2176,7 @@ function Frame22() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[18px] text-center text-nowrap">
+      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-gray-900 text-[18px] text-center text-nowrap">
         <p className="block leading-[20px] whitespace-pre">{`Terms & Condition`}</p>
       </div>
     </div>
@@ -2186,7 +2186,7 @@ function Frame22() {
 function Frame2147227242() {
   return (
     <div className="absolute box-border content-stretch flex flex-row items-start justify-between left-[78px] p-0 top-[556px] w-[1712px]">
-      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[18px] text-center text-nowrap">
+      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-gray-900 text-[18px] text-center text-nowrap">
         <p className="block leading-[20px] whitespace-pre">
           2024@Smit All rights reserved
         </p>
@@ -2272,7 +2272,7 @@ function Frame2147227208() {
 function Frame2147227209() {
   return (
     <div className="box-border content-stretch flex flex-row gap-[30px] items-end justify-center p-0 relative shrink-0">
-      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[130px] text-left text-nowrap uppercase">
+      <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-gray-900 text-[130px] text-left text-nowrap uppercase">
         <p className="block leading-[1.363] whitespace-pre">Let's</p>
       </div>
       <Frame2147227208 />
@@ -2335,7 +2335,7 @@ function Frame2147227210() {
   return (
     <div className="box-border content-stretch flex flex-row gap-[30px] items-center justify-start p-0 relative shrink-0 w-full">
       <Frame2147227207 />
-      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-end leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[130px] text-left text-nowrap uppercase">
+      <div className="flex flex-col font-['Clash_Grotesk:Regular',_sans-serif] justify-end leading-[0] not-italic relative shrink-0 text-gray-900 text-[130px] text-left text-nowrap uppercase">
         <p className="block leading-[normal] whitespace-pre">Get IN</p>
       </div>
     </div>
@@ -2429,7 +2429,7 @@ export default function App() {
       case "resume":
         return (
           <div className="relative">
-            <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0c] border-b border-[rgba(255,255,255,0.1)]">
+            <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
               <div className="flex justify-between items-center px-[5vw] py-5">
                 <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
                 <Frame9 />
@@ -2443,7 +2443,7 @@ export default function App() {
       case "publications":
         return (
           <div className="relative">
-            <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0c] border-b border-[rgba(255,255,255,0.1)]">
+            <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
               <div className="flex justify-between items-center px-[5vw] py-5">
                 <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
                 <Frame9 />
@@ -2457,7 +2457,7 @@ export default function App() {
       case "conferences":
         return (
           <div className="relative">
-            <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0c] border-b border-[rgba(255,255,255,0.1)]">
+            <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
               <div className="flex justify-between items-center px-[5vw] py-5">
                 <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
                 <Frame9 />
@@ -2474,7 +2474,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-[#000000] w-full min-h-screen overflow-x-hidden">
+    <div className="bg-white w-full min-h-screen overflow-x-hidden">
       {renderPage()}
     </div>
   );

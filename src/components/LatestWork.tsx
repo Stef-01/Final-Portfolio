@@ -70,16 +70,16 @@ export function LatestWork() {
             >
               <path
                 d="M8.5 0L10.2451 6.75486L17 8.5L10.2451 10.2451L8.5 17L6.75486 10.2451L0 8.5L6.75486 6.75486L8.5 0Z"
-                fill="white"
+                fill="#1a1a1a"
               />
             </svg>
           </div>
-          <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#ffffff] text-[24px] text-center text-nowrap">
+          <div className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] not-italic relative shrink-0 text-[#1a1a1a] text-[24px] text-center text-nowrap">
             <p className="block leading-[1.116] whitespace-pre">My Latest Work</p>
           </div>
         </div>
         <div
-          className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#ffffff] text-[62px] text-center"
+          className="font-['Clash_Grotesk:Regular',_sans-serif] leading-[0] min-w-full not-italic relative shrink-0 text-[#1a1a1a] text-[62px] text-center"
           style={{ width: "min-content" }}
         >
           <p className="block leading-[1.116]">

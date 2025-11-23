@@ -184,7 +184,7 @@ export function PhilosophySection() {
 
             {/* Stefan Thottunkal Signature with bounce */}
             <motion.div
-              className="absolute bottom-[-30px] right-[-20px] px-4 py-2 bg-[#EBFF57] rounded-full border-2 border-black shadow-lg"
+              className="absolute bottom-[-30px] right-[-20px] px-4 py-2 bg-gradient-to-r from-yellow-200 to-amber-200 rounded-full border-2 border-black shadow-lg"
               initial={{ scale: 0, rotate: -20 }}
               whileInView={{ scale: 1, rotate: -8 }}
               viewport={{ once: true }}
@@ -254,7 +254,7 @@ export function PhilosophySection() {
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={`sparkle-${i}`}
-                className="absolute w-2 h-2 bg-[#EBFF57] rounded-full"
+                className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
                 style={{
                   top: `${20 + i * 15}%`,
                   left: `${10 + i * 20}%`
@@ -290,7 +290,7 @@ export function PhilosophySection() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <motion.p
-              className="font-['Clash_Grotesk:Regular',_sans-serif] text-gray-300 text-[19px] leading-relaxed"
+              className="font-['Clash_Grotesk:Regular',_sans-serif] text-gray-600 text-[19px] leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -300,7 +300,7 @@ export function PhilosophySection() {
             </motion.p>
 
             <motion.p
-              className="font-['Clash_Grotesk:Medium',_sans-serif] text-white text-[20px] leading-relaxed"
+              className="font-['Clash_Grotesk:Medium',_sans-serif] text-gray-900 text-[20px] leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -311,7 +311,7 @@ export function PhilosophySection() {
 
             {/* Decorative Yellow Accent */}
             <motion.div
-              className="w-20 h-1 bg-[#EBFF57] rounded-full"
+              className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
               initial={{ width: 0 }}
               whileInView={{ width: 80 }}
               viewport={{ once: true }}

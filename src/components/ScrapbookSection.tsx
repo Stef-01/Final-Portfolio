@@ -174,7 +174,7 @@ export function ScrapbookSection() {
   };
 
   return (
-    <div className="bg-[#0a0a0c] relative w-full min-h-screen py-24 overflow-hidden">
+    <div className="bg-gradient-to-b from-gray-50/50 via-white to-gray-50/50 relative w-full min-h-screen py-24 overflow-hidden">
       {/* Central Text */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] text-center pointer-events-none"
@@ -184,7 +184,7 @@ export function ScrapbookSection() {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[72px] leading-[1.1] text-white mb-4"
+          className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[72px] leading-[1.1] text-gray-900 mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -195,7 +195,7 @@ export function ScrapbookSection() {
           something awesome
         </motion.h2>
         <motion.p
-          className="font-['Clash_Grotesk:Regular',_sans-serif] text-[26px] text-gray-400 italic"
+          className="font-['Clash_Grotesk:Regular',_sans-serif] text-[26px] text-gray-600 italic"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -428,8 +428,8 @@ export function ScrapbookSection() {
                   transition={{ delay: 0.5 }}
                 >
                   <motion.button
-                    className="bg-[#ebff57] px-6 py-3 rounded-full font-['Clash_Grotesk:Medium',_sans-serif] text-[#0a0a0c] text-[16px]"
-                    whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(235, 255, 87, 0.5)" }}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 rounded-full font-['Clash_Grotesk:Medium',_sans-serif] text-white text-[16px]"
+                    whileHover={{ scale: 1.05, boxShadow: "0 10px 40px -5px rgba(79, 70, 229, 0.4)" }}
                     whileTap={{ scale: 0.95 }}
                   >
                     View Project

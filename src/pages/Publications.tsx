@@ -101,7 +101,7 @@ const creativeWorks = [
 
 export function Publications() {
   return (
-    <div className="min-h-screen bg-[#000000] text-white py-20 px-8">
+    <div className="min-h-screen bg-white text-gray-900 py-20 px-8">
       <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -109,13 +109,13 @@ export function Publications() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center gap-4 mb-12">
-            <BookOpen className="w-12 h-12 text-[#EBFF57]" />
+            <BookOpen className="w-12 h-12 text-blue-600" />
             <h1 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[72px]">Publications</h1>
           </div>
 
           {/* Peer-Reviewed Articles */}
           <section className="mb-16">
-            <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-[#EBFF57]">
+            <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-blue-600">
               Peer-Reviewed Articles
             </h2>
             
@@ -123,25 +123,25 @@ export function Publications() {
               {peerReviewedArticles.map((pub, index) => (
                 <motion.div
                   key={index}
-                  className="bg-[#0a0a0c] border border-[rgba(255,255,255,0.1)] rounded-2xl p-8 hover:border-[#EBFF57] transition-colors group"
+                  className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-600 transition-colors group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + index * 0.05 }}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
-                      <p className="text-gray-400 text-[16px] mb-2">{pub.authors}</p>
+                      <p className="text-gray-500 text-[16px] mb-2">{pub.authors}</p>
                       <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] mb-3 leading-relaxed">
                         {pub.title}
                       </h3>
-                      <p className="text-gray-300 text-[18px] mb-2">
+                      <p className="text-gray-700 text-[18px] mb-2">
                         <span className="italic">{pub.journal}</span> ({pub.year})
                       </p>
                       <a 
                         href={pub.doi}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-[#EBFF57] hover:underline text-[16px]"
+                        className="inline-flex items-center gap-2 text-blue-600 hover:underline text-[16px]"
                       >
                         <ExternalLink className="w-4 h-4" />
                         View Publication
@@ -155,7 +155,7 @@ export function Publications() {
 
           {/* Manuscripts Under Review/In Preparation */}
           <section className="mb-16">
-            <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-[#EBFF57]">
+            <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-blue-600">
               Manuscripts Under Review/In Preparation
             </h2>
             
@@ -163,26 +163,26 @@ export function Publications() {
               {manuscriptsInProgress.map((pub, index) => (
                 <motion.div
                   key={index}
-                  className="bg-[#0a0a0c] border border-[rgba(255,255,255,0.1)] rounded-2xl p-8"
+                  className="bg-white border border-gray-200 rounded-2xl p-8"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.05 }}
                 >
                   <div className="flex items-start gap-4 mb-3">
-                    <FileText className="w-6 h-6 text-[#EBFF57] flex-shrink-0 mt-1" />
+                    <FileText className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
                     <div className="flex-1">
                       {pub.authors && (
-                        <p className="text-gray-400 text-[16px] mb-2">{pub.authors}</p>
+                        <p className="text-gray-500 text-[16px] mb-2">{pub.authors}</p>
                       )}
                       <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] mb-3 leading-relaxed">
                         {pub.title}
                       </h3>
                       <div className="flex flex-wrap gap-3 items-center">
-                        <span className="px-3 py-1 bg-[#EBFF57]/20 text-[#EBFF57] rounded-full text-[14px] font-['Clash_Grotesk:Medium',_sans-serif]">
+                        <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[14px] font-['Clash_Grotesk:Medium',_sans-serif]">
                           {pub.status}
                         </span>
                         {pub.journal && (
-                          <p className="text-gray-300 text-[16px] italic">{pub.journal}</p>
+                          <p className="text-gray-700 text-[16px] italic">{pub.journal}</p>
                         )}
                       </div>
                     </div>
@@ -194,7 +194,7 @@ export function Publications() {
 
           {/* Creative Works */}
           <section>
-            <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-[#EBFF57]">
+            <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-blue-600">
               Creative Works
             </h2>
             
@@ -202,7 +202,7 @@ export function Publications() {
               {creativeWorks.map((work, index) => (
                 <motion.div
                   key={index}
-                  className="bg-[#0a0a0c] border border-[rgba(255,255,255,0.1)] rounded-xl p-6"
+                  className="bg-white border border-gray-200 rounded-xl p-6"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 + index * 0.05 }}
@@ -210,7 +210,7 @@ export function Publications() {
                   <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[20px] mb-2">
                     {work.title}
                   </h3>
-                  <p className="text-gray-400 text-[16px]">
+                  <p className="text-gray-500 text-[16px]">
                     {work.publication} • {work.year}
                   </p>
                 </motion.div>

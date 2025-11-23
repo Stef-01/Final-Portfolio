@@ -20,7 +20,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
           key={item.id}
           onClick={() => onNavigate(item.id)}
           className={`font-['Clash_Grotesk:Medium',_sans-serif] text-[17px] relative transition-colors ${
-            currentPage === item.id ? "text-[#EBFF57]" : "text-white hover:text-[#EBFF57]"
+            currentPage === item.id ? "text-[#1a1a1a]" : "text-[#666666] hover:text-[#1a1a1a]"
           }`}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export function Navigation({ currentPage, onNavigate }: NavigationProps) {
           {item.name}
           {currentPage === item.id && (
             <motion.div
-              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#EBFF57]"
+              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#1a1a1a]"
               layoutId="underline"
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             />
