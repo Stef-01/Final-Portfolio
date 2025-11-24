@@ -15,7 +15,18 @@ interface ConferenceFile {
   name: string;
 }
 
-const conferences = [
+interface Conference {
+  title: string;
+  venue?: string;
+  role: string;
+  topic: string;
+  collaborators: string;
+  location: string;
+  date: string;
+  file: ConferenceFile;
+}
+
+const conferences: Conference[] = [
   {
     title: "TETHICON",
     venue: "Stanford McCoy Family Center for Ethics in Society",
@@ -93,7 +104,17 @@ const conferences = [
   },
 ];
 
-const presentations = [
+interface Presentation {
+  title: string;
+  venue?: string;
+  role?: string;
+  topic: string;
+  collaborators?: string;
+  date: string;
+  file: ConferenceFile;
+}
+
+const presentations: Presentation[] = [
   {
     title: "Stanford Prevention Research Centre Grand Rounds",
     venue: "Stanford Medicine",
@@ -164,7 +185,7 @@ export function Conferences() {
           <div className="flex items-center gap-4 mb-12">
             <Mic className="w-12 h-12 text-blue-600" />
             <h1 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[72px]">
-              Conferences & Presentations
+              Conferences
             </h1>
           </div>
 
@@ -234,76 +255,6 @@ export function Conferences() {
                         <Paperclip className="w-8 h-8 text-black" />
                       </motion.button>
                     )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-
-          {/* Invited Presentations */}
-          <section>
-            <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-blue-600">
-              Invited Presentations & Grand Rounds
-            </h2>
-
-            <div className="grid gap-6">
-              {presentations.map((pres, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-600 transition-all group"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                >
-                  <div className="flex items-start gap-4">
-                    <Presentation className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[26px] group-hover:text-blue-600 transition-colors">
-                          {pres.title}
-                        </h3>
-                        {pres.file?.url && (
-                          <motion.button
-                            onClick={() =>
-                              handleFileClick(pres.file)
-                            }
-                            className="flex items-center gap-2 px-3 py-1 bg-gray-50 hover:bg-blue-50 border border-gray-300 hover:border-blue-600 rounded-full text-[14px] font-['Clash_Grotesk:Medium',_sans-serif] transition-all"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Paperclip className="w-4 h-4 text-blue-600" />
-                            <span className="text-gray-700 group-hover:text-blue-600">
-                              View{" "}
-                              {pres.file.type.toUpperCase()}
-                            </span>
-                          </motion.button>
-                        )}
-                      </div>
-                      {pres.venue && (
-                        <p className="text-gray-500 text-[18px] mb-3">
-                          {pres.venue}
-                        </p>
-                      )}
-                      {pres.role && (
-                        <span className="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[14px] font-['Clash_Grotesk:Medium',_sans-serif] mb-3">
-                          {pres.role}
-                        </span>
-                      )}
-                      <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[19px] text-gray-800 mb-3 leading-relaxed">
-                        {pres.topic}
-                      </p>
-                      {pres.collaborators && (
-                        <p className="text-gray-500 text-[15px] mb-3 italic">
-                          {pres.collaborators}
-                        </p>
-                      )}
-                      <div className="flex items-center gap-2 text-gray-500">
-                        <Calendar className="w-5 h-5" />
-                        <span className="text-[16px]">
-                          {pres.date}
-                        </span>
-                      </div>
-                    </div>
                   </div>
                 </motion.div>
               ))}

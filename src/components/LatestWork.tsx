@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { unsplash_tool } from "../tools";
+
 
 interface Project {
   id: number;
@@ -198,10 +198,10 @@ export function LatestWork() {
                           background: index === 0
                             ? "linear-gradient(135deg, #047857 0%, #10b981 100%)"
                             : index === 1
-                            ? "linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)"
-                            : index === 2
-                            ? "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)"
-                            : "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)"
+                              ? "linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)"
+                              : index === 2
+                                ? "linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)"
+                                : "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)"
                         }}
                       >
                         <div className="text-white/90 text-[72px]">

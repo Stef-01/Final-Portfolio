@@ -1,10 +1,16 @@
 import { motion } from "motion/react";
-import { Briefcase, Award, GraduationCap, Mail, BookOpen, Trophy } from "lucide-react";
+import { Briefcase, Award, GraduationCap, Mail, BookOpen, Trophy, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function Resume() {
   return (
     <div className="min-h-screen bg-white text-gray-900 py-20 px-8">
       <div className="max-w-[1200px] mx-auto">
+        <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group">
+          <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+          <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px]">Back to Home</span>
+        </Link>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,8 +42,8 @@ export function Resume() {
               <GraduationCap className="w-8 h-8 text-blue-600" />
               <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[42px]">Education</h2>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               className="space-y-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -85,8 +91,8 @@ export function Resume() {
               <Briefcase className="w-8 h-8 text-blue-600" />
               <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[42px]">Research Focus</h2>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               className="space-y-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -126,8 +132,8 @@ export function Resume() {
               <Trophy className="w-8 h-8 text-blue-600" />
               <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[42px]">Awards & Honors</h2>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               className="space-y-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -185,8 +191,8 @@ export function Resume() {
               <Award className="w-8 h-8 text-blue-600" />
               <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[42px]">Skills & Expertise</h2>
             </div>
-            
-            <motion.div 
+
+            <motion.div
               className="grid grid-cols-2 md:grid-cols-3 gap-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
