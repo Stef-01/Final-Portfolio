@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 import svgPaths from "./timeline/imports/svg-a9d042udyz";
 
@@ -34,21 +34,46 @@ export const TimelineSection = () => {
     const xOffset = (windowWidth / 2) - (contentCenter * scale);
 
     // Refs for scroll-triggered animations
-    const bhlthRef = useRef(null);
-    const mdRef = useRef(null);
-    const msRef = useRef(null);
-    const harvardRef = useRef(null);
-    const hopkinsRef = useRef(null);
+    // State for sequential animations
+    const [showAnu, setShowAnu] = useState(false);
+    const [showInternships, setShowInternships] = useState(false);
+    const [showConsulting, setShowConsulting] = useState(false);
+    const [showMd, setShowMd] = useState(false);
+    const [showMs, setShowMs] = useState(false);
+    const [showBiodesign, setShowBiodesign] = useState(false);
+    const [showSeed, setShowSeed] = useState(false);
+    const [showHarvard, setShowHarvard] = useState(false);
+    const [showHsil, setShowHsil] = useState(false);
+    const [showHopkins, setShowHopkins] = useState(false);
+    const [showPava, setShowPava] = useState(false);
 
-    // Track visibility of each section
-    const bhlthInView = useInView(bhlthRef, { once: true, amount: 0.5 });
-    const mdInView = useInView(mdRef, { once: true, amount: 0.5 });
-    const msInView = useInView(msRef, { once: true, amount: 0.5 });
-    const harvardInView = useInView(harvardRef, { once: true, amount: 0.6 });
-    const hopkinsInView = useInView(hopkinsRef, { once: true, amount: 0.6 });
+    // Scroll-based line animation
+    const timelineContainerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: timelineContainerRef,
+        offset: ["start center", "end center"]
+    });
+
+    // Map scroll progress to line height (0 to 2021px)
+    const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+    // Trigger animations based on line progress
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        setShowAnu(latest > 0.02);
+        setShowInternships(latest > 0.08);
+        setShowConsulting(latest > 0.08);
+        setShowMd(latest > 0.23);
+        setShowMs(latest > 0.42);
+        setShowBiodesign(latest > 0.58);
+        setShowSeed(latest > 0.59);
+        setShowHarvard(latest > 0.70);
+        setShowHsil(latest > 0.82);
+        setShowHopkins(latest > 0.88);
+        setShowPava(latest > 0.89);
+    });
 
     return (
-        <div className="w-full overflow-hidden bg-white py-20">
+        <div className="w-full overflow-hidden bg-white pt-20 pb-32" ref={timelineContainerRef}>
             <div
                 style={{
                     width: "100%",
@@ -70,10 +95,13 @@ export const TimelineSection = () => {
                     className="bg-white relative"
                     data-name="MacBook Pro 14' - 1"
                 >
-                    {/* Timeline vertical line */}
-                    <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*1)+(var(--transform-inner-height)*0)))] items-center justify-center left-[2353px] top-[221px] w-[calc(1px*((var(--transform-inner-height)*1)+(var(--transform-inner-width)*0)))]" style={{ "--transform-inner-width": "2021", "--transform-inner-height": "25" } as React.CSSProperties}>
+                    {/* Timeline vertical line - ANIMATED */}
+                    <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*1)+(var(--transform-inner-height)*0)))] items-center justify-center left-[2353px] top-[221px] w-[calc(1px*((var(--transform-inner-height)*1)+(var(--transform-inner-width)*0)))]" style={{ "--transform-inner-width": "2221", "--transform-inner-height": "25" } as React.CSSProperties}>
                         <div className="flex-none rotate-[270deg]">
-                            <div className="bg-[#d9d9d9] h-[25px] w-[2021px]" />
+                            <motion.div
+                                className="bg-[#d9d9d9] h-[25px] w-[2221px] origin-right"
+                                style={{ scaleX: lineScaleY }}
+                            />
                         </div>
                     </div>
 
@@ -93,9 +121,8 @@ export const TimelineSection = () => {
                         style={{ left: 1505, top: 35, width: 1429, height: 476 }}
                         onMouseEnter={() => setHoveredItem('bhlth')}
                         onMouseLeave={() => setHoveredItem(null)}
-                        ref={bhlthRef}
                         initial={{ opacity: 0, y: 100 }}
-                        animate={bhlthInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                        animate={showAnu ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Australian National University - main logo */}
@@ -103,7 +130,7 @@ export const TimelineSection = () => {
                             className="absolute"
                             style={{ width: 291, height: 453, left: 2221 - 1505, top: 35 - 35 }}
                             initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
-                            animate={bhlthInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
+                            animate={showAnu ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
                             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 60, damping: 12 }}
                         >
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -115,9 +142,9 @@ export const TimelineSection = () => {
                         <motion.div
                             className="absolute cursor-pointer"
                             style={{ width: 650, height: 81, left: 1615 - 1505, top: 387 - 35 }}
-                            initial={{ scale: 0, x: 426.5, y: -166, rotate: 0 }}
-                            animate={bhlthInView ? { scale: 1, x: 0, y: 0, rotate: 0 } : { scale: 0, x: 426.5, y: -166, rotate: 0 }}
-                            transition={{ duration: 1.2, delay: 0.8, type: "spring", stiffness: 60, damping: 10 }}
+                            initial={{ scale: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
+                            animate={showInternships ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
+                            transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('internships')}
                             onMouseLeave={() => setHoveredItem(null)}
                         >
@@ -126,13 +153,13 @@ export const TimelineSection = () => {
                             </div>
                         </motion.div>
 
-                        {/* 180 Degrees Consulting - POPS OUT FROM ANU */}
+                        {/* 180 Degrees Consulting - POPS OUT FROM ANU - RIGHT SIDE */}
                         <motion.div
                             className="absolute cursor-pointer"
                             style={{ width: 443, height: 140, left: 2441 - 1505, top: 387 - 35 }}
-                            initial={{ scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70, rotate: 0 }}
-                            animate={bhlthInView ? { scale: 1, x: 0, y: 0, rotate: 0 } : { scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70, rotate: 0 }}
-                            transition={{ duration: 1.2, delay: 1.1, type: "spring", stiffness: 60, damping: 10 }}
+                            initial={{ scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
+                            animate={showConsulting ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
+                            transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('consulting')}
                             onMouseLeave={() => setHoveredItem(null)}
                         >
@@ -144,9 +171,9 @@ export const TimelineSection = () => {
                         {/* BHLTH Title */}
                         <motion.div
                             className="absolute font-['Jaldi:Regular',sans-serif] not-italic"
-                            style={{ width: 493, height: 225, left: 2468 - 1505, top: 162 - 35, color: 'black', fontSize: 100, fontWeight: 400 }}
+                            style={{ width: 493, height: 225, left: 2481 - 1505, top: 162 - 35, color: 'black', fontSize: 100, fontWeight: 400 }}
                             initial={{ opacity: 0, x: 50 }}
-                            animate={bhlthInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                            animate={showAnu ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                             transition={{ duration: 0.9, delay: 0.5 }}
                         >
                             BHLTH
@@ -156,20 +183,19 @@ export const TimelineSection = () => {
                     {/* MD Timeline Item */}
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
-                        style={{ left: 2160, top: 596, width: 814, height: 248 }}
+                        style={{ left: 2160, top: 676, width: 814, height: 248 }}
                         onMouseEnter={() => setHoveredItem('md')}
                         onMouseLeave={() => setHoveredItem(null)}
-                        ref={mdRef}
                         initial={{ opacity: 0, x: -100 }}
-                        animate={mdInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+                        animate={showMd ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Macquarie University logo */}
                         <motion.div
                             className="absolute"
-                            style={{ width: 448, height: 248, left: 2160 - 2160, top: 596 - 596 }}
+                            style={{ width: 448, height: 248, left: 2160 - 2160, top: 676 - 676 }}
                             initial={{ opacity: 0, scale: 0.5, rotate: 15 }}
-                            animate={mdInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: 15 }}
+                            animate={showMd ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: 15 }}
                             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 60, damping: 12 }}
                         >
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -180,9 +206,9 @@ export const TimelineSection = () => {
                         {/* MD (II) Title */}
                         <motion.div
                             className="absolute font-['Jaldi:Regular',sans-serif] not-italic"
-                            style={{ width: 493, height: 225, left: 2481 - 2160, top: 619 - 596, color: 'black', fontSize: 100, fontWeight: 400 }}
+                            style={{ width: 366, height: 248, left: 2481 - 2160, top: 34, color: 'black', fontSize: 100, fontWeight: 400 }}
                             initial={{ opacity: 0, x: -50 }}
-                            animate={mdInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                            animate={showMd ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                             transition={{ duration: 0.9, delay: 0.5 }}
                         >
                             MD (II)
@@ -195,9 +221,8 @@ export const TimelineSection = () => {
                         style={{ left: 1800, top: 1067, width: 1174, height: 532 }}
                         onMouseEnter={() => setHoveredItem('ms')}
                         onMouseLeave={() => setHoveredItem(null)}
-                        ref={msRef}
                         initial={{ opacity: 0, y: 100 }}
-                        animate={msInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                        animate={showMs ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Stanford University logo */}
@@ -205,7 +230,7 @@ export const TimelineSection = () => {
                             className="absolute"
                             style={{ width: 329, height: 329, left: 2201 - 1800, top: 1067 - 1067 }}
                             initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
-                            animate={msInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
+                            animate={showMs ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
                             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 60, damping: 12 }}
                         >
                             <img alt="Stanford University" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgStanfordUniversityLogo} />
@@ -216,8 +241,8 @@ export const TimelineSection = () => {
                             className="absolute cursor-pointer"
                             style={{ width: 432, height: 203, left: 1800 - 1800, top: 1396 - 1067 }}
                             initial={{ scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
-                            animate={msInView ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
-                            transition={{ duration: 1.2, delay: 0.8, type: "spring", stiffness: 60, damping: 10 }}
+                            animate={showBiodesign ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
+                            transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('biodesign')}
                             onMouseLeave={() => setHoveredItem(null)}
                         >
@@ -229,8 +254,8 @@ export const TimelineSection = () => {
                             className="absolute cursor-pointer"
                             style={{ width: 482, height: 176, left: 2499 - 1800, top: 1409 - 1067 }}
                             initial={{ scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
-                            animate={msInView ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
-                            transition={{ duration: 1.2, delay: 1.1, type: "spring", stiffness: 60, damping: 10 }}
+                            animate={showSeed ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
+                            transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('seed')}
                             onMouseLeave={() => setHoveredItem(null)}
                         >
@@ -242,7 +267,7 @@ export const TimelineSection = () => {
                             className="absolute font-['Jaldi:Regular',sans-serif] not-italic"
                             style={{ width: 493, height: 225, left: 2481 - 1800, top: 1153 - 1067, color: 'black', fontSize: 100, fontWeight: 400 }}
                             initial={{ opacity: 0, x: 50 }}
-                            animate={msInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                            animate={showMs ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                             transition={{ duration: 0.9, delay: 0.5 }}
                         >
                             M.S
@@ -255,9 +280,8 @@ export const TimelineSection = () => {
                         style={{ width: 238, height: 232, left: 2247, top: 1645 }}
                         onMouseEnter={() => setHoveredItem('harvard')}
                         onMouseLeave={() => setHoveredItem(null)}
-                        ref={harvardRef}
                         initial={{ opacity: 0, scale: 0.5, y: 80 }}
-                        animate={harvardInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.5, y: 80 }}
+                        animate={showHarvard ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.5, y: 80 }}
                         transition={{ duration: 1, type: "spring", stiffness: 60, damping: 12 }}
                     >
                         <img alt="Harvard University" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgHarvardUniversityLogo} />
@@ -268,8 +292,8 @@ export const TimelineSection = () => {
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 285, height: 285, left: 1875, top: 1877 }}
                         initial={{ scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
-                        animate={harvardInView ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
-                        transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 60, damping: 10 }}
+                        animate={showHsil ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
+                        transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                         onMouseEnter={() => setHoveredItem('hsil')}
                         onMouseLeave={() => setHoveredItem(null)}
                     >
@@ -282,10 +306,9 @@ export const TimelineSection = () => {
                         style={{ width: 246, height: 232, left: 2245, top: 2126 }}
                         onMouseEnter={() => setHoveredItem('hopkins')}
                         onMouseLeave={() => setHoveredItem(null)}
-                        ref={hopkinsRef}
                         initial={{ opacity: 0, x: -100, scale: 0.7 }}
-                        animate={hopkinsInView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -100, scale: 0.7 }}
-                        transition={{ duration: 1, type: "spring", stiffness: 60, damping: 12 }}
+                        animate={showHopkins ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -100, scale: 0.7 }}
+                        transition={{ duration: 1.5, type: "spring", stiffness: 40, damping: 15 }}
                     >
                         <div className="absolute inset-0 overflow-hidden pointer-events-none">
                             <img alt="Johns Hopkins University" className="absolute h-[218.1%] left-[-92.61%] max-w-none top-[-15.98%] w-[286.09%]" src={imgHopkinsUniversityLogo} />
@@ -297,8 +320,8 @@ export const TimelineSection = () => {
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 185, height: 185, left: 2608, top: 2265 }}
                         initial={{ scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
-                        animate={hopkinsInView ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
-                        transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 60, damping: 10 }}
+                        animate={showPava ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
+                        transition={{ duration: 1.8, delay: 0.1, type: "spring", stiffness: 40, damping: 12 }}
                         onMouseEnter={() => setHoveredItem('pava')}
                         onMouseLeave={() => setHoveredItem(null)}
                     >
