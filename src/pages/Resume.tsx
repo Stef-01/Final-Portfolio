@@ -1,10 +1,18 @@
 import { motion } from "motion/react";
 import { Briefcase, Award, GraduationCap, Mail, BookOpen, Trophy, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ContactSection } from "../components/ContactSection";
+import { FloatingBackButton } from "../components/FloatingBackButton";
+import { useEffect } from "react";
 
 export function Resume() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-gray-900 py-20 px-8">
+      <FloatingBackButton />
       <div className="max-w-[1200px] mx-auto">
         <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group">
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -227,6 +235,9 @@ export function Resume() {
           </section>
         </motion.div>
       </div>
+
+      {/* Contact Section */}
+      <ContactSection />
     </div>
   );
 }

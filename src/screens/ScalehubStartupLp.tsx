@@ -1,27 +1,33 @@
-import React from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
 import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
-import { SplineBackground } from "../components/SplineBackground";
 import { BrandsLogos } from "../components/BrandsLogos";
-import { PhilosophySection } from "../components/PhilosophySection";
-import { Conferences } from "../pages/Conferences";
+import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
-import { TimelineSection } from "../components/TimelineSection";
+import { ContactModal } from "../components/ContactModal";
+
+// Lazy load heavy components
+const SplineBackground = lazy(() => import("../components/SplineBackground").then(module => ({ default: module.SplineBackground })));
+const TimelineSection = lazy(() => import("../components/TimelineSection").then(module => ({ default: module.TimelineSection })));
 
 export const ScalehubStartupLp = (): JSX.Element => {
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
     return (
         <div className="bg-white flex flex-col w-full overflow-x-hidden">
             {/* Hero Section */}
             <div className="relative w-full min-h-screen flex flex-col">
-                <SplineBackground className="z-0 fixed" />
+                <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100" />}>
+                    <SplineBackground className="z-0 fixed" />
+                </Suspense>
 
                 <div className="relative z-10 flex flex-col items-center pt-32 px-4 mb-20">
                     <Badge
                         className="mb-8"
-                        label="Available for new projects"
+                        label="Stefan Thottunkal"
                         showIcon={true}
                     />
 
@@ -31,23 +37,25 @@ export const ScalehubStartupLp = (): JSX.Element => {
 
                     <div className="flex gap-4">
                         <Button type="primary" label="View Work" />
-                        <Button type="secondary" label="Contact Me" />
+                        <Button
+                            type="secondary"
+                            label="Contact Me"
+                            onClick={() => setIsContactModalOpen(true)}
+                        />
                     </div>
                 </div>
             </div>
 
-            {/* About Section */}
-            <AboutSection />
+            {/* Intro Section (Header) */}
+            <IntroSection />
 
             {/* Latest Work Section */}
             <div className="relative z-10 bg-white">
                 <LatestWorkSection />
             </div>
 
-            {/* Philosophy / Mission Section */}
-            <div className="relative z-10 bg-white">
-                <PhilosophySection />
-            </div>
+            {/* About Section (Window & Pills) */}
+            <AboutSection />
 
             {/* Draggable Cards Section */}
             <div className="relative z-10 bg-white py-20">
@@ -55,23 +63,45 @@ export const ScalehubStartupLp = (): JSX.Element => {
             </div>
 
             {/* Timeline Section */}
-            <TimelineSection />
+            <Suspense fallback={<div className="h-screen w-full bg-white flex items-center justify-center">Loading Timeline...</div>}>
+                <TimelineSection />
+            </Suspense>
 
             {/* Footer */}
             <footer className="relative z-10 bg-black text-white py-20 px-4 md:px-8">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
                     <div className="mb-8 md:mb-0">
                         <h3 className="text-2xl font-bold mb-2">Stefan Thottunkal</h3>
-                        <p className="text-gray-400">Researcher & Designer</p>
+                        <p className="text-gray-400">Researcher & Health Systems Designer</p>
                     </div>
                     <div className="flex gap-8">
                         <Link to="/bio" className="text-gray-400 hover:text-white transition-colors">Bio</Link>
                         <Link to="/presentations" className="text-gray-400 hover:text-white transition-colors">Presentations</Link>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
-                        <a href="#" className="text-gray-400 hover:text-white transition-colors">Scholar</a>
+                        <a
+                            href="https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-400 hover:text-white transition-colors"
+                        >
+                            LinkedIn
+                        </a>
+                        <a
+                            href="https://scholar.google.com/citations?user=9Nxhv58AAAAJ&hl=en"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-400 hover:text-white transition-colors"
+                        >
+                            Google Scholar
+                        </a>
                     </div>
                 </div>
             </footer>
+
+            {/* Contact Modal */}
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={() => setIsContactModalOpen(false)}
+            />
         </div>
     );
 };

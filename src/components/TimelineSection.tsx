@@ -3,17 +3,17 @@ import { motion, useInView } from "motion/react";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 import svgPaths from "./timeline/imports/svg-a9d042udyz";
 
-import imgHopkinsPavaCenter from "../assets/timeline-upgraded/0ab6195dd58e68fba2b601597ac6a3d1c5449c8a.png";
-import imgHopkinsUniversityLogo from "../assets/timeline-upgraded/6d51fda445708898195c8f6705d9db08b82e8e01.png";
-import imgHarvardHsil from "../assets/timeline-upgraded/c424d2a70339b3c6e290118404ad877891b9dc29.png";
-import imgHarvardUniversityLogo from "../assets/timeline-upgraded/f70deb69cfd730589dc5541e5370747c548d6b36.png";
-import imgStanfordBiodesign from "../assets/timeline-upgraded/6e58278c27d2c792ae3c6b2e1b3f3ad2db623558.png";
-import imgStanfordGsbSeed from "../assets/timeline-upgraded/bb87ecb6f87fccb4c80834639eeac42bb0a44b0c.png";
-import imgStanfordUniversityLogo from "../assets/timeline-upgraded/7d22c5d9d743209fb003efffa0626fbc9d36609d.png";
-import imgMacquarieUniversity from "../assets/timeline-upgraded/411b1a99a326f193cf4b7d0fa45bcf19453522d4.png";
-import img180DegreesConsulting from "../assets/timeline-upgraded/e2bbbcd40f3401f8765c0558110ec847a0fd5a02.png";
-import imgNationalInternships from "../assets/timeline-upgraded/121f17a019571944facd44111913fd78c8260911.png";
-import imgAustralianNationalUniversity from "../assets/timeline-upgraded/e715f2d2de7d97eda7b4f77cf9e9c7b55072d228.png";
+import imgHopkinsPavaCenter from "../assets/timeline-upgraded/0ab6195dd58e68fba2b601597ac6a3d1c5449c8a.webp";
+import imgHopkinsUniversityLogo from "../assets/timeline-upgraded/6d51fda445708898195c8f6705d9db08b82e8e01.webp";
+import imgHarvardHsil from "../assets/timeline-upgraded/c424d2a70339b3c6e290118404ad877891b9dc29.webp";
+import imgHarvardUniversityLogo from "../assets/timeline-upgraded/f70deb69cfd730589dc5541e5370747c548d6b36.webp";
+import imgStanfordBiodesign from "../assets/timeline-upgraded/6e58278c27d2c792ae3c6b2e1b3f3ad2db623558.webp";
+import imgStanfordGsbSeed from "../assets/timeline-upgraded/bb87ecb6f87fccb4c80834639eeac42bb0a44b0c.webp";
+import imgStanfordUniversityLogo from "../assets/timeline-upgraded/7d22c5d9d743209fb003efffa0626fbc9d36609d.webp";
+import imgMacquarieUniversity from "../assets/timeline-upgraded/411b1a99a326f193cf4b7d0fa45bcf19453522d4.webp";
+import img180DegreesConsulting from "../assets/timeline-upgraded/e2bbbcd40f3401f8765c0558110ec847a0fd5a02.webp";
+import imgNationalInternships from "../assets/timeline-upgraded/121f17a019571944facd44111913fd78c8260911.webp";
+import imgAustralianNationalUniversity from "../assets/timeline-upgraded/e715f2d2de7d97eda7b4f77cf9e9c7b55072d228.webp";
 
 export const TimelineSection = () => {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -25,9 +25,9 @@ export const TimelineSection = () => {
     const baseHeight = 2485;
     const contentCenter = 2353; // The x-coordinate of the vertical timeline line
 
-    // Scale based on a target content width of ~1400px (or window width if smaller)
-    // This ensures the text is readable and "zoomed in"
-    const targetContentWidth = 1400;
+    // Scale based on a target content width of ~2000px (or window width if smaller)
+    // This ensures the text is readable but zoomed out enough to see more context
+    const targetContentWidth = 2000;
     const scale = Math.min(1.2, windowWidth / targetContentWidth); // Cap at 1.2x zoom for very large screens
 
     // Calculate offset to center the timeline spine
@@ -89,7 +89,7 @@ export const TimelineSection = () => {
 
                     {/* BHLTH Timeline Item */}
                     <motion.div
-                        className="absolute cursor-pointer transition-opacity hover:opacity-95"
+                        className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ left: 1505, top: 35, width: 1429, height: 476 }}
                         onMouseEnter={() => setHoveredItem('bhlth')}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -155,7 +155,7 @@ export const TimelineSection = () => {
 
                     {/* MD Timeline Item */}
                     <motion.div
-                        className="absolute cursor-pointer transition-opacity hover:opacity-95"
+                        className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ left: 2160, top: 596, width: 814, height: 248 }}
                         onMouseEnter={() => setHoveredItem('md')}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -191,7 +191,7 @@ export const TimelineSection = () => {
 
                     {/* M.S Timeline Item */}
                     <motion.div
-                        className="absolute cursor-pointer transition-opacity hover:opacity-95"
+                        className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ left: 1800, top: 1067, width: 1174, height: 532 }}
                         onMouseEnter={() => setHoveredItem('ms')}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -251,7 +251,7 @@ export const TimelineSection = () => {
 
                     {/* Harvard University Logo */}
                     <motion.div
-                        className="absolute cursor-pointer transition-opacity hover:opacity-95"
+                        className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 238, height: 232, left: 2247, top: 1645 }}
                         onMouseEnter={() => setHoveredItem('harvard')}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -265,7 +265,7 @@ export const TimelineSection = () => {
 
                     {/* Harvard HSIL - POPS OUT FROM Harvard logo */}
                     <motion.div
-                        className="absolute cursor-pointer transition-opacity hover:opacity-95"
+                        className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 285, height: 285, left: 1875, top: 1877 }}
                         initial={{ scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
                         animate={harvardInView ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
@@ -278,7 +278,7 @@ export const TimelineSection = () => {
 
                     {/* Hopkins University Logo */}
                     <motion.div
-                        className="absolute cursor-pointer transition-opacity hover:opacity-95"
+                        className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 246, height: 232, left: 2245, top: 2126 }}
                         onMouseEnter={() => setHoveredItem('hopkins')}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -294,7 +294,7 @@ export const TimelineSection = () => {
 
                     {/* Hopkins Pava Center - POPS OUT FROM Hopkins logo */}
                     <motion.div
-                        className="absolute cursor-pointer transition-opacity hover:opacity-95"
+                        className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 185, height: 185, left: 2608, top: 2265 }}
                         initial={{ scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
                         animate={hopkinsInView ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}

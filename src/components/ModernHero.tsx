@@ -14,7 +14,7 @@ export function ModernHero() {
           >
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[15px] text-gray-700">
-              Available for new projects
+              Stefan Thottunkal
             </span>
           </motion.div>
 

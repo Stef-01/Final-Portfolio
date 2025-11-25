@@ -11,6 +11,7 @@ interface Props {
     className?: string;
     inputIconsPropertyArrowUp?: string;
     divClassName?: string;
+    onClick?: () => void;
 }
 
 export const Button = ({
@@ -22,6 +23,7 @@ export const Button = ({
     className = "",
     inputIconsPropertyArrowUp = "https://c.animaapp.com/micbs5ufL1AjdE/img/input-icons.svg",
     divClassName = "",
+    onClick,
 }: Props): JSX.Element => {
     const [state, dispatch] = useReducer(reducer, {
         type: type || "secondary",
@@ -47,6 +49,7 @@ export const Button = ({
             onMouseEnter={() => {
                 dispatch("mouse_enter");
             }}
+            onClick={onClick}
         >
             {showIcon && (
                 <InputIcons
@@ -58,12 +61,13 @@ export const Button = ({
             )}
 
             <div
-                className={`font-bold text-sm tracking-normal leading-normal whitespace-nowrap relative ${state.type === "secondary" && state.state === "hover"
+                className={`font-bold text-sm tracking-normal leading-normal whitespace-nowrap relative ${divClassName || (
+                    state.type === "secondary" && state.state === "hover"
                         ? "text-black"
                         : state.type === "primary"
                             ? "text-white"
                             : "text-gray-700"
-                    } ${divClassName}`}
+                )}`}
             >
                 {label}
             </div>

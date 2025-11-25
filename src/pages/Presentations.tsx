@@ -6,9 +6,11 @@ import {
     Paperclip,
     ArrowLeft,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FileViewerModal } from "../components/FileViewerModal";
+import { ContactSection } from "../components/ContactSection";
+import { FloatingBackButton } from "../components/FloatingBackButton";
 
 interface ConferenceFile {
     url?: string;
@@ -165,6 +167,10 @@ export function Presentations() {
     const [selectedFile, setSelectedFile] =
         useState<ConferenceFile | null>(null);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const handleFileClick = (file: ConferenceFile) => {
         setSelectedFile(file);
         setModalOpen(true);
@@ -172,9 +178,12 @@ export function Presentations() {
 
     return (
         <div className="min-h-screen bg-white text-gray-900 py-20 px-8">
+            <FloatingBackButton />
             <div className="max-w-[1200px] mx-auto">
-                <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group">
-                    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                <Link
+                    to="/"
+                    className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
+                >    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                     <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px]">Back to Home</span>
                 </Link>
 
@@ -345,6 +354,9 @@ export function Presentations() {
                     file={selectedFile}
                 />
             )}
+
+            {/* Contact Section */}
+            <ContactSection />
         </div>
     );
 }

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
+import { ContactSection } from "../components/ContactSection";
 
 export const ProjectDetail = (): JSX.Element => {
     const { id } = useParams<{ id: string }>();
     const project = projects.find((p) => p.id === id);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     if (!project) {
         return (
@@ -24,7 +29,7 @@ export const ProjectDetail = (): JSX.Element => {
             <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
                     <Link to="/" className="text-xl font-bold">
-                        Smit Patel
+                        Stefan Thottunkal
                     </Link>
                     <Link to="/">
                         <Button type="secondary" label="Back to Home" size="big" />
@@ -47,7 +52,7 @@ export const ProjectDetail = (): JSX.Element => {
                     </div>
                     <h1 className="text-5xl md:text-7xl font-bold mb-6">{project.title}</h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                        {project.longDescription || project.description}
+                        {project.description}
                     </p>
                 </div>
 
@@ -80,44 +85,92 @@ export const ProjectDetail = (): JSX.Element => {
                     />
                 </div>
 
-                {/* Content Placeholder */}
+                {/* Project Content */}
                 <div className="max-w-4xl mx-auto prose prose-lg">
-                    <h2>The Challenge</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat.
-                    </p>
+                    {project.longDescription?.split('\n\n').map((paragraph, index, array) => {
+                        // Check if it's a heading
+                        if (paragraph.startsWith('## ')) {
+                            const headingText = paragraph.replace('## ', '');
+                            return <h2 key={index} className="text-3xl font-bold mt-12 mb-6">{headingText}</h2>;
+                        }
+                        // Check if it's a horizontal rule
+                        if (paragraph.trim() === '---') {
+                            return <hr key={index} className="my-12 border-t-2 border-gray-200" />;
+                        }
+                        // Check if it's bold text (Role, Context, etc.)
+                        if (paragraph.match(/^\*\*(.+?)\*\*\s*$/m)) {
+                            const lines = paragraph.split('\n');
+                            return (
+                                <div key={index} className="mb-4">
+                                    {lines.map((line, lineIndex) => {
+                                        const boldMatch = line.match(/^\*\*(.+?)\*\*\s*$/);
+                                        if (boldMatch) {
+                                            return <p key={lineIndex} className="font-bold text-gray-900 mb-1">{boldMatch[1]}</p>;
+                                        }
+                                        return <p key={lineIndex} className="text-gray-700 ml-0">{line}</p>;
+                                    })}
+                                </div>
+                            );
+                        }
 
-                    <h2>The Solution</h2>
-                    <p>
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
+                        // Check if next item is "The Solution" heading to insert first set of images
+                        const isBeforeSolution = index < array.length - 1 && array[index + 1].startsWith('## The Solution');
 
-                    <div className="my-12 grid grid-cols-2 gap-8">
-                        <div className="bg-gray-100 h-64 rounded-2xl"></div>
-                        <div className="bg-gray-100 h-64 rounded-2xl"></div>
-                    </div>
+                        // Check if next item is "The Result" heading to insert second set of images
+                        const isBeforeResult = index < array.length - 1 && array[index + 1].startsWith('## The Result');
 
-                    <h2>The Result</h2>
-                    <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                        quae ab illo inventore veritatis et quasi architecto beatae vitae
-                        dicta sunt explicabo.
-                    </p>
+                        // Regular paragraph
+                        return (
+                            <React.Fragment key={index}>
+                                <p className="text-gray-700 leading-relaxed mb-6">{paragraph}</p>
+
+                                {/* First set of images - after Challenge, before Solution */}
+                                {isBeforeSolution && (
+                                    <div className="my-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="rounded-2xl overflow-hidden shadow-lg">
+                                            <img
+                                                src="/src/assets/swaad-branding.png"
+                                                alt="SWAAD Branding and Visual Identity"
+                                                className="w-full h-auto object-cover"
+                                            />
+                                        </div>
+                                        <div className="rounded-2xl overflow-hidden shadow-lg">
+                                            <img
+                                                src="/src/assets/swaad-recipe-finder.png"
+                                                alt="SWAAD Recipe Finder Interface"
+                                                className="w-full h-auto object-cover"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Second set of images - after Solution, before Result */}
+                                {isBeforeResult && (
+                                    <div className="my-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="rounded-2xl overflow-hidden shadow-lg">
+                                            <img
+                                                src="/src/assets/swaad-nutriserve.png"
+                                                alt="SWAAD NutriServe Chef Game Interface"
+                                                className="w-full h-auto object-cover"
+                                            />
+                                        </div>
+                                        <div className="rounded-2xl overflow-hidden shadow-lg">
+                                            <img
+                                                src="/src/assets/swaad-game.png"
+                                                alt="SWAAD Nutrient Challenge Game"
+                                                className="w-full h-auto object-cover"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
             </div>
 
-            {/* Next Project */}
-            <div className="bg-black text-white py-20 px-4 md:px-8 text-center">
-                <h2 className="text-3xl font-bold mb-8">Ready to start your project?</h2>
-                <Button type="primary" label="Contact Me" className="bg-white text-black hover:bg-gray-200" />
-            </div>
+            {/* Contact Section */}
+            <ContactSection />
         </div>
     );
 };
