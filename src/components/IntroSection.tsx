@@ -47,7 +47,7 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[42px] md:text-[64px] text-gray-900 leading-[1.1] tracking-tight"
                     >
-                        Health Systems Designer & Medical Student
+                        Research, product, and systems design for the future of health
                     </motion.h2>
 
                     {/* Sub-content Container */}
@@ -55,35 +55,34 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="max-w-[1000px] mx-auto space-y-4 font-['Clash_Grotesk:Regular',_sans-serif] text-[24px] md:text-[32px] text-gray-600 leading-[1.5]"
                     >
-                        {/* Line 1: 30+ projects & UI/UX */}
                         <div className="flex flex-wrap items-center justify-center gap-3">
-                            <span>and</span>
                             <span className="font-['Clash_Grotesk:Semibold',_sans-serif] bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                30+ completed projects
+                                Stanford-linked research
                             </span>
-                            <span>, specializing in</span>
+                            <span>,</span>
                             <span className="px-4 py-1 rounded-full bg-gradient-to-r from-indigo-400 to-purple-400 text-white text-[18px] md:text-[20px] font-medium shadow-lg transform rotate-2 inline-block">
-                                UI/UX
+                                clinical AI
+                            </span>
+                            <span>, and</span>
+                            <span className="font-['Clash_Grotesk:Semibold',_sans-serif] bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
+                                health-system innovation
                             </span>
                         </div>
 
-                        {/* Line 2: User-centric designs */}
                         <div className="block text-gray-800 font-medium">
-                            user-centric, problem-solving designs
+                            spanning precision medicine, preventive care, community health, and venture building
                         </div>
 
-                        {/* Line 3: Skills & Research */}
                         <div className="flex flex-wrap items-center justify-center gap-3">
-                            <span>Skilled in</span>
+                            <span>Translating</span>
                             <span className="px-4 py-1 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 text-white text-[18px] md:text-[20px] font-medium shadow-lg transform -rotate-2 inline-block">
-                                Research
+                                evidence
                             </span>
-                            <span>, wireframing , prototyping , and visual design</span>
+                            <span>into digital experiences, decision-support tools, and strategic product concepts</span>
                         </div>
 
-                        {/* Line 4: Conclusion */}
                         <div className="block text-gray-500 text-[20px] md:text-[24px] mt-2">
-                            to craft intuitive and engaging user experiences.
+                            with rigor, aesthetic clarity, and a strong bias toward real-world implementation.
                         </div>
                     </motion.div>
                 </motion.div>

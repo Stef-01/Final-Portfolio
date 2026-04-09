@@ -32,8 +32,9 @@ export const Button = ({
     });
 
     return (
-        <div
-            className={`w-[134px] flex items-center gap-2 px-6 py-2.5 h-11 rounded-xl justify-center relative cursor-pointer transition-colors duration-200 ${state.type === "secondary" ? "border border-solid" : ""
+        <button
+            type="button"
+            className={`w-[134px] flex items-center gap-2 px-6 py-2.5 h-11 rounded-xl justify-center relative cursor-pointer transition-colors duration-200 active:scale-[0.98] ${state.type === "secondary" ? "border border-solid" : ""
                 } ${state.state === "default" && state.type === "secondary"
                     ? "border-black/20 bg-white hover:border-black/50"
                     : state.type === "secondary" && state.state === "hover"
@@ -71,7 +72,7 @@ export const Button = ({
             >
                 {label}
             </div>
-        </div>
+        </button>
     );
 };
 

@@ -17,9 +17,12 @@ export const LatestWorkSection = () => {
                     className={`transition-all duration-1000 transform ${isIntersecting ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                         }`}
                 >
-                    <div className="text-center mb-24">
-                        <h2 className="text-7xl md:text-8xl font-bold tracking-tighter mb-4">
-                            My latest work
+                    <div className="text-center mb-16 md:mb-24">
+                        <p className="mb-4 text-xs md:text-sm font-semibold uppercase tracking-[0.32em] text-gray-400">
+                            Selected Work
+                        </p>
+                        <h2 className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-4 leading-[0.95]">
+                            Flagship projects at the intersection of health, AI, and systems design
                         </h2>
                     </div>
 
@@ -30,8 +33,10 @@ export const LatestWorkSection = () => {
                                 id={project.id}
                                 icon={project.title.charAt(0)}
                                 title={project.title}
+                                subtitle={project.subtitle}
                                 description={project.description}
                                 image={project.image}
+                                tags={project.tags}
                                 className="bg-gray-50"
                                 delay={index * 100}
                             />

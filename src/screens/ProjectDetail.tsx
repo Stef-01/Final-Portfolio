@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { ArrowLeft, ArrowUpRight, Sparkles } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
@@ -7,169 +8,257 @@ import { ContactSection } from "../components/ContactSection";
 export const ProjectDetail = (): JSX.Element => {
     const { id } = useParams<{ id: string }>();
     const project = projects.find((p) => p.id === id);
+    const [activeModuleIndex, setActiveModuleIndex] = useState(0);
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
+    useEffect(() => {
+        setActiveModuleIndex(0);
+    }, [id]);
+
+    const activeModule = useMemo(() => {
+        if (!project) {
+            return null;
+        }
+
+        return project.interactiveModules[activeModuleIndex] ?? project.interactiveModules[0];
+    }, [activeModuleIndex, project]);
+
     if (!project) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center">
+            <div className="min-h-[100svh] flex flex-col items-center justify-center px-4 text-center">
                 <h1 className="text-4xl font-bold mb-4">Project not found</h1>
                 <Link to="/">
-                    <Button label="Go Home" />
+                    <Button label="Go Home" className="w-full sm:w-[134px]" />
                 </Link>
             </div>
         );
     }
 
     return (
-        <div className="bg-white min-h-screen">
-            {/* Navigation */}
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-                <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-                    <Link to="/" className="text-xl font-bold">
+        <div className="bg-white min-h-[100svh]">
+            <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-xl">
+                <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 pt-[env(safe-area-inset-top)] md:px-8">
+                    <Link to="/" className="text-sm sm:text-xl font-bold tracking-tight text-black">
                         Stefan Thottunkal
                     </Link>
                     <Link to="/">
-                        <Button type="secondary" label="Back to Home" size="big" />
+                        <Button type="secondary" label="Back to Home" className="w-auto min-w-[140px]" />
                     </Link>
                 </div>
             </nav>
 
-            {/* Hero */}
-            <div className="pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
-                <div className="mb-12">
-                    <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="px-4 py-1 bg-gray-100 rounded-full text-sm font-medium"
-                            >
-                                {tag}
-                            </span>
-                        ))}
+            <main className="mx-auto max-w-7xl px-4 pb-20 pt-28 md:px-8 md:pt-32">
+                <div className="relative overflow-hidden rounded-[36px] border border-black/5 bg-[#fafafa] p-6 md:p-10">
+                    <div
+                        className="pointer-events-none absolute inset-0 opacity-20"
+                        style={{
+                            background: `radial-gradient(circle at 12% 18%, ${project.accent}44 0%, transparent 28%), radial-gradient(circle at 88% 18%, ${project.accent}22 0%, transparent 24%), linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.95) 100%)`,
+                        }}
+                    />
+                    <div className="relative z-10 grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
+                        <div>
+                            <Link to="/" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-gray-400 transition-colors hover:text-black">
+                                <ArrowLeft className="h-4 w-4" />
+                                Back
+                            </Link>
+                            <div className="mb-6 flex flex-wrap gap-2">
+                                {project.tags.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="rounded-full border border-black/10 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-gray-500"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                            <h1 className="max-w-4xl text-4xl font-bold leading-[0.95] tracking-tight text-black md:text-7xl">
+                                {project.title}
+                            </h1>
+                            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-2xl">
+                                {project.subtitle}
+                            </p>
+                            <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
+                                {project.description}
+                            </p>
+                        </div>
+
+                        <div className="grid gap-4 rounded-[28px] border border-black/8 bg-white/85 p-5 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.45)]">
+                            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gray-400">
+                                Project Profile
+                            </p>
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Role</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.role}</p>
+                                </div>
+                                <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Duration</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.duration}</p>
+                                </div>
+                                <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Context</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.client}</p>
+                                </div>
+                                <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Outcome</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.outcome}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6">{project.title}</h1>
-                    <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                        {project.description}
-                    </p>
                 </div>
 
-                {/* Project Meta */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 border-y border-gray-100 py-8">
-                    <div>
-                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Role</h3>
-                        <p className="font-medium">{project.role || "Designer"}</p>
-                    </div>
-                    <div>
-                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Client</h3>
-                        <p className="font-medium">{project.client || "Confidential"}</p>
-                    </div>
-                    <div>
-                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Duration</h3>
-                        <p className="font-medium">{project.duration || "Ongoing"}</p>
-                    </div>
-                    <div>
-                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Tools</h3>
-                        <p className="font-medium">{(project.tools || []).join(", ")}</p>
-                    </div>
+                <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    {project.stats.map((stat) => (
+                        <div key={stat.label} className="rounded-[28px] border border-black/8 bg-white p-5 shadow-[0_18px_45px_-38px_rgba(0,0,0,0.5)]">
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">{stat.label}</p>
+                            <p className="mt-3 text-lg font-semibold leading-snug text-black">{stat.value}</p>
+                        </div>
+                    ))}
                 </div>
 
-                {/* Main Image */}
-                <div className="w-full h-[600px] rounded-3xl overflow-hidden mb-20 shadow-2xl">
+                <div className="mt-14 overflow-hidden rounded-[34px] border border-black/8 bg-black shadow-2xl">
                     <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover"
+                        className="h-[280px] w-full object-cover opacity-90 md:h-[620px]"
+                        loading="eager"
                     />
                 </div>
 
-                {/* Project Content */}
-                <div className="max-w-4xl mx-auto prose prose-lg">
-                    {project.longDescription?.split('\n\n').map((paragraph, index, array) => {
-                        // Check if it's a heading
-                        if (paragraph.startsWith('## ')) {
-                            const headingText = paragraph.replace('## ', '');
-                            return <h2 key={index} className="text-3xl font-bold mt-12 mb-6">{headingText}</h2>;
-                        }
-                        // Check if it's a horizontal rule
-                        if (paragraph.trim() === '---') {
-                            return <hr key={index} className="my-12 border-t-2 border-gray-200" />;
-                        }
-                        // Check if it's bold text (Role, Context, etc.)
-                        if (paragraph.match(/^\*\*(.+?)\*\*\s*$/m)) {
-                            const lines = paragraph.split('\n');
-                            return (
-                                <div key={index} className="mb-4">
-                                    {lines.map((line, lineIndex) => {
-                                        const boldMatch = line.match(/^\*\*(.+?)\*\*\s*$/);
-                                        if (boldMatch) {
-                                            return <p key={lineIndex} className="font-bold text-gray-900 mb-1">{boldMatch[1]}</p>;
-                                        }
-                                        return <p key={lineIndex} className="text-gray-700 ml-0">{line}</p>;
-                                    })}
+                <section className="mt-16 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+                    <div className="rounded-[32px] border border-black/8 bg-[#fafafa] p-6 md:p-8">
+                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Core Themes</p>
+                        <div className="mt-6 grid gap-5">
+                            {project.highlights.map((highlight) => (
+                                <div key={highlight.title} className="rounded-[24px] bg-white p-5 shadow-[0_18px_45px_-38px_rgba(0,0,0,0.5)]">
+                                    <h3 className="text-xl font-semibold tracking-tight text-black">{highlight.title}</h3>
+                                    <p className="mt-3 text-base leading-relaxed text-gray-600">{highlight.text}</p>
                                 </div>
-                            );
-                        }
+                            ))}
+                        </div>
+                    </div>
 
-                        // Check if next item is "The Solution" heading to insert first set of images
-                        const isBeforeSolution = index < array.length - 1 && array[index + 1].startsWith('## The Solution');
+                    <div className="rounded-[32px] border border-black/8 bg-white p-6 md:p-8">
+                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Tooling and Practice</p>
+                        <div className="mt-5 flex flex-wrap gap-2">
+                            {project.tools.map((tool) => (
+                                <span key={tool} className="rounded-full border border-black/10 bg-[#f6f6f6] px-3 py-2 text-sm font-medium text-gray-700">
+                                    {tool}
+                                </span>
+                            ))}
+                        </div>
 
-                        // Check if next item is "The Result" heading to insert second set of images
-                        const isBeforeResult = index < array.length - 1 && array[index + 1].startsWith('## The Result');
-
-                        // Regular paragraph
-                        return (
-                            <React.Fragment key={index}>
-                                <p className="text-gray-700 leading-relaxed mb-6">{paragraph}</p>
-
-                                {/* First set of images - after Challenge, before Solution */}
-                                {isBeforeSolution && (
-                                    <div className="my-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <div className="rounded-2xl overflow-hidden shadow-lg">
-                                            <img
-                                                src="/src/assets/swaad-branding.png"
-                                                alt="SWAAD Branding and Visual Identity"
-                                                className="w-full h-auto object-cover"
-                                            />
-                                        </div>
-                                        <div className="rounded-2xl overflow-hidden shadow-lg">
-                                            <img
-                                                src="/src/assets/swaad-recipe-finder.png"
-                                                alt="SWAAD Recipe Finder Interface"
-                                                className="w-full h-auto object-cover"
-                                            />
-                                        </div>
+                        <div className="mt-8 space-y-8">
+                            {project.sections.map((section) => (
+                                <div key={section.title}>
+                                    <h2 className="text-2xl font-semibold tracking-tight text-black md:text-3xl">{section.title}</h2>
+                                    <div className="mt-4 space-y-4">
+                                        {section.body.map((paragraph) => (
+                                            <p key={paragraph} className="text-base leading-relaxed text-gray-600 md:text-lg">
+                                                {paragraph}
+                                            </p>
+                                        ))}
                                     </div>
-                                )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-                                {/* Second set of images - after Solution, before Result */}
-                                {isBeforeResult && (
-                                    <div className="my-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <div className="rounded-2xl overflow-hidden shadow-lg">
-                                            <img
-                                                src="/src/assets/swaad-nutriserve.png"
-                                                alt="SWAAD NutriServe Chef Game Interface"
-                                                className="w-full h-auto object-cover"
-                                            />
-                                        </div>
-                                        <div className="rounded-2xl overflow-hidden shadow-lg">
-                                            <img
-                                                src="/src/assets/swaad-game.png"
-                                                alt="SWAAD Nutrient Challenge Game"
-                                                className="w-full h-auto object-cover"
-                                            />
-                                        </div>
+                <section className="mt-16">
+                    <div className="mb-8">
+                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Media Direction</p>
+                        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-black md:text-4xl">
+                            Visual material the panel can carry with confidence
+                        </h2>
+                    </div>
+
+                    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                        {project.media.map((item) => (
+                            <figure key={item.caption} className="overflow-hidden rounded-[30px] border border-black/8 bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.45)]">
+                                <div className="aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
+                                    <img src={item.src} alt={item.alt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
+                                </div>
+                                <figcaption className="p-5">
+                                    <p className="text-base leading-relaxed text-gray-600">{item.caption}</p>
+                                </figcaption>
+                            </figure>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="mt-16 overflow-hidden rounded-[36px] border border-black/8 bg-[#0f1115] p-6 text-white md:p-8">
+                    <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">Interactive Concept Lab</p>
+                            <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                                Creative interaction systems that fit this case study
+                            </h2>
+                            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
+                                These modules are not yet built as final project panels, but they define the kind of digital behavior, aesthetic motion, and narrative interaction that would make the case study feel premium inside the current portfolio system.
+                            </p>
+
+                            <div className="mt-8 flex flex-wrap gap-3">
+                                {project.interactiveModules.map((module, index) => (
+                                    <button
+                                        key={module.title}
+                                        type="button"
+                                        onClick={() => setActiveModuleIndex(index)}
+                                        className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${index === activeModuleIndex
+                                            ? "bg-white text-black"
+                                            : "bg-white/8 text-white/70 hover:bg-white/14 hover:text-white"
+                                            }`}
+                                    >
+                                        {module.title}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {activeModule && (
+                            <div className="rounded-[30px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                                <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-white/45">
+                                    <Sparkles className="h-4 w-4" />
+                                    Active concept
+                                </div>
+                                <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white">
+                                    {activeModule.title}
+                                </h3>
+                                <p className="mt-4 text-base leading-relaxed text-white/75">
+                                    {activeModule.summary}
+                                </p>
+
+                                <div className="mt-8 grid gap-4 md:grid-cols-2">
+                                    <div className="rounded-[24px] bg-white/6 p-5">
+                                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Interaction</p>
+                                        <p className="mt-3 text-base leading-relaxed text-white/80">{activeModule.interaction}</p>
                                     </div>
-                                )}
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
-            </div>
+                                    <div className="rounded-[24px] bg-white/6 p-5">
+                                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Motion and effects</p>
+                                        <p className="mt-3 text-base leading-relaxed text-white/80">{activeModule.effect}</p>
+                                    </div>
+                                </div>
 
-            {/* Contact Section */}
+                                <div className="mt-8 rounded-[26px] border border-white/8 bg-gradient-to-br from-white/8 to-white/4 p-5">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Why this matters</p>
+                                    <p className="mt-3 text-base leading-relaxed text-white/75">
+                                        The strongest panels in this portfolio should not just describe work. They should demonstrate how the underlying system thinks, moves, and reveals complexity. This interaction concept is designed to do exactly that.
+                                    </p>
+                                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                                        Explore this concept direction
+                                        <ArrowUpRight className="h-4 w-4" />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </section>
+            </main>
+
             <ContactSection />
         </div>
     );

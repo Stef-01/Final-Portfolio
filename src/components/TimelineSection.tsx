@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useWindowWidth } from "../hooks/useWindowWidth";
+import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import svgPaths from "./timeline/imports/svg-a9d042udyz";
 
 import imgHopkinsPavaCenter from "../assets/timeline-upgraded/0ab6195dd58e68fba2b601597ac6a3d1c5449c8a.webp";
@@ -17,7 +18,149 @@ import imgAustralianNationalUniversity from "../assets/timeline-upgraded/e715f2d
 
 export const TimelineSection = () => {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+    const [expandedItem, setExpandedItem] = useState<string | null>(null);
     const windowWidth = useWindowWidth();
+    const isPhoneLayout = usePhoneLayout();
+    const mobileTimelineItems = [
+        {
+            id: "bhlth",
+            title: "BHLTH",
+            period: "2019-2023",
+            image: imgAustralianNationalUniversity,
+            description: "Bachelor of Health Science at ANU, grounding me in population health and equity.",
+        },
+        {
+            id: "internships",
+            title: "National Internships",
+            period: "2022",
+            image: imgNationalInternships,
+            description: "Parliamentary policy internship translating complex evidence into post COVID recovery recommendations.",
+        },
+        {
+            id: "consulting",
+            title: "180 Degrees Consulting",
+            period: "2022",
+            image: img180DegreesConsulting,
+            description: "Financial strategy advisory for a large education nonprofit, strengthening my analytical and client skills.",
+        },
+        {
+            id: "md",
+            title: "MD (II)",
+            period: "2023-2027",
+            image: imgMacquarieUniversity,
+            description: "Macquarie University MD training, building my clinical foundations for work with underserved communities.",
+        },
+        {
+            id: "ms",
+            title: "M.S",
+            period: "2025-2026",
+            image: imgStanfordUniversityLogo,
+            description: "Community Health and Prevention Research at Stanford, focusing on precision medicine and health equity.",
+        },
+        {
+            id: "biodesign",
+            title: "Stanford Biodesign",
+            period: "2025",
+            image: imgStanfordBiodesign,
+            description: "Immersive human centered health technology training, where we developed a novel ENT care platform to help prevent paediatric readmissions.",
+        },
+        {
+            id: "seed",
+            title: "Stanford Seed",
+            period: "2025",
+            image: imgStanfordGsbSeed,
+            description: "Stanford Seed internship in Nigeria, advising go to market strategy and product management for a dialysis medical device.",
+        },
+        {
+            id: "harvard",
+            title: "Harvard Venture Building",
+            period: "2025",
+            image: imgHarvardUniversityLogo,
+            description: "Harvard Venture Building Program, a four week course taught by VCs and Harvard Business School and Harvard T H Chan faculty.",
+        },
+        {
+            id: "hsil",
+            title: "Harvard HSIL",
+            period: "2025",
+            image: imgHarvardHsil,
+            description: "Ten week HSIL competition where our team placed 7th of 2,500 after four national and international rounds, leading to invitation into the Venture Building Program.",
+        },
+        {
+            id: "hopkins",
+            title: "Johns Hopkins",
+            period: "2025",
+            image: imgHopkinsUniversityLogo,
+            description: "Entrepreneurship training at Hopkins Pava Center, refining venture design for impactful health startups.",
+        },
+        {
+            id: "pava",
+            title: "Hopkins Pava Center",
+            period: "2025",
+            image: imgHopkinsPavaCenter,
+            description: "Entrepreneurship training at Hopkins Pava Center, refining venture design for impactful health startups.",
+        },
+    ];
+
+    if (isPhoneLayout) {
+        return (
+            <section className="w-full bg-white px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))]">
+                <div className="max-w-md mx-auto">
+                    <div className="mb-8 text-center">
+                        <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">Timeline</p>
+                        <h2 className="text-4xl font-bold tracking-tighter text-black">Journey So Far</h2>
+                    </div>
+
+                    <div className="relative pl-6">
+                        <div className="absolute left-[11px] top-0 bottom-0 w-px bg-gray-200" />
+                        <div className="space-y-5">
+                            {mobileTimelineItems.map((item, index) => {
+                                const isExpanded = expandedItem === item.id;
+
+                                return (
+                                    <motion.button
+                                        key={item.id}
+                                        type="button"
+                                        className="relative block w-full text-left"
+                                        initial={{ opacity: 0, y: 24 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "-60px" }}
+                                        transition={{ duration: 0.45, delay: index * 0.05 }}
+                                        onClick={() => setExpandedItem(isExpanded ? null : item.id)}
+                                    >
+                                        <span className="absolute left-[-20px] top-5 h-3 w-3 rounded-full bg-black ring-4 ring-white" />
+                                        <div className="overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]">
+                                            <div className="aspect-[4/3] overflow-hidden bg-white">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    className="h-full w-full object-contain p-6"
+                                                    loading="lazy"
+                                                />
+                                            </div>
+                                            <div className="p-5">
+                                                <div className="mb-2 flex items-start justify-between gap-4">
+                                                    <div>
+                                                        <h3 className="text-2xl font-bold tracking-tight text-black">{item.title}</h3>
+                                                        <p className="text-sm text-gray-500">{item.period}</p>
+                                                    </div>
+                                                    <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                                                        {isExpanded ? "Open" : "Tap"}
+                                                    </span>
+                                                </div>
+                                                <p className={`overflow-hidden text-base leading-relaxed text-gray-700 transition-all duration-300 ${isExpanded ? "max-h-40 opacity-100" : "max-h-12 opacity-80"}`}>
+                                                    {item.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </motion.button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     // Calculate scale to fit the content (approx 1400px wide) into the window
     // This zooms in significantly compared to fitting the entire 3826px canvas

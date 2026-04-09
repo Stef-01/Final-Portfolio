@@ -1,8 +1,19 @@
 import { motion } from "motion/react";
 import { Sparkles, Activity, Dna, Microscope, Stethoscope, Brain, Leaf, Bot } from "lucide-react";
+import { usePhoneLayout } from "../hooks/usePhoneLayout";
 
 export function AboutSection() {
-    const pills = [
+    const isPhoneLayout = usePhoneLayout();
+    const pills = isPhoneLayout ? [
+        { text: "pharmacogenomics", color: "bg-[#818CF8]", rotate: -10, x: -68, y: -78, delay: 0.1, icon: Dna },
+        { text: "AI healthcare", color: "bg-[#4ADE80]", rotate: 6, x: 64, y: -78, delay: 0.2, icon: Brain },
+        { text: "digital health", color: "bg-[#22D3EE]", rotate: 4, x: 74, y: -4, delay: 0.3, icon: Stethoscope },
+        { text: "indigenous health", color: "bg-[#E879F9]", rotate: -8, x: -70, y: 52, delay: 0.4, icon: Sparkles },
+        { text: "health systems", color: "bg-[#FBBF24]", rotate: -4, x: 0, y: 22, delay: 0.5, icon: Activity },
+        { text: "precision medicine", color: "bg-[#FB7185]", rotate: 8, x: 66, y: 84, delay: 0.6, icon: Microscope },
+        { text: "nutrition", color: "bg-[#A3E635]", rotate: 10, x: -58, y: 90, delay: 0.7, icon: Leaf },
+        { text: "LLM CDS", color: "bg-[#C084FC]", rotate: -6, x: -14, y: -18, delay: 0.8, icon: Bot },
+    ] : [
         { text: "pharmacogenomics", color: "bg-[#818CF8]", rotate: -15, x: -120, y: -80, delay: 0.1, icon: Dna },
         { text: "AI healthcare", color: "bg-[#4ADE80]", rotate: 5, x: 100, y: -90, delay: 0.2, icon: Brain },
         { text: "digital health", color: "bg-[#22D3EE]", rotate: 8, x: 140, y: -10, delay: 0.3, icon: Stethoscope },
@@ -39,9 +50,9 @@ export function AboutSection() {
     };
 
     return (
-        <section className="relative min-h-screen bg-white flex flex-col items-center justify-center py-8 px-8 overflow-hidden">
+        <section className="relative min-h-[100svh] bg-white flex flex-col items-center justify-center py-10 md:py-8 px-4 md:px-8 overflow-hidden">
 
-            <div className="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
 
                 {/* Left Column: Browser Window Animation */}
                 <motion.div
@@ -112,7 +123,7 @@ export function AboutSection() {
                                 {pills.map((pill, index) => (
                                     <motion.div
                                         key={index}
-                                        className={`absolute px-6 py-3 rounded-full border-[3px] border-black text-white font-['Clash_Grotesk:Medium',_sans-serif] text-sm md:text-base whitespace-nowrap shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${pill.color} flex items-center gap-2`}
+                                        className={`absolute px-3 md:px-6 py-2 md:py-3 rounded-full border-[3px] border-black text-white font-['Clash_Grotesk:Medium',_sans-serif] text-[11px] md:text-base whitespace-nowrap shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${pill.color} flex items-center gap-1.5 md:gap-2`}
                                         initial={{
                                             x: 0,
                                             y: 0,
@@ -143,7 +154,7 @@ export function AboutSection() {
                                             transition: { duration: 0.2 }
                                         }}
                                     >
-                                        <pill.icon className="w-4 h-4" strokeWidth={2.5} />
+                                        <pill.icon className="w-3.5 h-3.5 md:w-4 md:h-4" strokeWidth={2.5} />
                                         {pill.text}
                                     </motion.div>
                                 ))}
@@ -155,7 +166,7 @@ export function AboutSection() {
                     </div>
 
                     {/* Cord Element - Improved */}
-                    <div className="absolute -bottom-8 -right-8 z-0">
+                    <div className="absolute -bottom-6 md:-bottom-8 -right-4 md:-right-8 z-0 scale-75 md:scale-100">
                         <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                             {/* Cord cable with gradient */}
                             <defs>
@@ -187,7 +198,7 @@ export function AboutSection() {
                         viewport={{ once: false }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[20px] md:text-[24px] text-gray-700 leading-relaxed">
+                        <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[18px] md:text-[24px] text-gray-700 leading-relaxed">
                             I partner with healthcare innovators, researchers, and communities to reimagine health systems — from AI-powered precision medicine tools to equitable implementation strategies for Indigenous health.
                         </p>
                     </motion.div>
@@ -198,7 +209,7 @@ export function AboutSection() {
                         viewport={{ once: false }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
-                        <p className="font-['Clash_Grotesk:Medium',_sans-serif] text-[20px] md:text-[24px] text-gray-900 leading-relaxed">
+                        <p className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px] md:text-[24px] text-gray-900 leading-relaxed">
                             My mission: to design frictionless, human-centered digital health experiences that bridge cutting-edge technology with compassionate care, advancing health equity and transforming patient outcomes through evidence-based innovation.
                         </p>
                     </motion.div>
@@ -215,7 +226,7 @@ export function AboutSection() {
                             <span className="font-['Playfair_Display',_serif] italic text-2xl font-bold">Stefan T.</span>
                         </div>
                         {/* Arrow pointing to signature */}
-                        <svg className="absolute -left-16 top-1/2 w-12 h-12 text-black transform -translate-y-1/2" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
+                        <svg className="absolute hidden md:block -left-16 top-1/2 w-12 h-12 text-black transform -translate-y-1/2" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
                             <path d="M10,50 Q50,20 90,50" markerEnd="url(#arrowhead)" />
                             <defs>
                                 <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">

@@ -11,7 +11,7 @@ export function Resume() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 py-20 px-8">
+    <div className="min-h-[100svh] bg-white text-gray-900 py-16 md:py-20 px-4 md:px-8">
       <FloatingBackButton />
       <div className="max-w-[1200px] mx-auto">
         <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group">
@@ -25,11 +25,11 @@ export function Resume() {
           transition={{ duration: 0.8 }}
         >
           <div className="mb-12">
-            <h1 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[72px] mb-4">Stefan Thottunkal</h1>
-            <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[24px] text-gray-700 mb-4">
+            <h1 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[42px] md:text-[72px] mb-4 leading-[1]">Stefan Thottunkal</h1>
+            <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[20px] md:text-[24px] text-gray-700 mb-4">
               Early Career Researcher, Public Servant, and Medical Student
             </p>
-            <div className="flex gap-6 text-[18px] text-gray-500">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-[16px] md:text-[18px] text-gray-500">
               <a href="mailto:stefan@example.com" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
                 <Mail className="w-5 h-5" />
                 Email
@@ -48,7 +48,7 @@ export function Resume() {
           <section className="mb-16">
             <div className="flex items-center gap-3 mb-8">
               <GraduationCap className="w-8 h-8 text-blue-600" />
-              <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[42px]">Education</h2>
+              <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[30px] md:text-[42px]">Education</h2>
             </div>
 
             <motion.div
@@ -58,18 +58,18 @@ export function Resume() {
               transition={{ delay: 0.2 }}
             >
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
                   M.S. in Community Health and Prevention Research
                 </h3>
-                <p className="text-blue-600 text-[20px] mb-2">Stanford University</p>
-                <p className="text-gray-500 text-[18px] mb-3">2025-2026 | GPA: 4.075/4.3</p>
-                <p className="text-gray-700 text-[18px] leading-relaxed mb-2">
+                <p className="text-blue-600 text-[18px] md:text-[20px] mb-2">Stanford University</p>
+                <p className="text-gray-500 text-[16px] md:text-[18px] mb-3">2025-2026 | GPA: 4.075/4.3</p>
+                <p className="text-gray-700 text-[16px] md:text-[18px] leading-relaxed mb-2">
                   <span className="font-['Clash_Grotesk:Medium',_sans-serif]">QUAD Fellow 2025-2026</span>
                 </p>
-                <p className="text-gray-700 text-[18px] leading-relaxed">
+                <p className="text-gray-700 text-[16px] md:text-[18px] leading-relaxed">
                   <span className="font-['Clash_Grotesk:Medium',_sans-serif]">Thesis:</span> AI methods for pharmacogenomics-based prescribing in clinical practice
                 </p>
-                <p className="text-gray-500 text-[16px] mt-2">Advisor: Prof. Palaniappan</p>
+                <p className="text-gray-500 text-[15px] md:text-[16px] mt-2">Advisor: Prof. Palaniappan</p>
               </div>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4">

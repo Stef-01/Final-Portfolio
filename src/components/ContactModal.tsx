@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { X, Mail, Linkedin, Check } from "lucide-react";
+import { usePhoneLayout } from "../hooks/usePhoneLayout";
 
 interface ContactModalProps {
     isOpen: boolean;
@@ -8,6 +9,7 @@ interface ContactModalProps {
 
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     const [emailCopied, setEmailCopied] = useState(false);
+    const isPhoneLayout = usePhoneLayout();
 
     const email = "stefan01@stanford.edu";
     const linkedinUrl = "https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
@@ -32,11 +34,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] bg-black/20"
             onClick={onClose}
         >
             <div
-                className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 animate-in fade-in zoom-in duration-300"
+                className={`relative w-full bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl animate-in fade-in zoom-in duration-300 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}
@@ -49,13 +51,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 </button>
 
                 {/* Contact options */}
-                <div className="flex items-center gap-8 mb-6">
+                <div className={`mb-6 ${isPhoneLayout ? "flex flex-col items-center gap-4" : "flex items-center gap-8"}`}>
                     {/* Email button */}
                     <button
                         onClick={handleEmailClick}
                         className="flex flex-col items-center gap-3 group"
                     >
-                        <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center">
+                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center`}>
                             {emailCopied ? (
                                 <>
                                     <Check className="w-12 h-12 text-white mb-1" />
@@ -80,7 +82,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                         onClick={handleLinkedInClick}
                         className="flex flex-col items-center gap-3 group"
                     >
-                        <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center">
+                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-gradient-to-br from-blue-600 to-blue-700 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center`}>
                             <Linkedin className="w-12 h-12 text-white mb-1" />
                             <span className="text-white font-semibold text-sm">LinkedIn</span>
                         </div>

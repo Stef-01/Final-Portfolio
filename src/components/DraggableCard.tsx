@@ -13,6 +13,9 @@ interface DraggableCardProps {
     rotation: number;
     scale?: number;
     zIndex?: number;
+    width?: number;
+    imageHeight?: number;
+    alwaysShowArrow?: boolean;
 }
 
 export const DraggableCard: React.FC<DraggableCardProps> = ({
@@ -26,6 +29,9 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     rotation,
     scale = 1,
     zIndex = 1,
+    width = 320,
+    imageHeight = 256,
+    alwaysShowArrow = false,
 }) => {
     const navigate = useNavigate();
     const cardRef = useRef<HTMLDivElement>(null);
@@ -61,6 +67,32 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
         }
     };
 
+    const handleTouchStart = (e: React.TouchEvent) => {
+        if ((e.target as HTMLElement).closest('.arrow-button')) {
+            return;
+        }
+
+        const touch = e.touches[0];
+        setIsDragging(true);
+        setHasDragged(false);
+        setCurrentZIndex(1000);
+        setDragStart({
+            x: touch.clientX - position.x,
+            y: touch.clientY - position.y,
+        });
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+        if (isDragging && e.touches[0]) {
+            const touch = e.touches[0];
+            setHasDragged(true);
+            setPosition({
+                x: touch.clientX - dragStart.x,
+                y: touch.clientY - dragStart.y,
+            });
+        }
+    };
+
     const handleMouseUp = () => {
         setIsDragging(false);
         setTimeout(() => setCurrentZIndex(zIndex), 100);
@@ -77,9 +109,13 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
         if (isDragging) {
             window.addEventListener("mousemove", handleMouseMove);
             window.addEventListener("mouseup", handleMouseUp);
+            window.addEventListener("touchmove", handleTouchMove, { passive: true });
+            window.addEventListener("touchend", handleMouseUp);
             return () => {
                 window.removeEventListener("mousemove", handleMouseMove);
                 window.removeEventListener("mouseup", handleMouseUp);
+                window.removeEventListener("touchmove", handleTouchMove);
+                window.removeEventListener("touchend", handleMouseUp);
             };
         }
     }, [isDragging, dragStart]);
@@ -94,10 +130,12 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
                 top: "50%",
                 transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px)) rotate(${rotation}deg) scale(${isDragging ? scale * 1.05 : scale})`,
                 zIndex: currentZIndex,
-                width: "320px",
+                width: `${width}px`,
                 transition: isDragging ? "none" : "transform 0.3s ease-out",
+                touchAction: "none",
             }}
             onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -105,7 +143,8 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
                 <img
                     src={image}
                     alt={title}
-                    className="w-full h-64 object-cover pointer-events-none select-none"
+                    className="w-full object-cover pointer-events-none select-none"
+                    style={{ height: `${imageHeight}px` }}
                     draggable={false}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -114,7 +153,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
                 {projectId && (
                     <button
                         className={`arrow-button absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white ${isHovered && !isDragging ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
-                            }`}
+                            } ${alwaysShowArrow ? "opacity-100 translate-y-0 pointer-events-auto" : ""}`}
                         onClick={handleArrowClick}
                     >
                         <ArrowUpRight className="w-5 h-5" />
