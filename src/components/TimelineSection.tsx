@@ -19,8 +19,20 @@ import imgAustralianNationalUniversity from "../assets/timeline-upgraded/e715f2d
 export const TimelineSection = () => {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
     const [expandedItem, setExpandedItem] = useState<string | null>(null);
+    const [showAnu, setShowAnu] = useState(false);
+    const [showInternships, setShowInternships] = useState(false);
+    const [showConsulting, setShowConsulting] = useState(false);
+    const [showMd, setShowMd] = useState(false);
+    const [showMs, setShowMs] = useState(false);
+    const [showBiodesign, setShowBiodesign] = useState(false);
+    const [showSeed, setShowSeed] = useState(false);
+    const [showHarvard, setShowHarvard] = useState(false);
+    const [showHsil, setShowHsil] = useState(false);
+    const [showHopkins, setShowHopkins] = useState(false);
+    const [showPava, setShowPava] = useState(false);
     const windowWidth = useWindowWidth();
     const isPhoneLayout = usePhoneLayout();
+    const timelineContainerRef = useRef(null);
     const mobileTimelineItems = [
         {
             id: "bhlth",
@@ -101,6 +113,44 @@ export const TimelineSection = () => {
         },
     ];
 
+    // Calculate scale to fit the content (approx 1400px wide) into the window
+    // This zooms in significantly compared to fitting the entire 3826px canvas
+    const baseWidth = 3826;
+    const baseHeight = 2485;
+    const contentCenter = 2353; // The x-coordinate of the vertical timeline line
+
+    // Scale based on a target content width of ~2000px (or window width if smaller)
+    // This ensures the text is readable but zoomed out enough to see more context
+    const targetContentWidth = 2000;
+    const scale = Math.min(1.2, windowWidth / targetContentWidth); // Cap at 1.2x zoom for very large screens
+
+    // Calculate offset to center the timeline spine
+    const xOffset = (windowWidth / 2) - (contentCenter * scale);
+
+    // Scroll-based line animation
+    const { scrollYProgress } = useScroll({
+        target: timelineContainerRef,
+        offset: ["start center", "end center"]
+    });
+
+    // Map scroll progress to line height (0 to 2021px)
+    const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+    // Trigger animations based on line progress
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        setShowAnu(latest > 0.02);
+        setShowInternships(latest > 0.08);
+        setShowConsulting(latest > 0.08);
+        setShowMd(latest > 0.23);
+        setShowMs(latest > 0.42);
+        setShowBiodesign(latest > 0.58);
+        setShowSeed(latest > 0.59);
+        setShowHarvard(latest > 0.70);
+        setShowHsil(latest > 0.82);
+        setShowHopkins(latest > 0.88);
+        setShowPava(latest > 0.89);
+    });
+
     if (isPhoneLayout) {
         return (
             <section className="w-full bg-white px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))]">
@@ -161,59 +211,6 @@ export const TimelineSection = () => {
             </section>
         );
     }
-
-    // Calculate scale to fit the content (approx 1400px wide) into the window
-    // This zooms in significantly compared to fitting the entire 3826px canvas
-    const baseWidth = 3826;
-    const baseHeight = 2485;
-    const contentCenter = 2353; // The x-coordinate of the vertical timeline line
-
-    // Scale based on a target content width of ~2000px (or window width if smaller)
-    // This ensures the text is readable but zoomed out enough to see more context
-    const targetContentWidth = 2000;
-    const scale = Math.min(1.2, windowWidth / targetContentWidth); // Cap at 1.2x zoom for very large screens
-
-    // Calculate offset to center the timeline spine
-    const xOffset = (windowWidth / 2) - (contentCenter * scale);
-
-    // Refs for scroll-triggered animations
-    // State for sequential animations
-    const [showAnu, setShowAnu] = useState(false);
-    const [showInternships, setShowInternships] = useState(false);
-    const [showConsulting, setShowConsulting] = useState(false);
-    const [showMd, setShowMd] = useState(false);
-    const [showMs, setShowMs] = useState(false);
-    const [showBiodesign, setShowBiodesign] = useState(false);
-    const [showSeed, setShowSeed] = useState(false);
-    const [showHarvard, setShowHarvard] = useState(false);
-    const [showHsil, setShowHsil] = useState(false);
-    const [showHopkins, setShowHopkins] = useState(false);
-    const [showPava, setShowPava] = useState(false);
-
-    // Scroll-based line animation
-    const timelineContainerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: timelineContainerRef,
-        offset: ["start center", "end center"]
-    });
-
-    // Map scroll progress to line height (0 to 2021px)
-    const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-    // Trigger animations based on line progress
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        setShowAnu(latest > 0.02);
-        setShowInternships(latest > 0.08);
-        setShowConsulting(latest > 0.08);
-        setShowMd(latest > 0.23);
-        setShowMs(latest > 0.42);
-        setShowBiodesign(latest > 0.58);
-        setShowSeed(latest > 0.59);
-        setShowHarvard(latest > 0.70);
-        setShowHsil(latest > 0.82);
-        setShowHopkins(latest > 0.88);
-        setShowPava(latest > 0.89);
-    });
 
     return (
         <div className="w-full overflow-hidden bg-white pt-20 pb-32" ref={timelineContainerRef}>

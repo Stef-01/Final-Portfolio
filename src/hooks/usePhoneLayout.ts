@@ -14,7 +14,7 @@ function detectPhoneLayout() {
 }
 
 export function usePhoneLayout() {
-    const [isPhoneLayout, setIsPhoneLayout] = useState(false);
+    const [isPhoneLayout, setIsPhoneLayout] = useState(() => detectPhoneLayout());
 
     useEffect(() => {
         const updateLayout = () => {

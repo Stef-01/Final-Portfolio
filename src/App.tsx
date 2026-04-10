@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
+import { AppErrorBoundary } from "./components/AppErrorBoundary";
 
 // Lazy load pages to improve initial load performance
 const ScalehubStartupLp = lazy(() => import("./screens/ScalehubStartupLp").then(module => ({ default: module.ScalehubStartupLp })));
@@ -34,9 +35,11 @@ const AnimatedRoutes = () => {
 const App = (): JSX.Element => {
   return (
     <Router>
-      <Suspense fallback={<LoadingFallback />}>
-        <AnimatedRoutes />
-      </Suspense>
+      <AppErrorBoundary>
+        <Suspense fallback={<LoadingFallback />}>
+          <AnimatedRoutes />
+        </Suspense>
+      </AppErrorBoundary>
     </Router>
   );
 };

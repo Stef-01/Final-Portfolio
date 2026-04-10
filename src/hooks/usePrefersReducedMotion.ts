@@ -12,9 +12,14 @@ export function usePrefersReducedMotion() {
         const update = () => setPrefersReducedMotion(mediaQuery.matches);
 
         update();
-        mediaQuery.addEventListener("change", update);
 
-        return () => mediaQuery.removeEventListener("change", update);
+        if (typeof mediaQuery.addEventListener === "function") {
+            mediaQuery.addEventListener("change", update);
+            return () => mediaQuery.removeEventListener("change", update);
+        }
+
+        mediaQuery.addListener(update);
+        return () => mediaQuery.removeListener(update);
     }, []);
 
     return prefersReducedMotion;
