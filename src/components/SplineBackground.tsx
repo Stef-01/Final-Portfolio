@@ -11,11 +11,29 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
     const [hasError, setHasError] = useState(false);
     const [SplineComponent, setSplineComponent] = useState<React.ComponentType<any> | null>(null);
     const [shouldBootSpline, setShouldBootSpline] = useState(false);
+    const [documentVisible, setDocumentVisible] = useState(() => typeof document === "undefined" ? true : document.visibilityState === "visible");
     const isPhoneLayout = usePhoneLayout();
     const prefersReducedMotion = usePrefersReducedMotion();
 
     useEffect(() => {
-        if (prefersReducedMotion) {
+        if (typeof document === "undefined") {
+            return;
+        }
+
+        const handleVisibilityChange = () => {
+            setDocumentVisible(document.visibilityState === "visible");
+        };
+
+        handleVisibilityChange();
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (prefersReducedMotion || !documentVisible) {
             return;
         }
 
@@ -47,10 +65,10 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
             }
             window.clearTimeout(timeoutId);
         };
-    }, [isPhoneLayout, prefersReducedMotion]);
+    }, [documentVisible, isPhoneLayout, prefersReducedMotion]);
 
     useEffect(() => {
-        if (!shouldBootSpline || prefersReducedMotion) {
+        if (!shouldBootSpline || prefersReducedMotion || !documentVisible) {
             return;
         }
 
@@ -70,7 +88,7 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
         return () => {
             cancelled = true;
         };
-    }, [prefersReducedMotion, shouldBootSpline]);
+    }, [documentVisible, prefersReducedMotion, shouldBootSpline]);
 
     const handleLoad = () => {
         setIsLoaded(true);

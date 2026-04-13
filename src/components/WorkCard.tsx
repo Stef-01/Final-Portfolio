@@ -34,7 +34,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         <button
             type="button"
             onClick={handleClick}
-            className={`group relative w-full text-left bg-[#f5f5f5] rounded-3xl p-5 md:p-8 overflow-hidden cursor-pointer transition-all duration-700 ease-out hover:scale-[1.02] hover:shadow-2xl ${className}`}
+            className={`group relative w-full text-left bg-[#f5f5f5] rounded-3xl p-5 md:p-8 overflow-hidden cursor-pointer transition-all duration-700 ease-out hover:scale-[1.02] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] ${className}`}
             style={{ animationDelay: `${delay}ms` }}
         >
             {/* Arrow Icon */}
@@ -89,6 +89,8 @@ export const WorkCard: React.FC<WorkCardProps> = ({
                     alt={title}
                     className="w-full h-full object-cover"
                     loading="lazy"
+                    decoding="async"
+                    sizes="(max-width: 768px) 92vw, 1200px"
                 />
             </div>
 

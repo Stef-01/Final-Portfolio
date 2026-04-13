@@ -126,6 +126,9 @@ export const ProjectDetail = (): JSX.Element => {
                         alt={project.title}
                         className="h-[280px] w-full object-cover opacity-90 md:h-[620px]"
                         loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                        sizes="100vw"
                     />
                 </div>
 
@@ -181,7 +184,14 @@ export const ProjectDetail = (): JSX.Element => {
                         {project.media.map((item) => (
                             <figure key={item.caption} className="overflow-hidden rounded-[30px] border border-black/8 bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.45)]">
                                 <div className="aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
-                                    <img src={item.src} alt={item.alt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
+                                    <img
+                                        src={item.src}
+                                        alt={item.alt}
+                                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                                        loading="lazy"
+                                        decoding="async"
+                                        sizes="(max-width: 768px) 92vw, (max-width: 1280px) 46vw, 30vw"
+                                    />
                                 </div>
                                 <figcaption className="p-5">
                                     <p className="text-base leading-relaxed text-gray-600">{item.caption}</p>

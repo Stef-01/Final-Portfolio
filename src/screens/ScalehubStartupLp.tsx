@@ -17,6 +17,9 @@ const TimelineSection = lazy(() => import("../components/TimelineSection").then(
 export const ScalehubStartupLp = (): JSX.Element => {
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
     const isPhoneLayout = usePhoneLayout();
+    const handleViewWork = () => {
+        document.getElementById("work")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
 
     return (
         <div className="bg-white flex flex-col w-full overflow-x-hidden">
@@ -38,7 +41,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
                     </h1>
 
                     <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none">
-                        <Button type="primary" label="View Work" className="w-full sm:w-[134px]" />
+                        <Button type="primary" label="View Work" onClick={handleViewWork} className="w-full sm:w-[134px]" />
                         <Button
                             type="secondary"
                             label="Contact Me"
