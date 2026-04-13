@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X, Mail, Linkedin, Check } from "lucide-react";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 
@@ -14,20 +14,65 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     const email = "stefan01@stanford.edu";
     const linkedinUrl = "https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
 
+    useEffect(() => {
+        if (!isOpen) {
+            return;
+        }
+
+        const previousOverflow = document.body.style.overflow;
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                onClose();
+            }
+        };
+
+        document.body.style.overflow = "hidden";
+        window.addEventListener("keydown", handleEscape);
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener("keydown", handleEscape);
+        };
+    }, [isOpen, onClose]);
+
+    const fallbackCopy = () => {
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        textArea.setAttribute("readonly", "");
+        textArea.style.position = "absolute";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+    };
+
     const handleEmailClick = async () => {
         try {
-            await navigator.clipboard.writeText(email);
+            if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(email);
+            } else {
+                fallbackCopy();
+            }
             setEmailCopied(true);
             setTimeout(() => {
                 setEmailCopied(false);
             }, 2000);
         } catch (err) {
-            console.error('Failed to copy email:', err);
+            try {
+                fallbackCopy();
+                setEmailCopied(true);
+                setTimeout(() => {
+                    setEmailCopied(false);
+                }, 2000);
+            } catch (fallbackError) {
+                console.error("Failed to copy email:", err, fallbackError);
+            }
         }
     };
 
     const handleLinkedInClick = () => {
-        window.open(linkedinUrl, '_blank', 'noopener,noreferrer');
+        window.open(linkedinUrl, "_blank", "noopener,noreferrer");
     };
 
     if (!isOpen) return null;
@@ -44,7 +89,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 {/* Close button */}
                 <button
                     onClick={onClose}
-                    className="absolute -top-4 -right-4 w-12 h-12 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-all flex items-center justify-center z-10"
+                    className={`absolute w-12 h-12 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-all flex items-center justify-center z-10 ${isPhoneLayout ? "top-3 right-3" : "-top-4 -right-4"}`}
                     aria-label="Close"
                 >
                     <X className="w-5 h-5" />

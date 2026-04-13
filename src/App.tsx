@@ -32,14 +32,22 @@ const AnimatedRoutes = () => {
   );
 };
 
+const RoutedApp = () => {
+  const location = useLocation();
+
+  return (
+    <AppErrorBoundary key={location.pathname}>
+      <Suspense fallback={<LoadingFallback />}>
+        <AnimatedRoutes />
+      </Suspense>
+    </AppErrorBoundary>
+  );
+};
+
 const App = (): JSX.Element => {
   return (
     <Router>
-      <AppErrorBoundary>
-        <Suspense fallback={<LoadingFallback />}>
-          <AnimatedRoutes />
-        </Suspense>
-      </AppErrorBoundary>
+      <RoutedApp />
     </Router>
   );
 };

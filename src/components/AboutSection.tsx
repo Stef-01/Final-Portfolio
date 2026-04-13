@@ -199,7 +199,7 @@ export function AboutSection() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[18px] md:text-[24px] text-gray-700 leading-relaxed">
-                            I partner with healthcare innovators, researchers, and communities to reimagine health systems — from AI-powered precision medicine tools to equitable implementation strategies for Indigenous health.
+                            I partner with healthcare innovators, researchers, and communities to reimagine health systems, from AI-powered precision medicine tools to equitable implementation strategies for Indigenous health.
                         </p>
                     </motion.div>
 
