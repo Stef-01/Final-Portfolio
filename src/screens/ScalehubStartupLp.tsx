@@ -5,6 +5,7 @@ import { Button } from "../components/Button";
 import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
+import { SystemsMapSection } from "../components/SystemsMapSection";
 import { BrandsLogos } from "../components/BrandsLogos";
 import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
@@ -58,6 +59,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
 
             {/* Precision Medicine Navigator */}
             <PrecisionMedicineSection />
+
+            {/* Systems Map */}
+            <SystemsMapSection />
 
             {/* Latest Work Section */}
             <div className="relative z-10 bg-white">
