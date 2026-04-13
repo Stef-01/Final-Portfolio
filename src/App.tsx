@@ -8,6 +8,7 @@ const ScalehubStartupLp = lazy(() => import("./screens/ScalehubStartupLp").then(
 const ProjectDetail = lazy(() => import("./screens/ProjectDetail").then(module => ({ default: module.ProjectDetail })));
 const Resume = lazy(() => import("./pages/Resume").then(module => ({ default: module.Resume })));
 const Presentations = lazy(() => import("./pages/Presentations").then(module => ({ default: module.Presentations })));
+const Policy = lazy(() => import("./pages/Policy").then(module => ({ default: module.Policy })));
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
@@ -27,6 +28,7 @@ const AnimatedRoutes = () => {
         <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path="/bio" element={<Resume />} />
         <Route path="/presentations" element={<Presentations />} />
+        <Route path="/policy" element={<Policy />} />
       </Routes>
     </AnimatePresence>
   );

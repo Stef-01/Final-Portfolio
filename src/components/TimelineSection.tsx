@@ -156,8 +156,11 @@ export const TimelineSection = () => {
             <section className="w-full bg-white px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))]">
                 <div className="max-w-md mx-auto">
                     <div className="mb-8 text-center">
-                        <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">Timeline</p>
-                        <h2 className="text-4xl font-bold tracking-tighter text-black">Journey So Far</h2>
+                        <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">Education & Formation</p>
+                        <h2 className="text-4xl font-bold tracking-tighter text-black">How the path was built</h2>
+                        <p className="mt-3 text-base leading-relaxed text-gray-600">
+                            The institutions, training environments, and venture programs that shaped how I think across health, systems, and product.
+                        </p>
                     </div>
 
                     <div className="relative pl-6">
@@ -217,6 +220,13 @@ export const TimelineSection = () => {
 
     return (
         <div className="w-full overflow-hidden bg-white pt-20 pb-32" ref={timelineContainerRef}>
+            <div className="mx-auto mb-12 max-w-5xl px-4 text-center">
+                <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">Education & Formation</p>
+                <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">The environments that shaped the work</h2>
+                <p className="mt-4 mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600">
+                    A timeline of medical training, research institutions, and innovation programs that developed my approach to health systems, product strategy, and implementation.
+                </p>
+            </div>
             <div
                 style={{
                     width: "100%",

@@ -82,6 +82,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
                     </div>
                     <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
                         <Link to="/bio" className="text-gray-400 hover:text-white transition-colors">Bio</Link>
+                        <Link to="/policy" className="text-gray-400 hover:text-white transition-colors">Policy</Link>
                         <Link to="/presentations" className="text-gray-400 hover:text-white transition-colors">Presentations</Link>
                         <a
                             href="https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios"

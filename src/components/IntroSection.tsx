@@ -58,6 +58,13 @@ export function IntroSection() {
                     viewport={{ once: true, margin: "-80px" }}
                     className="flex flex-col gap-8 items-center"
                 >
+                    <motion.p
+                        variants={itemVariants}
+                        className="max-w-3xl text-sm md:text-base font-semibold uppercase tracking-[0.28em] text-gray-400"
+                    >
+                        Translational health systems, product, and implementation work
+                    </motion.p>
+
                     <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-3">
                         {featureChips.map((chip, index) => (
                             <motion.div
@@ -76,7 +83,7 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[42px] md:text-[64px] text-gray-900 leading-[1.05] tracking-tight max-w-5xl"
                     >
-                        Research, product, and systems design for the future of health
+                        Turning complex evidence into products, decisions, and systems people can actually use
                     </motion.h2>
 
                     <motion.div

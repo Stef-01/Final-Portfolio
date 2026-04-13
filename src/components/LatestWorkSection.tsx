@@ -69,7 +69,7 @@ export const LatestWorkSection = () => {
                             transition={{ duration: 0.62, delay: 0.2 }}
                             className="mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600"
                         >
-                            Case studies shaped around translational research, digital health products, venture design, and the systems work required to move ideas into practice.
+                            Flagship work across digital health products, clinical decision support, and implementation strategy, framed to show product judgment, systems range, and translational depth.
                         </motion.p>
                     </div>
 
