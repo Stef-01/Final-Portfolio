@@ -5,6 +5,7 @@ import { Button } from "../components/Button";
 import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
+import { PolicyTeaserSection } from "../components/PolicyTeaserSection";
 import { SystemsMapSection } from "../components/SystemsMapSection";
 import { BrandsLogos } from "../components/BrandsLogos";
 import { IntroSection } from "../components/IntroSection";
@@ -62,6 +63,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
 
             {/* Systems Map */}
             <SystemsMapSection />
+
+            {/* Policy Teaser */}
+            <PolicyTeaserSection />
 
             {/* Latest Work Section */}
             <div className="relative z-10 bg-white">

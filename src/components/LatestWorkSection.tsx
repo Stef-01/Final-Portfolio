@@ -5,7 +5,21 @@ import { projects } from "../types/project";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
-const headingChips = ["Precision medicine", "Clinical AI", "Health equity"];
+const headingChips = ["Precision medicine", "Implementation", "Public systems"];
+const capabilityLanes = [
+    {
+        title: "Products",
+        description: "Interfaces, tools, and concepts designed to improve decision quality in health contexts.",
+    },
+    {
+        title: "Systems",
+        description: "Work that translates complex research and operational realities into usable service and platform thinking.",
+    },
+    {
+        title: "Advisory",
+        description: "Evidence framing and strategic work for institutional, public-sector, and implementation environments.",
+    },
+];
 
 export const LatestWorkSection = () => {
     const { elementRef, isIntersecting } = useIntersectionObserver({
@@ -69,8 +83,30 @@ export const LatestWorkSection = () => {
                             transition={{ duration: 0.62, delay: 0.2 }}
                             className="mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600"
                         >
-                            Flagship work across digital health products, clinical decision support, and implementation strategy, framed to show product judgment, systems range, and translational depth.
+                            Case studies across product, systems, and advisory work, selected to show how research, implementation, and interface judgment come together under real-world constraint.
                         </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.6, delay: 0.26 }}
+                            className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3"
+                        >
+                            {capabilityLanes.map((lane, index) => (
+                                <motion.div
+                                    key={lane.title}
+                                    className="rounded-[24px] border border-black/8 bg-white px-5 py-5 text-left shadow-[0_20px_45px_-36px_rgba(0,0,0,0.45)]"
+                                    initial={{ opacity: 0, y: prefersReducedMotion ? 10 : 22 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-80px" }}
+                                    transition={{ duration: 0.48, delay: 0.3 + index * 0.05 }}
+                                >
+                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-400">{lane.title}</p>
+                                    <p className="mt-3 text-base font-medium leading-relaxed text-gray-700">{lane.description}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
                     </div>
 
                     <div className="grid grid-cols-1 gap-12">
