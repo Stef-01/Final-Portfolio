@@ -1,45 +1,99 @@
 import React from "react";
+import { motion } from "motion/react";
 import { WorkCard } from "./WorkCard";
 import { projects } from "../types/project";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+
+const headingChips = ["Precision medicine", "Clinical AI", "Health equity"];
 
 export const LatestWorkSection = () => {
     const { elementRef, isIntersecting } = useIntersectionObserver({
         threshold: 0.1,
         triggerOnce: true,
     });
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     return (
-        <section className="py-20 px-4 md:px-8 bg-white" id="work">
-            <div className="max-w-7xl mx-auto">
+        <section className="relative overflow-hidden py-20 px-4 md:px-8 bg-white" id="work">
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-64 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_62%)]" />
+            <div className="max-w-7xl mx-auto relative z-10">
                 <div
                     ref={elementRef}
-                    className={`transition-all duration-1000 transform ${isIntersecting ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                        }`}
+                    className={`transition-all duration-1000 transform ${isIntersecting ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
                     <div className="text-center mb-16 md:mb-24">
-                        <p className="mb-4 text-xs md:text-sm font-semibold uppercase tracking-[0.32em] text-gray-400">
+                        <motion.div
+                            initial={{ opacity: 0, y: 18 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.55 }}
+                            className="mb-6 flex flex-wrap items-center justify-center gap-3"
+                        >
+                            {headingChips.map((chip, index) => (
+                                <motion.span
+                                    key={chip}
+                                    className="rounded-full border border-black/10 bg-white/90 px-4 py-2 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-gray-500 shadow-[0_18px_45px_-35px_rgba(0,0,0,0.4)]"
+                                    animate={prefersReducedMotion ? undefined : { y: [0, -5, 0] }}
+                                    transition={{ duration: 3.5 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
+                                >
+                                    {chip}
+                                </motion.span>
+                            ))}
+                        </motion.div>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 18 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.55, delay: 0.08 }}
+                            className="mb-4 text-xs md:text-sm font-semibold uppercase tracking-[0.32em] text-gray-400"
+                        >
                             Selected Work
-                        </p>
-                        <h2 className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-4 leading-[0.95]">
+                        </motion.p>
+
+                        <motion.h2
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.72, delay: 0.14 }}
+                            className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-5 leading-[0.95]"
+                        >
                             Flagship projects at the intersection of health, AI, and systems design
-                        </h2>
+                        </motion.h2>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-80px" }}
+                            transition={{ duration: 0.62, delay: 0.2 }}
+                            className="mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600"
+                        >
+                            Case studies shaped around translational research, digital health products, venture design, and the systems work required to move ideas into practice.
+                        </motion.p>
                     </div>
 
                     <div className="grid grid-cols-1 gap-12">
                         {projects.map((project, index) => (
-                            <WorkCard
+                            <motion.div
                                 key={project.id}
-                                id={project.id}
-                                icon={project.title.charAt(0)}
-                                title={project.title}
-                                subtitle={project.subtitle}
-                                description={project.description}
-                                image={project.image}
-                                tags={project.tags}
-                                className="bg-gray-50"
-                                delay={index * 100}
-                            />
+                                initial={{ opacity: 0, y: prefersReducedMotion ? 12 : 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6, delay: Math.min(index * 0.06, 0.28) }}
+                            >
+                                <WorkCard
+                                    id={project.id}
+                                    icon={project.title.charAt(0)}
+                                    title={project.title}
+                                    subtitle={project.subtitle}
+                                    description={project.description}
+                                    image={project.image}
+                                    tags={project.tags}
+                                    className="bg-gray-50"
+                                    delay={index * 100}
+                                />
+                            </motion.div>
                         ))}
                     </div>
                 </div>
