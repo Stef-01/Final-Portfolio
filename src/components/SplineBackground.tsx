@@ -10,6 +10,7 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
     const [SplineComponent, setSplineComponent] = useState<React.ComponentType<any> | null>(null);
+    const [shouldBootSpline, setShouldBootSpline] = useState(false);
     const isPhoneLayout = usePhoneLayout();
     const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -19,25 +20,57 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
         }
 
         let cancelled = false;
-        const timeoutId = window.setTimeout(() => {
-            import('@splinetool/react-spline')
-                .then((module) => {
-                    if (!cancelled) {
-                        setSplineComponent(() => module.default);
-                    }
-                })
-                .catch(() => {
-                    if (!cancelled) {
-                        setHasError(true);
-                    }
-                });
-        }, isPhoneLayout ? 300 : 0);
+        let timeoutId = 0;
+        let idleId: number | null = null;
+        const idleCallback = window.requestIdleCallback;
+        const cancelIdleCallback = window.cancelIdleCallback;
+        const startBoot = () => {
+            timeoutId = window.setTimeout(() => {
+                if (!cancelled) {
+                    setShouldBootSpline(true);
+                }
+            }, isPhoneLayout ? 1200 : 150);
+        };
+
+        if (typeof idleCallback === "function") {
+            idleId = idleCallback(() => {
+                startBoot();
+            }, { timeout: isPhoneLayout ? 2200 : 900 });
+        } else {
+            startBoot();
+        }
 
         return () => {
             cancelled = true;
+            if (idleId !== null && typeof cancelIdleCallback === "function") {
+                cancelIdleCallback(idleId);
+            }
             window.clearTimeout(timeoutId);
         };
     }, [isPhoneLayout, prefersReducedMotion]);
+
+    useEffect(() => {
+        if (!shouldBootSpline || prefersReducedMotion) {
+            return;
+        }
+
+        let cancelled = false;
+        import('@splinetool/react-spline')
+            .then((module) => {
+                if (!cancelled) {
+                    setSplineComponent(() => module.default);
+                }
+            })
+            .catch(() => {
+                if (!cancelled) {
+                    setHasError(true);
+                }
+            });
+
+        return () => {
+            cancelled = true;
+        };
+    }, [prefersReducedMotion, shouldBootSpline]);
 
     const handleLoad = () => {
         setIsLoaded(true);
