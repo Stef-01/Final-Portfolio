@@ -273,6 +273,79 @@ export const projects: Project[] = [
         ],
     },
     {
+        id: "precision-oncology",
+        title: "Precision Oncology Signal Design",
+        subtitle: "Translating EGFR tumour-burden work into clearer precision-oncology reasoning.",
+        description: "A precision-oncology project shaped around Summer Han's EGFR tumour-burden work, focused on how signal-rich oncology insight can be turned into more legible clinical and product-facing decision structures.",
+        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=2070&auto=format&fit=crop",
+        tags: ["Precision Oncology", "Clinical Research", "Decision Design"],
+        role: "Research translator and product-framing collaborator",
+        client: "Precision-oncology research context",
+        duration: "2025 translational design work",
+        tools: ["Signal interpretation", "Clinical workflow framing", "Narrative design", "Figma"],
+        outcome: "Developed a clearer way to think about how tumour-burden evidence can be represented, prioritized, and translated for higher-quality reasoning in precision-care environments.",
+        accent: "#f97316",
+        stats: [
+            { label: "Domain", value: "Precision oncology and EGFR tumour burden" },
+            { label: "Focus", value: "Clinical signal translation" },
+            { label: "Primary challenge", value: "Making complex oncology insight legible" },
+            { label: "Strength", value: "Bridging research depth and decision design" },
+        ],
+        highlights: [
+            { title: "Signal over summary", text: "The work is strongest when it preserves the nuance of tumour-burden insight while still making the reasoning usable." },
+            { title: "High-consequence framing", text: "In oncology, interface clarity is not aesthetic polish; it changes how confidence, tradeoffs, and action are understood." },
+            { title: "A strong product translation story", text: "This project helps show how Stefan approaches advanced clinical research not just as knowledge, but as decision architecture." },
+        ],
+        sections: [
+            {
+                title: "The opportunity",
+                body: [
+                    "Precision-oncology workflows often depend on rich biomarkers, burden measures, and longitudinal patterns that are meaningful to specialists but hard to represent clearly in decision-facing tools.",
+                    "The opportunity here was to think through how EGFR tumour-burden work could be translated into a more navigable reasoning surface without flattening the science.",
+                ],
+            },
+            {
+                title: "The design question",
+                body: [
+                    "What matters is not simply displaying oncology data, but structuring the signal so users can understand what changed, why it matters, and what kind of action or interpretation should follow.",
+                    "That makes this a strong translational project: it sits between research insight, clinical judgment, and product-level clarity.",
+                ],
+            },
+            {
+                title: "Why it belongs",
+                body: [
+                    "This panel strengthens the portfolio's precision-medicine arc by adding a more explicitly oncology-facing story alongside pharmacogenomics and preventive nutrition.",
+                    "It also broadens the perception of Stefan's range for product and systems leaders looking for people who can work across very different forms of medical complexity.",
+                ],
+            },
+        ],
+        media: [
+            { src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop", alt: "Oncology review context", caption: "Precision-oncology signal design depends on clarity under uncertainty, not just data density." },
+            { src: "https://images.unsplash.com/photo-1576671081837-49000212a370?q=80&w=1600&auto=format&fit=crop", alt: "Clinical insight and cancer care context", caption: "The goal is to make research-grade insight useful at the point of reasoning." },
+            { src: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1600&auto=format&fit=crop", alt: "Diagnostic and molecular analysis context", caption: "Good translational design preserves nuance while improving decisional clarity." },
+        ],
+        interactiveModules: [
+            {
+                title: "Tumour Burden Signal View",
+                summary: "A concept interface showing how tumour-burden change can be surfaced as a usable clinical signal.",
+                interaction: "Users inspect key shifts, comparison states, and explanatory layers that help connect signal movement to interpretation.",
+                effect: "Layered charts, confidence emphasis, and progressive disclosure of clinical context.",
+            },
+            {
+                title: "Oncology Reasoning Lens",
+                summary: "A structured frame for understanding what a biomarker pattern suggests and what uncertainty still remains.",
+                interaction: "Tap into signal components to reveal the logic beneath the summary and what additional context would change confidence.",
+                effect: "Expanding cards, focus transitions, and crisp evidence-to-judgment pathways.",
+            },
+            {
+                title: "Research-to-Workflow Translator",
+                summary: "A module that turns a research insight into a more usable decision-support surface.",
+                interaction: "Users toggle between raw research framing and clinical-facing product framing to see how translational choices alter usability.",
+                effect: "Mode-switch transitions, layered detail states, and narrative annotation.",
+            },
+        ],
+    },
+    {
         id: "healthcare-from-the-eye",
         title: "Healthcare from the Eye",
         subtitle: "Mapping the promise, tradeoffs, and system effects of AI-assisted retinal screening.",

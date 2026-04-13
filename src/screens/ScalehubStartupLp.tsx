@@ -4,6 +4,7 @@ import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
 import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
+import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
 import { BrandsLogos } from "../components/BrandsLogos";
 import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
@@ -54,6 +55,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
 
             {/* Intro Section (Header) */}
             <IntroSection />
+
+            {/* Precision Medicine Navigator */}
+            <PrecisionMedicineSection />
 
             {/* Latest Work Section */}
             <div className="relative z-10 bg-white">
