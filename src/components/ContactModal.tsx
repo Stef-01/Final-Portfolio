@@ -83,6 +83,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             onClick={onClose}
         >
             <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="contact-modal-title"
                 className={`relative w-full bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl animate-in fade-in zoom-in duration-300 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
                 onClick={(e) => e.stopPropagation()}
             >
@@ -119,7 +122,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
                     {/* Center text */}
                     <div className="text-center px-4">
-                        <p className="text-2xl font-bold text-gray-800 whitespace-nowrap">Get in<br />touch</p>
+                        <p id="contact-modal-title" className="text-2xl font-bold text-gray-800 whitespace-nowrap">Get in<br />touch</p>
                     </div>
 
                     {/* LinkedIn button */}

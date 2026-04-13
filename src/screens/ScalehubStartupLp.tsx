@@ -80,7 +80,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
                         <h3 className="text-2xl font-bold mb-2">Stefan Thottunkal</h3>
                         <p className="text-gray-400">Researcher & Health Systems Designer</p>
                     </div>
-                    <div className="flex gap-8">
+                    <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
                         <Link to="/bio" className="text-gray-400 hover:text-white transition-colors">Bio</Link>
                         <Link to="/presentations" className="text-gray-400 hover:text-white transition-colors">Presentations</Link>
                         <a

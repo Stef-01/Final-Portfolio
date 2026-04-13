@@ -170,12 +170,14 @@ export const TimelineSection = () => {
                                     <motion.button
                                         key={item.id}
                                         type="button"
-                                        className="relative block w-full text-left"
+                                        className="relative block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-4 rounded-[28px]"
                                         initial={{ opacity: 0, y: 24 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: "-60px" }}
                                         transition={{ duration: 0.45, delay: index * 0.05 }}
                                         onClick={() => setExpandedItem(isExpanded ? null : item.id)}
+                                        aria-expanded={isExpanded}
+                                        aria-label={`${isExpanded ? "Collapse" : "Expand"} timeline item ${item.title}`}
                                     >
                                         <span className="absolute left-[-20px] top-5 h-3 w-3 rounded-full bg-black ring-4 ring-white" />
                                         <div className="overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]">
@@ -185,6 +187,7 @@ export const TimelineSection = () => {
                                                     alt={item.title}
                                                     className="h-full w-full object-contain p-6"
                                                     loading="lazy"
+                                                    decoding="async"
                                                 />
                                             </div>
                                             <div className="p-5">
@@ -194,7 +197,7 @@ export const TimelineSection = () => {
                                                         <p className="text-sm text-gray-500">{item.period}</p>
                                                     </div>
                                                     <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
-                                                        {isExpanded ? "Open" : "Tap"}
+                                                        {isExpanded ? "Close" : "Tap"}
                                                     </span>
                                                 </div>
                                                 <p className={`overflow-hidden text-base leading-relaxed text-gray-700 transition-all duration-300 ${isExpanded ? "max-h-40 opacity-100" : "max-h-12 opacity-80"}`}>

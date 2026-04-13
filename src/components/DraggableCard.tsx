@@ -105,6 +105,17 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
         }
     };
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (!projectId) {
+            return;
+        }
+
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            navigate(`/project/${projectId}`);
+        }
+    };
+
     useEffect(() => {
         if (isDragging) {
             window.addEventListener("mousemove", handleMouseMove);
@@ -123,7 +134,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     return (
         <div
             ref={cardRef}
-            className={`absolute bg-white rounded-2xl shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing transition-all duration-300 ${isDragging ? "shadow-3xl scale-105" : ""
+            className={`absolute bg-white rounded-2xl shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-offset-2 ${isDragging ? "shadow-3xl scale-105" : ""
                 }`}
             style={{
                 left: "50%",
@@ -138,6 +149,10 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
             onTouchStart={handleTouchStart}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onKeyDown={handleKeyDown}
+            tabIndex={projectId ? 0 : -1}
+            role={projectId ? "button" : undefined}
+            aria-label={projectId ? `Open project ${title}` : undefined}
         >
             <div className="relative">
                 <img
@@ -146,6 +161,8 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
                     className="w-full object-cover pointer-events-none select-none"
                     style={{ height: `${imageHeight}px` }}
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
@@ -155,6 +172,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
                         className={`arrow-button absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white ${isHovered && !isDragging ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
                             } ${alwaysShowArrow ? "opacity-100 translate-y-0 pointer-events-auto" : ""}`}
                         onClick={handleArrowClick}
+                        aria-label={`Open ${title}`}
                     >
                         <ArrowUpRight className="w-5 h-5" />
                     </button>
