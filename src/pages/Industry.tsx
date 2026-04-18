@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
-import { LatestWorkSection } from "../components/LatestWorkSection";
-import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { RolesGrid } from "../components/RolesGrid";
 import { industryRoles } from "../types/roles";
 
@@ -73,16 +71,8 @@ export function Industry() {
         roles={industryRoles}
         eyebrow="Industry Roles"
         title="Every venture, its own card"
-        intro="Founding, advisory, and consulting engagements across the health-tech stack — each with its own dedicated card. NOURISH and Sous are the compounding bets; the rest are the muscles that built them."
+        intro="Founding, advisory, and consulting engagements across the health-tech stack — each with its own dedicated card. NOURISH and Sous are the compounding bets; the rest are the muscles that built them. Flagship case studies and tinker projects live on the landing page."
       />
-
-      <div className="relative z-10 bg-white">
-        <LatestWorkSection />
-      </div>
-
-      <div className="relative z-10 bg-white py-20">
-        <DraggableCardsSection />
-      </div>
 
       <ContactSection />
     </div>

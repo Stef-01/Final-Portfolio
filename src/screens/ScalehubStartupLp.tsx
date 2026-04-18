@@ -5,6 +5,9 @@ import { Button } from "../components/Button";
 import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
 import { ThreeLanesTeaser } from "../components/ThreeLanesTeaser";
+import { LatestWorkSection } from "../components/LatestWorkSection";
+import { DraggableCardsSection } from "../components/DraggableCardsSection";
+import { DnaHelixOverlay } from "../components/DnaHelixOverlay";
 import { ContactModal } from "../components/ContactModal";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 
@@ -43,6 +46,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
             className={isPhoneLayout ? "z-0 absolute" : "z-0 fixed"}
           />
         </Suspense>
+
+        {/* Subtle DNA double-helix motif layered over the Spline scene */}
+        <DnaHelixOverlay className="z-[1]" />
 
         <div className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20">
           <Badge className="mb-8" label="Stefan Thottunkal" showIcon={true} />
@@ -91,6 +97,16 @@ export const ScalehubStartupLp = (): JSX.Element => {
       >
         <TimelineSection />
       </Suspense>
+
+      {/* Flagship projects — Selected Work case studies */}
+      <div className="relative z-10 bg-white">
+        <LatestWorkSection />
+      </div>
+
+      {/* Tinker projects — "On a quest to craft something awesome" draggable cards */}
+      <div className="relative z-10 bg-white py-20">
+        <DraggableCardsSection />
+      </div>
 
       {/* About Section (Window & Pills) */}
       <AboutSection />
