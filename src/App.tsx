@@ -1,14 +1,41 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 
 // Lazy load pages to improve initial load performance
-const ScalehubStartupLp = lazy(() => import("./screens/ScalehubStartupLp").then(module => ({ default: module.ScalehubStartupLp })));
-const ProjectDetail = lazy(() => import("./screens/ProjectDetail").then(module => ({ default: module.ProjectDetail })));
-const Resume = lazy(() => import("./pages/Resume").then(module => ({ default: module.Resume })));
-const Presentations = lazy(() => import("./pages/Presentations").then(module => ({ default: module.Presentations })));
-const Policy = lazy(() => import("./pages/Policy").then(module => ({ default: module.Policy })));
+const ScalehubStartupLp = lazy(() =>
+  import("./screens/ScalehubStartupLp").then((module) => ({
+    default: module.ScalehubStartupLp,
+  })),
+);
+const ProjectDetail = lazy(() =>
+  import("./screens/ProjectDetail").then((module) => ({
+    default: module.ProjectDetail,
+  })),
+);
+const Resume = lazy(() =>
+  import("./pages/Resume").then((module) => ({ default: module.Resume })),
+);
+const Presentations = lazy(() =>
+  import("./pages/Presentations").then((module) => ({
+    default: module.Presentations,
+  })),
+);
+const Policy = lazy(() =>
+  import("./pages/Policy").then((module) => ({ default: module.Policy })),
+);
+const Research = lazy(() =>
+  import("./pages/Research").then((module) => ({ default: module.Research })),
+);
+const Industry = lazy(() =>
+  import("./pages/Industry").then((module) => ({ default: module.Industry })),
+);
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
@@ -29,6 +56,8 @@ const AnimatedRoutes = () => {
         <Route path="/bio" element={<Resume />} />
         <Route path="/presentations" element={<Presentations />} />
         <Route path="/policy" element={<Policy />} />
+        <Route path="/research" element={<Research />} />
+        <Route path="/industry" element={<Industry />} />
       </Routes>
     </AnimatePresence>
   );
