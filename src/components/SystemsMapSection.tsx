@@ -314,26 +314,26 @@ export const SystemsMapSection = () => {
               })}
             </svg>
 
-            {nodes.map((node, index) => {
-              const Icon = node.icon;
-              const isActive = activeId === node.id;
+            <LayoutGroup id="systems-map-nodes">
+              {nodes.map((node, index) => {
+                const Icon = node.icon;
+                const isActive = activeId === node.id;
 
-              return (
-                <motion.button
-                  key={node.id}
-                  type="button"
-                  onMouseEnter={() => setActiveId(node.id)}
-                  onFocus={() => setActiveId(node.id)}
-                  onClick={() => handleOpen(node.route)}
-                  className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none"
-                  style={{ left: node.x, top: node.y }}
-                  initial={{ opacity: 0, scale: 0.92 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5, delay: index * 0.06 }}
-                  whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-                >
-                  <LayoutGroup id={`map-node-${node.id}`}>
+                return (
+                  <motion.button
+                    key={node.id}
+                    type="button"
+                    onMouseEnter={() => setActiveId(node.id)}
+                    onFocus={() => setActiveId(node.id)}
+                    onClick={() => handleOpen(node.route)}
+                    className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none"
+                    style={{ left: node.x, top: node.y }}
+                    initial={{ opacity: 0, scale: 0.92 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.5, delay: index * 0.06 }}
+                    whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+                  >
                     {isActive && (
                       <motion.div
                         layoutId="active-node-shell"
@@ -359,10 +359,10 @@ export const SystemsMapSection = () => {
                         {node.title}
                       </p>
                     </motion.div>
-                  </LayoutGroup>
-                </motion.button>
-              );
-            })}
+                  </motion.button>
+                );
+              })}
+            </LayoutGroup>
           </motion.div>
         </div>
       </div>

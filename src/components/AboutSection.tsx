@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { motion } from "motion/react";
 import { Sparkles, Activity, Dna, Microscope, Stethoscope, Brain, Leaf, Bot } from "lucide-react";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
@@ -23,6 +24,13 @@ export function AboutSection() {
         { text: "nutrition", color: "bg-[#A3E635]", rotate: 15, x: 130, y: 50, delay: 0.7, icon: Leaf },
         { text: "LLM CDS", color: "bg-[#C084FC]", rotate: -8, x: -90, y: -40, delay: 0.8, icon: Bot },
     ];
+
+    // Stable per-mount initial rotations so motion's initial state doesn't churn on re-render
+    const initialRotations = useMemo(
+        () => pills.map(() => Math.random() * 20 - 10),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [isPhoneLayout],
+    );
 
     // Animation variants for staggered text reveal
     const containerVariants = {
@@ -122,15 +130,15 @@ export function AboutSection() {
 
                                 {pills.map((pill, index) => (
                                     <motion.div
-                                        key={index}
+                                        key={pill.text}
                                         className={`absolute px-3 md:px-6 py-2 md:py-3 rounded-full border-[3px] border-black text-white font-['Clash_Grotesk',_sans-serif] font-medium text-[11px] md:text-base whitespace-nowrap shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${pill.color} flex items-center gap-1.5 md:gap-2`}
                                         initial={{
                                             x: 0,
                                             y: 0,
-                                            rotate: (Math.random() * 20) - 10, // Random rotation in bundle
+                                            rotate: initialRotations[index],
                                             scale: 0.5,
-                                            opacity: 1, // Visible in bundle
-                                            zIndex: 10 // Behind bow (bow is z-50)
+                                            opacity: 1,
+                                            zIndex: 10
                                         }}
                                         whileInView={{
                                             x: pill.x,
