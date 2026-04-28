@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import type { SplineProps } from '@splinetool/react-spline';
 import { usePhoneLayout } from '../hooks/usePhoneLayout';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
@@ -6,10 +7,12 @@ interface SplineBackgroundProps {
     className?: string;
 }
 
+type SplineModule = React.ComponentType<SplineProps>;
+
 export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = '' }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
-    const [SplineComponent, setSplineComponent] = useState<React.ComponentType<any> | null>(null);
+    const [SplineComponent, setSplineComponent] = useState<SplineModule | null>(null);
     const [shouldBootSpline, setShouldBootSpline] = useState(false);
     const [documentVisible, setDocumentVisible] = useState(() => typeof document === "undefined" ? true : document.visibilityState === "visible");
     const isPhoneLayout = usePhoneLayout();

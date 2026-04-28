@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
 interface DraggableCardProps {
-    id: string;
     projectId?: string;
     title: string;
     subtitle?: string;
@@ -19,7 +18,6 @@ interface DraggableCardProps {
 }
 
 export const DraggableCard: React.FC<DraggableCardProps> = ({
-    id,
     projectId,
     title,
     subtitle,
@@ -37,7 +35,6 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     const cardRef = useRef<HTMLDivElement>(null);
     const zIndexResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [isDragging, setIsDragging] = useState(false);
-    const [hasDragged, setHasDragged] = useState(false);
     const [position, setPosition] = useState({ x: initialX, y: initialY });
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [currentZIndex, setCurrentZIndex] = useState(zIndex);
@@ -50,7 +47,6 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
         }
 
         setIsDragging(true);
-        setHasDragged(false);
         setCurrentZIndex(1000);
         setDragStart({
             x: e.clientX - position.x,
@@ -60,7 +56,6 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
 
     const handleMouseMove = (e: MouseEvent) => {
         if (isDragging) {
-            setHasDragged(true);
             setPosition({
                 x: e.clientX - dragStart.x,
                 y: e.clientY - dragStart.y,
@@ -75,7 +70,6 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
 
         const touch = e.touches[0];
         setIsDragging(true);
-        setHasDragged(false);
         setCurrentZIndex(1000);
         setDragStart({
             x: touch.clientX - position.x,
@@ -86,7 +80,6 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     const handleTouchMove = (e: TouchEvent) => {
         if (isDragging && e.touches[0]) {
             const touch = e.touches[0];
-            setHasDragged(true);
             setPosition({
                 x: touch.clientX - dragStart.x,
                 y: touch.clientY - dragStart.y,
