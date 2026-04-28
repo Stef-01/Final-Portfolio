@@ -81,17 +81,17 @@ export function IntroSection() {
 
                     <motion.h2
                         variants={itemVariants}
-                        className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[42px] md:text-[64px] text-gray-900 leading-[1.05] tracking-tight max-w-5xl"
+                        className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[42px] md:text-[64px] text-gray-900 leading-[1.05] tracking-tight max-w-5xl"
                     >
                         Turning complex evidence into products, decisions, and systems people can actually use
                     </motion.h2>
 
                     <motion.div
                         variants={itemVariants}
-                        className="max-w-[1000px] mx-auto space-y-5 font-['Clash_Grotesk:Regular',_sans-serif] text-[22px] md:text-[32px] text-gray-600 leading-[1.45]"
+                        className="max-w-[1000px] mx-auto space-y-5 font-['Clash_Grotesk',_sans-serif] text-[22px] md:text-[32px] text-gray-600 leading-[1.45]"
                     >
                         <div className="flex flex-wrap items-center justify-center gap-3">
-                            <span className="font-['Clash_Grotesk:Semibold',_sans-serif] bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                            <span className="font-['Clash_Grotesk',_sans-serif] font-semibold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
                                 Stanford-linked research
                             </span>
                             <span>,</span>
@@ -99,7 +99,7 @@ export function IntroSection() {
                                 clinical AI
                             </span>
                             <span>, and</span>
-                            <span className="font-['Clash_Grotesk:Semibold',_sans-serif] bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
+                            <span className="font-['Clash_Grotesk',_sans-serif] font-semibold bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
                                 health-system innovation
                             </span>
                         </div>

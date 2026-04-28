@@ -110,7 +110,11 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
         <div className={`absolute inset-0 w-full h-full ${className}`}>
             <div className="relative w-full h-full">
                 {(!isLoaded || !SplineComponent || prefersReducedMotion) && (
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 animate-pulse" />
+                    <div
+                        className={`absolute inset-0 w-full h-full bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 ${
+                            prefersReducedMotion ? "" : "animate-pulse"
+                        }`}
+                    />
                 )}
                 {!prefersReducedMotion && SplineComponent && (
                     <SplineComponent

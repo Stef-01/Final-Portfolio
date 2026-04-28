@@ -127,7 +127,6 @@ export const LatestWorkSection = () => {
                                     image={project.image}
                                     tags={project.tags}
                                     className="bg-gray-50"
-                                    delay={index * 100}
                                 />
                             </motion.div>
                         ))}

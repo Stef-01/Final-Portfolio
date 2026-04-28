@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { X, Download, FileText, Video } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface FileViewerModalProps {
   isOpen: boolean;
@@ -10,33 +10,47 @@ interface FileViewerModalProps {
   fileName?: string;
 }
 
-export function FileViewerModal({ 
-  isOpen, 
-  onClose, 
-  fileUrl, 
+export function FileViewerModal({
+  isOpen,
+  onClose,
+  fileUrl,
   fileType = "pdf",
   fileName = "Document"
 }: FileViewerModalProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      setIsLoading(true);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
+    if (!isOpen) return;
+
+    setIsLoading(true);
+
+    const previousOverflow = document.body.style.overflow;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
     };
-  }, [isOpen]);
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+    closeButtonRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+      previouslyFocused?.focus?.();
+    };
+  }, [isOpen, onClose]);
 
   const handleDownload = () => {
     if (fileUrl) {
       const link = document.createElement('a');
       link.href = fileUrl;
       link.download = fileName;
+      link.rel = "noopener noreferrer";
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     }
   };
 
@@ -45,7 +59,7 @@ export function FileViewerModal({
       return (
         <div className="flex flex-col items-center justify-center h-full text-gray-400">
           <FileText className="w-20 h-20 mb-4" />
-          <p className="text-[20px] font-['Clash_Grotesk:Medium',_sans-serif]">
+          <p className="text-[20px] font-['Clash_Grotesk',_sans-serif] font-medium">
             No file available
           </p>
           <p className="text-[16px] text-gray-500 mt-2">
@@ -160,7 +174,7 @@ export function FileViewerModal({
                   ) : (
                     <FileText className="w-6 h-6 text-[#EBFF57]" />
                   )}
-                  <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[22px] text-white">
+                  <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[22px] text-white">
                     {fileName}
                   </h3>
                 </div>
@@ -174,14 +188,16 @@ export function FileViewerModal({
                       whileTap={{ scale: 0.95 }}
                     >
                       <Download className="w-5 h-5" />
-                      <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[16px]">
+                      <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[16px]">
                         Download
                       </span>
                     </motion.button>
                   )}
                   
                   <motion.button
+                    ref={closeButtonRef}
                     onClick={onClose}
+                    aria-label="Close"
                     className="p-2 hover:bg-[rgba(255,255,255,0.1)] rounded-lg transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}

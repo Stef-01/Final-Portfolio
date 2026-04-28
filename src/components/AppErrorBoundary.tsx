@@ -20,7 +20,9 @@ export class AppErrorBoundary extends React.Component<AppErrorBoundaryProps, App
     }
 
     componentDidCatch(error: Error) {
-        console.error("Portfolio render failure:", error);
+        if (import.meta.env.DEV) {
+            console.error("Portfolio render failure:", error);
+        }
     }
 
     render() {

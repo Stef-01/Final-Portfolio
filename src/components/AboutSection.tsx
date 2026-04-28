@@ -58,7 +58,7 @@ export function AboutSection() {
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, margin: "-100px" }}
+                    viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8 }}
                     className="relative"
                 >
@@ -84,7 +84,7 @@ export function AboutSection() {
                                         scale: [1, 1.2, 1.5], // Stretch up
                                         rotate: [0, -10, 10, -10, 10, 0], // Shake
                                     }}
-                                    viewport={{ once: false }}
+                                    viewport={{ once: true }}
                                     transition={{
                                         duration: 1.5, // Slower sequence
                                         times: [0, 0.8, 1], // Timing for keyframes
@@ -123,7 +123,7 @@ export function AboutSection() {
                                 {pills.map((pill, index) => (
                                     <motion.div
                                         key={index}
-                                        className={`absolute px-3 md:px-6 py-2 md:py-3 rounded-full border-[3px] border-black text-white font-['Clash_Grotesk:Medium',_sans-serif] text-[11px] md:text-base whitespace-nowrap shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${pill.color} flex items-center gap-1.5 md:gap-2`}
+                                        className={`absolute px-3 md:px-6 py-2 md:py-3 rounded-full border-[3px] border-black text-white font-['Clash_Grotesk',_sans-serif] font-medium text-[11px] md:text-base whitespace-nowrap shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] ${pill.color} flex items-center gap-1.5 md:gap-2`}
                                         initial={{
                                             x: 0,
                                             y: 0,
@@ -147,7 +147,7 @@ export function AboutSection() {
                                                 duration: 0.8
                                             }
                                         }}
-                                        viewport={{ once: false, margin: "-100px" }}
+                                        viewport={{ once: true, margin: "-100px" }}
                                         whileHover={{
                                             scale: 1.1,
                                             zIndex: 50,
@@ -195,10 +195,10 @@ export function AboutSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[18px] md:text-[24px] text-gray-700 leading-relaxed">
+                        <p className="font-['Clash_Grotesk',_sans-serif] text-[18px] md:text-[24px] text-gray-700 leading-relaxed">
                             I partner with healthcare innovators, researchers, and communities to reimagine health systems, from AI-powered precision medicine tools to equitable implementation strategies for Indigenous health.
                         </p>
                     </motion.div>
@@ -206,10 +206,10 @@ export function AboutSection() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
-                        <p className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px] md:text-[24px] text-gray-900 leading-relaxed">
+                        <p className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px] md:text-[24px] text-gray-900 leading-relaxed">
                             My mission: to design frictionless, human-centered digital health experiences that bridge cutting-edge technology with compassionate care, advancing health equity and transforming patient outcomes through evidence-based innovation.
                         </p>
                     </motion.div>
@@ -218,12 +218,12 @@ export function AboutSection() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                         whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                         className="w-fit"
                     >
                         <div className="bg-[#FEF08A] px-6 py-3 rounded-tl-2xl rounded-br-2xl rounded-tr-sm rounded-bl-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform -rotate-2">
-                            <span className="font-['Playfair_Display',_serif] italic text-2xl font-bold">Stefan T.</span>
+                            <span className="font-['Playfair_Display',_serif] italic italic text-2xl font-bold">Stefan T.</span>
                         </div>
                         {/* Arrow pointing to signature */}
                         <svg className="absolute hidden md:block -left-16 top-1/2 w-12 h-12 text-black transform -translate-y-1/2" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">
@@ -241,7 +241,7 @@ export function AboutSection() {
                         className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mt-8"
                         initial={{ width: 0 }}
                         whileInView={{ width: 96 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.8 }}
                     />
                 </div>

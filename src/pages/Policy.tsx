@@ -22,7 +22,7 @@ export function Policy() {
           className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px]">
+          <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">
             Back to Home
           </span>
         </Link>

@@ -39,7 +39,11 @@ export const ScalehubStartupLp = (): JSX.Element => {
       <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip">
         <Suspense
           fallback={
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
+            <div
+              className={`${
+                isPhoneLayout ? "absolute" : "fixed"
+              } inset-0 z-0 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100`}
+            />
           }
         >
           <SplineBackground

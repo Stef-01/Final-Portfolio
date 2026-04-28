@@ -35,6 +35,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
 }) => {
     const navigate = useNavigate();
     const cardRef = useRef<HTMLDivElement>(null);
+    const zIndexResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [hasDragged, setHasDragged] = useState(false);
     const [position, setPosition] = useState({ x: initialX, y: initialY });
@@ -95,7 +96,8 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
 
     const handleMouseUp = () => {
         setIsDragging(false);
-        setTimeout(() => setCurrentZIndex(zIndex), 100);
+        if (zIndexResetTimer.current) clearTimeout(zIndexResetTimer.current);
+        zIndexResetTimer.current = setTimeout(() => setCurrentZIndex(zIndex), 100);
     };
 
     const handleArrowClick = (e: React.MouseEvent) => {
@@ -131,6 +133,12 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
         }
     }, [isDragging, dragStart]);
 
+    useEffect(() => {
+        return () => {
+            if (zIndexResetTimer.current) clearTimeout(zIndexResetTimer.current);
+        };
+    }, []);
+
     return (
         <div
             ref={cardRef}
@@ -155,15 +163,23 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
             aria-label={projectId ? `Open project ${title}` : undefined}
         >
             <div className="relative">
-                <img
-                    src={image}
-                    alt={title}
-                    className="w-full object-cover pointer-events-none select-none"
-                    style={{ height: `${imageHeight}px` }}
-                    draggable={false}
-                    loading="lazy"
-                    decoding="async"
-                />
+                {image ? (
+                    <img
+                        src={image}
+                        alt={title}
+                        className="w-full object-cover pointer-events-none select-none"
+                        style={{ height: `${imageHeight}px` }}
+                        draggable={false}
+                        loading="lazy"
+                        decoding="async"
+                    />
+                ) : (
+                    <div
+                        className="w-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 pointer-events-none select-none"
+                        style={{ height: `${imageHeight}px` }}
+                        aria-hidden="true"
+                    />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
                 {/* Arrow Button - appears on hover */}

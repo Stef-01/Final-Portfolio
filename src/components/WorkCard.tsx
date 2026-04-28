@@ -10,7 +10,6 @@ interface WorkCardProps {
     image: string;
     tags?: string[];
     className?: string;
-    delay?: number;
 }
 
 export const WorkCard: React.FC<WorkCardProps> = ({
@@ -22,7 +21,6 @@ export const WorkCard: React.FC<WorkCardProps> = ({
     image,
     tags = [],
     className = "",
-    delay = 0,
 }) => {
     const navigate = useNavigate();
 
@@ -35,7 +33,6 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             type="button"
             onClick={handleClick}
             className={`group relative w-full text-left bg-[#f5f5f5] rounded-3xl p-5 md:p-8 overflow-hidden cursor-pointer transition-all duration-700 ease-out hover:scale-[1.02] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] ${className}`}
-            style={{ animationDelay: `${delay}ms` }}
         >
             {/* Arrow Icon */}
             <div className="absolute top-5 right-5 md:top-8 md:right-8 w-12 h-12 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-2 group-hover:-translate-y-2">
