@@ -38,9 +38,6 @@ export function Resume() {
                 <BookOpen className="w-5 h-5" />
                 Google Scholar
               </a>
-              <a href="https://orcid.org/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                ORCID
-              </a>
             </div>
           </div>
 

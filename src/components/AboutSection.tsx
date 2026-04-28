@@ -1,10 +1,16 @@
-import { useMemo } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { Sparkles, Activity, Dna, Microscope, Stethoscope, Brain, Leaf, Bot } from "lucide-react";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 
+const PILL_COUNT = 8;
+
 export function AboutSection() {
     const isPhoneLayout = usePhoneLayout();
+    // Stable per-mount initial rotations; lazy useState keeps Math.random out of the render path
+    const [initialRotations] = useState(() =>
+        Array.from({ length: PILL_COUNT }, () => Math.random() * 20 - 10),
+    );
     const pills = isPhoneLayout ? [
         { text: "pharmacogenomics", color: "bg-[#818CF8]", rotate: -10, x: -68, y: -78, delay: 0.1, icon: Dna },
         { text: "AI healthcare", color: "bg-[#4ADE80]", rotate: 6, x: 64, y: -78, delay: 0.2, icon: Brain },
@@ -24,13 +30,6 @@ export function AboutSection() {
         { text: "nutrition", color: "bg-[#A3E635]", rotate: 15, x: 130, y: 50, delay: 0.7, icon: Leaf },
         { text: "LLM CDS", color: "bg-[#C084FC]", rotate: -8, x: -90, y: -40, delay: 0.8, icon: Bot },
     ];
-
-    // Stable per-mount initial rotations so motion's initial state doesn't churn on re-render
-    const initialRotations = useMemo(
-        () => pills.map(() => Math.random() * 20 - 10),
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [isPhoneLayout],
-    );
 
     return (
         <section className="relative min-h-[100svh] bg-white flex flex-col items-center justify-center py-10 md:py-8 px-4 md:px-8 overflow-hidden">

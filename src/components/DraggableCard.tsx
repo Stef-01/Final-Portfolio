@@ -34,77 +34,41 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     const navigate = useNavigate();
     const cardRef = useRef<HTMLDivElement>(null);
     const zIndexResetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const dragStartRef = useRef({ x: 0, y: 0 });
+    const positionRef = useRef({ x: initialX, y: initialY });
+
     const [isDragging, setIsDragging] = useState(false);
     const [position, setPosition] = useState({ x: initialX, y: initialY });
-    const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
     const [currentZIndex, setCurrentZIndex] = useState(zIndex);
     const [isHovered, setIsHovered] = useState(false);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
-        // Don't start dragging if clicking the arrow button
-        if ((e.target as HTMLElement).closest('.arrow-button')) {
-            return;
-        }
-
+    const beginDrag = (clientX: number, clientY: number) => {
+        dragStartRef.current = {
+            x: clientX - positionRef.current.x,
+            y: clientY - positionRef.current.y,
+        };
         setIsDragging(true);
         setCurrentZIndex(1000);
-        setDragStart({
-            x: e.clientX - position.x,
-            y: e.clientY - position.y,
-        });
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-        if (isDragging) {
-            setPosition({
-                x: e.clientX - dragStart.x,
-                y: e.clientY - dragStart.y,
-            });
-        }
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if ((e.target as HTMLElement).closest('.arrow-button')) return;
+        beginDrag(e.clientX, e.clientY);
     };
 
     const handleTouchStart = (e: React.TouchEvent) => {
-        if ((e.target as HTMLElement).closest('.arrow-button')) {
-            return;
-        }
-
+        if ((e.target as HTMLElement).closest('.arrow-button')) return;
         const touch = e.touches[0];
-        setIsDragging(true);
-        setCurrentZIndex(1000);
-        setDragStart({
-            x: touch.clientX - position.x,
-            y: touch.clientY - position.y,
-        });
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-        if (isDragging && e.touches[0]) {
-            const touch = e.touches[0];
-            setPosition({
-                x: touch.clientX - dragStart.x,
-                y: touch.clientY - dragStart.y,
-            });
-        }
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-        if (zIndexResetTimer.current) clearTimeout(zIndexResetTimer.current);
-        zIndexResetTimer.current = setTimeout(() => setCurrentZIndex(zIndex), 100);
+        beginDrag(touch.clientX, touch.clientY);
     };
 
     const handleArrowClick = (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (projectId) {
-            navigate(`/project/${projectId}`);
-        }
+        if (projectId) navigate(`/project/${projectId}`);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (!projectId) {
-            return;
-        }
-
+        if (!projectId) return;
         if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             navigate(`/project/${projectId}`);
@@ -112,19 +76,40 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     };
 
     useEffect(() => {
-        if (isDragging) {
-            window.addEventListener("mousemove", handleMouseMove);
-            window.addEventListener("mouseup", handleMouseUp);
-            window.addEventListener("touchmove", handleTouchMove, { passive: true });
-            window.addEventListener("touchend", handleMouseUp);
-            return () => {
-                window.removeEventListener("mousemove", handleMouseMove);
-                window.removeEventListener("mouseup", handleMouseUp);
-                window.removeEventListener("touchmove", handleTouchMove);
-                window.removeEventListener("touchend", handleMouseUp);
+        if (!isDragging) return;
+
+        const updatePosition = (clientX: number, clientY: number) => {
+            const next = {
+                x: clientX - dragStartRef.current.x,
+                y: clientY - dragStartRef.current.y,
             };
-        }
-    }, [isDragging, dragStart]);
+            positionRef.current = next;
+            setPosition(next);
+        };
+
+        const onMouseMove = (e: MouseEvent) => updatePosition(e.clientX, e.clientY);
+        const onTouchMove = (e: TouchEvent) => {
+            const touch = e.touches[0];
+            if (touch) updatePosition(touch.clientX, touch.clientY);
+        };
+        const onEnd = () => {
+            setIsDragging(false);
+            if (zIndexResetTimer.current) clearTimeout(zIndexResetTimer.current);
+            zIndexResetTimer.current = setTimeout(() => setCurrentZIndex(zIndex), 100);
+        };
+
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("mouseup", onEnd);
+        window.addEventListener("touchmove", onTouchMove, { passive: true });
+        window.addEventListener("touchend", onEnd);
+
+        return () => {
+            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("mouseup", onEnd);
+            window.removeEventListener("touchmove", onTouchMove);
+            window.removeEventListener("touchend", onEnd);
+        };
+    }, [isDragging, zIndex]);
 
     useEffect(() => {
         return () => {
@@ -135,8 +120,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
     return (
         <div
             ref={cardRef}
-            className={`absolute bg-white rounded-2xl shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-offset-2 ${isDragging ? "shadow-3xl scale-105" : ""
-                }`}
+            className={`absolute bg-white rounded-2xl shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:ring-offset-2 ${isDragging ? "shadow-3xl scale-105" : ""}`}
             style={{
                 left: "50%",
                 top: "50%",
@@ -178,8 +162,7 @@ export const DraggableCard: React.FC<DraggableCardProps> = ({
                 {/* Arrow Button - appears on hover */}
                 {projectId && (
                     <button
-                        className={`arrow-button absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white ${isHovered && !isDragging ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
-                            } ${alwaysShowArrow ? "opacity-100 translate-y-0 pointer-events-auto" : ""}`}
+                        className={`arrow-button absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:bg-blue-600 hover:text-white ${isHovered && !isDragging ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"} ${alwaysShowArrow ? "opacity-100 translate-y-0 pointer-events-auto" : ""}`}
                         onClick={handleArrowClick}
                         aria-label={`Open ${title}`}
                     >
