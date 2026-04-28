@@ -80,10 +80,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* Intro Section (Header) */}
-      <IntroSection />
+      <div className="relative z-10 bg-white">
+        <IntroSection />
+      </div>
 
       {/* Three Lanes Teaser — single entry point into Research / Policy / Industry */}
-      <div id="three-lanes">
+      <div id="three-lanes" className="relative z-10 bg-white">
         <ThreeLanesTeaser />
       </div>
 
@@ -95,7 +97,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
           </div>
         }
       >
-        <TimelineSection />
+        <div className="relative z-10 bg-white">
+          <TimelineSection />
+        </div>
       </Suspense>
 
       {/* Flagship projects — Selected Work case studies */}
@@ -109,7 +113,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* About Section (Window & Pills) */}
-      <AboutSection />
+      <div className="relative z-10 bg-white">
+        <AboutSection />
+      </div>
 
       {/* Footer */}
       <footer className="relative z-10 bg-black text-white py-20 px-4 md:px-8">
