@@ -18,8 +18,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          animations: ['motion', 'tailwindcss-animate'],
-          ui: ['lucide-react', 'sonner', 'vaul', 'cmdk', 'clsx', 'tailwind-merge'],
+          animations: ['motion'],
+          icons: ['lucide-react'],
         },
       },
     },
