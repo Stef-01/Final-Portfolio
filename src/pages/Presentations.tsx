@@ -351,7 +351,9 @@ export function Presentations() {
                 <FileViewerModal
                     isOpen={modalOpen}
                     onClose={() => setModalOpen(false)}
-                    file={selectedFile}
+                    fileUrl={selectedFile.url}
+                    fileType={selectedFile.type}
+                    fileName={selectedFile.name}
                 />
             )}
 

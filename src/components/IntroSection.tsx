@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { Activity, Microscope, Sparkles } from "lucide-react";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
@@ -11,7 +11,7 @@ const featureChips = [
 export function IntroSection() {
     const prefersReducedMotion = usePrefersReducedMotion();
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -22,14 +22,14 @@ export function IntroSection() {
         },
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: prefersReducedMotion ? 10 : 24 },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
                 duration: prefersReducedMotion ? 0.35 : 0.7,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
             },
         },
     };

@@ -63,7 +63,6 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           animations: ['motion', 'tailwindcss-animate'],
-          '3d': ['@splinetool/react-spline', '@splinetool/runtime'],
           ui: ['lucide-react', 'sonner', 'vaul', 'cmdk', 'clsx', 'tailwind-merge'],
         },
       },
