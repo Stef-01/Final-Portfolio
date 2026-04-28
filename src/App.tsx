@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
+import { NotFound } from "./components/NotFound";
 
 // Lazy load pages to improve initial load performance
 const ScalehubStartupLp = lazy(() =>
@@ -58,6 +59,7 @@ const AnimatedRoutes = () => {
         <Route path="/policy" element={<Policy />} />
         <Route path="/research" element={<Research />} />
         <Route path="/industry" element={<Industry />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
   );

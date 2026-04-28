@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight, Sparkles } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
+import { NotFound } from "../components/NotFound";
 
 // Inner component is keyed by `id` from the wrapper below, so its state
 // resets cleanly on URL change without a setState-in-effect anti-pattern.
@@ -24,14 +25,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
     }, [activeModuleIndex, project]);
 
     if (!project) {
-        return (
-            <div className="min-h-[100svh] flex flex-col items-center justify-center px-4 text-center">
-                <h1 className="text-4xl font-bold mb-4">Project not found</h1>
-                <Link to="/">
-                    <Button label="Go Home" className="w-full sm:w-[134px]" />
-                </Link>
-            </div>
-        );
+        return <NotFound />;
     }
 
     return (
