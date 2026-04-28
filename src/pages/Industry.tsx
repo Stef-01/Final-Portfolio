@@ -1,17 +1,12 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { RolesGrid } from "../components/RolesGrid";
 import { industryRoles } from "../types/roles";
 
 export function Industry() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />

@@ -6,7 +6,7 @@ import {
     Paperclip,
     ArrowLeft,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
@@ -166,10 +166,6 @@ export function Presentations() {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] =
         useState<ConferenceFile | null>(null);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     const handleFileClick = (file: ConferenceFile) => {
         setSelectedFile(file);

@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
@@ -10,10 +9,6 @@ import { RolesGrid } from "../components/RolesGrid";
 import { researchRoles } from "../types/roles";
 
 export function Research() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />

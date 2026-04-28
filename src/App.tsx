@@ -8,6 +8,7 @@ import {
 import { AnimatePresence } from "motion/react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { NotFound } from "./components/NotFound";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 // Lazy load pages to improve initial load performance
 const ScalehubStartupLp = lazy(() =>
@@ -70,6 +71,7 @@ const RoutedApp = () => {
 
   return (
     <AppErrorBoundary key={location.pathname}>
+      <ScrollToTop />
       <Suspense fallback={<LoadingFallback />}>
         <AnimatedRoutes />
       </Suspense>

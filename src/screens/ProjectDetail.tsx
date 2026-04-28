@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Sparkles } from "lucide-react";
 import { projects } from "../types/project";
@@ -11,10 +11,6 @@ import { NotFound } from "../components/NotFound";
 const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
     const [activeModuleIndex, setActiveModuleIndex] = useState(0);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
 
     const activeModule = useMemo(() => {
         if (!project) {
