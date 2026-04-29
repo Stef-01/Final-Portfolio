@@ -1,40 +1,26 @@
 import { useEffect } from "react";
 
 /**
- * Magnetic scroll-snap with a programmable feather threshold.
+ * Magnetic scroll-snap with a programmable feather threshold and a custom
+ * easing curve.
  *
- * What this does that native CSS scroll-snap cannot
- * --------------------------------------------------
- * Native `scroll-snap-type: y mandatory` only catches the *nearest* snap
- * point when the user stops scrolling — that's roughly a 50% threshold,
- * meaning you have to drift more than half-way to the next section before
- * the magnet pulls you forward. The user wants stronger pull: if you drift
- * past a small "feather" (currently 16% of viewport) into the next
- * section, the page should auto-advance there instead of springing back.
+ * Compared with the previous version (which used the browser's built-in
+ * `window.scrollTo({ behavior: "smooth" })`) this one drives the scroll
+ * position itself through a requestAnimationFrame loop. The browser's
+ * native smooth-scroll uses a short quartic curve that lands abruptly —
+ * this version uses easeOutExpo over 850 ms, which starts fast (the magnet
+ * grabs you) and decelerates very softly into the target (the magnet
+ * settles you in). Net effect is a softer, more magnetic catch.
  *
- * How it works
- * ------------
- * 1. CSS is set to `scroll-snap-type: y proximity` (gentle native fallback)
- *    so the browser still handles keyboard/anchor scrolls cleanly.
- * 2. This hook listens to scroll events on a 90 ms debounce. When the
- *    debounce fires (= scroll has paused), we evaluate:
- *      - find the nearest snap target above and below the current y
- *      - if those two targets are <= 1.2 viewports apart we are inside
- *        a "snap pair" (Hero↔Mission, Mission↔ThreeLanes, card↔card).
- *        Otherwise we're in a free-scroll zone (Timeline, the LatestWork
- *        header, Tinker, About) and we DON'T intervene.
- *      - inside a snap pair, compute progress = (y - prev) / (next - prev).
- *        If progress > FEATHER (16%) we smooth-scroll to `next.top`.
- *        Otherwise we smooth-scroll back to `prev.top`.
- * 3. While the smooth scroll is animating we ignore further scroll events
- *    so we don't fight the browser's animation.
+ * The feather threshold logic is unchanged:
+ *   - 16% of viewport drift past the previous snap → auto-advance
+ *   - below that → bounce back
+ *   - free-scroll zones (gap between snap pairs > 1.2 viewports) →
+ *     no intervention at all
  *
- * Net effect: any nudge past the feather threshold auto-pulls to the next
- * section. Below the threshold, the page springs back to the current one.
- * Free-scroll zones are completely untouched.
- *
- * No JS smooth-scroll library, no overshoot — only `window.scrollTo({
- * behavior: "smooth" })` which the browser tunes itself.
+ * User input cancels the magnetic animation immediately: if you wheel
+ * or touch during the catch, the animator releases and lets you take
+ * over. After your input stops, the threshold logic re-evaluates.
  *
  * Bypassed when prefers-reduced-motion is set.
  */
@@ -50,12 +36,15 @@ export function useMagneticScroll(enabled: boolean = true) {
 
         document.documentElement.classList.add("snap-page");
 
-        const FEATHER = 0.16; // 16% of viewport — well below native ~50%
-        const PAIR_GAP_TOLERANCE = 1.2; // a "snap pair" is two targets ≤ 1.2vh apart
-        const ANIMATION_LOCK_MS = 700;
+        const FEATHER = 0.16;
+        const PAIR_GAP_TOLERANCE = 1.2;
+        const ANIMATION_MS = 850;
+        const SCROLL_END_DEBOUNCE_MS = 110;
 
+        let rafId = 0;
         let scrollEndTimer = 0;
         let isAnimating = false;
+        let userInterrupted = false;
         let lastResolvedTarget = -1;
 
         type Target = { el: HTMLElement; top: number };
@@ -65,13 +54,52 @@ export function useMagneticScroll(enabled: boolean = true) {
                 .map((el) => ({ el, top: el.getBoundingClientRect().top + window.scrollY }))
                 .sort((a, b) => a.top - b.top);
 
+        // easeOutExpo — fast initial pull, very soft landing. The hallmark
+        // shape of a magnetic catch: the position approaches the target
+        // asymptotically rather than wedging into it.
+        const easeOutExpo = (t: number): number =>
+            t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+
+        const animateTo = (targetY: number) => {
+            cancelAnimationFrame(rafId);
+            const startY = window.scrollY;
+            const distance = targetY - startY;
+            if (Math.abs(distance) < 1) return;
+
+            const startTime = performance.now();
+            isAnimating = true;
+            userInterrupted = false;
+
+            const step = (now: number) => {
+                if (userInterrupted) {
+                    isAnimating = false;
+                    return;
+                }
+                const elapsed = now - startTime;
+                const t = Math.min(elapsed / ANIMATION_MS, 1);
+                const eased = easeOutExpo(t);
+                // `behavior: "instant"` is critical here — without it the
+                // browser's own `scroll-behavior: smooth` (set globally on
+                // <html>) layers a second quartic ease on top of our expo,
+                // turning the curve into a slow-then-fast monstrosity.
+                window.scrollTo({ top: startY + distance * eased, behavior: "instant" });
+                if (t < 1) {
+                    rafId = requestAnimationFrame(step);
+                } else {
+                    isAnimating = false;
+                }
+            };
+
+            rafId = requestAnimationFrame(step);
+        };
+
         const resolve = () => {
+            if (isAnimating) return;
             const y = window.scrollY;
             const vh = window.innerHeight;
             const targets = collectTargets();
             if (targets.length < 2) return;
 
-            // Find the snap-pair the user is currently inside.
             let prev: Target | null = null;
             let next: Target | null = null;
             for (let i = 0; i < targets.length - 1; i++) {
@@ -84,34 +112,45 @@ export function useMagneticScroll(enabled: boolean = true) {
             if (!prev || !next) return;
 
             const gap = next.top - prev.top;
-            // Free-scroll zone: don't intervene.
-            if (gap > vh * PAIR_GAP_TOLERANCE) return;
+            if (gap > vh * PAIR_GAP_TOLERANCE) return; // free-scroll zone
 
             const progress = (y - prev.top) / gap;
             const target = progress > FEATHER ? next.top : prev.top;
 
-            // Don't re-scroll to a target the user already settled on.
             if (Math.abs(y - target) < 4) return;
             if (target === lastResolvedTarget) return;
             lastResolvedTarget = target;
-
-            isAnimating = true;
-            window.scrollTo({ top: target, behavior: "smooth" });
             window.setTimeout(() => {
-                isAnimating = false;
                 lastResolvedTarget = -1;
-            }, ANIMATION_LOCK_MS);
+            }, ANIMATION_MS + 100);
+
+            animateTo(target);
         };
 
         const onScroll = () => {
-            if (isAnimating) return;
             window.clearTimeout(scrollEndTimer);
-            scrollEndTimer = window.setTimeout(resolve, 90);
+            scrollEndTimer = window.setTimeout(resolve, SCROLL_END_DEBOUNCE_MS);
+        };
+
+        // User input cancels the magnetic catch — they take back control.
+        const onUserInput = () => {
+            if (isAnimating) {
+                userInterrupted = true;
+                cancelAnimationFrame(rafId);
+            }
         };
 
         window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("wheel", onUserInput, { passive: true });
+        window.addEventListener("touchstart", onUserInput, { passive: true });
+        window.addEventListener("keydown", onUserInput);
+
         return () => {
             window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("wheel", onUserInput);
+            window.removeEventListener("touchstart", onUserInput);
+            window.removeEventListener("keydown", onUserInput);
+            cancelAnimationFrame(rafId);
             window.clearTimeout(scrollEndTimer);
             document.documentElement.classList.remove("snap-page");
         };
