@@ -5,6 +5,7 @@ import { projects } from "../types/project";
 import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
 import { NotFound } from "../components/NotFound";
+import { ImageWithFallback } from "../components/ImageWithFallback";
 
 // Inner component is keyed by `id` from the wrapper below, so its state
 // resets cleanly on URL change without a setState-in-effect anti-pattern.
@@ -108,9 +109,12 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 </div>
 
                 <div className="mt-14 overflow-hidden rounded-[34px] border border-black/8 bg-black shadow-2xl">
-                    <img
+                    <ImageWithFallback
                         src={project.image}
                         alt={project.title}
+                        fallbackInitial={project.title.charAt(0)}
+                        accent={project.accent}
+                        wrapperClassName="h-[280px] w-full md:h-[620px]"
                         className="h-[280px] w-full object-cover opacity-90 md:h-[620px]"
                         loading="eager"
                         fetchPriority="high"
@@ -171,9 +175,12 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                         {project.media.map((item) => (
                             <figure key={item.caption} className="overflow-hidden rounded-[30px] border border-black/8 bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.45)]">
                                 <div className="aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
-                                    <img
+                                    <ImageWithFallback
                                         src={item.src}
                                         alt={item.alt}
+                                        fallbackInitial={project.title.charAt(0)}
+                                        accent={project.accent}
+                                        wrapperClassName="h-full w-full"
                                         className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                                         loading="lazy"
                                         decoding="async"
