@@ -39,7 +39,11 @@ export const ScalehubStartupLp = (): JSX.Element => {
       <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip">
         <Suspense
           fallback={
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
+            <div
+              className={`${
+                isPhoneLayout ? "absolute" : "fixed"
+              } inset-0 z-0 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100`}
+            />
           }
         >
           <SplineBackground
@@ -80,10 +84,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* Intro Section (Header) */}
-      <IntroSection />
+      <div className="relative z-10 bg-white">
+        <IntroSection />
+      </div>
 
       {/* Three Lanes Teaser — single entry point into Research / Policy / Industry */}
-      <div id="three-lanes">
+      <div id="three-lanes" className="relative z-10 bg-white">
         <ThreeLanesTeaser />
       </div>
 
@@ -95,7 +101,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
           </div>
         }
       >
-        <TimelineSection />
+        <div className="relative z-10 bg-white">
+          <TimelineSection />
+        </div>
       </Suspense>
 
       {/* Flagship projects — Selected Work case studies */}
@@ -109,7 +117,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* About Section (Window & Pills) */}
-      <AboutSection />
+      <div className="relative z-10 bg-white">
+        <AboutSection />
+      </div>
 
       {/* Footer */}
       <footer className="relative z-10 bg-black text-white py-20 px-4 md:px-8">

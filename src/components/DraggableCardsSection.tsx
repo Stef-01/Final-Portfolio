@@ -6,13 +6,15 @@ import { projects } from "../types/project";
 export const DraggableCardsSection = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const isPhoneLayout = usePhoneLayout();
+    // NOTE: don't .filter(Boolean) here — cardLayouts is positional, so a missing
+    // project must remain `undefined` so subsequent layouts don't shift.
     const featuredProjects = [
-        projects.find((project) => project.id === "swaad"),
-        projects.find((project) => project.id === "nourish-meal-explorer"),
-        projects.find((project) => project.id === "pgx-llm-copilot"),
-        projects.find((project) => project.id === "healthcare-from-the-eye"),
-        projects.find((project) => project.id === "ent-readmission-platform"),
-    ].filter(Boolean);
+        "swaad",
+        "nourish-meal-explorer",
+        "pgx-llm-copilot",
+        "healthcare-from-the-eye",
+        "ent-readmission-platform",
+    ].map((id) => projects.find((project) => project.id === id));
 
     // Precise card positions matching reference image
     const cardLayouts = isPhoneLayout ? [

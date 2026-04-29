@@ -6,7 +6,7 @@ import {
     Paperclip,
     ArrowLeft,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
@@ -167,10 +167,6 @@ export function Presentations() {
     const [selectedFile, setSelectedFile] =
         useState<ConferenceFile | null>(null);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     const handleFileClick = (file: ConferenceFile) => {
         setSelectedFile(file);
         setModalOpen(true);
@@ -184,7 +180,7 @@ export function Presentations() {
                     to="/"
                     className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
                 >    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                    <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px]">Back to Home</span>
+                    <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">Back to Home</span>
                 </Link>
 
                 <motion.div
@@ -194,21 +190,21 @@ export function Presentations() {
                 >
                     <div className="flex items-center gap-4 mb-12">
                         <PresentationIcon className="w-12 h-12 text-blue-600" />
-                        <h1 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[72px]">
+                        <h1 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[72px]">
                             Presentations
                         </h1>
                     </div>
 
                     {/* Conference Presentations */}
                     <section className="mb-16">
-                        <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-blue-600">
+                        <h2 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[36px] mb-8 text-blue-600">
                             Conference Presentations
                         </h2>
 
                         <div className="grid gap-6">
                             {conferences.map((conf, index) => (
                                 <motion.div
-                                    key={index}
+                                    key={`${conf.title}-${conf.date}`}
                                     className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-600 transition-all group"
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
@@ -218,11 +214,11 @@ export function Presentations() {
                                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                                         <div className="flex-1">
                                             <div className="flex items-center gap-3 mb-3">
-                                                <span className="inline-block px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-[14px] font-['Clash_Grotesk:Semibold',_sans-serif]">
+                                                <span className="inline-block px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-[14px] font-['Clash_Grotesk',_sans-serif] font-semibold">
                                                     {conf.role}
                                                 </span>
                                             </div>
-                                            <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[28px] mb-2 group-hover:text-blue-600 transition-colors">
+                                            <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[28px] mb-2 group-hover:text-blue-600 transition-colors">
                                                 {conf.title}
                                             </h3>
                                             {conf.venue && (
@@ -230,7 +226,7 @@ export function Presentations() {
                                                     {conf.venue}
                                                 </p>
                                             )}
-                                            <p className="font-['Clash_Grotesk:Medium',_sans-serif] text-[19px] text-gray-800 mb-3 leading-relaxed">
+                                            <p className="font-['Clash_Grotesk',_sans-serif] font-medium text-[19px] text-gray-800 mb-3 leading-relaxed">
                                                 {conf.topic}
                                             </p>
                                             {conf.collaborators && (
@@ -263,7 +259,7 @@ export function Presentations() {
                                                 whileTap={{ scale: 0.95 }}
                                             >
                                                 <Paperclip className="w-5 h-5" />
-                                                <span className="font-['Clash_Grotesk:Medium',_sans-serif]">
+                                                <span className="font-['Clash_Grotesk',_sans-serif] font-medium">
                                                     View {conf.file.type.toUpperCase()}
                                                 </span>
                                             </motion.button>
@@ -276,14 +272,14 @@ export function Presentations() {
 
                     {/* Invited Presentations */}
                     <section>
-                        <h2 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[36px] mb-8 text-purple-600">
+                        <h2 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[36px] mb-8 text-purple-600">
                             Invited Presentations & Grand Rounds
                         </h2>
 
                         <div className="grid gap-6">
                             {presentations.map((pres, index) => (
                                 <motion.div
-                                    key={index}
+                                    key={`${pres.title}-${pres.date}`}
                                     className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-purple-600 transition-all group"
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
@@ -294,12 +290,12 @@ export function Presentations() {
                                         <div className="flex-1">
                                             {pres.role && (
                                                 <div className="flex items-center gap-3 mb-3">
-                                                    <span className="inline-block px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-[14px] font-['Clash_Grotesk:Semibold',_sans-serif]">
+                                                    <span className="inline-block px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-[14px] font-['Clash_Grotesk',_sans-serif] font-semibold">
                                                         {pres.role}
                                                     </span>
                                                 </div>
                                             )}
-                                            <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[28px] mb-2 group-hover:text-purple-600 transition-colors">
+                                            <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[28px] mb-2 group-hover:text-purple-600 transition-colors">
                                                 {pres.title}
                                             </h3>
                                             {pres.venue && (
@@ -307,7 +303,7 @@ export function Presentations() {
                                                     {pres.venue}
                                                 </p>
                                             )}
-                                            <p className="font-['Clash_Grotesk:Medium',_sans-serif] text-[19px] text-gray-800 mb-3 leading-relaxed">
+                                            <p className="font-['Clash_Grotesk',_sans-serif] font-medium text-[19px] text-gray-800 mb-3 leading-relaxed">
                                                 {pres.topic}
                                             </p>
                                             {pres.collaborators && (
@@ -334,7 +330,7 @@ export function Presentations() {
                                                 whileTap={{ scale: 0.95 }}
                                             >
                                                 <Paperclip className="w-5 h-5" />
-                                                <span className="font-['Clash_Grotesk:Medium',_sans-serif]">
+                                                <span className="font-['Clash_Grotesk',_sans-serif] font-medium">
                                                     View {pres.file.type.toUpperCase()}
                                                 </span>
                                             </motion.button>
@@ -351,7 +347,9 @@ export function Presentations() {
                 <FileViewerModal
                     isOpen={modalOpen}
                     onClose={() => setModalOpen(false)}
-                    file={selectedFile}
+                    fileUrl={selectedFile.url}
+                    fileType={selectedFile.type}
+                    fileName={selectedFile.name}
                 />
             )}
 

@@ -10,21 +10,15 @@ export const useIntersectionObserver = (
     options: UseIntersectionObserverOptions = {}
 ) => {
     const { threshold = 0.1, rootMargin = '0px', triggerOnce = true } = options;
-    const [isIntersecting, setIsIntersecting] = useState(false);
-    const [hasTriggered, setHasTriggered] = useState(false);
+    const supportsIO =
+        typeof window !== "undefined" && typeof IntersectionObserver !== "undefined";
+    const [isIntersecting, setIsIntersecting] = useState(() => !supportsIO);
+    const [hasTriggered, setHasTriggered] = useState(() => !supportsIO);
     const elementRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const element = elementRef.current;
-        if (!element) return;
-
-        if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
-            setIsIntersecting(true);
-            if (triggerOnce) {
-                setHasTriggered(true);
-            }
-            return;
-        }
+        if (!element || !supportsIO) return;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -47,7 +41,7 @@ export const useIntersectionObserver = (
         return () => {
             observer.unobserve(element);
         };
-    }, [threshold, rootMargin, triggerOnce, hasTriggered]);
+    }, [threshold, rootMargin, triggerOnce, hasTriggered, supportsIO]);
 
     return { elementRef, isIntersecting };
 };

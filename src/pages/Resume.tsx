@@ -3,20 +3,15 @@ import { Briefcase, Award, GraduationCap, Mail, BookOpen, Trophy, ArrowLeft } fr
 import { Link } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
-import { useEffect } from "react";
 
 export function Resume() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="min-h-[100svh] bg-white text-gray-900 py-16 md:py-20 px-4 md:px-8">
       <FloatingBackButton />
       <div className="max-w-[1200px] mx-auto">
         <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group">
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px]">Back to Home</span>
+          <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">Back to Home</span>
         </Link>
 
         <motion.div
@@ -25,8 +20,8 @@ export function Resume() {
           transition={{ duration: 0.8 }}
         >
           <div className="mb-12">
-            <h1 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[42px] md:text-[72px] mb-4 leading-[1]">Stefan Thottunkal</h1>
-            <p className="font-['Clash_Grotesk:Regular',_sans-serif] text-[20px] md:text-[24px] text-gray-700 mb-4">
+            <h1 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[42px] md:text-[72px] mb-4 leading-[1]">Stefan Thottunkal</h1>
+            <p className="font-['Clash_Grotesk',_sans-serif] text-[20px] md:text-[24px] text-gray-700 mb-4">
               Early Career Researcher, Public Servant, and Medical Student
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-[16px] md:text-[18px] text-gray-500">
@@ -38,16 +33,13 @@ export function Resume() {
                 <BookOpen className="w-5 h-5" />
                 Google Scholar
               </a>
-              <a href="https://orcid.org/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                ORCID
-              </a>
             </div>
           </div>
 
           <section className="mb-16">
             <div className="flex items-center gap-3 mb-8">
               <GraduationCap className="w-8 h-8 text-blue-600" />
-              <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[30px] md:text-[42px]">Education</h2>
+              <h2 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[30px] md:text-[42px]">Education</h2>
             </div>
 
             <motion.div
@@ -57,22 +49,22 @@ export function Resume() {
               transition={{ delay: 0.2 }}
             >
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   M.S. in Community Health and Prevention Research
                 </h3>
                 <p className="text-blue-600 text-[18px] md:text-[20px] mb-2">Stanford University</p>
                 <p className="text-gray-500 text-[16px] md:text-[18px] mb-3">2025-2026 | GPA: 4.075/4.3</p>
                 <p className="text-gray-700 text-[16px] md:text-[18px] leading-relaxed mb-2">
-                  <span className="font-['Clash_Grotesk:Medium',_sans-serif]">QUAD Fellow 2025-2026</span>
+                  <span className="font-['Clash_Grotesk',_sans-serif] font-medium">QUAD Fellow 2025-2026</span>
                 </p>
                 <p className="text-gray-700 text-[16px] md:text-[18px] leading-relaxed">
-                  <span className="font-['Clash_Grotesk:Medium',_sans-serif]">Thesis:</span> AI methods for pharmacogenomics-based prescribing in clinical practice
+                  <span className="font-['Clash_Grotesk',_sans-serif] font-medium">Thesis:</span> AI methods for pharmacogenomics-based prescribing in clinical practice
                 </p>
                 <p className="text-gray-500 text-[15px] md:text-[16px] mt-2">Advisor: Prof. Palaniappan</p>
               </div>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   Doctor of Medicine
                 </h3>
                 <p className="text-blue-600 text-[18px] md:text-[20px] mb-2">Macquarie University</p>
@@ -83,7 +75,7 @@ export function Resume() {
               </div>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   Bachelor of Health Science with First Class Honors
                 </h3>
                 <p className="text-blue-600 text-[18px] md:text-[20px] mb-2">Australian National University</p>
@@ -95,7 +87,7 @@ export function Resume() {
           <section className="mb-16">
             <div className="flex items-center gap-3 mb-8">
               <Briefcase className="w-8 h-8 text-blue-600" />
-              <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[30px] md:text-[42px]">Research Focus</h2>
+              <h2 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[30px] md:text-[42px]">Research Focus</h2>
             </div>
 
             <motion.div
@@ -105,7 +97,7 @@ export function Resume() {
               transition={{ delay: 0.3 }}
             >
               <div className="bg-white border border-gray-200 rounded-2xl p-6">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[24px] mb-4">Current Research Areas</h3>
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[24px] mb-4">Current Research Areas</h3>
                 <ul className="space-y-3 text-gray-700 text-[18px]">
                   <li className="flex gap-3">
                     <span className="text-blue-600">&bull;</span>
@@ -135,7 +127,7 @@ export function Resume() {
           <section className="mb-16">
             <div className="flex items-center gap-3 mb-8">
               <Trophy className="w-8 h-8 text-blue-600" />
-              <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[30px] md:text-[42px]">Awards & Honors</h2>
+              <h2 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[30px] md:text-[42px]">Awards & Honors</h2>
             </div>
 
             <motion.div
@@ -145,7 +137,7 @@ export function Resume() {
               transition={{ delay: 0.35 }}
             >
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   IIE QUAD Fellowship
                 </h3>
                 <p className="text-gray-500 text-[16px] md:text-[18px] mb-3">2024</p>
@@ -155,7 +147,7 @@ export function Resume() {
               </div>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   MQ Equity Merit Scholarship
                 </h3>
                 <p className="text-gray-500 text-[16px] md:text-[18px] mb-3">2023</p>
@@ -165,21 +157,21 @@ export function Resume() {
               </div>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   Robert Menzies College Academic Scholarship
                 </h3>
                 <p className="text-gray-500 text-[16px] md:text-[18px] mb-3">2023</p>
               </div>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   ANU Chancellor&apos;s Letter of Commendation
                 </h3>
                 <p className="text-gray-500 text-[16px] md:text-[18px] mb-3">2020 & 2022</p>
               </div>
 
               <div className="border-l-4 border-blue-600 pl-6 py-4">
-                <h3 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[22px] md:text-[28px] mb-2">
+                <h3 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[22px] md:text-[28px] mb-2">
                   ANU Plus Award
                 </h3>
                 <p className="text-gray-500 text-[16px] md:text-[18px] mb-3">2022</p>
@@ -193,7 +185,7 @@ export function Resume() {
           <section>
             <div className="flex items-center gap-3 mb-8">
               <Award className="w-8 h-8 text-blue-600" />
-              <h2 className="font-['Clash_Grotesk:Medium',_sans-serif] text-[30px] md:text-[42px]">Skills & Expertise</h2>
+              <h2 className="font-['Clash_Grotesk',_sans-serif] font-medium text-[30px] md:text-[42px]">Skills & Expertise</h2>
             </div>
 
             <motion.div
@@ -224,7 +216,7 @@ export function Resume() {
                   transition={{ delay: 0.5 + index * 0.05 }}
                   whileHover={{ scale: 1.05, borderColor: "rgba(235,255,87,0.5)" }}
                 >
-                  <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[16px]">{skill}</span>
+                  <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[16px]">{skill}</span>
                 </motion.div>
               ))}
             </motion.div>

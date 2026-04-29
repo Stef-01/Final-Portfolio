@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { X, Download, FileText, Video } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface FileViewerModalProps {
   isOpen: boolean;
@@ -10,124 +10,133 @@ interface FileViewerModalProps {
   fileName?: string;
 }
 
-export function FileViewerModal({ 
-  isOpen, 
-  onClose, 
-  fileUrl, 
-  fileType = "pdf",
-  fileName = "Document"
-}: FileViewerModalProps) {
+const Spinner = () => (
+  <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0c]">
+    <motion.div
+      className="w-16 h-16 border-4 border-[#EBFF57] border-t-transparent rounded-full"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+    />
+  </div>
+);
+
+// Inner content is keyed by fileUrl in the parent, so its useState
+// initial value resets cleanly each time a new file is shown — no
+// setState-in-effect needed.
+const FileViewerContent = ({
+  fileUrl,
+  fileType,
+  fileName,
+}: {
+  fileUrl?: string;
+  fileType: "pdf" | "video" | "image";
+  fileName: string;
+}) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsLoading(true);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  if (!fileUrl) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-gray-400">
+        <FileText className="w-20 h-20 mb-4" />
+        <p className="text-[20px] font-['Clash_Grotesk',_sans-serif] font-medium">
+          No file available
+        </p>
+        <p className="text-[16px] text-gray-500 mt-2">
+          Upload your presentation file to view it here
+        </p>
+      </div>
+    );
+  }
 
-  const handleDownload = () => {
-    if (fileUrl) {
-      const link = document.createElement('a');
-      link.href = fileUrl;
-      link.download = fileName;
-      link.click();
-    }
-  };
-
-  const renderFileContent = () => {
-    if (!fileUrl) {
+  switch (fileType) {
+    case "pdf":
       return (
-        <div className="flex flex-col items-center justify-center h-full text-gray-400">
-          <FileText className="w-20 h-20 mb-4" />
-          <p className="text-[20px] font-['Clash_Grotesk:Medium',_sans-serif]">
-            No file available
-          </p>
-          <p className="text-[16px] text-gray-500 mt-2">
-            Upload your presentation file to view it here
-          </p>
+        <div className="w-full h-full bg-white rounded-lg overflow-hidden">
+          <iframe
+            src={fileUrl}
+            className="w-full h-full"
+            title={fileName}
+            onLoad={() => setIsLoading(false)}
+          />
+          {isLoading && <Spinner />}
         </div>
       );
-    }
 
-    switch (fileType) {
-      case "pdf":
-        return (
-          <div className="w-full h-full bg-white rounded-lg overflow-hidden">
-            <iframe
-              src={fileUrl}
-              className="w-full h-full"
-              title={fileName}
-              onLoad={() => setIsLoading(false)}
-            />
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0c]">
-                <motion.div
-                  className="w-16 h-16 border-4 border-[#EBFF57] border-t-transparent rounded-full"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-            )}
-          </div>
-        );
-      
-      case "video":
-        return (
-          <div className="w-full h-full bg-black rounded-lg overflow-hidden flex items-center justify-center">
-            <video
-              src={fileUrl}
-              controls
-              className="max-w-full max-h-full"
-              onLoadedData={() => setIsLoading(false)}
-            >
-              Your browser does not support the video tag.
-            </video>
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0c]">
-                <motion.div
-                  className="w-16 h-16 border-4 border-[#EBFF57] border-t-transparent rounded-full"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-            )}
-          </div>
-        );
-      
-      case "image":
-        return (
-          <div className="w-full h-full bg-black rounded-lg overflow-hidden flex items-center justify-center">
-            <img
-              src={fileUrl}
-              alt={fileName}
-              className="max-w-full max-h-full object-contain"
-              onLoad={() => setIsLoading(false)}
-            />
-            {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0c]">
-                <motion.div
-                  className="w-16 h-16 border-4 border-[#EBFF57] border-t-transparent rounded-full"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-            )}
-          </div>
-        );
-      
-      default:
-        return (
-          <div className="flex items-center justify-center h-full text-gray-400">
-            <p className="text-[18px]">Unsupported file type</p>
-          </div>
-        );
-    }
+    case "video":
+      return (
+        <div className="w-full h-full bg-black rounded-lg overflow-hidden flex items-center justify-center">
+          <video
+            src={fileUrl}
+            controls
+            className="max-w-full max-h-full"
+            onLoadedData={() => setIsLoading(false)}
+          >
+            Your browser does not support the video tag.
+          </video>
+          {isLoading && <Spinner />}
+        </div>
+      );
+
+    case "image":
+      return (
+        <div className="w-full h-full bg-black rounded-lg overflow-hidden flex items-center justify-center">
+          <img
+            src={fileUrl}
+            alt={fileName}
+            className="max-w-full max-h-full object-contain"
+            onLoad={() => setIsLoading(false)}
+          />
+          {isLoading && <Spinner />}
+        </div>
+      );
+
+    default:
+      return (
+        <div className="flex items-center justify-center h-full text-gray-400">
+          <p className="text-[18px]">Unsupported file type</p>
+        </div>
+      );
+  }
+};
+
+export function FileViewerModal({
+  isOpen,
+  onClose,
+  fileUrl,
+  fileType = "pdf",
+  fileName = "Document",
+}: FileViewerModalProps) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+    closeButtonRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleEscape);
+      previouslyFocused?.focus?.();
+    };
+  }, [isOpen, onClose]);
+
+  const handleDownload = () => {
+    if (!fileUrl) return;
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = fileName;
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -146,6 +155,9 @@ export function FileViewerModal({
           {/* Modal Container */}
           <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none">
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={fileName}
               className="relative w-full max-w-[1400px] h-[90vh] bg-[#0a0a0c] rounded-2xl border border-[rgba(255,255,255,0.1)] overflow-hidden pointer-events-auto"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -160,11 +172,11 @@ export function FileViewerModal({
                   ) : (
                     <FileText className="w-6 h-6 text-[#EBFF57]" />
                   )}
-                  <h3 className="font-['Clash_Grotesk:Semibold',_sans-serif] text-[22px] text-white">
+                  <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[22px] text-white">
                     {fileName}
                   </h3>
                 </div>
-                
+
                 <div className="flex items-center gap-3">
                   {fileUrl && (
                     <motion.button
@@ -174,14 +186,16 @@ export function FileViewerModal({
                       whileTap={{ scale: 0.95 }}
                     >
                       <Download className="w-5 h-5" />
-                      <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[16px]">
+                      <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[16px]">
                         Download
                       </span>
                     </motion.button>
                   )}
-                  
+
                   <motion.button
+                    ref={closeButtonRef}
                     onClick={onClose}
+                    aria-label="Close"
                     className="p-2 hover:bg-[rgba(255,255,255,0.1)] rounded-lg transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -193,7 +207,12 @@ export function FileViewerModal({
 
               {/* File Content */}
               <div className="w-full h-full pt-[72px] p-6 relative">
-                {renderFileContent()}
+                <FileViewerContent
+                  key={fileUrl ?? "no-file"}
+                  fileUrl={fileUrl}
+                  fileType={fileType}
+                  fileName={fileName}
+                />
               </div>
             </motion.div>
           </div>

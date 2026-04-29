@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft, Shield, Landmark, Radar, HeartPulse } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { policyInitiatives } from "../types/policy";
@@ -9,10 +8,6 @@ import { policyInitiatives } from "../types/policy";
 const icons = [Shield, HeartPulse, Landmark, Radar];
 
 export function Policy() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="min-h-[100svh] bg-white text-gray-900 py-16 md:py-20 px-4 md:px-8">
       <FloatingBackButton />
@@ -22,7 +17,7 @@ export function Policy() {
           className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-['Clash_Grotesk:Medium',_sans-serif] text-[18px]">
+          <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">
             Back to Home
           </span>
         </Link>

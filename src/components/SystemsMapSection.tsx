@@ -151,11 +151,18 @@ export const SystemsMapSection = () => {
               const isActive = activeId === node.id;
 
               return (
-                <motion.button
+                <motion.div
                   key={node.id}
-                  type="button"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => setActiveId(node.id)}
-                  className={`rounded-[26px] border p-5 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 ${isActive ? "border-black bg-black text-white" : "border-black/10 bg-white text-black"}`}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveId(node.id);
+                    }
+                  }}
+                  className={`rounded-[26px] border p-5 text-left transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 ${isActive ? "border-black bg-black text-white" : "border-black/10 bg-white text-black"}`}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
@@ -178,27 +185,19 @@ export const SystemsMapSection = () => {
                         {node.description}
                       </p>
                     </div>
-                    <span
-                      role="button"
-                      tabIndex={0}
+                    <button
+                      type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleOpen(node.route);
                       }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleOpen(node.route);
-                        }
-                      }}
-                      className={`inline-flex h-11 w-11 items-center justify-center rounded-full transition-transform hover:scale-105 ${isActive ? "bg-white text-black" : "bg-black text-white"}`}
+                      className={`inline-flex h-11 w-11 items-center justify-center rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${isActive ? "bg-white text-black focus-visible:ring-white" : "bg-black text-white focus-visible:ring-black/40"}`}
                       aria-label={`Open ${node.title}`}
                     >
                       <ArrowUpRight className="h-5 w-5" />
-                    </span>
+                    </button>
                   </div>
-                </motion.button>
+                </motion.div>
               );
             })}
           </div>
@@ -315,26 +314,26 @@ export const SystemsMapSection = () => {
               })}
             </svg>
 
-            {nodes.map((node, index) => {
-              const Icon = node.icon;
-              const isActive = activeId === node.id;
+            <LayoutGroup id="systems-map-nodes">
+              {nodes.map((node, index) => {
+                const Icon = node.icon;
+                const isActive = activeId === node.id;
 
-              return (
-                <motion.button
-                  key={node.id}
-                  type="button"
-                  onMouseEnter={() => setActiveId(node.id)}
-                  onFocus={() => setActiveId(node.id)}
-                  onClick={() => handleOpen(node.route)}
-                  className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none"
-                  style={{ left: node.x, top: node.y }}
-                  initial={{ opacity: 0, scale: 0.92 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5, delay: index * 0.06 }}
-                  whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-                >
-                  <LayoutGroup id={`map-node-${node.id}`}>
+                return (
+                  <motion.button
+                    key={node.id}
+                    type="button"
+                    onMouseEnter={() => setActiveId(node.id)}
+                    onFocus={() => setActiveId(node.id)}
+                    onClick={() => handleOpen(node.route)}
+                    className="group absolute -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none"
+                    style={{ left: node.x, top: node.y }}
+                    initial={{ opacity: 0, scale: 0.92 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.5, delay: index * 0.06 }}
+                    whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+                  >
                     {isActive && (
                       <motion.div
                         layoutId="active-node-shell"
@@ -360,10 +359,10 @@ export const SystemsMapSection = () => {
                         {node.title}
                       </p>
                     </motion.div>
-                  </LayoutGroup>
-                </motion.button>
-              );
-            })}
+                  </motion.button>
+                );
+              })}
+            </LayoutGroup>
           </motion.div>
         </div>
       </div>

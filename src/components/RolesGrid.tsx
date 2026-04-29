@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, Calendar, MapPin } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowUpRight, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
 
 interface RolesGridProps {
@@ -11,9 +11,10 @@ interface RolesGridProps {
   intro: string;
 }
 
-export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
-  const navigate = useNavigate();
+const cardClasses =
+  "group relative block overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] transition-transform";
 
+export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
   return (
     <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
       <div className="mx-auto max-w-6xl">
@@ -31,35 +32,13 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
 
         <div className="grid gap-5 md:grid-cols-2">
           {roles.map((role, index) => {
-            const clickable = Boolean(role.link);
-
-            return (
-              <motion.div
-                key={role.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.5,
-                  delay: Math.min(index * 0.05, 0.25),
-                }}
-                onClick={() => role.link && navigate(role.link)}
-                onKeyDown={(e) => {
-                  if (!role.link) return;
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    navigate(role.link);
-                  }
-                }}
-                role={clickable ? "link" : undefined}
-                tabIndex={clickable ? 0 : -1}
-                className={`group relative overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] transition-transform ${clickable ? "cursor-pointer hover:-translate-y-1" : ""}`}
-              >
+            const body = (
+              <>
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
                     {role.period}
                   </span>
-                  {clickable && (
+                  {role.link && (
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                       <ArrowUpRight className="h-4 w-4" />
                     </span>
@@ -103,6 +82,56 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
                     </span>
                   ))}
                 </div>
+              </>
+            );
+
+            const animationProps = {
+              initial: { opacity: 0, y: 24 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true, margin: "-60px" },
+              transition: {
+                duration: 0.5,
+                delay: Math.min(index * 0.05, 0.25),
+              },
+            } as const;
+
+            if (!role.link) {
+              return (
+                <motion.div key={role.id} {...animationProps} className={cardClasses}>
+                  {body}
+                </motion.div>
+              );
+            }
+
+            const isExternal = /^https?:\/\//.test(role.link);
+
+            if (isExternal) {
+              return (
+                <motion.a
+                  key={role.id}
+                  href={role.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...animationProps}
+                  className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
+                >
+                  {body}
+                </motion.a>
+              );
+            }
+
+            return (
+              <motion.div
+                key={role.id}
+                {...animationProps}
+                className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
+              >
+                <Link
+                  to={role.link}
+                  className="absolute inset-0 z-10"
+                  aria-label={role.title}
+                />
+                {body}
               </motion.div>
             );
           })}

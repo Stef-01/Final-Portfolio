@@ -1,75 +1,64 @@
-# SMIT UI/UX Designer Portfolio
+# Stefan Thottunkal — Digital Health Portfolio
 
-A modern, responsive portfolio website for a Health Systems Designer & Medical Student, built with React, Vite, and Tailwind CSS.
+Personal portfolio site spanning research, policy, and industry work in
+digital health, precision medicine, clinical AI, and global health.
 
-## 🚀 Project Overview
+## Tech stack
 
-This project showcases a professional portfolio with a focus on human-centered design and digital health experiences. It features smooth animations using Motion (formerly Framer Motion) and a clean, premium aesthetic.
-
-## 🛠️ Tech Stack
-
-- **Framework:** [React](https://react.dev/)
-- **Build Tool:** [Vite](https://vitejs.dev/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Animations:** [Motion](https://motion.dev/)
-- **UI Components:** [Radix UI](https://www.radix-ui.com/)
+- **Framework:** [React 18](https://react.dev/)
+- **Build tool:** [Vite 6](https://vitejs.dev/) with `@vitejs/plugin-react-swc`
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) (`@tailwindcss/vite`) + `tailwindcss-animate`
+- **Animations:** [Motion](https://motion.dev/) (Framer Motion successor)
+- **3D background:** [Spline](https://spline.design/) via `@splinetool/react-spline` (lazy-loaded)
+- **Routing:** [React Router 7](https://reactrouter.com/)
 - **Icons:** [Lucide React](https://lucide.dev/)
+- **Fonts:** Clash Grotesk (Fontshare) + Playfair Display (Google Fonts)
 
-## ⚡ Getting Started
+## Getting started
 
-Follow these steps to set up the project locally.
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (version 18 or higher recommended)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
-
-### Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository-url>
-    cd <repository-directory>
-    ```
-
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-### 🏃‍♂️ Development
-
-To start the local development server with hot module replacement:
+Requires Node.js ≥ 18 and npm.
 
 ```bash
-npm run dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-The application will be available at `http://localhost:5173` (or another port if 5173 is in use).
+## Scripts
 
-### 🏗️ Building for Production
+| Script              | What it does                              |
+| ------------------- | ----------------------------------------- |
+| `npm run dev`       | Vite dev server on port 3000              |
+| `npm run build`     | Production build to `dist/`               |
+| `npm run typecheck` | `tsc --noEmit` — TypeScript-only check    |
 
-To create an optimized production build:
+## Project structure
 
-```bash
-npm run build
+```
+src/
+  App.tsx               # Router + lazy route definitions
+  main.tsx              # React root mount
+  index.css             # Tailwind + plugin imports
+  screens/              # Top-level route components (landing, project detail)
+  pages/                # Route pages (Resume, Presentations, Policy, Research, Industry)
+  components/           # Reusable section + UI components
+  hooks/                # Custom hooks (useWindowWidth, usePhoneLayout, ...)
+  types/                # Shared types (project, role, policy)
+  assets/               # Images and webp assets
+  styles/               # globals.css design tokens
 ```
 
-The output will be in the `dist` (or `build`) directory, ready for deployment.
+## Routes
 
-## 📦 Deployment
+| Path             | Page                                          |
+| ---------------- | --------------------------------------------- |
+| `/`              | Landing — hero, intro, three-lanes teaser, timeline, work, about |
+| `/project/:id`   | Individual project case study                 |
+| `/bio`           | Resume / bio                                  |
+| `/presentations` | Conferences and invited talks                 |
+| `/policy`        | Policy lane page                              |
+| `/research`      | Research lane page                            |
+| `/industry`      | Industry / ventures lane page                 |
 
-This project is a static site and can be deployed to any static hosting service like:
+## Deployment
 
-- **Vercel:** Connect your Git repository and it will auto-detect Vite.
-- **Netlify:** Drag and drop the build folder or connect Git.
-- **GitHub Pages:** Configure a workflow to build and deploy.
-
-## 📂 Project Structure
-
-- `src/` - Source code
-  - `components/` - Reusable UI components
-  - `pages/` - Page components
-  - `assets/` - Static assets (images, fonts)
-  - `App.tsx` - Main application component
-  - `main.tsx` - Entry point
+Static build — deploy `dist/` to any static host (Vercel, Netlify, GitHub Pages).

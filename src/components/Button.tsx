@@ -1,95 +1,36 @@
 import React from "react";
-import { useReducer } from "react";
-import { InputIcons } from "./InputIcons";
+import { ArrowUpRight } from "lucide-react";
 
 interface Props {
     showIcon?: boolean;
     label?: string;
     type?: "primary" | "secondary";
-    stateProp?: "hover" | "default";
-    size?: "big";
     className?: string;
-    inputIconsPropertyArrowUp?: string;
-    divClassName?: string;
     onClick?: () => void;
 }
 
 export const Button = ({
     showIcon = true,
     label = "Button",
-    type,
-    stateProp,
-    size,
+    type = "secondary",
     className = "",
-    inputIconsPropertyArrowUp = "https://c.animaapp.com/micbs5ufL1AjdE/img/input-icons.svg",
-    divClassName = "",
     onClick,
 }: Props): JSX.Element => {
-    const [state, dispatch] = useReducer(reducer, {
-        type: type || "secondary",
-        state: stateProp || "default",
-        size: size || "big",
-    });
-
+    const isPrimary = type === "primary";
     return (
         <button
             type="button"
-            className={`w-[134px] flex items-center gap-2 px-6 py-2.5 h-11 rounded-xl justify-center relative cursor-pointer transition-colors duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 ${state.type === "secondary" ? "border border-solid" : ""
-                } ${state.state === "default" && state.type === "secondary"
-                    ? "border-black/20 bg-white hover:border-black/50"
-                    : state.type === "secondary" && state.state === "hover"
-                        ? "border-black/50 bg-white"
-                        : ""
-                } ${state.type === "primary"
-                    ? "bg-black text-white hover:bg-gray-800"
-                    : "text-black"
-                } ${className}`}
-            onMouseLeave={() => {
-                dispatch("mouse_leave");
-            }}
-            onMouseEnter={() => {
-                dispatch("mouse_enter");
-            }}
             onClick={onClick}
+            className={`w-[134px] flex items-center gap-2 px-6 py-2.5 h-11 rounded-xl justify-center relative cursor-pointer transition-colors duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 ${
+                isPrimary
+                    ? "bg-black text-white hover:bg-gray-800"
+                    : "border border-solid border-black/20 bg-white text-gray-700 hover:border-black/50 hover:text-black"
+            } ${className}`}
         >
-            {showIcon && (
-                <InputIcons
-                    className="!relative !left-[unset] !top-[unset]"
-                    property1="arrow-up-right"
-                    propertyArrowUp={inputIconsPropertyArrowUp}
-                    size="big"
-                />
-            )}
-
-            <div
-                className={`font-bold text-sm tracking-normal leading-normal whitespace-nowrap relative ${divClassName || (
-                    state.type === "secondary" && state.state === "hover"
-                        ? "text-black"
-                        : state.type === "primary"
-                            ? "text-white"
-                            : "text-gray-700"
-                )}`}
-            >
+            {showIcon && <ArrowUpRight className="w-6 h-6" aria-hidden="true" />}
+            <span className="font-bold text-sm tracking-normal leading-normal whitespace-nowrap">
                 {label}
-            </div>
+            </span>
         </button>
     );
 };
-
-function reducer(state: any, action: any) {
-    switch (action) {
-        case "mouse_enter":
-            return {
-                ...state,
-                state: "hover",
-            };
-
-        case "mouse_leave":
-            return {
-                ...state,
-                state: "default",
-            };
-    }
-
-    return state;
-}

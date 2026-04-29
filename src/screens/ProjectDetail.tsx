@@ -1,22 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Sparkles } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
+import { NotFound } from "../components/NotFound";
 
-export const ProjectDetail = (): JSX.Element => {
-    const { id } = useParams<{ id: string }>();
+// Inner component is keyed by `id` from the wrapper below, so its state
+// resets cleanly on URL change without a setState-in-effect anti-pattern.
+const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
     const [activeModuleIndex, setActiveModuleIndex] = useState(0);
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
-    useEffect(() => {
-        setActiveModuleIndex(0);
-    }, [id]);
 
     const activeModule = useMemo(() => {
         if (!project) {
@@ -27,14 +21,7 @@ export const ProjectDetail = (): JSX.Element => {
     }, [activeModuleIndex, project]);
 
     if (!project) {
-        return (
-            <div className="min-h-[100svh] flex flex-col items-center justify-center px-4 text-center">
-                <h1 className="text-4xl font-bold mb-4">Project not found</h1>
-                <Link to="/">
-                    <Button label="Go Home" className="w-full sm:w-[134px]" />
-                </Link>
-            </div>
-        );
+        return <NotFound />;
     }
 
     return (
@@ -272,4 +259,11 @@ export const ProjectDetail = (): JSX.Element => {
             <ContactSection />
         </div>
     );
+};
+
+export const ProjectDetail = (): JSX.Element => {
+    const { id } = useParams<{ id: string }>();
+    // Keying by `id` remounts the inner component on URL change so its
+    // internal state (active module, scroll offset) resets cleanly.
+    return <ProjectDetailInner key={id ?? "_"} id={id} />;
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { X, Mail, Linkedin, Check } from "lucide-react";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 
@@ -10,6 +10,7 @@ interface ContactModalProps {
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     const [emailCopied, setEmailCopied] = useState(false);
     const isPhoneLayout = usePhoneLayout();
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
 
     const email = "stefan01@stanford.edu";
     const linkedinUrl = "https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
@@ -20,6 +21,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         }
 
         const previousOverflow = document.body.style.overflow;
+        const previouslyFocused = document.activeElement as HTMLElement | null;
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
                 onClose();
@@ -28,10 +30,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
         document.body.style.overflow = "hidden";
         window.addEventListener("keydown", handleEscape);
+        closeButtonRef.current?.focus();
 
         return () => {
             document.body.style.overflow = previousOverflow;
             window.removeEventListener("keydown", handleEscape);
+            previouslyFocused?.focus?.();
         };
     }, [isOpen, onClose]);
 
@@ -66,13 +70,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                     setEmailCopied(false);
                 }, 2000);
             } catch (fallbackError) {
-                console.error("Failed to copy email:", err, fallbackError);
+                if (import.meta.env.DEV) {
+                    console.error("Failed to copy email:", err, fallbackError);
+                }
             }
         }
-    };
-
-    const handleLinkedInClick = () => {
-        window.open(linkedinUrl, "_blank", "noopener,noreferrer");
     };
 
     if (!isOpen) return null;
@@ -91,6 +93,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             >
                 {/* Close button */}
                 <button
+                    ref={closeButtonRef}
                     onClick={onClose}
                     className={`absolute w-12 h-12 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-all flex items-center justify-center z-10 ${isPhoneLayout ? "top-3 right-3" : "-top-4 -right-4"}`}
                     aria-label="Close"
@@ -125,16 +128,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                         <p id="contact-modal-title" className="text-2xl font-bold text-gray-800 whitespace-nowrap">Get in<br />touch</p>
                     </div>
 
-                    {/* LinkedIn button */}
-                    <button
-                        onClick={handleLinkedInClick}
+                    {/* LinkedIn link */}
+                    <a
+                        href={linkedinUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex flex-col items-center gap-3 group"
                     >
                         <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-gradient-to-br from-blue-600 to-blue-700 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center`}>
                             <Linkedin className="w-12 h-12 text-white mb-1" />
                             <span className="text-white font-semibold text-sm">LinkedIn</span>
                         </div>
-                    </button>
+                    </a>
                 </div>
 
                 {/* Email display */}

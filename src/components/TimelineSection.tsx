@@ -95,21 +95,21 @@ export const TimelineSection = () => {
             title: "Harvard HSIL",
             period: "2025",
             image: imgHarvardHsil,
-            description: "Ten week HSIL competition where our team placed 7th of 2,500 after four national and international rounds, leading to invitation into the Venture Building Program.",
+            description: "Ten week HSIL competition where our team placed 7th of 3,500 after four national and international rounds, leading to invitation into the Venture Building Program.",
         },
         {
             id: "hopkins",
             title: "Johns Hopkins",
             period: "2025",
             image: imgHopkinsUniversityLogo,
-            description: "Entrepreneurship training at Hopkins Pava Center, refining venture design for impactful health startups.",
+            description: "Programming with Johns Hopkins University across its venture and entrepreneurship initiatives.",
         },
         {
             id: "pava",
             title: "Hopkins Pava Center",
             period: "2025",
             image: imgHopkinsPavaCenter,
-            description: "Entrepreneurship training at Hopkins Pava Center, refining venture design for impactful health startups.",
+            description: "Entrepreneurship training at the Pava Center, refining venture design for impactful health startups.",
         },
     ];
 
@@ -552,7 +552,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-2xl transition-all duration-300 ${hoveredItem === 'hsil' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1825, top: 1727, maxWidth: 800, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Ten week HSIL competition where our team placed 7th of 2,500 after four national and international rounds, leading to invitation into the Venture Building Program.</p>
+                        <p className="text-[20px]">Ten week HSIL competition where our team placed 7th of 3,500 after four national and international rounds, leading to invitation into the Venture Building Program.</p>
                     </div>
 
                     {/* Hover Description - Hopkins */}
@@ -560,7 +560,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-2xl transition-all duration-300 ${hoveredItem === 'hopkins' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1945, top: 2026, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Entrepreneurship training at Hopkins Pava Center, refining venture design for impactful health startups.</p>
+                        <p className="text-[20px]">Programming with Johns Hopkins University across its venture and entrepreneurship initiatives.</p>
                     </div>
 
                     {/* Hover Description - Pava Center */}
@@ -568,7 +568,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-2xl transition-all duration-300 ${hoveredItem === 'pava' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2108, top: 2165, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Entrepreneurship training at Hopkins Pava Center, refining venture design for impactful health startups.</p>
+                        <p className="text-[20px]">Entrepreneurship training at the Pava Center, refining venture design for impactful health startups.</p>
                     </div>
                 </div>
             </div>
