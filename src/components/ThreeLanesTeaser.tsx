@@ -29,37 +29,42 @@ const lanes = [
 
 export function ThreeLanesTeaser() {
   return (
-    <section className="w-full bg-white px-6 py-28 md:px-10 md:py-36">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-20 md:grid-cols-3 md:gap-0 md:divide-x md:divide-black/10">
+    <section className="w-full bg-white px-6 py-36 md:px-12 md:py-44">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-24 md:grid-cols-3 md:gap-0 md:divide-x md:divide-black/10">
           {lanes.map((lane, index) => {
             const Icon = lane.icon;
             return (
               <motion.div
                 key={lane.id}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: index * 0.09, ease: [0.22, 1, 0.36, 1] }}
-                className="md:px-10"
+                transition={{ duration: 0.7, delay: index * 0.09, ease: [0.22, 1, 0.36, 1] }}
+                className="md:px-12"
               >
-                <Link
-                  to={lane.to}
-                  className="group flex flex-col items-center text-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-8"
+                <motion.div
+                  whileHover={{ y: -10, scale: 1.035 }}
+                  transition={{ type: "spring", stiffness: 280, damping: 22, mass: 0.6 }}
                 >
-                  <Icon
-                    className="h-7 w-7 text-black transition-opacity duration-300 group-hover:opacity-60"
-                    strokeWidth={1.5}
-                  />
+                  <Link
+                    to={lane.to}
+                    className="group flex flex-col items-center text-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-8"
+                  >
+                    <Icon
+                      className="h-10 w-10 text-black transition-opacity duration-300 group-hover:opacity-60"
+                      strokeWidth={1.5}
+                    />
 
-                  <h3 className="mt-10 text-5xl md:text-[3.25rem] font-bold tracking-tight leading-[0.95] text-black transition-opacity duration-300 group-hover:opacity-70">
-                    {lane.title}
-                  </h3>
+                    <h3 className="mt-12 text-6xl md:text-[4rem] font-bold tracking-tight leading-[0.95] text-black transition-opacity duration-300 group-hover:opacity-80">
+                      {lane.title}
+                    </h3>
 
-                  <p className="mt-6 max-w-[26ch] text-[15px] md:text-base leading-relaxed text-gray-500">
-                    {lane.summary}
-                  </p>
-                </Link>
+                    <p className="mt-7 max-w-[28ch] text-lg md:text-xl leading-relaxed text-gray-500">
+                      {lane.summary}
+                    </p>
+                  </Link>
+                </motion.div>
               </motion.div>
             );
           })}
