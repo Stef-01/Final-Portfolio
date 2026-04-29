@@ -10,6 +10,7 @@ import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { DnaHelixOverlay } from "../components/DnaHelixOverlay";
 import { ContactModal } from "../components/ContactModal";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
+import { useMagneticScroll } from "../hooks/useMagneticScroll";
 
 // Lazy load heavy components
 const SplineBackground = lazy(() =>
@@ -26,6 +27,7 @@ const TimelineSection = lazy(() =>
 export const ScalehubStartupLp = (): JSX.Element => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isPhoneLayout = usePhoneLayout();
+  useMagneticScroll();
 
   const handleViewWork = () => {
     document
@@ -34,7 +36,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-white flex flex-col w-full overflow-x-hidden snap-y snap-proximity">
+    <div className="bg-white flex flex-col w-full overflow-x-hidden">
       {/* Hero Section */}
       <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start">
         <Suspense
@@ -112,12 +114,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* Tinker projects — "On a quest to craft something awesome" draggable cards */}
-      <div className="relative z-10 bg-white py-20">
+      <div className="relative z-10 bg-white py-20 snap-start">
         <DraggableCardsSection />
       </div>
 
       {/* About Section (Window & Pills) */}
-      <div className="relative z-10 bg-white">
+      <div className="relative z-10 bg-white snap-start">
         <AboutSection />
       </div>
 
