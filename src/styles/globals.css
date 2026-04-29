@@ -189,10 +189,12 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Magnetic scroll-snap. Scoped to the landing page via the .snap-page class
-   so other routes (project detail, /research, etc.) keep normal scrolling. */
+/* Magnetic scroll-snap. The hard work — threshold-based auto-advance with
+   a 16% feather — is done in useMagneticScroll. CSS is set to `proximity`
+   (the gentlest native mode) so the browser only handles incidental cases
+   (keyboard arrows, anchor links) and does NOT fight the JS pager. */
 html.snap-page {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   scroll-padding-top: 0;
 }
 
