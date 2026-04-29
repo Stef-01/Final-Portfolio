@@ -29,8 +29,8 @@ const lanes = [
 
 export function ThreeLanesTeaser() {
   return (
-    <section className="w-full bg-white px-6 py-36 md:px-12 md:py-44">
-      <div className="mx-auto max-w-7xl">
+    <section className="flex min-h-[100svh] w-full items-center bg-white px-6 py-24 md:px-12 md:py-28">
+      <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-24 md:grid-cols-3 md:gap-0 md:divide-x md:divide-black/10">
           {lanes.map((lane, index) => {
             const Icon = lane.icon;

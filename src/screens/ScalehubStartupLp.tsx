@@ -34,9 +34,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-white flex flex-col w-full overflow-x-hidden">
+    <div className="bg-white flex flex-col w-full overflow-x-hidden snap-y snap-proximity">
       {/* Hero Section */}
-      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip">
+      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start">
         <Suspense
           fallback={
             <div
@@ -84,16 +84,16 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* Intro Section (Header) */}
-      <div className="relative z-10 bg-white">
+      <div className="relative z-10 bg-white snap-start">
         <IntroSection />
       </div>
 
       {/* Three Lanes Teaser — single entry point into Research / Policy / Industry */}
-      <div id="three-lanes" className="relative z-10 bg-white">
+      <div id="three-lanes" className="relative z-10 bg-white snap-start">
         <ThreeLanesTeaser />
       </div>
 
-      {/* Timeline Section — now reachable without pages of scroll */}
+      {/* Timeline Section — explicitly NOT a snap target (taller than viewport) */}
       <Suspense
         fallback={
           <div className="h-screen w-full bg-white flex items-center justify-center">
@@ -107,7 +107,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </Suspense>
 
       {/* Flagship projects — Selected Work case studies */}
-      <div className="relative z-10 bg-white">
+      <div className="relative z-10 bg-white snap-start">
         <LatestWorkSection />
       </div>
 

@@ -100,7 +100,7 @@ export const LatestWorkSection = () => {
                         </motion.div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-12">
+                    <div className="grid grid-cols-1 gap-10">
                         {projects.map((project, index) => (
                             <motion.div
                                 key={project.id}
@@ -108,6 +108,7 @@ export const LatestWorkSection = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.6, delay: Math.min(index * 0.06, 0.28) }}
+                                className="snap-start scroll-mt-8"
                             >
                                 <WorkCard
                                     id={project.id}
