@@ -104,7 +104,7 @@ export const LatestWorkSection = () => {
                         {projects.map((project, index) => (
                             <div
                                 key={project.id}
-                                className="flex min-h-[100svh] items-center snap-start py-6"
+                                className="flex min-h-[100svh] items-center snap-start snap-always py-6"
                             >
                                 <motion.div
                                     initial={{ opacity: 0, y: prefersReducedMotion ? 12 : 30 }}

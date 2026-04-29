@@ -38,7 +38,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
   return (
     <div className="bg-white flex flex-col w-full overflow-x-hidden">
       {/* Hero Section */}
-      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start">
+      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start snap-always">
         <Suspense
           fallback={
             <div
@@ -86,12 +86,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* Intro Section (Header) */}
-      <div className="relative z-10 bg-white snap-start">
+      <div className="relative z-10 bg-white snap-start snap-always">
         <IntroSection />
       </div>
 
       {/* Three Lanes Teaser — single entry point into Research / Policy / Industry */}
-      <div id="three-lanes" className="relative z-10 bg-white snap-start">
+      <div id="three-lanes" className="relative z-10 bg-white snap-start snap-always">
         <ThreeLanesTeaser />
       </div>
 
