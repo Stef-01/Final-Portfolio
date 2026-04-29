@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "motion/react";
 import { WorkCard } from "./WorkCard";
 import { projects } from "../types/project";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 const headingChips = ["Precision medicine", "Implementation", "Public systems"];
@@ -22,21 +21,13 @@ const capabilityLanes = [
 ];
 
 export const LatestWorkSection = () => {
-    const { elementRef, isIntersecting } = useIntersectionObserver({
-        threshold: 0.1,
-        triggerOnce: true,
-    });
     const prefersReducedMotion = usePrefersReducedMotion();
 
     return (
         <section className="relative overflow-hidden py-20 px-4 md:px-8 bg-white" id="work">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-64 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_62%)]" />
             <div className="max-w-7xl mx-auto relative z-10">
-                <div
-                    ref={elementRef}
-                    className={`transition-all duration-1000 transform ${isIntersecting ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                >
-                    <div className="text-center mb-16 md:mb-24">
+                <div className="text-center mb-16 md:mb-24">
                         <motion.div
                             initial={{ opacity: 0, y: 18 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +122,6 @@ export const LatestWorkSection = () => {
                             </motion.div>
                         ))}
                     </div>
-                </div>
             </div>
         </section>
     );
