@@ -100,27 +100,31 @@ export const LatestWorkSection = () => {
                         </motion.div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-10">
+                    <div className="grid grid-cols-1">
                         {projects.map((project, index) => (
-                            <motion.div
+                            <div
                                 key={project.id}
-                                initial={{ opacity: 0, y: prefersReducedMotion ? 12 : 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.6, delay: Math.min(index * 0.06, 0.28) }}
-                                className="snap-start scroll-mt-8"
+                                className="flex min-h-[100svh] items-center snap-start py-6"
                             >
-                                <WorkCard
-                                    id={project.id}
-                                    icon={project.title.charAt(0)}
-                                    title={project.title}
-                                    subtitle={project.subtitle}
-                                    description={project.description}
-                                    image={project.image}
-                                    tags={project.tags}
-                                    className="bg-gray-50"
-                                />
-                            </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: prefersReducedMotion ? 12 : 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.6, delay: Math.min(index * 0.06, 0.28) }}
+                                    className="w-full"
+                                >
+                                    <WorkCard
+                                        id={project.id}
+                                        icon={project.title.charAt(0)}
+                                        title={project.title}
+                                        subtitle={project.subtitle}
+                                        description={project.description}
+                                        image={project.image}
+                                        tags={project.tags}
+                                        className="bg-gray-50"
+                                    />
+                                </motion.div>
+                            </div>
                         ))}
                     </div>
             </div>

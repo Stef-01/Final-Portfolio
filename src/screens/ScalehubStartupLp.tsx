@@ -108,18 +108,19 @@ export const ScalehubStartupLp = (): JSX.Element => {
         </div>
       </Suspense>
 
-      {/* Flagship projects — Selected Work case studies */}
-      <div className="relative z-10 bg-white snap-start">
+      {/* Flagship projects — each card snaps individually (header is
+          free-scroll between Timeline and the first card snap). */}
+      <div className="relative z-10 bg-white">
         <LatestWorkSection />
       </div>
 
-      {/* Tinker projects — "On a quest to craft something awesome" draggable cards */}
-      <div className="relative z-10 bg-white py-20 snap-start">
+      {/* Tinker projects — free scroll, not a snap target */}
+      <div className="relative z-10 bg-white py-20">
         <DraggableCardsSection />
       </div>
 
-      {/* About Section (Window & Pills) */}
-      <div className="relative z-10 bg-white snap-start">
+      {/* About Section — free scroll, the bow→pills choreography needs it */}
+      <div className="relative z-10 bg-white">
         <AboutSection />
       </div>
 
