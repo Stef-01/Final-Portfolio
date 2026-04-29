@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ImageWithFallback } from "./ImageWithFallback";
 
 interface WorkCardProps {
     id: string;
@@ -81,9 +82,11 @@ export const WorkCard: React.FC<WorkCardProps> = ({
 
             {/* Image */}
             <div className="relative w-full h-[240px] md:h-[400px] rounded-2xl overflow-hidden transition-transform duration-700 ease-out group-hover:scale-105">
-                <img
+                <ImageWithFallback
                     src={image}
                     alt={title}
+                    fallbackInitial={icon}
+                    wrapperClassName="w-full h-full"
                     className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"

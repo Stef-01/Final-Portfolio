@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
@@ -136,8 +136,10 @@ export const TimelineSection = () => {
     // Map scroll progress to line height (0 to 2021px)
     const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-    // Trigger animations based on line progress
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // Apply progress thresholds. Used on mount (to sync with current scroll
+    // position — useScroll's initial value does NOT fire useMotionValueEvent)
+    // and on every subsequent scroll change.
+    const applyProgress = React.useCallback((latest: number) => {
         setShowAnu(latest > 0.02);
         setShowInternships(latest > 0.08);
         setShowConsulting(latest > 0.08);
@@ -149,7 +151,21 @@ export const TimelineSection = () => {
         setShowHsil(latest > 0.82);
         setShowHopkins(latest > 0.88);
         setShowPava(latest > 0.89);
-    });
+    }, []);
+
+    useMotionValueEvent(scrollYProgress, "change", applyProgress);
+
+    // Sync once on mount: if the user lands on the page already past the
+    // section (browser scroll restoration, deep link, back-nav from project
+    // detail), useMotionValueEvent never fires for the initial value, leaving
+    // every timeline item invisible. Read the current value and apply it.
+    useEffect(() => {
+        applyProgress(scrollYProgress.get());
+        // Re-check after layout settles (scrollYProgress is computed from
+        // target measurements which may not be ready in the first frame).
+        const id = window.setTimeout(() => applyProgress(scrollYProgress.get()), 200);
+        return () => window.clearTimeout(id);
+    }, [applyProgress, scrollYProgress]);
 
     if (isPhoneLayout) {
         return (
