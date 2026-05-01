@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { User, GraduationCap, Briefcase, FlaskConical, Building2, X } from "lucide-react";
+import {
+    User,
+    GraduationCap,
+    Briefcase,
+    FlaskConical,
+    Building2,
+    Users,
+    Package,
+    FileText,
+    Trophy,
+    Heart,
+    X,
+} from "lucide-react";
 import type { NetworkIcon, Role, RoleNetwork } from "../types/roles";
 
 interface RoleNetworkModalProps {
@@ -21,15 +33,28 @@ const iconForType = (type: NetworkIcon) => {
         case "consulting":
         case "institution":
             return Building2;
+        case "team":
+            return Users;
+        case "product":
+            return Package;
+        case "manuscript":
+            return FileText;
+        case "trophy":
+            return Trophy;
+        case "users":
+            return Heart;
         default:
             return User;
     }
 };
 
-// Larger canvas (Round 1) — 30 % more breathing room around every node.
+// Canvas geometry. The previous 520 px height clipped sublabels when nodes
+// were placed at y ≥ 0.85. 560 px gives every layout a comfortable safe
+// zone of x ∈ [0.13, 0.87], y ∈ [0.16, 0.84] for outer nodes that carry
+// both a label and a sublabel.
 const NODE_RADIUS = 42;
 const CANVAS_W = 680;
-const CANVAS_H = 520;
+const CANVAS_H = 560;
 
 // Edge geometry — kept in a helper so node rendering and edge rendering
 // agree about where lines start and end.
