@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
+import { RoleNetworkModal } from "./RoleNetworkModal";
 
 interface RolesGridProps {
   roles: Role[];
@@ -15,6 +16,17 @@ const cardClasses =
   "group relative block overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] transition-transform";
 
 export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
+  const [activeRole, setActiveRole] = useState<Role | null>(null);
+
+  useEffect(() => {
+    if (!activeRole) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveRole(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeRole]);
+
   return (
     <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
       <div className="mx-auto max-w-6xl">
@@ -38,11 +50,28 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
                   <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
                     {role.period}
                   </span>
-                  {role.link && (
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </span>
-                  )}
+                  <div className="relative z-20 flex items-center gap-2">
+                    {role.network && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          setActiveRole(role);
+                        }}
+                        aria-label="View role network"
+                        title="View role network"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white text-gray-700 transition-all duration-200 hover:border-black hover:text-black hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                      >
+                        <Network className="h-4 w-4" strokeWidth={1.5} />
+                      </button>
+                    )}
+                    {role.link && (
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
@@ -97,7 +126,11 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
 
             if (!role.link) {
               return (
-                <motion.div key={role.id} {...animationProps} className={cardClasses}>
+                <motion.div
+                  key={role.id}
+                  {...animationProps}
+                  className={cardClasses}
+                >
                   {body}
                 </motion.div>
               );
@@ -137,6 +170,8 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
           })}
         </div>
       </div>
+
+      <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} />
     </section>
   );
 };

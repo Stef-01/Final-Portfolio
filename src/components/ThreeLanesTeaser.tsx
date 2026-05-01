@@ -29,9 +29,9 @@ const lanes = [
 
 export function ThreeLanesTeaser() {
   return (
-    <section className="w-full bg-white px-6 py-36 md:px-12 md:py-44">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-24 md:grid-cols-3 md:gap-0 md:divide-x md:divide-black/10">
+    <section className="flex min-h-[100svh] w-full items-center bg-white px-6 py-12 md:px-12 md:py-28">
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-black/10">
           {lanes.map((lane, index) => {
             const Icon = lane.icon;
             return (
@@ -52,15 +52,15 @@ export function ThreeLanesTeaser() {
                     className="group flex flex-col items-center text-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-8"
                   >
                     <Icon
-                      className="h-10 w-10 text-black transition-opacity duration-300 group-hover:opacity-60"
+                      className="h-8 w-8 md:h-10 md:w-10 text-black transition-opacity duration-300 group-hover:opacity-60"
                       strokeWidth={1.5}
                     />
 
-                    <h3 className="mt-12 text-6xl md:text-[4rem] font-bold tracking-tight leading-[0.95] text-black transition-opacity duration-300 group-hover:opacity-80">
+                    <h3 className="mt-5 md:mt-12 text-4xl md:text-[4rem] font-bold tracking-tight leading-[0.95] text-black transition-opacity duration-300 group-hover:opacity-80">
                       {lane.title}
                     </h3>
 
-                    <p className="mt-7 max-w-[28ch] text-lg md:text-xl leading-relaxed text-gray-500">
+                    <p className="mt-3 md:mt-7 max-w-[28ch] text-sm md:text-xl leading-relaxed text-gray-500">
                       {lane.summary}
                     </p>
                   </Link>

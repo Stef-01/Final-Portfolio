@@ -5,7 +5,7 @@ import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
 import { SystemsMapSection } from "../components/SystemsMapSection";
-import { RolesGrid } from "../components/RolesGrid";
+import { RolesTimeline } from "../components/RolesTimeline";
 import { researchRoles } from "../types/roles";
 
 export function Research() {
@@ -64,11 +64,11 @@ export function Research() {
         </div>
       </div>
 
-      <RolesGrid
+      <RolesTimeline
         roles={researchRoles}
-        eyebrow="Research Roles"
-        title="Every research role, its own card"
-        intro="Each role below links to outputs, deliverables, and collaborators — from the NOURISH teaching kitchen manuscript in preparation today back to the WHO GOARN strategic plan work that kicked off this portfolio."
+        eyebrow="Research Timeline"
+        title="A line through every research role"
+        intro="Hover the timeline to expand any role. Each one offers two ways in — the case study for outputs and deliverables, and an interactive role network for the collaborators around it."
       />
 
       <PrecisionMedicineSection />

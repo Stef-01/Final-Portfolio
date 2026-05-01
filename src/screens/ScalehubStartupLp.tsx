@@ -9,7 +9,9 @@ import { LatestWorkSection } from "../components/LatestWorkSection";
 import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { DnaHelixOverlay } from "../components/DnaHelixOverlay";
 import { ContactModal } from "../components/ContactModal";
+import { FloatingSocials } from "../components/FloatingSocials";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
+import { useMagneticScroll } from "../hooks/useMagneticScroll";
 
 // Lazy load heavy components
 const SplineBackground = lazy(() =>
@@ -26,6 +28,7 @@ const TimelineSection = lazy(() =>
 export const ScalehubStartupLp = (): JSX.Element => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isPhoneLayout = usePhoneLayout();
+  useMagneticScroll();
 
   const handleViewWork = () => {
     document
@@ -36,7 +39,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
   return (
     <div className="bg-white flex flex-col w-full overflow-x-hidden">
       {/* Hero Section */}
-      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip">
+      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start snap-always">
         <Suspense
           fallback={
             <div
@@ -84,16 +87,16 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* Intro Section (Header) */}
-      <div className="relative z-10 bg-white">
+      <div className="relative z-10 bg-white snap-start snap-always">
         <IntroSection />
       </div>
 
       {/* Three Lanes Teaser — single entry point into Research / Policy / Industry */}
-      <div id="three-lanes" className="relative z-10 bg-white">
+      <div id="three-lanes" className="relative z-10 bg-white snap-start snap-always">
         <ThreeLanesTeaser />
       </div>
 
-      {/* Timeline Section — now reachable without pages of scroll */}
+      {/* Timeline Section — explicitly NOT a snap target (taller than viewport) */}
       <Suspense
         fallback={
           <div className="h-screen w-full bg-white flex items-center justify-center">
@@ -106,17 +109,18 @@ export const ScalehubStartupLp = (): JSX.Element => {
         </div>
       </Suspense>
 
-      {/* Flagship projects — Selected Work case studies */}
+      {/* Flagship projects — each card snaps individually (header is
+          free-scroll between Timeline and the first card snap). */}
       <div className="relative z-10 bg-white">
         <LatestWorkSection />
       </div>
 
-      {/* Tinker projects — "On a quest to craft something awesome" draggable cards */}
+      {/* Tinker projects — free scroll, not a snap target */}
       <div className="relative z-10 bg-white py-20">
         <DraggableCardsSection />
       </div>
 
-      {/* About Section (Window & Pills) */}
+      {/* About Section — free scroll, the bow→pills choreography needs it */}
       <div className="relative z-10 bg-white">
         <AboutSection />
       </div>
@@ -161,22 +165,6 @@ export const ScalehubStartupLp = (): JSX.Element => {
             >
               Presentations
             </Link>
-            <a
-              href="https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://scholar.google.com/citations?user=9Nxhv58AAAAJ&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Google Scholar
-            </a>
           </div>
         </div>
       </footer>
@@ -186,6 +174,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
       />
+
+      {/* LinkedIn + Google Scholar floating icons (replace footer clutter) */}
+      <FloatingSocials />
     </div>
   );
 };

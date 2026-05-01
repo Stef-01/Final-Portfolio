@@ -33,13 +33,13 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         <button
             type="button"
             onClick={handleClick}
-            className={`group relative w-full text-left bg-[#f5f5f5] rounded-3xl p-5 md:p-8 overflow-hidden cursor-pointer transition-all duration-700 ease-out hover:scale-[1.02] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] ${className}`}
+            className={`group relative w-full text-left bg-[#f5f5f5] rounded-3xl p-4 md:p-6 overflow-hidden cursor-pointer transition-all duration-700 ease-out hover:scale-[1.02] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] ${className}`}
         >
             {/* Arrow Icon */}
-            <div className="absolute top-5 right-5 md:top-8 md:right-8 w-12 h-12 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-2 group-hover:-translate-y-2">
+            <div className="absolute top-4 right-4 md:top-6 md:right-6 w-9 h-9 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5">
                 <svg
-                    width="32"
-                    height="32"
+                    width="24"
+                    height="24"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -54,25 +54,25 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             </div>
 
             {/* Content */}
-            <div className="relative z-10 mb-8">
-                <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6 pr-12 md:pr-0">
-                    <div className="w-12 h-12 md:w-14 md:h-14 bg-black rounded-2xl flex items-center justify-center text-white text-xl md:text-2xl font-bold transition-transform duration-500 group-hover:rotate-6">
+            <div className="relative z-10 mb-6">
+                <div className="flex items-center gap-3 mb-4 md:mb-5 pr-10 md:pr-0">
+                    <div className="w-10 h-10 md:w-11 md:h-11 bg-black rounded-xl flex items-center justify-center text-white text-lg md:text-xl font-bold transition-transform duration-500 group-hover:rotate-6">
                         {icon}
                     </div>
                     <div>
-                        <h3 className="text-2xl md:text-4xl font-bold text-black">{title}</h3>
+                        <h3 className="text-xl md:text-3xl font-bold text-black">{title}</h3>
                         {subtitle && (
-                            <p className="mt-1 max-w-xl text-sm md:text-base text-gray-500">{subtitle}</p>
+                            <p className="mt-0.5 max-w-xl text-xs md:text-sm text-gray-500">{subtitle}</p>
                         )}
                     </div>
                 </div>
-                <p className="text-base md:text-lg text-gray-600 max-w-xl leading-relaxed">
+                <p className="text-sm md:text-base text-gray-600 max-w-xl leading-relaxed">
                     {description}
                 </p>
                 {tags.length > 0 && (
-                    <div className="mt-5 flex flex-wrap gap-2">
+                    <div className="mt-4 flex flex-wrap gap-2">
                         {tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="rounded-full border border-black/10 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+                            <span key={tag} className="rounded-full border border-black/10 bg-white/80 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">
                                 {tag}
                             </span>
                         ))}
@@ -81,7 +81,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             </div>
 
             {/* Image */}
-            <div className="relative w-full h-[240px] md:h-[400px] rounded-2xl overflow-hidden transition-transform duration-700 ease-out group-hover:scale-105">
+            <div className="relative w-full h-[180px] md:h-[300px] rounded-2xl overflow-hidden transition-transform duration-700 ease-out group-hover:scale-105">
                 <ImageWithFallback
                     src={image}
                     alt={title}
@@ -90,7 +90,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
                     className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"
-                    sizes="(max-width: 768px) 92vw, 1200px"
+                    sizes="(max-width: 768px) 92vw, 900px"
                 />
             </div>
 

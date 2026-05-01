@@ -1,3 +1,39 @@
+export type NetworkIcon =
+  | "me"
+  | "mortarboard"
+  | "supervisor"
+  | "research"
+  | "consulting"
+  | "institution"
+  | "team"
+  | "product"
+  | "manuscript"
+  | "trophy"
+  | "users";
+
+export interface NetworkNode {
+  id: string;
+  label: string;
+  sublabel?: string;
+  icon: NetworkIcon;
+  /** 0..1 normalised x within the modal canvas */
+  x: number;
+  /** 0..1 normalised y within the modal canvas */
+  y: number;
+}
+
+export interface NetworkEdge {
+  from: string;
+  to: string;
+  /** Hover-revealed description of the relationship */
+  label: string;
+}
+
+export interface RoleNetwork {
+  nodes: NetworkNode[];
+  edges: NetworkEdge[];
+}
+
 export interface Role {
   id: string;
   title: string;
@@ -10,6 +46,7 @@ export interface Role {
   accent: string;
   link?: string;
   featured?: boolean;
+  network?: RoleNetwork;
 }
 
 export const researchRoles: Role[] = [
@@ -30,6 +67,21 @@ export const researchRoles: Role[] = [
     accent: "from-emerald-500 to-lime-400",
     link: "/project/nourish-meal-explorer",
     featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "pi", label: "Stanford PRC PIs", sublabel: "Investigators on the trial", icon: "supervisor", x: 0.5, y: 0.16 },
+        { id: "manuscript", label: "Teaching-kitchen manuscript", sublabel: "Lead authorship — in prep", icon: "manuscript", x: 0.16, y: 0.5 },
+        { id: "cohorts", label: "Community cohorts", sublabel: "Recruitment + curriculum fidelity", icon: "users", x: 0.84, y: 0.5 },
+        { id: "team", label: "Cross-disciplinary team", sublabel: "RDs, behaviour-change, MD investigators", icon: "team", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "pi", label: "Reporting to Stanford PRC PIs on protocol fidelity and study design" },
+        { from: "me", to: "manuscript", label: "Lead-authoring the teaching-kitchen intervention manuscript (in prep)" },
+        { from: "me", to: "cohorts", label: "Coordinating recruitment and curriculum fidelity across community cohorts" },
+        { from: "me", to: "team", label: "Working alongside dietitians, behaviour-change designers, and MD investigators" },
+      ],
+    },
   },
   {
     id: "han-lab",
@@ -47,6 +99,21 @@ export const researchRoles: Role[] = [
     tags: ["Precision Oncology", "Clinical ML", "Annotation"],
     accent: "from-rose-500 to-orange-400",
     link: "/project/precision-oncology",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "pi", label: "Prof. Summer Han", sublabel: "Stanford School of Medicine PI", icon: "supervisor", x: 0.5, y: 0.16 },
+        { id: "pipeline", label: "Annotation pipeline", sublabel: "Tumour-burden labelling at scale", icon: "research", x: 0.16, y: 0.5 },
+        { id: "egfr", label: "EGFR sub-cohort", sublabel: "Mutation-stratified analysis", icon: "research", x: 0.84, y: 0.5 },
+        { id: "manuscripts", label: "Manuscript drafts", sublabel: "Co-authoring oncology outputs", icon: "manuscript", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "pi", label: "Reporting to Prof. Summer Han on the lung-cancer ML programme" },
+        { from: "me", to: "pipeline", label: "Built the tumour-burden annotation pipeline" },
+        { from: "me", to: "egfr", label: "EGFR mutation sub-cohort analysis and modelling" },
+        { from: "me", to: "manuscripts", label: "Co-authoring precision-oncology manuscript drafts" },
+      ],
+    },
   },
   {
     id: "microsoft-hfte",
@@ -65,6 +132,21 @@ export const researchRoles: Role[] = [
     accent: "from-cyan-500 to-blue-500",
     link: "/project/healthcare-from-the-eye",
     featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "stanford", label: "Stanford clinical team", sublabel: "Validation site investigators", icon: "institution", x: 0.5, y: 0.16 },
+        { id: "microsoft", label: "Microsoft Health", sublabel: "Engineering + product", icon: "team", x: 0.84, y: 0.5 },
+        { id: "irb", label: "Validation + IRB", sublabel: "Protocol drafting & approval", icon: "research", x: 0.16, y: 0.5 },
+        { id: "lmic", label: "Global LMIC deployment", sublabel: "Partner health systems", icon: "institution", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "stanford", label: "Aligning Stanford clinical leads on the validation programme" },
+        { from: "me", to: "microsoft", label: "Coordinating Microsoft engineering and product on the device" },
+        { from: "me", to: "irb", label: "Drafting the validation protocol and IRB submissions" },
+        { from: "me", to: "lmic", label: "Building the global deployment readiness framework for LMICs" },
+      ],
+    },
   },
   {
     id: "anu-nceph",
@@ -82,6 +164,52 @@ export const researchRoles: Role[] = [
     tags: ["Indigenous Health", "Implementation", "Meta-analysis"],
     accent: "from-fuchsia-500 to-purple-500",
     link: "/project/indigenous-preventive-care",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        {
+          id: "supervisor",
+          label: "Supervisor",
+          sublabel: "Head of MAE Masters program",
+          icon: "supervisor",
+          x: 0.5,
+          y: 0.14,
+        },
+        {
+          id: "outputs",
+          label: "Research outputs",
+          sublabel: "Consulting + research projects",
+          icon: "research",
+          x: 0.78,
+          y: 0.3,
+        },
+        {
+          id: "phd",
+          label: "PhD student",
+          sublabel: "Mentored to first-author publication",
+          icon: "mortarboard",
+          x: 0.5,
+          y: 0.86,
+        },
+      ],
+      edges: [
+        {
+          from: "me",
+          to: "supervisor",
+          label: "Worked under the Head of MAE Masters in Applied Epidemiology",
+        },
+        {
+          from: "supervisor",
+          to: "outputs",
+          label: "Producing research for consulting work and research projects",
+        },
+        {
+          from: "me",
+          to: "phd",
+          label: "Teaching research skills, meta-analysis, and scoping review methods",
+        },
+      ],
+    },
   },
   {
     id: "who-goarn",
@@ -99,6 +227,21 @@ export const researchRoles: Role[] = [
     tags: ["Global Health", "Surveillance", "ML"],
     accent: "from-slate-700 to-slate-500",
     link: "/project/biothreat-modelling",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "goarn", label: "WHO GOARN secretariat", sublabel: "Geneva — global outbreak response", icon: "institution", x: 0.5, y: 0.16 },
+        { id: "strategy", label: "GOARN 2022–26 plan", sublabel: "Strategic-plan contributions", icon: "manuscript", x: 0.16, y: 0.5 },
+        { id: "wpsar", label: "WPSAR paper (2024)", sublabel: "ML for outbreak surveillance", icon: "manuscript", x: 0.84, y: 0.5 },
+        { id: "ml", label: "Surveillance analytics", sublabel: "Counterterrorism methods → public health", icon: "research", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "goarn", label: "Reporting into the WHO GOARN secretariat in Geneva" },
+        { from: "me", to: "strategy", label: "Drafting sections of the GOARN 2022–26 Strategic Plan" },
+        { from: "me", to: "wpsar", label: "Co-authored WPSAR paper on ML-enabled outbreak surveillance" },
+        { from: "me", to: "ml", label: "Bridging counterterrorism analytics with public-health surveillance" },
+      ],
+    },
   },
 ];
 
@@ -120,6 +263,21 @@ export const industryRoles: Role[] = [
     accent: "from-emerald-500 to-lime-400",
     link: "/project/nourish-meal-explorer",
     featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "cofounders", label: "Co-founders", sublabel: "Stanford-affiliated team", icon: "team", x: 0.5, y: 0.16 },
+        { id: "product", label: "Meal Explorer + AI chef", sublabel: "Prototype + demo", icon: "product", x: 0.16, y: 0.5 },
+        { id: "prc", label: "Stanford PRC", sublabel: "Clinical research alignment", icon: "institution", x: 0.84, y: 0.5 },
+        { id: "users", label: "Community users", sublabel: "Culturally-grounded behaviour change", icon: "users", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "cofounders", label: "Co-founding NOURISH alongside a Stanford-affiliated team" },
+        { from: "me", to: "product", label: "Leading product, design, and the AI features" },
+        { from: "me", to: "prc", label: "Aligning the product with the Stanford PRC clinical research pipeline" },
+        { from: "me", to: "users", label: "Designing for community-grounded, culturally-relevant behaviour change" },
+      ],
+    },
   },
   {
     id: "sous",
@@ -138,6 +296,21 @@ export const industryRoles: Role[] = [
     accent: "from-orange-500 to-amber-400",
     link: "/project/swaad",
     featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "engineering", label: "Engineering team", sublabel: "Vision + craving-parser stack", icon: "team", x: 0.5, y: 0.16 },
+        { id: "product", label: "Sous app", sublabel: "Guided cook flow + skill tree", icon: "product", x: 0.16, y: 0.5 },
+        { id: "engine", label: "Pairing engine", sublabel: "Side-recommendation logic", icon: "research", x: 0.84, y: 0.5 },
+        { id: "users", label: "Home cooks", sublabel: "First-time-confident users", icon: "users", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "engineering", label: "Leading engineering on vision parsing and craving-to-recipe stack" },
+        { from: "me", to: "product", label: "Designing the Sous guided-cook product and skill-tree progression" },
+        { from: "me", to: "engine", label: "Designed the side-pairing recommendation engine" },
+        { from: "me", to: "users", label: "Building cooking confidence for first-time home cooks" },
+      ],
+    },
   },
   {
     id: "adcem-seed",
@@ -156,6 +329,21 @@ export const industryRoles: Role[] = [
     accent: "from-yellow-500 to-orange-500",
     link: "/project/dialysis-device-gtm",
     featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "seed", label: "Stanford SEED partners", sublabel: "GSB engagement leads", icon: "supervisor", x: 0.5, y: 0.16 },
+        { id: "adcem", label: "Adcem Pharma", sublabel: "Nigerian dialysis JV", icon: "institution", x: 0.84, y: 0.5 },
+        { id: "model", label: "JV financial model", sublabel: "Market sizing + unit economics", icon: "research", x: 0.16, y: 0.5 },
+        { id: "lagos", label: "Lagos clinical sites", sublabel: "Operating-plan rollout", icon: "institution", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "seed", label: "Stanford GSB SEED engagement under partner-team mentorship" },
+        { from: "me", to: "adcem", label: "Working alongside Adcem Pharma on the dialysis JV" },
+        { from: "me", to: "model", label: "Built the JV financial model and market-sizing analysis" },
+        { from: "me", to: "lagos", label: "Mapped the clinical operating plan for Lagos rollout" },
+      ],
+    },
   },
   {
     id: "genierx-hsil",
@@ -174,6 +362,21 @@ export const industryRoles: Role[] = [
     accent: "from-sky-500 to-violet-500",
     link: "/project/pgx-llm-copilot",
     featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "hsil", label: "Harvard HSIL", sublabel: "Faculty + judging panel", icon: "supervisor", x: 0.5, y: 0.16 },
+        { id: "team", label: "Founding team", sublabel: "Co-builders across 4 rounds", icon: "team", x: 0.84, y: 0.5 },
+        { id: "prototype", label: "GenieRX prototype", sublabel: "PGx clinical-decision support", icon: "product", x: 0.16, y: 0.5 },
+        { id: "outcome", label: "7 of 3,500", sublabel: "Invited to Venture Building Program", icon: "trophy", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "hsil", label: "Pitched to Harvard HSIL faculty and judges across four rounds" },
+        { from: "me", to: "team", label: "Led the founding team through the four-round competition" },
+        { from: "me", to: "prototype", label: "Built the PGx clinical-decision-support prototype" },
+        { from: "me", to: "outcome", label: "Placed 7th of 3,500 teams → invited into HSIL Venture Building Program" },
+      ],
+    },
   },
   {
     id: "stanford-hospital-consulting",
@@ -191,6 +394,21 @@ export const industryRoles: Role[] = [
     tags: ["QI", "Pediatrics", "Health Systems"],
     accent: "from-blue-500 to-indigo-500",
     link: "/project/ent-readmission-platform",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "ent", label: "Pediatric ENT leads", sublabel: "Stanford Hospital clinicians", icon: "supervisor", x: 0.5, y: 0.16 },
+        { id: "discharge", label: "Discharge protocol", sublabel: "Reliability redesign", icon: "research", x: 0.16, y: 0.5 },
+        { id: "screen", label: "Risk screening", sublabel: "Readmission-risk tool", icon: "research", x: 0.84, y: 0.5 },
+        { id: "platform", label: "ENT platform concept", sublabel: "Long-term system play", icon: "product", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "ent", label: "Working alongside Stanford pediatric ENT clinical leads" },
+        { from: "me", to: "discharge", label: "Drafted the discharge-reliability protocol" },
+        { from: "me", to: "screen", label: "Designed the readmission-risk screening tool" },
+        { from: "me", to: "platform", label: "Concept for an ENT readmission-prevention platform" },
+      ],
+    },
   },
   {
     id: "aetherai-healthrex",
@@ -207,6 +425,21 @@ export const industryRoles: Role[] = [
     ],
     tags: ["Clinical AI", "Commercialization", "Regulatory"],
     accent: "from-fuchsia-500 to-purple-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "aether", label: "AetherAI team", sublabel: "Commercialization leads", icon: "team", x: 0.5, y: 0.16 },
+        { id: "healthrex", label: "Stanford HealthRex", sublabel: "Faculty mentorship", icon: "supervisor", x: 0.84, y: 0.5 },
+        { id: "survey", label: "Clinician survey", sublabel: "50-person needs assessment", icon: "research", x: 0.16, y: 0.5 },
+        { id: "regulatory", label: "Regulatory pathway", sublabel: "FDA + reimbursement analysis", icon: "manuscript", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "aether", label: "Embedded with the AetherAI commercialization team" },
+        { from: "me", to: "healthrex", label: "Mentored by Stanford HealthRex faculty across the engagement" },
+        { from: "me", to: "survey", label: "Ran a 50-clinician needs-assessment survey" },
+        { from: "me", to: "regulatory", label: "FDA and reimbursement pathway analysis for the commercialization roadmap" },
+      ],
+    },
   },
   {
     id: "microsoft-hfte-industry",
@@ -224,6 +457,21 @@ export const industryRoles: Role[] = [
     tags: ["Oculomics", "Deployment", "Global"],
     accent: "from-cyan-500 to-blue-500",
     link: "/project/healthcare-from-the-eye",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "msft", label: "Microsoft Health", sublabel: "Commercial leadership", icon: "supervisor", x: 0.5, y: 0.16 },
+        { id: "lmic", label: "LMIC partners", sublabel: "Health-system networks", icon: "institution", x: 0.84, y: 0.5 },
+        { id: "hospitals", label: "Hospital integrations", sublabel: "System-level rollout playbook", icon: "institution", x: 0.16, y: 0.5 },
+        { id: "regulatory", label: "Regulatory scan", sublabel: "Cross-jurisdiction pathway", icon: "manuscript", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "msft", label: "Aligning with Microsoft Health commercial leadership on deployment" },
+        { from: "me", to: "lmic", label: "Partnership scoping across LMIC health-system networks" },
+        { from: "me", to: "hospitals", label: "Built the hospital-system integration playbook" },
+        { from: "me", to: "regulatory", label: "Cross-jurisdiction regulatory scan for global rollout" },
+      ],
+    },
   },
   {
     id: "stanford-xr",
@@ -240,6 +488,21 @@ export const industryRoles: Role[] = [
     ],
     tags: ["XR", "BCI", "Hackathon"],
     accent: "from-rose-500 to-pink-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "team", label: "Build team", sublabel: "Interdisciplinary co-builders", icon: "team", x: 0.5, y: 0.16 },
+        { id: "social", label: "Social Good prototype", sublabel: "1st place track", icon: "trophy", x: 0.16, y: 0.5 },
+        { id: "bci", label: "BCI prototype", sublabel: "3rd place track", icon: "trophy", x: 0.84, y: 0.5 },
+        { id: "finalist", label: "Overall Finalist", sublabel: "Across the full hackathon", icon: "trophy", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "team", label: "Led an interdisciplinary build team across 48 hours" },
+        { from: "me", to: "social", label: "1st place Social Good — built an immersive health-tech prototype" },
+        { from: "me", to: "bci", label: "3rd place BCI — neural-interface prototype with the team" },
+        { from: "me", to: "finalist", label: "Overall Finalist across the entire Stanford XR Hackathon" },
+      ],
+    },
   },
   {
     id: "nora",
@@ -256,5 +519,20 @@ export const industryRoles: Role[] = [
     ],
     tags: ["Advisory", "Early Stage", "Consumer"],
     accent: "from-teal-500 to-emerald-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "founders", label: "NORA founders", sublabel: "Early-stage founding team", icon: "team", x: 0.5, y: 0.16 },
+        { id: "strategy", label: "Strategy memos", sublabel: "Product + clinical direction", icon: "manuscript", x: 0.16, y: 0.5 },
+        { id: "fundraise", label: "Fundraising narrative", sublabel: "Investor story shaping", icon: "manuscript", x: 0.84, y: 0.5 },
+        { id: "partners", label: "Healthcare partners", sublabel: "Introductions + scoping", icon: "institution", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "founders", label: "Advising the NORA founding team on early-stage strategy" },
+        { from: "me", to: "strategy", label: "Writing product and clinical strategy memos" },
+        { from: "me", to: "fundraise", label: "Shaping the investor narrative and fundraising story" },
+        { from: "me", to: "partners", label: "Healthcare partnership introductions and scoping" },
+      ],
+    },
   },
 ];
