@@ -1,12 +1,6 @@
-import { motion } from "motion/react";
-import {
-    Presentation as PresentationIcon,
-    MapPin,
-    Calendar,
-    Paperclip,
-    ArrowLeft,
-} from "lucide-react";
 import { useState } from "react";
+import { motion } from "motion/react";
+import { ArrowLeft, MapPin, Calendar, Paperclip } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
@@ -18,42 +12,27 @@ interface ConferenceFile {
     name: string;
 }
 
-interface Presentation {
+interface Talk {
     title: string;
     venue?: string;
     role?: string;
     topic: string;
     collaborators?: string;
+    location?: string;
     date: string;
     file: ConferenceFile;
 }
 
-interface Conference {
-    title: string;
-    venue?: string;
-    role: string;
-    topic: string;
-    collaborators: string;
-    location: string;
-    date: string;
-    file: ConferenceFile;
-}
-
-const conferences: Conference[] = [
+const conferences: Talk[] = [
     {
         title: "TETHICON",
         venue: "Stanford McCoy Family Center for Ethics in Society",
         role: "Co-Presenter",
-        topic:
-            "Detecting AI-Engineered Biothreats with Dynamic Threat Modelling",
-        collaborators:
-            "Mathew E., Thottunkal S., Saravanan V., Nguyen T.",
+        topic: "Detecting AI-Engineered Biothreats with Dynamic Threat Modelling",
+        collaborators: "Mathew E., Thottunkal S., Saravanan V., Nguyen T.",
         location: "Stanford, CA",
         date: "2025",
-        file: {
-            type: "pdf" as const,
-            name: "TETHICON_AI_Biothreats_Presentation.pdf",
-        },
+        file: { type: "pdf", name: "TETHICON_AI_Biothreats_Presentation.pdf" },
     },
     {
         title: "Lowitja Indigenous Health and Wellbeing Conference",
@@ -63,39 +42,27 @@ const conferences: Conference[] = [
         collaborators: "Yadav U., Thottunkal S., Agostino J.",
         location: "Australia",
         date: "2025",
-        file: {
-            type: "pdf" as const,
-            name: "Lowitja_Indigenous_Health_Poster.pdf",
-        },
+        file: { type: "pdf", name: "Lowitja_Indigenous_Health_Poster.pdf" },
     },
     {
-        title:
-            "Stanford Centre for Innovation in Global Health Conference",
+        title: "Stanford Centre for Innovation in Global Health Conference",
         venue: "Stanford University",
         role: "Presenter",
-        topic:
-            "Microsoft Healthcare from the Eye, a new paradigm in Oculomics",
+        topic: "Microsoft Healthcare from the Eye, a new paradigm in Oculomics",
         collaborators: "Thottunkal S., Chang K., Nag A., Fan J.",
         location: "Stanford, CA",
         date: "2025",
-        file: {
-            type: "video" as const,
-            name: "Healthcare_Eye_Oculomics_Presentation.mp4",
-        },
+        file: { type: "video", name: "Healthcare_Eye_Oculomics_Presentation.mp4" },
     },
     {
         title: "AMSA Global Health Conference",
         role: "Presenter",
-        topic:
-            "A Scoping review of syndemic factors impacting marginalized communities with NCDs",
+        topic: "A Scoping review of syndemic factors impacting marginalized communities with NCDs",
         collaborators:
-            "Thottunkal, S., Pathak, N., Thottunkal, J., Philip, P. V., Ji, J., Mallam, M., Dandekar, T., Yang, S., Madan, M., & Yadav, U. N.",
+            "Thottunkal S., Pathak N., Thottunkal J., Philip P. V., Ji J., Mallam M., Dandekar T., Yang S., Madan M., Yadav U. N.",
         location: "Australia",
         date: "2024",
-        file: {
-            type: "pdf" as const,
-            name: "AMSA_Syndemic_NCDs_Presentation.pdf",
-        },
+        file: { type: "pdf", name: "AMSA_Syndemic_NCDs_Presentation.pdf" },
     },
     {
         title: "CEI Evidence and Implementation Summit",
@@ -105,35 +72,24 @@ const conferences: Conference[] = [
         collaborators: "Yadav U., Thottunkal S., Agostino J.",
         location: "Australia",
         date: "2023",
-        file: {
-            type: "pdf" as const,
-            name: "CEI_Realist_Review_Poster.pdf",
-        },
+        file: { type: "pdf", name: "CEI_Realist_Review_Poster.pdf" },
     },
 ];
 
-const presentations: Presentation[] = [
+const invited: Talk[] = [
     {
         title: "Stanford Prevention Research Centre Grand Rounds",
         venue: "Stanford Medicine",
         topic:
             "Development and evaluation of an LLM Pharmacogenomics tool to integrate PGx in everyday clinical decision making",
         date: "2025",
-        file: {
-            // url: "https://example.com/stanford-pgx-llm.pdf",
-            type: "pdf" as const,
-            name: "Stanford_PGx_LLM_Grand_Rounds.pdf",
-        },
+        file: { type: "pdf", name: "Stanford_PGx_LLM_Grand_Rounds.pdf" },
     },
     {
         title: "CPIC Junior Investigators Webinar",
         topic: "Development of a Pharmacogenomics LLM model",
         date: "2025",
-        file: {
-            // url: "https://example.com/cpic-webinar.mp4",
-            type: "video" as const,
-            name: "CPIC_PGx_LLM_Webinar.mp4",
-        },
+        file: { type: "video", name: "CPIC_PGx_LLM_Webinar.mp4" },
     },
     {
         title: "Stanford CARE Lung Cancer Summit",
@@ -142,11 +98,7 @@ const presentations: Presentation[] = [
         topic:
             "Pharmacogenomics Applications for Medication Management in Precision Oncology",
         date: "2025",
-        file: {
-            // url: "https://example.com/care-lung-cancer.pdf",
-            type: "pdf" as const,
-            name: "CARE_Lung_Cancer_PGx_Presentation.pdf",
-        },
+        file: { type: "pdf", name: "CARE_Lung_Cancer_PGx_Presentation.pdf" },
     },
     {
         title: "QUAD Fellowship Summit",
@@ -154,18 +106,97 @@ const presentations: Presentation[] = [
             "Repurposing ML topic modelling techniques from counterterrorism approaches, for Infectious Disease Surveillance",
         collaborators: "Thottunkal S., Vigil B., Matsumoto S.",
         date: "2025",
-        file: {
-            // url: "https://example.com/quad-ml-surveillance.pdf",
-            type: "pdf" as const,
-            name: "QUAD_ML_Surveillance_Presentation.pdf",
-        },
+        file: { type: "pdf", name: "QUAD_ML_Surveillance_Presentation.pdf" },
     },
 ];
 
+const cardClasses =
+    "group relative block overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]";
+
+interface TalkSectionProps {
+    title: string;
+    eyebrow: string;
+    talks: Talk[];
+    onFileClick: (file: ConferenceFile) => void;
+}
+
+const TalkSection = ({ title, eyebrow, talks, onFileClick }: TalkSectionProps) => (
+    <section className="w-full bg-white px-4 pt-10 pb-12 md:px-8 md:pt-16 md:pb-20">
+        <div className="mx-auto max-w-6xl">
+            <div className="mb-10 max-w-3xl">
+                <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">{eyebrow}</p>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-black">
+                    {title}
+                </h2>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2">
+                {talks.map((talk, index) => (
+                    <motion.div
+                        key={`${talk.title}-${talk.date}`}
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-60px" }}
+                        transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25) }}
+                        className={cardClasses}
+                    >
+                        <div className="flex items-start justify-between gap-4 mb-5">
+                            <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                                {talk.date}
+                            </span>
+                            {talk.role && (
+                                <span className="rounded-full border border-black/15 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+                                    {talk.role}
+                                </span>
+                            )}
+                        </div>
+
+                        {talk.venue && (
+                            <p className="text-sm uppercase tracking-[0.2em] text-gray-500">{talk.venue}</p>
+                        )}
+                        <h3 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight text-black leading-tight">
+                            {talk.title}
+                        </h3>
+
+                        <p className="mt-5 text-base leading-relaxed text-gray-700">{talk.topic}</p>
+
+                        {talk.collaborators && (
+                            <p className="mt-4 text-sm italic text-gray-500">{talk.collaborators}</p>
+                        )}
+
+                        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-gray-500">
+                            {talk.location && (
+                                <span className="inline-flex items-center gap-1.5">
+                                    <MapPin className="h-3.5 w-3.5" />
+                                    {talk.location}
+                                </span>
+                            )}
+                            <span className="inline-flex items-center gap-1.5">
+                                <Calendar className="h-3.5 w-3.5" />
+                                {talk.date}
+                            </span>
+                        </div>
+
+                        {talk.file?.url && (
+                            <button
+                                type="button"
+                                onClick={() => onFileClick(talk.file)}
+                                className="mt-6 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                            >
+                                <Paperclip className="h-3.5 w-3.5" />
+                                View {talk.file.type.toUpperCase()}
+                            </button>
+                        )}
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
 export function Presentations() {
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedFile, setSelectedFile] =
-        useState<ConferenceFile | null>(null);
+    const [selectedFile, setSelectedFile] = useState<ConferenceFile | null>(null);
 
     const handleFileClick = (file: ConferenceFile) => {
         setSelectedFile(file);
@@ -173,175 +204,68 @@ export function Presentations() {
     };
 
     return (
-        <div className="min-h-screen bg-white text-gray-900 py-20 px-8">
+        <div className="min-h-[100svh] bg-white text-gray-900">
             <FloatingBackButton />
-            <div className="max-w-[1200px] mx-auto">
-                <Link
-                    to="/"
-                    className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
-                >    <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                    <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">Back to Home</span>
-                </Link>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <div className="flex items-center gap-4 mb-12">
-                        <PresentationIcon className="w-12 h-12 text-blue-600" />
-                        <h1 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[72px]">
-                            Presentations
+            <div className="px-4 pt-16 md:pt-20 md:px-8">
+                <div className="max-w-6xl mx-auto">
+                    <Link
+                        to="/"
+                        className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors mb-12 group"
+                    >
+                        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+                        <span className="text-[18px] font-medium">Back to Home</span>
+                    </Link>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 28 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                    >
+                        <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">Speaking</p>
+                        <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-black leading-[0.95]">
+                            Talks, posters, and grand rounds
                         </h1>
-                    </div>
+                        <p className="mt-6 max-w-3xl text-base md:text-xl leading-relaxed text-gray-600">
+                            Conference presentations and invited talks across precision medicine,
+                            pharmacogenomics, oculomics, indigenous health, and biosecurity — work
+                            shared at Stanford, AMSA, Lowitja, CEI, CPIC, and the QUAD Fellowship.
+                        </p>
 
-                    {/* Conference Presentations */}
-                    <section className="mb-16">
-                        <h2 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[36px] mb-8 text-blue-600">
-                            Conference Presentations
-                        </h2>
-
-                        <div className="grid gap-6">
-                            {conferences.map((conf, index) => (
-                                <motion.div
-                                    key={`${conf.title}-${conf.date}`}
-                                    className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-600 transition-all group"
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.2 + index * 0.1 }}
-                                    whileHover={{ x: 10 }}
+                        <div className="mt-10 grid gap-4 md:grid-cols-3">
+                            {[
+                                { k: String(conferences.length), v: "conference presentations" },
+                                { k: String(invited.length), v: "invited talks & grand rounds" },
+                                { k: "5+", v: "institutions across 3 countries" },
+                            ].map((stat) => (
+                                <div
+                                    key={stat.v}
+                                    className="rounded-[28px] border border-black/10 bg-[#fafafa] px-6 py-5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]"
                                 >
-                                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                                        <div className="flex-1">
-                                            <div className="flex items-center gap-3 mb-3">
-                                                <span className="inline-block px-4 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full text-[14px] font-['Clash_Grotesk',_sans-serif] font-semibold">
-                                                    {conf.role}
-                                                </span>
-                                            </div>
-                                            <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[28px] mb-2 group-hover:text-blue-600 transition-colors">
-                                                {conf.title}
-                                            </h3>
-                                            {conf.venue && (
-                                                <p className="text-gray-500 text-[18px] mb-3">
-                                                    {conf.venue}
-                                                </p>
-                                            )}
-                                            <p className="font-['Clash_Grotesk',_sans-serif] font-medium text-[19px] text-gray-800 mb-3 leading-relaxed">
-                                                {conf.topic}
-                                            </p>
-                                            {conf.collaborators && (
-                                                <p className="text-gray-500 text-[15px] mb-4 italic">
-                                                    {conf.collaborators}
-                                                </p>
-                                            )}
-                                            <div className="flex flex-wrap gap-4 text-gray-500">
-                                                <div className="flex items-center gap-2">
-                                                    <MapPin className="w-5 h-5" />
-                                                    <span className="text-[16px]">
-                                                        {conf.location}
-                                                    </span>
-                                                </div>
-                                                <div className="flex items-center gap-2">
-                                                    <Calendar className="w-5 h-5" />
-                                                    <span className="text-[16px]">
-                                                        {conf.date}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {conf.file?.url && (
-                                            <motion.button
-                                                onClick={() =>
-                                                    handleFileClick(conf.file)
-                                                }
-                                                className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.95 }}
-                                            >
-                                                <Paperclip className="w-5 h-5" />
-                                                <span className="font-['Clash_Grotesk',_sans-serif] font-medium">
-                                                    View {conf.file.type.toUpperCase()}
-                                                </span>
-                                            </motion.button>
-                                        )}
-                                    </div>
-                                </motion.div>
+                                    <p className="text-4xl md:text-5xl font-bold tracking-tight text-black">
+                                        {stat.k}
+                                    </p>
+                                    <p className="mt-2 text-sm md:text-base text-gray-600">{stat.v}</p>
+                                </div>
                             ))}
                         </div>
-                    </section>
-
-                    {/* Invited Presentations */}
-                    <section>
-                        <h2 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[36px] mb-8 text-purple-600">
-                            Invited Presentations & Grand Rounds
-                        </h2>
-
-                        <div className="grid gap-6">
-                            {presentations.map((pres, index) => (
-                                <motion.div
-                                    key={`${pres.title}-${pres.date}`}
-                                    className="bg-white border border-gray-200 rounded-2xl p-8 hover:border-purple-600 transition-all group"
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 0.2 + index * 0.1 }}
-                                    whileHover={{ x: 10 }}
-                                >
-                                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                                        <div className="flex-1">
-                                            {pres.role && (
-                                                <div className="flex items-center gap-3 mb-3">
-                                                    <span className="inline-block px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full text-[14px] font-['Clash_Grotesk',_sans-serif] font-semibold">
-                                                        {pres.role}
-                                                    </span>
-                                                </div>
-                                            )}
-                                            <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[28px] mb-2 group-hover:text-purple-600 transition-colors">
-                                                {pres.title}
-                                            </h3>
-                                            {pres.venue && (
-                                                <p className="text-gray-500 text-[18px] mb-3">
-                                                    {pres.venue}
-                                                </p>
-                                            )}
-                                            <p className="font-['Clash_Grotesk',_sans-serif] font-medium text-[19px] text-gray-800 mb-3 leading-relaxed">
-                                                {pres.topic}
-                                            </p>
-                                            {pres.collaborators && (
-                                                <p className="text-gray-500 text-[15px] mb-4 italic">
-                                                    {pres.collaborators}
-                                                </p>
-                                            )}
-                                            <div className="flex flex-wrap gap-4 text-gray-500">
-                                                <div className="flex items-center gap-2">
-                                                    <Calendar className="w-5 h-5" />
-                                                    <span className="text-[16px]">
-                                                        {pres.date}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {pres.file?.url && (
-                                            <motion.button
-                                                onClick={() =>
-                                                    handleFileClick(pres.file)
-                                                }
-                                                className="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.95 }}
-                                            >
-                                                <Paperclip className="w-5 h-5" />
-                                                <span className="font-['Clash_Grotesk',_sans-serif] font-medium">
-                                                    View {pres.file.type.toUpperCase()}
-                                                </span>
-                                            </motion.button>
-                                        )}
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </section>
-                </motion.div>
+                    </motion.div>
+                </div>
             </div>
+
+            <TalkSection
+                eyebrow="Conferences"
+                title="Conference presentations"
+                talks={conferences}
+                onFileClick={handleFileClick}
+            />
+
+            <TalkSection
+                eyebrow="Invited"
+                title="Invited talks & grand rounds"
+                talks={invited}
+                onFileClick={handleFileClick}
+            />
 
             {selectedFile && (
                 <FileViewerModal
@@ -353,7 +277,6 @@ export function Presentations() {
                 />
             )}
 
-            {/* Contact Section */}
             <ContactSection />
         </div>
     );

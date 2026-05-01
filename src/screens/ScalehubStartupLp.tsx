@@ -9,6 +9,7 @@ import { LatestWorkSection } from "../components/LatestWorkSection";
 import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { DnaHelixOverlay } from "../components/DnaHelixOverlay";
 import { ContactModal } from "../components/ContactModal";
+import { FloatingSocials } from "../components/FloatingSocials";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import { useMagneticScroll } from "../hooks/useMagneticScroll";
 
@@ -164,22 +165,6 @@ export const ScalehubStartupLp = (): JSX.Element => {
             >
               Presentations
             </Link>
-            <a
-              href="https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://scholar.google.com/citations?user=9Nxhv58AAAAJ&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Google Scholar
-            </a>
           </div>
         </div>
       </footer>
@@ -189,6 +174,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
       />
+
+      {/* LinkedIn + Google Scholar floating icons (replace footer clutter) */}
+      <FloatingSocials />
     </div>
   );
 };
