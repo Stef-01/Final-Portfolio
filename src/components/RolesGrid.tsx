@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
+import { RoleNetworkModal } from "./RoleNetworkModal";
 
 interface RolesGridProps {
   roles: Role[];
@@ -11,10 +12,39 @@ interface RolesGridProps {
   intro: string;
 }
 
+const HOVER_OPEN_MS = 320;
+
 const cardClasses =
   "group relative block overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] transition-transform";
 
 export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
+  const [activeRole, setActiveRole] = useState<Role | null>(null);
+  const openTimer = useRef<number | null>(null);
+
+  const scheduleOpen = (role: Role) => {
+    if (!role.network) return;
+    if (openTimer.current) window.clearTimeout(openTimer.current);
+    openTimer.current = window.setTimeout(() => {
+      setActiveRole(role);
+    }, HOVER_OPEN_MS);
+  };
+
+  const cancelOpen = () => {
+    if (openTimer.current) {
+      window.clearTimeout(openTimer.current);
+      openTimer.current = null;
+    }
+  };
+
+  useEffect(() => {
+    if (!activeRole) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveRole(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeRole]);
+
   return (
     <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
       <div className="mx-auto max-w-6xl">
@@ -38,11 +68,21 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
                   <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
                     {role.period}
                   </span>
-                  {role.link && (
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </span>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {role.network && (
+                      <span
+                        className="inline-flex h-10 items-center gap-1.5 rounded-full border border-black/15 bg-white px-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500"
+                        title="Hover the card to open the role network"
+                      >
+                        <Network className="h-3.5 w-3.5" /> Network
+                      </span>
+                    )}
+                    {role.link && (
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                        <ArrowUpRight className="h-4 w-4" />
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
@@ -95,9 +135,21 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
               },
             } as const;
 
+            const hoverProps = role.network
+              ? {
+                  onMouseEnter: () => scheduleOpen(role),
+                  onMouseLeave: cancelOpen,
+                }
+              : {};
+
             if (!role.link) {
               return (
-                <motion.div key={role.id} {...animationProps} className={cardClasses}>
+                <motion.div
+                  key={role.id}
+                  {...animationProps}
+                  {...hoverProps}
+                  className={cardClasses}
+                >
                   {body}
                 </motion.div>
               );
@@ -113,6 +165,7 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...animationProps}
+                  {...hoverProps}
                   className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
                 >
                   {body}
@@ -124,6 +177,7 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
               <motion.div
                 key={role.id}
                 {...animationProps}
+                {...hoverProps}
                 className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
               >
                 <Link
@@ -137,6 +191,8 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
           })}
         </div>
       </div>
+
+      <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} />
     </section>
   );
 };

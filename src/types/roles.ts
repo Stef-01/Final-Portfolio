@@ -1,3 +1,34 @@
+export type NetworkIcon =
+  | "me"
+  | "mortarboard"
+  | "supervisor"
+  | "research"
+  | "consulting"
+  | "institution";
+
+export interface NetworkNode {
+  id: string;
+  label: string;
+  sublabel?: string;
+  icon: NetworkIcon;
+  /** 0..1 normalised x within the modal canvas */
+  x: number;
+  /** 0..1 normalised y within the modal canvas */
+  y: number;
+}
+
+export interface NetworkEdge {
+  from: string;
+  to: string;
+  /** Hover-revealed description of the relationship */
+  label: string;
+}
+
+export interface RoleNetwork {
+  nodes: NetworkNode[];
+  edges: NetworkEdge[];
+}
+
 export interface Role {
   id: string;
   title: string;
@@ -10,6 +41,7 @@ export interface Role {
   accent: string;
   link?: string;
   featured?: boolean;
+  network?: RoleNetwork;
 }
 
 export const researchRoles: Role[] = [
@@ -82,6 +114,52 @@ export const researchRoles: Role[] = [
     tags: ["Indigenous Health", "Implementation", "Meta-analysis"],
     accent: "from-fuchsia-500 to-purple-500",
     link: "/project/indigenous-preventive-care",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        {
+          id: "supervisor",
+          label: "Supervisor",
+          sublabel: "Head of MAE Masters program",
+          icon: "supervisor",
+          x: 0.5,
+          y: 0.14,
+        },
+        {
+          id: "outputs",
+          label: "Research outputs",
+          sublabel: "Consulting + research projects",
+          icon: "research",
+          x: 0.78,
+          y: 0.3,
+        },
+        {
+          id: "phd",
+          label: "PhD student",
+          sublabel: "Mentored to first-author publication",
+          icon: "mortarboard",
+          x: 0.5,
+          y: 0.86,
+        },
+      ],
+      edges: [
+        {
+          from: "me",
+          to: "supervisor",
+          label: "Worked under the Head of MAE Masters in Applied Epidemiology",
+        },
+        {
+          from: "supervisor",
+          to: "outputs",
+          label: "Producing research for consulting work and research projects",
+        },
+        {
+          from: "me",
+          to: "phd",
+          label: "Teaching research skills, meta-analysis, and scoping review methods",
+        },
+      ],
+    },
   },
   {
     id: "who-goarn",
