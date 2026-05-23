@@ -97,7 +97,7 @@ export const DraggableCardsSection = () => {
             ...layout,
             projectId: project?.id,
             title: project?.title ?? "Selected Work",
-            subtitle: project?.tags.slice(0, 2).join(" • ") ?? "Health systems design",
+            subtitle: project?.tags?.slice(0, 2).join(" • ") ?? "Health systems design",
             image: project?.image ?? "",
         };
     });

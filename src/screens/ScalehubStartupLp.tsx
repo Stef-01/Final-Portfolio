@@ -12,6 +12,7 @@ import { ContactModal } from "../components/ContactModal";
 import { FloatingSocials } from "../components/FloatingSocials";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import { useMagneticScroll } from "../hooks/useMagneticScroll";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 // Lazy load heavy components
 const SplineBackground = lazy(() =>
@@ -28,12 +29,16 @@ const TimelineSection = lazy(() =>
 export const ScalehubStartupLp = (): JSX.Element => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isPhoneLayout = usePhoneLayout();
+  const prefersReducedMotion = usePrefersReducedMotion();
   useMagneticScroll();
 
   const handleViewWork = () => {
     document
       .getElementById("three-lanes")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      ?.scrollIntoView({
+        behavior: prefersReducedMotion ? "instant" : "smooth",
+        block: "start",
+      });
   };
 
   return (

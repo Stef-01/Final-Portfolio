@@ -11,6 +11,20 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     const [emailCopied, setEmailCopied] = useState(false);
     const isPhoneLayout = usePhoneLayout();
     const closeButtonRef = useRef<HTMLButtonElement>(null);
+    const onCloseRef = useRef(onClose);
+    const copyTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+    // Keep the ref in sync without triggering effects
+    useEffect(() => {
+        onCloseRef.current = onClose;
+    });
+
+    // Clean up timers on unmount
+    useEffect(() => {
+        return () => {
+            if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+        };
+    }, []);
 
     const email = "stefan01@stanford.edu";
     const linkedinUrl = "https://www.linkedin.com/in/stefan-thottunkal-a391a2199?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
@@ -24,7 +38,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         const previouslyFocused = document.activeElement as HTMLElement | null;
         const handleEscape = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
-                onClose();
+                onCloseRef.current();
             }
         };
 
@@ -37,7 +51,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             window.removeEventListener("keydown", handleEscape);
             previouslyFocused?.focus?.();
         };
-    }, [isOpen, onClose]);
+    }, [isOpen]);
 
     const fallbackCopy = () => {
         const textArea = document.createElement("textarea");
@@ -59,14 +73,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 fallbackCopy();
             }
             setEmailCopied(true);
-            setTimeout(() => {
+            if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+            copyTimerRef.current = setTimeout(() => {
                 setEmailCopied(false);
             }, 2000);
         } catch (err) {
             try {
                 fallbackCopy();
                 setEmailCopied(true);
-                setTimeout(() => {
+                if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+                copyTimerRef.current = setTimeout(() => {
                     setEmailCopied(false);
                 }, 2000);
             } catch (fallbackError) {

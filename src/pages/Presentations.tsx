@@ -32,7 +32,7 @@ const conferences: Talk[] = [
         collaborators: "Mathew E., Thottunkal S., Saravanan V., Nguyen T.",
         location: "Stanford, CA",
         date: "2025",
-        file: { type: "pdf", name: "TETHICON_AI_Biothreats_Presentation.pdf" },
+        file: { url: "/files/TETHICON_AI_Biothreats_Presentation.pdf", type: "pdf", name: "TETHICON_AI_Biothreats_Presentation.pdf" },
     },
     {
         title: "Lowitja Indigenous Health and Wellbeing Conference",
@@ -42,7 +42,7 @@ const conferences: Talk[] = [
         collaborators: "Yadav U., Thottunkal S., Agostino J.",
         location: "Australia",
         date: "2025",
-        file: { type: "pdf", name: "Lowitja_Indigenous_Health_Poster.pdf" },
+        file: { url: "/files/Lowitja_Indigenous_Health_Poster.pdf", type: "pdf", name: "Lowitja_Indigenous_Health_Poster.pdf" },
     },
     {
         title: "Stanford Centre for Innovation in Global Health Conference",
@@ -52,7 +52,7 @@ const conferences: Talk[] = [
         collaborators: "Thottunkal S., Chang K., Nag A., Fan J.",
         location: "Stanford, CA",
         date: "2025",
-        file: { type: "video", name: "Healthcare_Eye_Oculomics_Presentation.mp4" },
+        file: { url: "/files/Healthcare_Eye_Oculomics_Presentation.mp4", type: "video", name: "Healthcare_Eye_Oculomics_Presentation.mp4" },
     },
     {
         title: "AMSA Global Health Conference",
@@ -62,7 +62,7 @@ const conferences: Talk[] = [
             "Thottunkal S., Pathak N., Thottunkal J., Philip P. V., Ji J., Mallam M., Dandekar T., Yang S., Madan M., Yadav U. N.",
         location: "Australia",
         date: "2024",
-        file: { type: "pdf", name: "AMSA_Syndemic_NCDs_Presentation.pdf" },
+        file: { url: "/files/AMSA_Syndemic_NCDs_Presentation.pdf", type: "pdf", name: "AMSA_Syndemic_NCDs_Presentation.pdf" },
     },
     {
         title: "CEI Evidence and Implementation Summit",
@@ -72,7 +72,7 @@ const conferences: Talk[] = [
         collaborators: "Yadav U., Thottunkal S., Agostino J.",
         location: "Australia",
         date: "2023",
-        file: { type: "pdf", name: "CEI_Realist_Review_Poster.pdf" },
+        file: { url: "/files/CEI_Realist_Review_Poster.pdf", type: "pdf", name: "CEI_Realist_Review_Poster.pdf" },
     },
 ];
 
@@ -83,13 +83,13 @@ const invited: Talk[] = [
         topic:
             "Development and evaluation of an LLM Pharmacogenomics tool to integrate PGx in everyday clinical decision making",
         date: "2025",
-        file: { type: "pdf", name: "Stanford_PGx_LLM_Grand_Rounds.pdf" },
+        file: { url: "/files/Stanford_PGx_LLM_Grand_Rounds.pdf", type: "pdf", name: "Stanford_PGx_LLM_Grand_Rounds.pdf" },
     },
     {
         title: "CPIC Junior Investigators Webinar",
         topic: "Development of a Pharmacogenomics LLM model",
         date: "2025",
-        file: { type: "video", name: "CPIC_PGx_LLM_Webinar.mp4" },
+        file: { url: "/files/CPIC_PGx_LLM_Webinar.mp4", type: "video", name: "CPIC_PGx_LLM_Webinar.mp4" },
     },
     {
         title: "Stanford CARE Lung Cancer Summit",
@@ -98,7 +98,7 @@ const invited: Talk[] = [
         topic:
             "Pharmacogenomics Applications for Medication Management in Precision Oncology",
         date: "2025",
-        file: { type: "pdf", name: "CARE_Lung_Cancer_PGx_Presentation.pdf" },
+        file: { url: "/files/CARE_Lung_Cancer_PGx_Presentation.pdf", type: "pdf", name: "CARE_Lung_Cancer_PGx_Presentation.pdf" },
     },
     {
         title: "QUAD Fellowship Summit",
@@ -106,7 +106,7 @@ const invited: Talk[] = [
             "Repurposing ML topic modelling techniques from counterterrorism approaches, for Infectious Disease Surveillance",
         collaborators: "Thottunkal S., Vigil B., Matsumoto S.",
         date: "2025",
-        file: { type: "pdf", name: "QUAD_ML_Surveillance_Presentation.pdf" },
+        file: { url: "/files/QUAD_ML_Surveillance_Presentation.pdf", type: "pdf", name: "QUAD_ML_Surveillance_Presentation.pdf" },
     },
 ];
 

@@ -850,3 +850,427 @@ That means the best final set is:
 - Dialysis Device Market Entry
 
 This set best represents the actual scale and seriousness of Stefan's work while preserving strong visual and interactive potential inside the current site system.
+
+---
+
+# Final Site Stabilization Plan
+
+This section extends the project-panel planning work into a final implementation plan for fixing live bugs, improving performance, and polishing the current site before adding more portfolio panels.
+
+The priority is:
+1. restore broken user-facing behavior
+2. remove scroll, modal, and animation jank
+3. close accessibility and edge-case gaps
+4. polish the visual system without changing the portfolio's strategic direction
+
+## Critical Bug Appraisal
+
+Audit scope: full-codebase review across 37 source files.
+
+### High Severity - Fix First
+
+#### 1. Malformed base typography selector
+
+File:
+- `src/styles/globals.css`
+
+Issue:
+- The base typography rule uses a malformed `:where()` / `:not()` / `:has()` selector.
+- Because the selector is invalid, browsers may drop the whole typography block.
+- This can silently remove intended base styling for `h1`, `h2`, `h3`, `h4`, `p`, `label`, `button`, and `input`.
+
+Fix:
+- Replace the complex selector guard with explicit element-level selectors.
+- Keep Tailwind utility classes as the override path.
+- Avoid using nested `:has()` logic for base typography.
+
+Implementation direction:
+
+```css
+:where(h1:not([class*="text-"])) {
+  /* base h1 styles */
+}
+
+:where(p:not([class*="text-"])) {
+  /* base paragraph styles */
+}
+```
+
+Validation:
+- Run the app locally and inspect headings, labels, buttons, and inputs.
+- Confirm no global typography rule is invalid in browser devtools.
+- Confirm Tailwind text utilities still override the base styles.
+
+#### 2. Presentations page file viewer buttons never render
+
+File:
+- `src/pages/Presentations.tsx`
+
+Issue:
+- Conference file objects define `type` and `name`, but no `url`.
+- The render guard checks `talk.file?.url`, so "View PDF" and "View Video" buttons never appear.
+- `FileViewerModal` would receive `undefined` as `fileUrl`.
+
+Fix:
+- Add `url` to every file object that should be viewable.
+- Put actual assets under `public/files/` or use existing public asset paths.
+- Keep the guard, but make it meaningful by requiring both `name` and `url`.
+
+Implementation direction:
+
+```ts
+file: {
+  url: "/files/TETHICON_AI_Biothreats_Presentation.pdf",
+  type: "pdf",
+  name: "TETHICON AI Biothreats Presentation"
+}
+```
+
+Validation:
+- Confirm every presentation with a file renders a visible "View PDF" or "View Video" button.
+- Open each modal and verify the embedded file loads.
+- Confirm missing files fail gracefully with useful fallback copy.
+
+## Medium Severity - Fix After Critical Bugs
+
+### 3. Modal effect dependency loops
+
+Files:
+- `src/components/ContactModal.tsx`
+- `src/components/FileViewerModal.tsx`
+
+Issue:
+- Effects include `onClose` in dependency arrays.
+- Parent components pass inline callbacks, creating new references on each render.
+- While open, effects can repeatedly re-run, toggling body overflow, listeners, and focus state.
+
+Fix:
+- Store `onClose` in a ref inside each modal and use the ref from listeners.
+- Keep modal setup effects dependent on `isOpen` only where possible.
+- Alternatively, wrap parent callbacks in `useCallback`, but modal-level stability is more robust.
+
+Validation:
+- Open and close each modal repeatedly.
+- Confirm only one Escape listener is active.
+- Confirm body scroll lock is applied once and cleaned up once.
+
+### 4. Contact modal copy timeout leak
+
+File:
+- `src/components/ContactModal.tsx`
+
+Issue:
+- Email-copy handlers use `setTimeout(() => setEmailCopied(false), 2000)` without cleanup.
+- Closing the modal before the timeout finishes can update unmounted state.
+
+Fix:
+- Store timeout IDs in a ref.
+- Clear existing timeout before starting a new one.
+- Clear timeout during component cleanup.
+
+Validation:
+- Copy email, immediately close modal, and confirm no React state-update warning.
+
+### 5. Timeline scroll state causes unnecessary re-renders
+
+File:
+- `src/components/TimelineSection.tsx`
+
+Issue:
+- Eleven independent `useState` booleans are updated from scroll progress.
+- A single scroll pass can trigger many re-renders in a large component.
+
+Fix:
+- Consolidate visibility flags into one state object.
+- Compute the next state once per scroll update and update only when values actually change.
+- Consider extracting timeline item visibility into data-driven thresholds.
+
+Validation:
+- Scroll through the timeline and check that animation state remains correct.
+- Use React DevTools profiler or console instrumentation to confirm reduced render churn.
+
+### 6. Global smooth scrolling conflicts with magnetic scroll
+
+Files:
+- `src/styles/globals.css`
+- `src/hooks/useMagneticScroll.ts`
+- `src/screens/ScalehubStartupLp.tsx`
+
+Issue:
+- Global `scroll-behavior: smooth` can conflict with the magnetic scroll hook.
+- Programmatic `scrollIntoView` calls may double-animate or fight custom scroll control.
+
+Fix:
+- Remove global `scroll-behavior: smooth`.
+- Apply smooth behavior only in isolated pages or controls that do not use magnetic scroll.
+- For magnetic-scroll pages, keep programmatic scroll behavior explicit.
+
+Validation:
+- Test homepage/project navigation.
+- Test Scalehub startup page anchor scrolling.
+- Confirm reduced-motion users do not receive smooth scroll.
+
+### 7. Systems map SVG line animation is fragile
+
+File:
+- `src/components/SystemsMapSection.tsx`
+
+Issue:
+- SVG `<line>` coordinates are passed as percentage strings.
+- Framer Motion `pathLength` animation is more reliable on `<path>` than `<line>`.
+
+Fix:
+- Convert percentage coordinates to numeric viewBox units.
+- Render connectors as `<motion.path>` using `M x y L x y`.
+- Animate path length on paths.
+
+Validation:
+- Check connector rendering in Chrome, Safari, and Firefox if available.
+- Confirm reduced-motion handling still works.
+
+## Low Severity - Accessibility, Edge Cases, and Code Quality
+
+### 8. Role network modal lacks complete modal behavior
+
+File:
+- `src/components/RoleNetworkModal.tsx`
+
+Fix:
+- Add a self-contained Escape handler.
+- Lock body scroll while open.
+- Add a focus trap or use an existing dialog primitive.
+- Return focus to the trigger when closed.
+
+### 9. Desktop timeline items are not keyboard accessible
+
+File:
+- `src/components/TimelineSection.tsx`
+
+Fix:
+- Add `tabIndex={0}` to interactive timeline items.
+- Add semantic button or region roles where appropriate.
+- Add `onKeyDown` support for Enter and Space.
+- Preserve hover effects for pointer users while adding focus-visible states.
+
+### 10. Duplicate italic class
+
+File:
+- `src/components/AboutSection.tsx`
+
+Fix:
+- Replace `italic italic` with a single `italic`.
+
+### 11. Reduced-motion initial state can flash animations
+
+File:
+- `src/hooks/usePrefersReducedMotion.ts`
+
+Fix:
+- Initialize from `window.matchMedia("(prefers-reduced-motion: reduce)")` when available.
+- Keep the current reactive listener behavior.
+
+### 12. Magnetic scroll reduced-motion check is not reactive
+
+File:
+- `src/hooks/useMagneticScroll.ts`
+
+Fix:
+- Reuse `usePrefersReducedMotion` or subscribe to media-query changes inside the hook.
+- Disable magnetic scroll immediately when the user changes the preference.
+
+### 13. Infinite bounce animation runs off-screen
+
+File:
+- `src/components/LatestWorkSection.tsx`
+
+Fix:
+- Replace always-running infinite animation with `whileInView`.
+- Respect reduced-motion preferences.
+
+### 14. Optional tags access can throw
+
+File:
+- `src/components/DraggableCardsSection.tsx`
+
+Fix:
+- Change `project?.tags.slice(...)` to `project?.tags?.slice(...)`.
+- Add a fallback empty array when rendering tag chips.
+
+### 15. Floating back button is hidden on mobile
+
+File:
+- `src/components/FloatingBackButton.tsx`
+
+Fix:
+- Provide a compact mobile back affordance.
+- Use an icon-only control with an accessible label if space is tight.
+
+### 16. Empty interactive concept lab tab bar
+
+File:
+- `src/screens/ProjectDetail.tsx`
+
+Fix:
+- Render the interactive lab only when `interactiveModules.length > 0`.
+- Confirm projects without modules do not show empty UI chrome.
+
+### 17. Invalid SVG gradient color syntax
+
+File:
+- `src/components/DnaHelixOverlay.tsx`
+
+Fix:
+- Replace `stopColor="rgba(...)"` with `stopColor="rgb(...)"` and `stopOpacity`.
+
+### 18. Deprecated orientationchange event
+
+File:
+- `src/hooks/usePhoneLayout.ts`
+
+Fix:
+- Prefer `screen.orientation.addEventListener("change", handler)` when available.
+- Keep a resize fallback for older browsers.
+
+## Design Polish Plan
+
+The site should feel premium, readable, and intentional without becoming heavier or more decorative. Design polish should happen after the critical bugs and scroll/modal stability work, because broken behavior will undercut any visual improvements.
+
+### Visual System
+
+Actions:
+- Audit heading, paragraph, label, button, and input typography after the global CSS fix.
+- Make spacing rhythm consistent across page sections.
+- Standardize card border radius, shadows, hover transitions, and focus rings.
+- Reduce one-off visual treatments that do not map to a clear content purpose.
+- Keep color contrast accessible across dark, gradient, and image-backed sections.
+
+Validation:
+- Check homepage, project detail pages, presentations page, resume page, and mobile navigation.
+- Confirm text never overlaps controls or media at mobile widths.
+
+### Motion System
+
+Actions:
+- Define a consistent motion policy:
+  - critical navigation motion should be short and predictable
+  - decorative looping motion should run only when visible
+  - all motion should respect reduced-motion settings
+- Remove conflicting scroll behaviors.
+- Avoid infinite animation except where it communicates a live state.
+
+Validation:
+- Test with reduced motion enabled.
+- Test scroll-heavy pages on mobile and low-power devices.
+
+### Modal and Viewer Experience
+
+Actions:
+- Make all modals share consistent behavior:
+  - Escape closes
+  - background scroll locks
+  - focus moves into the modal
+  - focus returns after close
+  - visible close button has an accessible label
+- Confirm file viewer gracefully handles unsupported, missing, or slow-loading files.
+
+Validation:
+- Keyboard-only pass across contact, role network, and file viewer modals.
+
+### Mobile Polish
+
+Actions:
+- Add a mobile-safe back affordance.
+- Check all fixed and floating controls against safe areas.
+- Ensure cards, tabs, and long labels wrap cleanly.
+- Verify timeline interactions work without hover.
+
+Validation:
+- Test at 360px, 390px, 430px, 768px, and desktop widths.
+
+## Final Implementation Order
+
+### Phase 1 - Restore broken features
+
+1. Fix malformed global typography selector.
+2. Add valid presentation file URLs and restore viewer buttons.
+3. Verify typography and presentation viewing manually.
+
+Exit criteria:
+- Base typography applies.
+- Presentations page shows and opens files.
+- No new console errors.
+
+### Phase 2 - Stabilize modals and scroll
+
+1. Fix modal `onClose` dependency loops.
+2. Clean up contact copy timeouts.
+3. Remove or scope global smooth scrolling.
+4. Make magnetic scroll respect reduced-motion changes.
+
+Exit criteria:
+- Contact and file viewer modals open/close cleanly.
+- Escape and scroll lock behavior are stable.
+- No double-scroll animation is visible.
+
+### Phase 3 - Reduce performance cost
+
+1. Consolidate timeline scroll state.
+2. Convert systems map connector lines to motion paths.
+3. Gate infinite bounce animation with viewport visibility and reduced-motion checks.
+
+Exit criteria:
+- Timeline remains visually identical but re-renders less.
+- Systems map connectors animate reliably.
+- Off-screen animation work is reduced.
+
+### Phase 4 - Accessibility and edge cases
+
+1. Complete role network modal keyboard behavior.
+2. Add keyboard support for desktop timeline items.
+3. Fix optional tags access.
+4. Guard empty interactive modules.
+5. Replace invalid SVG gradient syntax.
+6. Update deprecated orientation listener.
+7. Remove duplicate class names.
+
+Exit criteria:
+- Keyboard-only navigation reaches and operates key interactions.
+- Edge-case data does not produce empty or broken UI.
+- Console warnings are reduced.
+
+### Phase 5 - Design polish pass
+
+1. Normalize typography rhythm after CSS repair.
+2. Tighten section spacing and responsive layout.
+3. Standardize focus, hover, active, and disabled states.
+4. Verify mobile back navigation and floating controls.
+5. Run a final visual QA pass on homepage, project detail pages, presentations, resume, and mobile.
+
+Exit criteria:
+- The site feels cohesive across all major pages.
+- Mobile controls are reachable and non-overlapping.
+- Motion, typography, and cards feel like one system.
+
+## Verification Checklist
+
+Run these checks after implementation:
+
+- `npm run build`
+- `npm run lint`, if configured and currently passing
+- Browser smoke test at desktop and mobile widths
+- Keyboard-only navigation pass
+- Reduced-motion pass
+- Modal open/close pass
+- Presentations file viewer pass
+- Console warning/error pass
+
+## Final Recommendation
+
+Do not add new portfolio panels until the two high-severity bugs and modal/scroll stability issues are fixed. The existing site will benefit more from reliability, accessibility, and polish than from additional content right now.
+
+Recommended immediate sprint:
+1. Fix `globals.css` typography.
+2. Fix `Presentations.tsx` file URLs.
+3. Stabilize `ContactModal` and `FileViewerModal`.
+4. Remove global smooth scroll conflict.
+5. Complete one cross-device design polish pass.

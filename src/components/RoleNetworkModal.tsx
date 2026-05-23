@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
     User,
@@ -13,6 +13,7 @@ import {
     Heart,
     X,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type { NetworkIcon, Role, RoleNetwork } from "../types/roles";
 
 interface RoleNetworkModalProps {
@@ -20,32 +21,18 @@ interface RoleNetworkModalProps {
     onClose: () => void;
 }
 
-const iconForType = (type: NetworkIcon) => {
-    switch (type) {
-        case "me":
-            return User;
-        case "mortarboard":
-            return GraduationCap;
-        case "supervisor":
-            return Briefcase;
-        case "research":
-            return FlaskConical;
-        case "consulting":
-        case "institution":
-            return Building2;
-        case "team":
-            return Users;
-        case "product":
-            return Package;
-        case "manuscript":
-            return FileText;
-        case "trophy":
-            return Trophy;
-        case "users":
-            return Heart;
-        default:
-            return User;
-    }
+const ICON_BY_TYPE: Record<NetworkIcon, LucideIcon> = {
+    me: User,
+    mortarboard: GraduationCap,
+    supervisor: Briefcase,
+    research: FlaskConical,
+    consulting: Building2,
+    institution: Building2,
+    team: Users,
+    product: Package,
+    manuscript: FileText,
+    trophy: Trophy,
+    users: Heart,
 };
 
 // Canvas geometry. The previous 520 px height clipped sublabels when nodes
@@ -87,7 +74,7 @@ interface NodeProps {
 }
 
 const Node = ({ node, index, onHover, onLeave }: NodeProps) => {
-    const Icon = iconForType(node.icon);
+    const Icon = ICON_BY_TYPE[node.icon] ?? User;
     const cx = node.x * CANVAS_W;
     const cy = node.y * CANVAS_H;
     const isMe = node.icon === "me";
@@ -212,11 +199,6 @@ const Edge = ({ from, to, label, index, onHover, onLeave }: EdgeProps) => {
 
 export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClose }) => {
     const [hoverLabel, setHoverLabel] = useState<string | null>(null);
-
-    // Reset the hover label whenever the role changes (or the modal closes).
-    useEffect(() => {
-        setHoverLabel(null);
-    }, [role?.id]);
 
     return (
         <AnimatePresence>

@@ -205,7 +205,7 @@ export function AboutSection() {
                         className="w-fit"
                     >
                         <div className="bg-[#FEF08A] px-6 py-3 rounded-tl-2xl rounded-br-2xl rounded-tr-sm rounded-bl-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform -rotate-2">
-                            <span className="font-['Playfair_Display',_serif] italic italic text-2xl font-bold">Stefan T.</span>
+                            <span className="font-['Playfair_Display',_serif] italic text-2xl font-bold">Stefan T.</span>
                         </div>
                         {/* Arrow pointing to signature */}
                         <svg className="absolute hidden md:block -left-16 top-1/2 w-12 h-12 text-black transform -translate-y-1/2" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3">

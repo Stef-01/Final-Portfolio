@@ -195,6 +195,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </div>
                 </section>
 
+                {project.interactiveModules && project.interactiveModules.length > 0 && (
                 <section className="mt-16 overflow-hidden rounded-[36px] border border-black/8 bg-[#0f1115] p-6 text-white md:p-8">
                     <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
                         <div>
@@ -261,6 +262,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                         )}
                     </div>
                 </section>
+                )}
             </main>
 
             <ContactSection />

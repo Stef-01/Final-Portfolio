@@ -118,6 +118,8 @@ const edges = [
   ["nourish", "precision-medicine"],
 ];
 
+const coordinateToViewBoxUnit = (coordinate: string) => Number.parseFloat(coordinate);
+
 export const SystemsMapSection = () => {
   const [activeId, setActiveId] = useState("implementation");
   const navigate = useNavigate();
@@ -292,19 +294,22 @@ export const SystemsMapSection = () => {
                   return null;
                 }
 
+                const x1 = coordinateToViewBoxUnit(from.x);
+                const y1 = coordinateToViewBoxUnit(from.y);
+                const x2 = coordinateToViewBoxUnit(to.x);
+                const y2 = coordinateToViewBoxUnit(to.y);
+
                 return (
-                  <motion.line
+                  <motion.path
                     key={`${fromId}-${toId}`}
-                    x1={from.x}
-                    y1={from.y}
-                    x2={to.x}
-                    y2={to.y}
+                    d={`M ${x1} ${y1} L ${x2} ${y2}`}
                     stroke={
                       activeId === fromId || activeId === toId
                         ? "rgba(15,23,42,0.32)"
                         : "rgba(15,23,42,0.12)"
                     }
                     strokeWidth="0.35"
+                    fill="none"
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
                     viewport={{ once: true, margin: "-80px" }}

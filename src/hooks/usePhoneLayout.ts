@@ -23,11 +23,11 @@ export function usePhoneLayout() {
 
         updateLayout();
         window.addEventListener("resize", updateLayout);
-        window.addEventListener("orientationchange", updateLayout);
+        screen.orientation?.addEventListener("change", updateLayout);
 
         return () => {
             window.removeEventListener("resize", updateLayout);
-            window.removeEventListener("orientationchange", updateLayout);
+            screen.orientation?.removeEventListener("change", updateLayout);
         };
     }, []);
 

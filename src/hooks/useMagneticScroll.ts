@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 
 /**
  * Magnetic scroll-snap with a programmable feather threshold and a custom
@@ -25,19 +26,17 @@ import { useEffect } from "react";
  * Bypassed when prefers-reduced-motion is set.
  */
 export function useMagneticScroll(enabled: boolean = true) {
+    const reduceMotion = usePrefersReducedMotion();
+
     useEffect(() => {
         if (!enabled) return;
         if (typeof window === "undefined") return;
-
-        const reduceMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)",
-        ).matches;
         if (reduceMotion) return;
 
         document.documentElement.classList.add("snap-page");
 
         const FEATHER = 0.16;
-        const PAIR_GAP_TOLERANCE = 1.2;
+        const FREE_SCROLL_GAP = 1.35;
         const ANIMATION_MS = 850;
         const SCROLL_END_DEBOUNCE_MS = 110;
 
@@ -112,7 +111,8 @@ export function useMagneticScroll(enabled: boolean = true) {
             if (!prev || !next) return;
 
             const gap = next.top - prev.top;
-            if (gap > vh * PAIR_GAP_TOLERANCE) return; // free-scroll zone
+            if (gap <= 0) return;
+            if (gap > vh * FREE_SCROLL_GAP) return;
 
             const progress = (y - prev.top) / gap;
             const target = progress > FEATHER ? next.top : prev.top;
@@ -154,5 +154,5 @@ export function useMagneticScroll(enabled: boolean = true) {
             window.clearTimeout(scrollEndTimer);
             document.documentElement.classList.remove("snap-page");
         };
-    }, [enabled]);
+    }, [enabled, reduceMotion]);
 }

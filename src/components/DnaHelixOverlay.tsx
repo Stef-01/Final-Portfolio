@@ -80,10 +80,10 @@ export const DnaHelixOverlay: React.FC<{ className?: string }> = ({
         >
           <defs>
             <linearGradient id="dna-fade" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="rgba(15,23,42,0)" />
-              <stop offset="20%" stopColor="rgba(15,23,42,0.55)" />
-              <stop offset="80%" stopColor="rgba(15,23,42,0.55)" />
-              <stop offset="100%" stopColor="rgba(15,23,42,0)" />
+              <stop offset="0%" stopColor="rgb(15,23,42)" stopOpacity={0} />
+              <stop offset="20%" stopColor="rgb(15,23,42)" stopOpacity={0.55} />
+              <stop offset="80%" stopColor="rgb(15,23,42)" stopOpacity={0.55} />
+              <stop offset="100%" stopColor="rgb(15,23,42)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <path

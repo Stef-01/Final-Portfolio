@@ -24,10 +24,10 @@ export const LatestWorkSection = () => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     return (
-        <section className="relative overflow-hidden py-20 px-4 md:px-8 bg-white" id="work">
+        <section className="relative overflow-hidden px-4 md:px-8 bg-white" id="work">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-64 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_62%)]" />
             <div className="max-w-7xl mx-auto relative z-10">
-                <div className="text-center mb-16 md:mb-24">
+                <div className="flex min-h-[100svh] snap-start snap-always flex-col items-center justify-center py-16 text-center md:py-20">
                         <motion.div
                             initial={{ opacity: 0, y: 18 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,8 @@ export const LatestWorkSection = () => {
                                 <motion.span
                                     key={chip}
                                     className="rounded-full border border-black/10 bg-white/90 px-4 py-2 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-gray-500 shadow-[0_18px_45px_-35px_rgba(0,0,0,0.4)]"
-                                    animate={prefersReducedMotion ? undefined : { y: [0, -5, 0] }}
+                                    whileInView={prefersReducedMotion ? undefined : { y: [0, -5, 0] }}
+                                    viewport={{ once: false }}
                                     transition={{ duration: 3.5 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
                                 >
                                     {chip}
@@ -104,7 +105,7 @@ export const LatestWorkSection = () => {
                         {projects.map((project, index) => (
                             <div
                                 key={project.id}
-                                className="flex min-h-[100svh] items-center snap-start snap-always py-6"
+                                className="box-border flex h-[100svh] items-center snap-start snap-always py-4 md:py-6"
                             >
                                 <motion.div
                                     initial={{ opacity: 0, y: prefersReducedMotion ? 12 : 30 }}

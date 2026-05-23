@@ -107,6 +107,8 @@ export function FileViewerModal({
   fileName = "Document",
 }: FileViewerModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const onCloseRef = useRef(onClose);
+  useEffect(() => { onCloseRef.current = onClose; });
 
   useEffect(() => {
     if (!isOpen) return;
@@ -114,7 +116,7 @@ export function FileViewerModal({
     const previousOverflow = document.body.style.overflow;
     const previouslyFocused = document.activeElement as HTMLElement | null;
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") onCloseRef.current();
     };
 
     document.body.style.overflow = "hidden";
@@ -126,7 +128,7 @@ export function FileViewerModal({
       window.removeEventListener("keydown", handleEscape);
       previouslyFocused?.focus?.();
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const handleDownload = () => {
     if (!fileUrl) return;

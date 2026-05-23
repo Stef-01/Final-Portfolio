@@ -19,17 +19,19 @@ import imgAustralianNationalUniversity from "../assets/timeline-upgraded/e715f2d
 export const TimelineSection = () => {
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
     const [expandedItem, setExpandedItem] = useState<string | null>(null);
-    const [showAnu, setShowAnu] = useState(false);
-    const [showInternships, setShowInternships] = useState(false);
-    const [showConsulting, setShowConsulting] = useState(false);
-    const [showMd, setShowMd] = useState(false);
-    const [showMs, setShowMs] = useState(false);
-    const [showBiodesign, setShowBiodesign] = useState(false);
-    const [showSeed, setShowSeed] = useState(false);
-    const [showHarvard, setShowHarvard] = useState(false);
-    const [showHsil, setShowHsil] = useState(false);
-    const [showHopkins, setShowHopkins] = useState(false);
-    const [showPava, setShowPava] = useState(false);
+    const [visibility, setVisibility] = useState({
+        anu: false,
+        internships: false,
+        consulting: false,
+        md: false,
+        ms: false,
+        biodesign: false,
+        seed: false,
+        harvard: false,
+        hsil: false,
+        hopkins: false,
+        pava: false,
+    });
     const windowWidth = useWindowWidth();
     const isPhoneLayout = usePhoneLayout();
     const timelineContainerRef = useRef(null);
@@ -140,32 +142,52 @@ export const TimelineSection = () => {
     // position — useScroll's initial value does NOT fire useMotionValueEvent)
     // and on every subsequent scroll change.
     const applyProgress = React.useCallback((latest: number) => {
-        setShowAnu(latest > 0.02);
-        setShowInternships(latest > 0.08);
-        setShowConsulting(latest > 0.08);
-        setShowMd(latest > 0.23);
-        setShowMs(latest > 0.42);
-        setShowBiodesign(latest > 0.58);
-        setShowSeed(latest > 0.59);
-        setShowHarvard(latest > 0.70);
-        setShowHsil(latest > 0.82);
-        setShowHopkins(latest > 0.88);
-        setShowPava(latest > 0.89);
+        setVisibility(prev => {
+            const next = {
+                anu: latest > 0.02,
+                internships: latest > 0.08,
+                consulting: latest > 0.08,
+                md: latest > 0.23,
+                ms: latest > 0.42,
+                biodesign: latest > 0.58,
+                seed: latest > 0.59,
+                harvard: latest > 0.70,
+                hsil: latest > 0.82,
+                hopkins: latest > 0.88,
+                pava: latest > 0.89,
+            };
+            const changed = (Object.keys(next) as Array<keyof typeof next>).some(k => prev[k] !== next[k]);
+            return changed ? next : prev;
+        });
     }, []);
 
     useMotionValueEvent(scrollYProgress, "change", applyProgress);
 
-    // Sync once on mount: if the user lands on the page already past the
+    // Sync after mount: if the user lands on the page already past the
     // section (browser scroll restoration, deep link, back-nav from project
-    // detail), useMotionValueEvent never fires for the initial value, leaving
-    // every timeline item invisible. Read the current value and apply it.
+    // detail), useMotionValueEvent never fires for the initial value.
     useEffect(() => {
-        applyProgress(scrollYProgress.get());
         // Re-check after layout settles (scrollYProgress is computed from
         // target measurements which may not be ready in the first frame).
-        const id = window.setTimeout(() => applyProgress(scrollYProgress.get()), 200);
-        return () => window.clearTimeout(id);
+        const firstId = window.setTimeout(() => applyProgress(scrollYProgress.get()), 0);
+        const settledId = window.setTimeout(() => applyProgress(scrollYProgress.get()), 200);
+        return () => {
+            window.clearTimeout(firstId);
+            window.clearTimeout(settledId);
+        };
     }, [applyProgress, scrollYProgress]);
+
+    const handleTimelineItemKeyDown = React.useCallback(
+        (itemId: string, event: React.KeyboardEvent<HTMLElement>) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setHoveredItem(itemId);
+            } else if (event.key === "Escape") {
+                setHoveredItem(null);
+            }
+        },
+        [],
+    );
 
     if (isPhoneLayout) {
         return (
@@ -288,10 +310,15 @@ export const TimelineSection = () => {
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ left: 1505, top: 35, width: 1429, height: 476 }}
+                        tabIndex={0}
+                        role="button"
                         onMouseEnter={() => setHoveredItem('bhlth')}
                         onMouseLeave={() => setHoveredItem(null)}
+                        onFocus={() => setHoveredItem('bhlth')}
+                        onBlur={() => setHoveredItem(null)}
+                        onKeyDown={(event) => handleTimelineItemKeyDown('bhlth', event)}
                         initial={{ opacity: 0, y: 100 }}
-                        animate={showAnu ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                        animate={visibility.anu ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Australian National University - main logo */}
@@ -299,7 +326,7 @@ export const TimelineSection = () => {
                             className="absolute"
                             style={{ width: 291, height: 453, left: 2221 - 1505, top: 35 - 35 }}
                             initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
-                            animate={showAnu ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
+                            animate={visibility.anu ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
                             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 60, damping: 12 }}
                         >
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -311,11 +338,16 @@ export const TimelineSection = () => {
                         <motion.div
                             className="absolute cursor-pointer"
                             style={{ width: 650, height: 81, left: 1615 - 1505, top: 387 - 35 }}
+                            tabIndex={0}
+                            role="button"
                             initial={{ scale: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
-                            animate={showInternships ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
+                            animate={visibility.internships ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('internships')}
                             onMouseLeave={() => setHoveredItem(null)}
+                            onFocus={() => setHoveredItem('internships')}
+                            onBlur={() => setHoveredItem(null)}
+                            onKeyDown={(event) => handleTimelineItemKeyDown('internships', event)}
                         >
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                                 <img alt="National Internships" className="absolute w-full h-full object-contain" src={imgNationalInternships} />
@@ -326,11 +358,16 @@ export const TimelineSection = () => {
                         <motion.div
                             className="absolute cursor-pointer"
                             style={{ width: 443, height: 140, left: 2441 - 1505, top: 387 - 35 }}
+                            tabIndex={0}
+                            role="button"
                             initial={{ scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
-                            animate={showConsulting ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
+                            animate={visibility.consulting ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('consulting')}
                             onMouseLeave={() => setHoveredItem(null)}
+                            onFocus={() => setHoveredItem('consulting')}
+                            onBlur={() => setHoveredItem(null)}
+                            onKeyDown={(event) => handleTimelineItemKeyDown('consulting', event)}
                         >
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                                 <img alt="180 Degrees Consulting" className="absolute h-[166.23%] left-0 max-w-none top-[-29.82%] w-full" src={img180DegreesConsulting} />
@@ -342,7 +379,7 @@ export const TimelineSection = () => {
                             className="absolute font-['Jaldi:Regular',sans-serif] not-italic"
                             style={{ width: 493, height: 225, left: 2481 - 1505, top: 162 - 35, color: 'black', fontSize: 100, fontWeight: 400 }}
                             initial={{ opacity: 0, x: 50 }}
-                            animate={showAnu ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                            animate={visibility.anu ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                             transition={{ duration: 0.9, delay: 0.5 }}
                         >
                             BHLTH
@@ -353,10 +390,15 @@ export const TimelineSection = () => {
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ left: 2160, top: 676, width: 814, height: 248 }}
+                        tabIndex={0}
+                        role="button"
                         onMouseEnter={() => setHoveredItem('md')}
                         onMouseLeave={() => setHoveredItem(null)}
+                        onFocus={() => setHoveredItem('md')}
+                        onBlur={() => setHoveredItem(null)}
+                        onKeyDown={(event) => handleTimelineItemKeyDown('md', event)}
                         initial={{ opacity: 0, x: -100 }}
-                        animate={showMd ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+                        animate={visibility.md ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Macquarie University logo */}
@@ -364,7 +406,7 @@ export const TimelineSection = () => {
                             className="absolute"
                             style={{ width: 448, height: 248, left: 2160 - 2160, top: 676 - 676 }}
                             initial={{ opacity: 0, scale: 0.5, rotate: 15 }}
-                            animate={showMd ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: 15 }}
+                            animate={visibility.md ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: 15 }}
                             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 60, damping: 12 }}
                         >
                             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -377,7 +419,7 @@ export const TimelineSection = () => {
                             className="absolute font-['Jaldi:Regular',sans-serif] not-italic"
                             style={{ width: 366, height: 248, left: 2481 - 2160, top: 34, color: 'black', fontSize: 100, fontWeight: 400 }}
                             initial={{ opacity: 0, x: -50 }}
-                            animate={showMd ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                            animate={visibility.md ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
                             transition={{ duration: 0.9, delay: 0.5 }}
                         >
                             MD (II)
@@ -388,10 +430,15 @@ export const TimelineSection = () => {
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ left: 1800, top: 1067, width: 1174, height: 532 }}
+                        tabIndex={0}
+                        role="button"
                         onMouseEnter={() => setHoveredItem('ms')}
                         onMouseLeave={() => setHoveredItem(null)}
+                        onFocus={() => setHoveredItem('ms')}
+                        onBlur={() => setHoveredItem(null)}
+                        onKeyDown={(event) => handleTimelineItemKeyDown('ms', event)}
                         initial={{ opacity: 0, y: 100 }}
-                        animate={showMs ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                        animate={visibility.ms ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
                         {/* Stanford University logo */}
@@ -399,7 +446,7 @@ export const TimelineSection = () => {
                             className="absolute"
                             style={{ width: 329, height: 329, left: 2201 - 1800, top: 1067 - 1067 }}
                             initial={{ opacity: 0, scale: 0.5, rotate: -15 }}
-                            animate={showMs ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
+                            animate={visibility.ms ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.5, rotate: -15 }}
                             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 60, damping: 12 }}
                         >
                             <img alt="Stanford University" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgStanfordUniversityLogo} />
@@ -410,10 +457,15 @@ export const TimelineSection = () => {
                             className="absolute cursor-pointer"
                             style={{ width: 432, height: 203, left: 1800 - 1800, top: 1396 - 1067 }}
                             initial={{ scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
-                            animate={showBiodesign ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
+                            animate={visibility.biodesign ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
+                            tabIndex={0}
+                            role="button"
                             onMouseEnter={() => setHoveredItem('biodesign')}
                             onMouseLeave={() => setHoveredItem(null)}
+                            onFocus={() => setHoveredItem('biodesign')}
+                            onBlur={() => setHoveredItem(null)}
+                            onKeyDown={(event) => handleTimelineItemKeyDown('biodesign', event)}
                         >
                             <img alt="Stanford Biodesign" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgStanfordBiodesign} />
                         </motion.div>
@@ -423,10 +475,15 @@ export const TimelineSection = () => {
                             className="absolute cursor-pointer"
                             style={{ width: 482, height: 176, left: 2499 - 1800, top: 1409 - 1067 }}
                             initial={{ scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
-                            animate={showSeed ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
+                            animate={visibility.seed ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
+                            tabIndex={0}
+                            role="button"
                             onMouseEnter={() => setHoveredItem('seed')}
                             onMouseLeave={() => setHoveredItem(null)}
+                            onFocus={() => setHoveredItem('seed')}
+                            onBlur={() => setHoveredItem(null)}
+                            onKeyDown={(event) => handleTimelineItemKeyDown('seed', event)}
                         >
                             <img alt="Stanford GSB Seed" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgStanfordGsbSeed} />
                         </motion.div>
@@ -436,7 +493,7 @@ export const TimelineSection = () => {
                             className="absolute font-['Jaldi:Regular',sans-serif] not-italic"
                             style={{ width: 493, height: 225, left: 2481 - 1800, top: 1153 - 1067, color: 'black', fontSize: 100, fontWeight: 400 }}
                             initial={{ opacity: 0, x: 50 }}
-                            animate={showMs ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+                            animate={visibility.ms ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                             transition={{ duration: 0.9, delay: 0.5 }}
                         >
                             M.S
@@ -447,10 +504,15 @@ export const TimelineSection = () => {
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 238, height: 232, left: 2247, top: 1645 }}
+                        tabIndex={0}
+                        role="button"
                         onMouseEnter={() => setHoveredItem('harvard')}
                         onMouseLeave={() => setHoveredItem(null)}
+                        onFocus={() => setHoveredItem('harvard')}
+                        onBlur={() => setHoveredItem(null)}
+                        onKeyDown={(event) => handleTimelineItemKeyDown('harvard', event)}
                         initial={{ opacity: 0, scale: 0.5, y: 80 }}
-                        animate={showHarvard ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.5, y: 80 }}
+                        animate={visibility.harvard ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.5, y: 80 }}
                         transition={{ duration: 1, type: "spring", stiffness: 60, damping: 12 }}
                     >
                         <img alt="Harvard University" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgHarvardUniversityLogo} />
@@ -460,11 +522,16 @@ export const TimelineSection = () => {
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 285, height: 285, left: 1875, top: 1877 }}
+                        tabIndex={0}
+                        role="button"
                         initial={{ scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
-                        animate={showHsil ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
+                        animate={visibility.hsil ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
                         transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                         onMouseEnter={() => setHoveredItem('hsil')}
                         onMouseLeave={() => setHoveredItem(null)}
+                        onFocus={() => setHoveredItem('hsil')}
+                        onBlur={() => setHoveredItem(null)}
+                        onKeyDown={(event) => handleTimelineItemKeyDown('hsil', event)}
                     >
                         <img alt="Harvard HSIL" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgHarvardHsil} />
                     </motion.div>
@@ -473,10 +540,15 @@ export const TimelineSection = () => {
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 246, height: 232, left: 2245, top: 2126 }}
+                        tabIndex={0}
+                        role="button"
                         onMouseEnter={() => setHoveredItem('hopkins')}
                         onMouseLeave={() => setHoveredItem(null)}
+                        onFocus={() => setHoveredItem('hopkins')}
+                        onBlur={() => setHoveredItem(null)}
+                        onKeyDown={(event) => handleTimelineItemKeyDown('hopkins', event)}
                         initial={{ opacity: 0, x: -100, scale: 0.7 }}
-                        animate={showHopkins ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -100, scale: 0.7 }}
+                        animate={visibility.hopkins ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: -100, scale: 0.7 }}
                         transition={{ duration: 1.5, type: "spring", stiffness: 40, damping: 15 }}
                     >
                         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -488,11 +560,16 @@ export const TimelineSection = () => {
                     <motion.div
                         className="absolute cursor-pointer transition-opacity hover:opacity-95 will-change-transform"
                         style={{ width: 185, height: 185, left: 2608, top: 2265 }}
+                        tabIndex={0}
+                        role="button"
                         initial={{ scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
-                        animate={showPava ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
+                        animate={visibility.pava ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
                         transition={{ duration: 1.8, delay: 0.1, type: "spring", stiffness: 40, damping: 12 }}
                         onMouseEnter={() => setHoveredItem('pava')}
                         onMouseLeave={() => setHoveredItem(null)}
+                        onFocus={() => setHoveredItem('pava')}
+                        onBlur={() => setHoveredItem(null)}
+                        onKeyDown={(event) => handleTimelineItemKeyDown('pava', event)}
                     >
                         <img alt="Hopkins Pava Center" className="absolute inset-0 max-w-none object-50%-50% object-cover pointer-events-none size-full" src={imgHopkinsPavaCenter} />
                     </motion.div>
