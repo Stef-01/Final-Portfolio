@@ -26,15 +26,16 @@ const TimelineRow = ({ role, expanded, onEnter, onNetworkClick }: TimelineRowPro
         <li
             onMouseEnter={onEnter}
             onFocus={onEnter}
-            className="relative pl-14 md:pl-20"
+            onClick={onEnter}
+            className="relative cursor-pointer pl-14 md:cursor-default md:pl-20"
         >
-            {/* Node — solid black when expanded, hairline ring when not */}
+            {/* Node — accent blue when expanded, hairline ring when not */}
             <span
                 aria-hidden="true"
                 className={`absolute left-[14px] md:left-[18px] top-2.5 z-10 h-3 w-3 rounded-full transition-colors duration-300 ${
                     expanded
-                        ? "bg-black"
-                        : "bg-white border border-black/30 group-hover:bg-black"
+                        ? "bg-blue-600"
+                        : "bg-white border border-black/30 group-hover:bg-blue-600"
                 }`}
                 style={{ boxShadow: "0 0 0 4px white" }}
             />
@@ -107,7 +108,7 @@ const TimelineRow = ({ role, expanded, onEnter, onNetworkClick }: TimelineRowPro
                                             href={role.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group/action inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
                                         >
                                             Open case study
                                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
@@ -115,7 +116,7 @@ const TimelineRow = ({ role, expanded, onEnter, onNetworkClick }: TimelineRowPro
                                     ) : (
                                         <Link
                                             to={role.link}
-                                            className="group/action inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
                                         >
                                             Open case study
                                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
@@ -127,7 +128,7 @@ const TimelineRow = ({ role, expanded, onEnter, onNetworkClick }: TimelineRowPro
                                         type="button"
                                         onClick={() => onNetworkClick(role)}
                                         aria-label="View role network"
-                                        className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-black hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                        className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-600 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
                                     >
                                         <Network className="h-3.5 w-3.5" strokeWidth={1.5} />
                                         View network
@@ -162,9 +163,12 @@ export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelinePro
         <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
             <div className="mx-auto max-w-5xl">
                 <div className="mb-16 max-w-3xl">
-                    <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">
-                        {eyebrow}
-                    </p>
+                    <div className="mb-4 flex items-center gap-3">
+                        <span className="h-px w-8 bg-blue-500" />
+                        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+                            {eyebrow}
+                        </p>
+                    </div>
                     <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
                         {title}
                     </h2>
@@ -200,7 +204,7 @@ export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelinePro
                 </div>
             </div>
 
-            <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} />
+            <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} accent="#2563eb" />
         </section>
     );
 };

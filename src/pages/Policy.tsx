@@ -1,11 +1,16 @@
 import { motion } from "motion/react";
-import { ArrowLeft, Shield, Landmark, Radar, HeartPulse } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Shield, Landmark, Radar, HeartPulse } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { policyInitiatives } from "../types/policy";
+import { projects } from "../types/project";
 
 const icons = [Shield, HeartPulse, Landmark, Radar];
+
+// Only some initiatives have a full case-study page. Look up the real project
+// ids so cards link to a destination instead of dangling a hover affordance.
+const projectIds = new Set(projects.map((p) => p.id));
 
 export function Policy() {
   return (
@@ -115,6 +120,15 @@ export function Policy() {
                         <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-600">
                           {initiative.description}
                         </p>
+                        {projectIds.has(initiative.id) && (
+                          <Link
+                            to={`/project/${initiative.id}`}
+                            className="group/cta mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-lg shadow-amber-500/30 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40 focus-visible:ring-offset-2"
+                          >
+                            View case study
+                            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5" />
+                          </Link>
+                        )}
                       </div>
 
                       <div className="min-w-[220px] rounded-[24px] border border-black/8 bg-[#fafafa] p-5">

@@ -19,6 +19,8 @@ import type { NetworkIcon, Role, RoleNetwork } from "../types/roles";
 interface RoleNetworkModalProps {
     role: Role | null;
     onClose: () => void;
+    /** Accent hex used for the centre "me" node and eyebrow. Defaults to black. */
+    accent?: string;
 }
 
 const ICON_BY_TYPE: Record<NetworkIcon, LucideIcon> = {
@@ -69,11 +71,12 @@ const computeEdgeGeometry = (
 interface NodeProps {
     node: RoleNetwork["nodes"][number];
     index: number;
+    accent: string;
     onHover: (label: string) => void;
     onLeave: () => void;
 }
 
-const Node = ({ node, index, onHover, onLeave }: NodeProps) => {
+const Node = ({ node, index, accent, onHover, onLeave }: NodeProps) => {
     const Icon = ICON_BY_TYPE[node.icon] ?? User;
     const cx = node.x * CANVAS_W;
     const cy = node.y * CANVAS_H;
@@ -89,8 +92,11 @@ const Node = ({ node, index, onHover, onLeave }: NodeProps) => {
             onMouseEnter={() =>
                 onHover(node.sublabel ? `${node.label} — ${node.sublabel}` : node.label)
             }
+            onClick={() =>
+                onHover(node.sublabel ? `${node.label} — ${node.sublabel}` : node.label)
+            }
             onMouseLeave={onLeave}
-            className="cursor-default"
+            className="cursor-pointer"
         >
             <motion.g
                 initial={{ opacity: 0, scale: 0.6 }}
@@ -104,8 +110,8 @@ const Node = ({ node, index, onHover, onLeave }: NodeProps) => {
             >
                 <circle
                     r={NODE_RADIUS}
-                    fill={isMe ? "black" : "white"}
-                    stroke={isMe ? "black" : "rgba(0,0,0,0.18)"}
+                    fill={isMe ? accent : "white"}
+                    stroke={isMe ? accent : "rgba(0,0,0,0.18)"}
                     strokeWidth={1.25}
                 />
                 <foreignObject
@@ -197,7 +203,7 @@ const Edge = ({ from, to, label, index, onHover, onLeave }: EdgeProps) => {
     );
 };
 
-export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClose }) => {
+export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClose, accent = "#000000" }) => {
     const [hoverLabel, setHoverLabel] = useState<string | null>(null);
 
     return (
@@ -242,7 +248,7 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
                         </button>
 
                         <div className="relative px-10 pt-9 pb-2">
-                            <p className="text-[10px] uppercase tracking-[0.32em] text-gray-400">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.32em]" style={{ color: accent }}>
                                 Role network
                             </p>
                             <h3
@@ -282,6 +288,7 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
                                         key={node.id}
                                         node={node}
                                         index={i}
+                                        accent={accent}
                                         onHover={setHoverLabel}
                                         onLeave={() => setHoverLabel(null)}
                                     />
@@ -302,7 +309,7 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
                                             hoverLabel ? "text-gray-700" : "text-gray-400"
                                         }`}
                                     >
-                                        {hoverLabel ?? "Hover any node or line to see what connects them."}
+                                        {hoverLabel ?? "Hover or tap any node or line to see what connects them."}
                                     </motion.p>
                                 </AnimatePresence>
                             </div>

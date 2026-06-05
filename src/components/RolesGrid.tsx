@@ -171,7 +171,7 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
         </div>
       </div>
 
-      <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} />
+      <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} accent="#059669" />
     </section>
   );
 };
