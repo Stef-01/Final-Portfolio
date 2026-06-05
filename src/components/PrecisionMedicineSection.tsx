@@ -40,9 +40,12 @@ export const PrecisionMedicineSection = () => {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">
-              Precision Medicine
-            </p>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-blue-500" />
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+                Precision Medicine
+              </p>
+            </div>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
               A DNA-led map into the most translational precision-care work
             </h2>
@@ -60,10 +63,10 @@ export const PrecisionMedicineSection = () => {
                   onMouseEnter={() => setActiveId(category.id)}
                   onFocus={() => setActiveId(category.id)}
                   onClick={() => navigate(`/project/${category.id}`)}
-                  className={`rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 ${
+                  className={`rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 ${
                     activeId === category.id
-                      ? "bg-black text-white"
-                      : "border border-black/10 bg-white text-gray-600 hover:border-black/25 hover:text-black"
+                      ? "bg-gradient-to-r from-blue-600 to-indigo-500 text-white shadow-lg shadow-blue-500/30"
+                      : "border border-black/10 bg-white text-gray-600 hover:border-blue-500/40 hover:text-blue-700"
                   }`}
                 >
                   {category.label}
@@ -85,7 +88,7 @@ export const PrecisionMedicineSection = () => {
                   type="button"
                   onHoverStart={() => setActiveId(activeCategory.id)}
                   onClick={() => navigate(`/project/${activeCategory.id}`)}
-                  className="group relative mx-auto flex h-[260px] w-[260px] items-center justify-center rounded-full border-2 border-black bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 md:h-[300px] md:w-[300px]"
+                  className="group relative mx-auto flex h-[260px] w-[260px] items-center justify-center rounded-full border-2 border-blue-600 bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 md:h-[300px] md:w-[300px]"
                   animate={
                     prefersReducedMotion ? undefined : { rotate: [0, 2, -2, 0] }
                   }
@@ -103,7 +106,7 @@ export const PrecisionMedicineSection = () => {
                     }
                   >
                     <Dna
-                      className="h-32 w-32 md:h-36 md:w-36 text-black"
+                      className="h-32 w-32 md:h-36 md:w-36 text-blue-600"
                       strokeWidth={1.5}
                     />
                     <div className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
@@ -136,7 +139,7 @@ export const PrecisionMedicineSection = () => {
                     <button
                       type="button"
                       onClick={() => navigate(`/project/${activeCategory.id}`)}
-                      className="mt-5 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white transition-transform hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2"
+                      className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-transform hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
                     >
                       Open case study
                       <ArrowUpRight className="h-4 w-4" />

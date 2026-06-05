@@ -135,9 +135,12 @@ export const SystemsMapSection = () => {
     return (
       <section className="w-full bg-white px-4 py-20">
         <div className="mx-auto max-w-md">
-          <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">
-            Systems Map
-          </p>
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-8 bg-blue-500" />
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+              Systems Map
+            </p>
+          </div>
           <h2 className="mt-4 text-4xl font-bold tracking-tighter text-black">
             How the work connects
           </h2>
@@ -164,7 +167,7 @@ export const SystemsMapSection = () => {
                       setActiveId(node.id);
                     }
                   }}
-                  className={`rounded-[26px] border p-5 text-left transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 ${isActive ? "border-black bg-black text-white" : "border-black/10 bg-white text-black"}`}
+                  className={`rounded-[26px] border p-5 text-left transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2 ${isActive ? "border-blue-600 bg-blue-600 text-white" : "border-black/10 bg-white text-black"}`}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
@@ -193,7 +196,7 @@ export const SystemsMapSection = () => {
                         e.stopPropagation();
                         handleOpen(node.route);
                       }}
-                      className={`inline-flex h-11 w-11 items-center justify-center rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${isActive ? "bg-white text-black focus-visible:ring-white" : "bg-black text-white focus-visible:ring-black/40"}`}
+                      className={`inline-flex h-11 w-11 items-center justify-center rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${isActive ? "bg-white text-blue-700 focus-visible:ring-white" : "bg-blue-600 text-white focus-visible:ring-blue-500/40"}`}
                       aria-label={`Open ${node.title}`}
                     >
                       <ArrowUpRight className="h-5 w-5" />
@@ -213,9 +216,12 @@ export const SystemsMapSection = () => {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">
-              Systems Map
-            </p>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-blue-500" />
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
+                Systems Map
+              </p>
+            </div>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
               A live view of the problem spaces the portfolio is actually about
             </h2>
@@ -233,7 +239,7 @@ export const SystemsMapSection = () => {
                 transition={{ duration: 0.35 }}
                 className="mt-8 rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]"
               >
-                <div className="inline-flex items-center gap-2 rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-lg shadow-blue-500/30">
                   <activeNode.icon className="h-4 w-4" />
                   {activeNode.subtitle}
                 </div>
@@ -246,7 +252,7 @@ export const SystemsMapSection = () => {
                 <button
                   type="button"
                   onClick={() => handleOpen(activeNode.route)}
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white transition-transform hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-transform hover:translate-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
                 >
                   Open this area
                   <ArrowUpRight className="h-4 w-4" />
@@ -305,7 +311,7 @@ export const SystemsMapSection = () => {
                     d={`M ${x1} ${y1} L ${x2} ${y2}`}
                     stroke={
                       activeId === fromId || activeId === toId
-                        ? "rgba(15,23,42,0.32)"
+                        ? "rgba(37,99,235,0.5)"
                         : "rgba(15,23,42,0.12)"
                     }
                     strokeWidth="0.35"
@@ -342,7 +348,7 @@ export const SystemsMapSection = () => {
                     {isActive && (
                       <motion.div
                         layoutId="active-node-shell"
-                        className="absolute inset-[-10px] rounded-[26px] border-2 border-black"
+                        className="absolute inset-[-10px] rounded-[26px] border-2 border-blue-600"
                         transition={{
                           type: "spring",
                           stiffness: 260,
@@ -351,7 +357,7 @@ export const SystemsMapSection = () => {
                       />
                     )}
                     <motion.div
-                      className={`relative min-w-[170px] rounded-[20px] border px-4 py-4 text-left shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] transition-colors ${isActive ? "border-black bg-black text-white" : "border-black/10 bg-white text-black"}`}
+                      className={`relative min-w-[170px] rounded-[20px] border px-4 py-4 text-left shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] transition-colors ${isActive ? "border-blue-600 bg-blue-600 text-white" : "border-black/10 bg-white text-black"}`}
                       layout
                     >
                       <div
