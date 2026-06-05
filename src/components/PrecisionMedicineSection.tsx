@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { Dna, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { DnaHelix } from "./DnaHelix";
 
 const categories = [
   {
@@ -34,6 +35,10 @@ export const PrecisionMedicineSection = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const activeCategory =
     categories.find((category) => category.id === activeId) ?? categories[0];
+  const activeIndex = Math.max(
+    0,
+    categories.findIndex((category) => category.id === activeId),
+  );
 
   return (
     <section className="w-full bg-white px-4 py-20 md:px-8">
@@ -105,11 +110,13 @@ export const PrecisionMedicineSection = () => {
                       prefersReducedMotion ? undefined : { scale: 1.03 }
                     }
                   >
-                    <Dna
-                      className="h-32 w-32 md:h-36 md:w-36 text-blue-600"
-                      strokeWidth={1.5}
+                    <DnaHelix
+                      className="absolute inset-0 h-full w-full"
+                      activeIndex={activeIndex}
+                      segments={categories.length}
+                      accent="#2563eb"
                     />
-                    <div className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
+                    <div className="absolute inset-x-0 bottom-7 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
                       <Sparkles className="h-4 w-4" />
                       {activeCategory.shortLabel}
                     </div>

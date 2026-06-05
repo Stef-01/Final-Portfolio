@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
 import { RoleNetworkModal } from "./RoleNetworkModal";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 interface RolesTimelineProps {
     roles: Role[];
@@ -15,11 +16,12 @@ interface RolesTimelineProps {
 interface TimelineRowProps {
     role: Role;
     expanded: boolean;
+    pulse: boolean;
     onEnter: () => void;
     onNetworkClick: (role: Role) => void;
 }
 
-const TimelineRow = ({ role, expanded, onEnter, onNetworkClick }: TimelineRowProps) => {
+const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: TimelineRowProps) => {
     const isExternal = !!role.link && /^https?:\/\//.test(role.link);
 
     return (
@@ -30,6 +32,12 @@ const TimelineRow = ({ role, expanded, onEnter, onNetworkClick }: TimelineRowPro
             className="relative cursor-pointer pl-14 md:cursor-default md:pl-20"
         >
             {/* Node — accent blue when expanded, hairline ring when not */}
+            {pulse && (
+                <span
+                    aria-hidden="true"
+                    className="absolute left-[14px] md:left-[18px] top-2.5 z-10 h-3 w-3 rounded-full bg-blue-500/50 animate-ping"
+                />
+            )}
             <span
                 aria-hidden="true"
                 className={`absolute left-[14px] md:left-[18px] top-2.5 z-10 h-3 w-3 rounded-full transition-colors duration-300 ${
@@ -145,10 +153,20 @@ const TimelineRow = ({ role, expanded, onEnter, onNetworkClick }: TimelineRowPro
 
 export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelineProps) => {
     const [activeRole, setActiveRole] = useState<Role | null>(null);
-    // The "expanded" row defaults to the most recent (first) role and follows
-    // the cursor as the user hovers down the timeline. Falling back to roles[0]
-    // means there is always a visibly-expanded item to anchor the eye.
+    // The "expanded" row defaults to the most recent (first) role, then the
+    // scroll playhead drives it (with hover/tap as desktop overrides).
     const [hoveredId, setHoveredId] = useState<string | null>(roles[0]?.id ?? null);
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+    // Scroll progress through the list drives the spine fill + comet.
+    const containerRef = useRef<HTMLDivElement>(null);
+    const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const recompute = useRef<() => void>(() => {});
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start 55%", "end 45%"],
+    });
+    const spineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
     useEffect(() => {
         if (!activeRole) return;
@@ -158,6 +176,35 @@ export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelinePro
         window.addEventListener("keydown", onKey);
         return () => window.removeEventListener("keydown", onKey);
     }, [activeRole]);
+
+    // Active role = the last row whose top has crossed a ~42% viewport playhead.
+    // Monotonic with scroll, so it never jitters as rows expand. Touch-friendly:
+    // this replaces the old hover-only model on mobile.
+    useEffect(() => {
+        if (prefersReducedMotion) return;
+        let raf = 0;
+        const compute = () => {
+            raf = 0;
+            const playY = window.innerHeight * 0.42;
+            let best = 0;
+            rowRefs.current.forEach((el, index) => {
+                if (el && el.getBoundingClientRect().top - 8 <= playY) best = index;
+            });
+            setHoveredId(roles[best]?.id ?? null);
+        };
+        recompute.current = compute;
+        const onScroll = () => {
+            if (!raf) raf = requestAnimationFrame(compute);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll, { passive: true });
+        compute();
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            if (raf) cancelAnimationFrame(raf);
+        };
+    }, [roles, prefersReducedMotion]);
 
     return (
         <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
@@ -177,24 +224,54 @@ export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelinePro
                     </p>
                 </div>
 
-                <div className="relative">
-                    {/* Vertical spine — hairline that runs the full list */}
+                <div className="relative" ref={containerRef}>
+                    {/* Vertical spine — hairline track that runs the full list */}
                     <div
                         aria-hidden="true"
                         className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-black/12"
                     />
 
+                    {/* Self-drawing accent fill + scroll comet */}
+                    {prefersReducedMotion ? (
+                        <div
+                            aria-hidden="true"
+                            className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 to-indigo-500"
+                        />
+                    ) : (
+                        <>
+                            <motion.div
+                                aria-hidden="true"
+                                className="absolute left-[19px] md:left-[23px] top-0 w-px bg-gradient-to-b from-blue-500 to-indigo-500"
+                                style={{ height: spineHeight }}
+                            />
+                            <motion.div
+                                aria-hidden="true"
+                                className="absolute left-[14px] md:left-[18px] z-20 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-blue-500"
+                                style={{
+                                    top: spineHeight,
+                                    boxShadow: "0 0 12px 4px rgba(37,99,235,0.55)",
+                                }}
+                            />
+                        </>
+                    )}
+
                     <ol
                         className="relative flex flex-col gap-12 md:gap-16"
-                        // Reset to "most recent expanded" once the cursor leaves the
-                        // entire list — keeps the timeline visually anchored.
-                        onMouseLeave={() => setHoveredId(roles[0]?.id ?? null)}
+                        // Re-anchor to the scroll playhead once the cursor leaves.
+                        onMouseLeave={() => recompute.current()}
                     >
-                        {roles.map((role) => (
-                            <div key={role.id} className="group">
+                        {roles.map((role, index) => (
+                            <div
+                                key={role.id}
+                                ref={(el) => {
+                                    rowRefs.current[index] = el;
+                                }}
+                                className="group"
+                            >
                                 <TimelineRow
                                     role={role}
                                     expanded={hoveredId === role.id}
+                                    pulse={hoveredId === role.id && !prefersReducedMotion}
                                     onEnter={() => setHoveredId(role.id)}
                                     onNetworkClick={setActiveRole}
                                 />
