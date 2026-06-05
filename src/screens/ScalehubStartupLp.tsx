@@ -43,6 +43,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
 
   return (
     <div className="bg-white flex flex-col w-full overflow-x-hidden">
+      <main>
       {/* Hero Section */}
       <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start snap-always">
         <Suspense
@@ -129,6 +130,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
       <div className="relative z-10 bg-white">
         <AboutSection />
       </div>
+      </main>
 
       {/* Footer */}
       <footer className="relative z-10 bg-black text-white py-20 px-4 md:px-8">

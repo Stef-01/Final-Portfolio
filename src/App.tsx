@@ -5,7 +5,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, MotionConfig } from "motion/react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { NotFound } from "./components/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -81,9 +81,14 @@ const RoutedApp = () => {
 
 const App = (): JSX.Element => {
   return (
-    <Router>
-      <RoutedApp />
-    </Router>
+    // reducedMotion="user" makes every motion component honor the OS
+    // "reduce motion" setting globally — transform/scroll animations are
+    // disabled so content lands without large slides, no per-component wiring.
+    <MotionConfig reducedMotion="user">
+      <Router>
+        <RoutedApp />
+      </Router>
+    </MotionConfig>
   );
 };
 

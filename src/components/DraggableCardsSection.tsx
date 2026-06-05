@@ -116,7 +116,7 @@ export const DraggableCardsSection = () => {
                             {/* Enhanced background for text visibility */}
                             <div className={`bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-md rounded-3xl border border-white/25 shadow-2xl ${isPhoneLayout ? "px-6 py-5" : "px-12 py-8"}`}>
                                 <h1 className="text-4xl md:text-8xl font-bold tracking-tighter leading-tight mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] text-white">
-                                    On a quest to craft<br />something awesome
+                                    On a quest to craft <br />something awesome
                                 </h1>
                                 <p className="text-lg md:text-3xl font-serif italic opacity-95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] text-white">
                                     to hone my skills or just for fun
