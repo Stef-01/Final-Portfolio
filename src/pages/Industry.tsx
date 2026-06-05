@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { RolesGrid } from "../components/RolesGrid";
+import { CountUp } from "../components/CountUp";
 import { industryRoles } from "../types/roles";
 
 export function Industry() {
@@ -11,11 +12,13 @@ export function Industry() {
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
-      <div className="px-4 pt-16 md:pt-20 md:px-8">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative overflow-hidden px-4 pt-16 md:pt-20 md:px-8">
+        {/* Emerald accent wash ties this page to the home hero's premium look */}
+        <div className="pointer-events-none absolute inset-x-0 -top-24 z-0 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.16),_transparent_60%)]" />
+        <div className="relative z-10 max-w-6xl mx-auto">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors mb-12 group"
+            className="inline-flex items-center gap-2 text-gray-500 hover:text-emerald-600 transition-colors mb-12 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="text-[18px] font-medium">Back to Home</span>
@@ -26,9 +29,12 @@ export function Industry() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">
-              Industry
-            </p>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-emerald-500" />
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
+                Industry
+              </p>
+            </div>
             <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-black leading-[0.95]">
               Founding, advising, and building health-tech ventures
             </h1>
@@ -41,21 +47,26 @@ export function Industry() {
 
             <div className="mt-10 grid gap-4 md:grid-cols-3">
               {[
-                { k: "9", v: "ventures and advisory engagements" },
-                { k: "7th / 3,500", v: "Harvard HSIL competition placement" },
-                { k: "1st", v: "Stanford XR Hackathon Social Good" },
-              ].map((stat) => (
-                <div
-                  key={stat.v}
-                  className="rounded-[28px] border border-black/10 bg-[#fafafa] px-6 py-5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]"
+                { value: 9 as number | string, label: "ventures and advisory engagements" },
+                { value: "7th / 3,500", label: "Harvard HSIL competition placement" },
+                { value: "1st", label: "Stanford XR Hackathon Social Good" },
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  whileHover={{ y: -6 }}
+                  className="rounded-[28px] border border-white/60 bg-white/70 px-6 py-7 shadow-[0_30px_60px_-40px_rgba(16,185,129,0.55)] backdrop-blur-md ring-1 ring-emerald-500/10"
                 >
-                  <p className="text-3xl md:text-5xl font-bold tracking-tight text-black">
-                    {stat.k}
+                  <p className="bg-gradient-to-br from-emerald-600 to-teal-500 bg-clip-text text-4xl md:text-5xl font-bold tracking-tight text-transparent">
+                    {typeof stat.value === "number" ? <CountUp to={stat.value} /> : stat.value}
                   </p>
-                  <p className="mt-2 text-sm md:text-base text-gray-600">
-                    {stat.v}
+                  <p className="mt-3 text-sm md:text-base text-gray-600">
+                    {stat.label}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
