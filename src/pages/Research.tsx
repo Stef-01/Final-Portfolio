@@ -75,14 +75,14 @@ export function Research() {
         </div>
       </div>
 
+      <PrecisionMedicineSection />
+
       <RolesTimeline
         roles={researchRoles}
         eyebrow="Research Timeline"
         title="A line through every research role"
-        intro="Hover the timeline to expand any role. Each one offers two ways in — the case study for outputs and deliverables, and an interactive role network for the collaborators around it."
+        intro="Scroll the timeline to move through each role. Each one offers two ways in — the case study for outputs and deliverables, and an interactive role network for the collaborators around it."
       />
-
-      <PrecisionMedicineSection />
 
       <SystemsMapSection />
 
