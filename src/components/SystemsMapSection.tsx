@@ -323,6 +323,43 @@ export const SystemsMapSection = () => {
                   />
                 );
               })}
+
+              {/* Signal pulses fire outward from the active node along its
+                  edges — the "neural constellation" moment. */}
+              {!prefersReducedMotion &&
+                edges
+                  .filter(([fromId, toId]) => fromId === activeId || toId === activeId)
+                  .map(([fromId, toId], index) => {
+                    const otherId = fromId === activeId ? toId : fromId;
+                    const source = nodes.find((node) => node.id === activeId);
+                    const target = nodes.find((node) => node.id === otherId);
+                    if (!source || !target) {
+                      return null;
+                    }
+                    const x1 = coordinateToViewBoxUnit(source.x);
+                    const y1 = coordinateToViewBoxUnit(source.y);
+                    const x2 = coordinateToViewBoxUnit(target.x);
+                    const y2 = coordinateToViewBoxUnit(target.y);
+                    return (
+                      <motion.circle
+                        key={`pulse-${activeId}-${otherId}`}
+                        r="1.1"
+                        fill="#2563eb"
+                        initial={{ cx: x1, cy: y1, opacity: 0 }}
+                        animate={{
+                          cx: [x1, x2],
+                          cy: [y1, y2],
+                          opacity: [0, 1, 1, 0],
+                        }}
+                        transition={{
+                          duration: 1.2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: index * 0.14,
+                        }}
+                      />
+                    );
+                  })}
             </svg>
 
             <LayoutGroup id="systems-map-nodes">

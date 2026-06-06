@@ -103,9 +103,28 @@ export function Policy() {
                       delay: Math.min(index * 0.08, 0.24),
                     }}
                     whileHover={{ y: -6 }}
-                    className="rounded-[32px] border border-black/8 bg-white p-6 md:p-8 shadow-[0_24px_60px_-40px_rgba(245,158,11,0.4)] ring-1 ring-amber-500/10 transition-shadow hover:shadow-[0_40px_80px_-48px_rgba(245,158,11,0.6)]"
+                    onMouseMove={(e) => {
+                      const r = e.currentTarget.getBoundingClientRect();
+                      e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+                      e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+                    }}
+                    className="group relative overflow-hidden rounded-[32px] border border-black/8 bg-white p-6 md:p-8 shadow-[0_24px_60px_-40px_rgba(245,158,11,0.4)] ring-1 ring-amber-500/10 transition-shadow hover:shadow-[0_40px_80px_-48px_rgba(245,158,11,0.6)]"
                   >
-                    <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                    {/* Cursor-following amber spotlight */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 rounded-[32px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{
+                        background:
+                          "radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(245,158,11,0.12), transparent 70%)",
+                      }}
+                    />
+                    {/* Animated amber border-beam */}
+                    <div
+                      aria-hidden="true"
+                      className="border-beam pointer-events-none absolute inset-0 rounded-[32px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    />
+                    <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                       <div className="max-w-3xl">
                         <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg shadow-amber-500/30">
                           <Icon className="h-4 w-4" />

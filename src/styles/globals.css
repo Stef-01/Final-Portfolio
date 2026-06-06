@@ -201,6 +201,44 @@ html.snap-page {
   }
 }
 
+/* Animated amber border-beam for Policy initiative cards. A rotating conic
+   gradient is masked to the 1.5px border ring so only the edge lights up. */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes beam-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+.border-beam {
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg,
+    transparent 55deg,
+    rgba(245, 158, 11, 0.9) 90deg,
+    transparent 125deg,
+    transparent 360deg
+  );
+  padding: 1.5px;
+  animation: beam-spin 4s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .border-beam {
+    animation: none;
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
