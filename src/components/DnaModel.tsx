@@ -17,8 +17,8 @@ const DIM = 0xcbd5e1;
 
 const IDLE = 0.00252; // idle spin — 80% quicker than the previous 0.0014
 const HOVER = IDLE * 0.5; // hovering SLOWS the spin by 50% (opposite of before)
-const DANCE = IDLE * 4.5; // fast "dance" burst on load
-const INTRO_MS = 2600; // how long the load dance runs before settling to idle
+const DANCE = IDLE * 3; // load "dance": plain 3x spin for the first few seconds
+const INTRO_MS = 5000; // dance runs for 5s on load, then settles to idle
 
 /**
  * Renders the DNA strand GLB with a minimal three.js scene. The helix is laid
@@ -26,7 +26,7 @@ const INTRO_MS = 2600; // how long the load dance runs before settling to idle
  * the original 2D helix motion). The mesh is split into `segments` colour bands
  * by position along the long axis: idle shows uniform blue, hovering a segment
  * lights that band in its accent colour, dims the rest, and slows the spin.
- * On load it briefly "dances" (fast spin + wobble) before settling to idle.
+ * On load it spins at 3x for 5s (the load dance) before settling to idle.
  * Lazy-loaded by the parent; three.js + GLB only download on reach.
  */
 export function DnaModel({ hovered, segments, reducedMotion, className }: DnaModelProps) {
@@ -180,21 +180,8 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
 
             const animate = () => {
                 const t = performance.now() - introStart;
-                let target: number;
-                if (t < INTRO_MS) {
-                    // Load "dance": fast spin + a decaying wobble that eases into idle.
-                    const k = t / INTRO_MS;
-                    const ease = k * k * (3 - 2 * k); // smoothstep 0..1
-                    target = DANCE * (1 - ease) + IDLE * ease;
-                    const amp = 1 - ease;
-                    spin.rotation.y = Math.sin(t * 0.011) * 0.28 * amp;
-                    spin.rotation.z = Math.cos(t * 0.008) * 0.2 * amp;
-                } else {
-                    // Settled: hover slows it down, otherwise idle. Wobble eases out.
-                    target = targetSpeedRef.current;
-                    spin.rotation.y += (0 - spin.rotation.y) * 0.06;
-                    spin.rotation.z += (0 - spin.rotation.z) * 0.06;
-                }
+                // First 5s: spin at 3x (the load dance). After: hover slows, else idle.
+                const target = t < INTRO_MS ? DANCE : targetSpeedRef.current;
                 speed += (target - speed) * 0.07;
                 spin.rotation.x += speed;
                 render();

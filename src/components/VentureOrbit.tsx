@@ -158,10 +158,10 @@ export function VentureOrbit() {
             <circle cx={CX} cy={CY} r={62} className="vo-hub-glow" />
             <circle cx={CX} cy={CY} r={52} className="vo-hub-disc" />
             <text className="vo-hub-t" x={CX} y={CY - 6} textAnchor="middle">
-              Health-tech
+              Health Tech
             </text>
             <text className="vo-hub-s" x={CX} y={CY + 14} textAnchor="middle">
-              ventures
+              &amp; Industry
             </text>
           </g>
 

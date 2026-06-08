@@ -69,27 +69,7 @@ export const PrecisionMedicineSection = () => {
 
       {/* 3D helix stage */}
       <div className="mx-auto mt-14 max-w-6xl">
-        <div className="relative pt-16">
-          {/* Pop-out leader line + label pointing at the hovered third */}
-          <AnimatePresence>
-            {hovered !== null && (
-              <motion.div
-                key={hovered}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="pointer-events-none absolute top-0 z-20 flex -translate-x-1/2 flex-col items-center"
-                style={{ left: `${((hovered + 0.5) / categories.length) * 100}%` }}
-              >
-                <span className="whitespace-nowrap text-sm font-semibold tracking-tight text-blue-700">
-                  {categories[hovered].label}
-                </span>
-                <span className="mt-2 h-10 w-px bg-gradient-to-b from-blue-500/70 to-blue-500/0" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-
+        <div className="relative">
           <div className="relative aspect-[5/2] w-full">
             {prefersReducedMotion ? (
               fallbackHelix

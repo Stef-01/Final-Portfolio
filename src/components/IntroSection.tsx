@@ -48,7 +48,7 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="font-bold tracking-tight leading-[0.98] text-black text-[44px] md:text-[80px]"
                     >
-                        Most health research stops at the paper. I work on the part that reaches people.
+                        Turning complex evidence into things people can actually use.
                     </motion.h2>
 
                     <motion.p

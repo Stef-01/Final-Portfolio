@@ -85,7 +85,7 @@ export function Industry() {
             </p>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
-            Nine ventures, one through-line
+            An overview of my health-tech work
           </h2>
           <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
             Building, advising, and consulting across the health-tech stack —
@@ -93,7 +93,7 @@ export function Industry() {
           </p>
 
           <motion.div
-            className="mt-10 rounded-[28px] border border-black/10 bg-[#fafafa] p-4 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]"
+            className="mt-10"
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
