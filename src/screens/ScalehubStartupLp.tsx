@@ -67,7 +67,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
           <Badge className="mb-8" label="Stefan Thottunkal" showIcon={true} />
 
           <h1 className="text-center text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-6 max-w-4xl leading-[0.95]">
-            Crafting Digital Health Experiences
+            Health tech, from research to reality
           </h1>
 
           <p className="text-center text-base md:text-xl leading-relaxed text-gray-600 max-w-2xl mb-8">
@@ -78,7 +78,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
           <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none">
             <Button
               type="primary"
-              label="Explore Work"
+              label="See the work"
               onClick={handleViewWork}
               className="w-full sm:w-[134px]"
             />

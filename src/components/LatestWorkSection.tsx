@@ -65,7 +65,7 @@ export const LatestWorkSection = () => {
                             transition={{ duration: 0.72, delay: 0.14 }}
                             className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-5 leading-[0.95]"
                         >
-                            Flagship projects at the intersection of health, AI, and systems design
+                            Flagship projects across health, AI, and systems design
                         </motion.h2>
 
                         <motion.p

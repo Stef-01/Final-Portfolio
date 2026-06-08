@@ -181,7 +181,7 @@ export function AboutSection() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <p className="font-['Clash_Grotesk',_sans-serif] text-[18px] md:text-[24px] text-gray-700 leading-relaxed">
-                            I partner with healthcare innovators, researchers, and communities to reimagine health systems, from AI-powered precision medicine tools to equitable implementation strategies for Indigenous health.
+                            I work across three worlds that rarely talk to each other: Stanford labs, Australian government, and the clinics and communities that actually see patients.
                         </p>
                     </motion.div>
 
@@ -192,7 +192,7 @@ export function AboutSection() {
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
                         <p className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px] md:text-[24px] text-gray-900 leading-relaxed">
-                            My mission: to design frictionless, human-centered digital health experiences that bridge cutting-edge technology with compassionate care, advancing health equity and transforming patient outcomes through evidence-based innovation.
+                            My focus: getting good health technology to the people current systems leave out — remote Indigenous clinics, low-resource hospitals, and patients on medications no one has reconciled.
                         </p>
                     </motion.div>
 

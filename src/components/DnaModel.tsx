@@ -15,15 +15,18 @@ const BASE = 0x2563eb;
 const SEG_COLORS = [0x2563eb, 0x0ea5e9, 0x6366f1]; // blue / sky / indigo
 const DIM = 0xcbd5e1;
 
-const SLOW = 0.0014; // gentle idle spin (50% slower than before)
-const FAST = SLOW * 1.33; // ~30% faster than idle while hovering
+const IDLE = 0.00252; // idle spin — 80% quicker than the previous 0.0014
+const HOVER = IDLE * 0.5; // hovering SLOWS the spin by 50% (opposite of before)
+const DANCE = IDLE * 4.5; // fast "dance" burst on load
+const INTRO_MS = 2600; // how long the load dance runs before settling to idle
 
 /**
  * Renders the DNA strand GLB with a minimal three.js scene. The helix is laid
  * horizontal (long axis -> X) and spun continuously around that axis (matching
  * the original 2D helix motion). The mesh is split into `segments` colour bands
  * by position along the long axis: idle shows uniform blue, hovering a segment
- * lights that band in its accent colour, dims the rest, and speeds up the spin.
+ * lights that band in its accent colour, dims the rest, and slows the spin.
+ * On load it briefly "dances" (fast spin + wobble) before settling to idle.
  * Lazy-loaded by the parent; three.js + GLB only download on reach.
  */
 export function DnaModel({ hovered, segments, reducedMotion, className }: DnaModelProps) {
@@ -33,7 +36,7 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
     // Bridges React state into the imperative three.js loop without re-creating it.
     const hoveredRef = useRef<number | null>(hovered);
     const applyRef = useRef<(seg: number | null) => void>(() => {});
-    const targetSpeedRef = useRef(SLOW);
+    const targetSpeedRef = useRef(IDLE);
 
     useEffect(() => {
         const mount = mountRef.current;
@@ -73,7 +76,10 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
             const spin = new THREE.Group();
             scene.add(spin);
 
-            let speed = SLOW;
+            let speed = DANCE;
+            // Intro timer starts when the model is actually added to the scene
+            // (below), so the dance plays when the molecule first appears.
+            let introStart = performance.now();
             const render = () => renderer.render(scene, camera);
 
             const loader = new GLTFLoader();
@@ -153,6 +159,12 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
                 }
 
                 render();
+                // Start the loop now that the model is in the scene, so the
+                // intro dance plays in full regardless of GLB download time.
+                introStart = performance.now();
+                if (!reduced) raf = requestAnimationFrame(animate);
+            }, undefined, (err) => {
+                console.error("[DnaModel] GLB load failed", err);
             });
 
             const onResize = () => {
@@ -167,16 +179,30 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
             observer.observe(mount);
 
             const animate = () => {
-                speed += (targetSpeedRef.current - speed) * 0.07;
+                const t = performance.now() - introStart;
+                let target: number;
+                if (t < INTRO_MS) {
+                    // Load "dance": fast spin + a decaying wobble that eases into idle.
+                    const k = t / INTRO_MS;
+                    const ease = k * k * (3 - 2 * k); // smoothstep 0..1
+                    target = DANCE * (1 - ease) + IDLE * ease;
+                    const amp = 1 - ease;
+                    spin.rotation.y = Math.sin(t * 0.011) * 0.28 * amp;
+                    spin.rotation.z = Math.cos(t * 0.008) * 0.2 * amp;
+                } else {
+                    // Settled: hover slows it down, otherwise idle. Wobble eases out.
+                    target = targetSpeedRef.current;
+                    spin.rotation.y += (0 - spin.rotation.y) * 0.06;
+                    spin.rotation.z += (0 - spin.rotation.z) * 0.06;
+                }
+                speed += (target - speed) * 0.07;
                 spin.rotation.x += speed;
                 render();
                 raf = requestAnimationFrame(animate);
             };
-            if (reduced) {
-                render();
-            } else {
-                raf = requestAnimationFrame(animate);
-            }
+            // The animation loop is started inside the GLTF callback above once
+            // the model is present (reduced-motion renders a single static frame
+            // there instead). Nothing to start here.
 
             cleanup = () => {
                 cancelAnimationFrame(raf);
@@ -194,10 +220,10 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
         };
     }, [reduced, segments]);
 
-    // React to hover: recolour the active segment and speed up the spin.
+    // React to hover: recolour the active segment and SLOW the spin down.
     useEffect(() => {
         hoveredRef.current = hovered;
-        targetSpeedRef.current = reduced ? 0 : hovered !== null ? FAST : SLOW;
+        targetSpeedRef.current = reduced ? 0 : hovered !== null ? HOVER : IDLE;
         applyRef.current(hovered);
     }, [hovered, reduced]);
 

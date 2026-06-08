@@ -82,7 +82,7 @@ export function Research() {
       <RolesTimeline
         roles={researchRoles}
         eyebrow="Research Timeline"
-        title="A line through every research role"
+        title="Every role, start to finish"
       />
 
       <SystemsMapSection />

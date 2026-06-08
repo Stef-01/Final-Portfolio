@@ -48,14 +48,14 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="font-bold tracking-tight leading-[0.98] text-black text-[44px] md:text-[80px]"
                     >
-                        Turning complex evidence into things people can actually use.
+                        Most health research stops at the paper. I work on the part that reaches people.
                     </motion.h2>
 
                     <motion.p
                         variants={itemVariants}
                         className="max-w-2xl text-lg md:text-2xl leading-relaxed text-gray-500"
                     >
-                        Research, clinical AI, and health-system innovation — translated into products, decisions, and strategy with a bias toward real-world implementation.
+                        Pharmacogenomics, oculomics, and Indigenous-health work — built to reach a clinic, not just a journal.
                     </motion.p>
                 </motion.div>
             </div>

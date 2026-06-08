@@ -14,21 +14,21 @@ const categories = [
     label: "Precision Oncology",
     shortLabel: "Oncology",
     blurb:
-      "EGFR tumour-burden work with Summer Han, focused on translating signal-rich oncology insight into more usable precision-care reasoning.",
+      "Tumour-burden annotation with the Han Lab at Stanford Medicine — turning lung-cancer imaging into reasoning a clinician can act on.",
   },
   {
     id: "nourish-meal-explorer",
     label: "Precision Nutrition",
     shortLabel: "Nutrition",
     blurb:
-      "NOURISH explores how behavior-change design and recommendation systems can make preventive nutrition feel intelligent, adaptive, and humane.",
+      "NOURISH uses behaviour-change design and recommendation systems to make preventive nutrition stick, not just inform.",
   },
   {
     id: "pgx-llm-copilot",
     label: "Pharmacogenomics",
     shortLabel: "Pharmacogenomics",
     blurb:
-      "An AI-assisted prescribing concept that translates pharmacogenomic evidence into a safer, more legible workflow for everyday clinical use.",
+      "GenieRX turns pharmacogenomic evidence and CPIC guidelines into safer, more legible prescribing at the point of care.",
   },
 ];
 
@@ -63,7 +63,7 @@ export const PrecisionMedicineSection = () => {
           <span className="h-px w-8 bg-blue-500" />
         </div>
         <h2 className="mx-auto max-w-3xl text-4xl md:text-6xl font-bold tracking-tighter text-black">
-          A DNA-led map into the most translational precision-care work
+          Three strands of precision-care work
         </h2>
       </div>
 

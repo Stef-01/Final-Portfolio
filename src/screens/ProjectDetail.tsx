@@ -165,9 +165,9 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
                 <section className="mt-16">
                     <div className="mb-8">
-                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Media Direction</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Visuals</p>
                         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-black md:text-4xl">
-                            Visual material the panel can carry with confidence
+                            The visuals, and the thinking behind them
                         </h2>
                     </div>
 
@@ -199,9 +199,9 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 <section className="mt-16 overflow-hidden rounded-[36px] border border-black/8 bg-[#0f1115] p-6 text-white md:p-8">
                     <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
                         <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">Interactive Concept Lab</p>
+                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">Concept explorations</p>
                             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                                Creative interaction systems that fit this case study
+                                Interaction ideas prototyped for this project
                             </h2>
 
                             <div className="mt-8 flex flex-wrap gap-3">

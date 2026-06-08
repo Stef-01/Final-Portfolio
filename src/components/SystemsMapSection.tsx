@@ -12,11 +12,11 @@ export const SystemsMapSection = () => {
           </p>
         </div>
         <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
-          A live view of the problem spaces the portfolio is actually about
+          The healthcare ecosystem behind the work
         </h2>
         <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
-          The healthcare system the work sits inside — financing and oversight,
-          innovation and supply, care delivery, and patients and community.
+          Financing and oversight, innovation and supply, care delivery, and
+          patients and community — and the parts of it I've worked in.
         </p>
 
         <motion.div

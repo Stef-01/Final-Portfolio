@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { RolesGrid } from "../components/RolesGrid";
+import { VentureOrbit } from "../components/VentureOrbit";
 import { CountUp } from "../components/CountUp";
 import { industryRoles } from "../types/roles";
 import { useGoBack } from "../hooks/useGoBack";
@@ -41,10 +42,10 @@ export function Industry() {
               Founding, advising, and building health-tech ventures
             </h1>
             <p className="mt-6 max-w-3xl text-base md:text-xl leading-relaxed text-gray-600">
-              NOURISH, Sous, GenieRX (7th of 3,500 at Harvard HSIL), Adcem
-              Pharma dialysis JV in Lagos, Microsoft Healthcare from the Eye,
-              Stanford XR Hackathon (1st place Social Good) — the building work
-              across the portfolio.
+              NOURISH and Sous; GenieRX (2nd in the US, 7th of 3,500 at Harvard
+              HSIL); the Adcem Fidson dialysis joint venture in Nigeria;
+              Microsoft / Stanford Medicine HFTE; and the Stanford XR Hackathon
+              (1st place, Social Good).
             </p>
 
             <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -75,11 +76,39 @@ export function Industry() {
         </div>
       </div>
 
+      <section className="w-full bg-white px-4 py-20 md:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-8 bg-emerald-500" />
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
+              Venture Map
+            </p>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
+            Nine ventures, one through-line
+          </h2>
+          <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
+            Building, advising, and consulting across the health-tech stack —
+            colour-coded by how I showed up to each.
+          </p>
+
+          <motion.div
+            className="mt-10 rounded-[28px] border border-black/10 bg-[#fafafa] p-4 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]"
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <VentureOrbit />
+          </motion.div>
+        </div>
+      </section>
+
       <RolesGrid
         roles={industryRoles}
         eyebrow="Industry Roles"
-        title="Every venture, its own card"
-        intro="Founding, advisory, and consulting engagements across the health-tech stack — each with its own dedicated card. NOURISH and Sous are the compounding bets; the rest are the muscles that built them. Flagship case studies and tinker projects live on the landing page."
+        title="The ventures, one by one"
+        intro="Founding, advisory, and consulting work across the health-tech stack — from a teaching-kitchen nutrition program to a hackathon-winning prescribing tool and a dialysis joint venture in Nigeria."
       />
 
       <ContactSection />

@@ -78,7 +78,7 @@ export function Policy() {
       <RolesTimeline
         roles={policyRoles}
         eyebrow="Policy Timeline"
-        title="A line through every policy role"
+        title="Inside the government work"
       />
 
       <ContactSection />
