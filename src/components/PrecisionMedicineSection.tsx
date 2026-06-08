@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { DnaHelix } from "./DnaHelix";
+
+// The 3D model + renderer (~3.4 MB GLB) only loads once the section is reached.
+const DnaModel = lazy(() => import("./DnaModel").then((m) => ({ default: m.DnaModel })));
 
 const categories = [
   {
@@ -32,10 +36,21 @@ export const PrecisionMedicineSection = () => {
   const [hovered, setHovered] = useState<number | null>(null);
   const [selected, setSelected] = useState(0);
   const navigate = useNavigate();
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const activeIndex = hovered ?? selected;
   const active = categories[activeIndex];
   const open = (index: number) => navigate(`/project/${categories[index].id}`);
+
+  const fallbackHelix = (
+    <DnaHelix
+      className="absolute inset-0 block h-full w-full"
+      orientation="horizontal"
+      activeIndex={activeIndex}
+      segments={categories.length}
+      accent="#2563eb"
+    />
+  );
 
   return (
     <section className="w-full bg-white px-4 py-24 md:px-8">
@@ -51,27 +66,15 @@ export const PrecisionMedicineSection = () => {
           A DNA-led map into the most translational precision-care work
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base md:text-xl leading-relaxed text-gray-500">
-          Hover across the strand to move between oncology, nutrition, and
+          Hover across the helix to move between oncology, nutrition, and
           pharmacogenomics.
         </p>
       </div>
 
-      {/* Horizontal helix stage */}
+      {/* 3D helix stage */}
       <div className="mx-auto mt-14 max-w-5xl">
-        <div
-          role="button"
-          tabIndex={0}
-          aria-label={`Open ${active.label}`}
-          onClick={() => open(activeIndex)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              open(activeIndex);
-            }
-          }}
-          className="relative cursor-pointer pt-16 focus-visible:outline-none"
-        >
-          {/* Pop-out leader line + label pointing at the hovered segment */}
+        <div className="relative pt-16">
+          {/* Pop-out leader line + label pointing at the hovered third */}
           <AnimatePresence>
             {hovered !== null && (
               <motion.div
@@ -91,14 +94,37 @@ export const PrecisionMedicineSection = () => {
             )}
           </AnimatePresence>
 
-          <DnaHelix
-            className="block h-[200px] w-full md:h-[280px]"
-            orientation="horizontal"
-            activeIndex={activeIndex}
-            segments={categories.length}
-            accent="#2563eb"
-            onHoverSegment={setHovered}
-          />
+          <div className="relative h-[230px] w-full md:h-[360px]">
+            {prefersReducedMotion ? (
+              fallbackHelix
+            ) : (
+              <Suspense fallback={fallbackHelix}>
+                <DnaModel className="absolute inset-0 h-full w-full" reducedMotion={false} />
+              </Suspense>
+            )}
+
+            {/* Transparent hover zones drive category selection over the model */}
+            <div
+              className="absolute inset-0 z-10 grid grid-cols-3"
+              onMouseLeave={() => setHovered(null)}
+            >
+              {categories.map((category, index) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  aria-label={`Open ${category.label}`}
+                  onMouseEnter={() => setHovered(index)}
+                  onFocus={() => {
+                    setHovered(index);
+                    setSelected(index);
+                  }}
+                  onBlur={() => setHovered(null)}
+                  onClick={() => open(index)}
+                  className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-inset"
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Minimal segment ticks — keyboard-accessible, align under each band */}
@@ -141,7 +167,7 @@ export const PrecisionMedicineSection = () => {
             <button
               type="button"
               onClick={() => open(activeIndex)}
-              className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2 rounded"
+              className="group mt-5 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
             >
               Open case study
               <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -149,6 +175,29 @@ export const PrecisionMedicineSection = () => {
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* CC-BY attribution for the 3D model */}
+      <p className="mx-auto mt-12 max-w-3xl text-center text-[11px] leading-relaxed text-gray-400">
+        3D model:{" "}
+        <a
+          href="https://sketchfab.com/3d-models/dna--double--helix--ultra-154b7fdf15ac40de96a4eb3f433ada0d"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline transition-colors hover:text-gray-600"
+        >
+          “DNA Double Helix Ultra”
+        </a>{" "}
+        by consciousfractal, licensed{" "}
+        <a
+          href="http://creativecommons.org/licenses/by/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline transition-colors hover:text-gray-600"
+        >
+          CC-BY-4.0
+        </a>
+        .
+      </p>
     </section>
   );
 };
