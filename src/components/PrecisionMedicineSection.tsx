@@ -72,7 +72,7 @@ export const PrecisionMedicineSection = () => {
       </div>
 
       {/* 3D helix stage */}
-      <div className="mx-auto mt-14 max-w-5xl">
+      <div className="mx-auto mt-14 max-w-6xl">
         <div className="relative pt-16">
           {/* Pop-out leader line + label pointing at the hovered third */}
           <AnimatePresence>
@@ -94,7 +94,7 @@ export const PrecisionMedicineSection = () => {
             )}
           </AnimatePresence>
 
-          <div className="relative h-[340px] w-full md:h-[540px]">
+          <div className="relative aspect-[5/2] w-full">
             {prefersReducedMotion ? (
               fallbackHelix
             ) : (
