@@ -15,8 +15,9 @@ export const SystemsMapSection = () => {
           The healthcare ecosystem behind the work
         </h2>
         <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
-          Financing and oversight, innovation and supply, care delivery, and
-          patients and community — and the parts of it I've worked in.
+          A treatment dies in the gaps between who pays for it, who approves it,
+          who delivers it, and who needs it. You can't fix delivery from a single
+          seat, so I've worked across all four.
         </p>
 
         <motion.div

@@ -17,8 +17,9 @@ const DIM = 0xcbd5e1;
 
 const IDLE = 0.00252; // idle spin — 80% quicker than the previous 0.0014
 const HOVER = IDLE * 0.5; // hovering SLOWS the spin by 50% (opposite of before)
-const DANCE = IDLE * 3; // load "dance": plain 3x spin for the first few seconds
-const INTRO_MS = 5000; // dance runs for 5s on load, then settles to idle
+const DANCE = IDLE * 8; // load burst: 8x spin
+const DANCE_HOLD = 3000; // hold the 8x burst for 3s
+const DANCE_END = 5000; // then fade gradually to idle across the next 2s
 
 /**
  * Renders the DNA strand GLB with a minimal three.js scene. The helix is laid
@@ -26,7 +27,7 @@ const INTRO_MS = 5000; // dance runs for 5s on load, then settles to idle
  * the original 2D helix motion). The mesh is split into `segments` colour bands
  * by position along the long axis: idle shows uniform blue, hovering a segment
  * lights that band in its accent colour, dims the rest, and slows the spin.
- * On load it spins at 3x for 5s (the load dance) before settling to idle.
+ * On load it spins at 8x for 3s, then fades to idle across 2s.
  * Lazy-loaded by the parent; three.js + GLB only download on reach.
  */
 export function DnaModel({ hovered, segments, reducedMotion, className }: DnaModelProps) {
@@ -180,8 +181,17 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
 
             const animate = () => {
                 const t = performance.now() - introStart;
-                // First 5s: spin at 3x (the load dance). After: hover slows, else idle.
-                const target = t < INTRO_MS ? DANCE : targetSpeedRef.current;
+                // Load: 8x for 3s, then a 2s smoothstep fade to idle. After: hover slows, else idle.
+                let target: number;
+                if (t < DANCE_HOLD) {
+                    target = DANCE;
+                } else if (t < DANCE_END) {
+                    const p = (t - DANCE_HOLD) / (DANCE_END - DANCE_HOLD);
+                    const e = p * p * (3 - 2 * p); // smoothstep 0..1
+                    target = DANCE + (IDLE - DANCE) * e;
+                } else {
+                    target = targetSpeedRef.current;
+                }
                 speed += (target - speed) * 0.07;
                 spin.rotation.x += speed;
                 render();

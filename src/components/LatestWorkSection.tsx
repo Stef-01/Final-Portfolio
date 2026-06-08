@@ -75,7 +75,7 @@ export const LatestWorkSection = () => {
                             transition={{ duration: 0.62, delay: 0.2 }}
                             className="mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600"
                         >
-                            Case studies across product, systems, and advisory work, selected to show how research, implementation, and interface judgment come together under real-world constraint.
+                            A handful of projects chosen for one reason: each shows what it takes to move evidence into use when the budget, the system, and the patient are all real — where research, build, and judgment have to hold up at once.
                         </motion.p>
 
                         <motion.div

@@ -71,8 +71,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
           </h1>
 
           <p className="text-center text-base md:text-xl leading-relaxed text-gray-600 max-w-2xl mb-8">
-            Researcher, policy analyst, and builder working across precision
-            medicine, clinical AI, and global health.
+            I work the translation layer between the lab, the policy room, and
+            the market — because proving something works and getting it to people
+            are two different problems, and the second one is mine.
           </p>
 
           <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none">

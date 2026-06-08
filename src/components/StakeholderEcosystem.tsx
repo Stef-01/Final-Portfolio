@@ -369,8 +369,8 @@ const CSS = `
 .se-cardstack.se-show { opacity: 1; }
 .se-card {
   padding: 8px 12px; border-radius: 12px;
-  background: rgba(255,255,255,0.16);
-  -webkit-backdrop-filter: blur(18px) saturate(1.9); backdrop-filter: blur(18px) saturate(1.9);
+  background: rgba(255,255,255,0.10);
+  -webkit-backdrop-filter: blur(20px) saturate(1.9); backdrop-filter: blur(20px) saturate(1.9);
   border: 1px solid rgba(255,255,255,0.55);
   box-shadow: 0 10px 30px rgba(20,30,45,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
 }
@@ -390,8 +390,8 @@ const CSS = `
 .se-m-roles { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
 .se-m-rolebox {
   display: flex; flex-direction: column; padding: 8px 11px; border-radius: 11px;
-  background: rgba(255,255,255,0.22);
-  -webkit-backdrop-filter: blur(14px) saturate(1.7); backdrop-filter: blur(14px) saturate(1.7);
+  background: rgba(255,255,255,0.14);
+  -webkit-backdrop-filter: blur(16px) saturate(1.7); backdrop-filter: blur(16px) saturate(1.7);
   border: 1px solid rgba(255,255,255,0.55);
   box-shadow: 0 6px 18px rgba(20,30,45,0.14), inset 0 1px 0 rgba(255,255,255,0.55);
 }

@@ -272,8 +272,8 @@ const CSS = `
 
 .vo-card {
   position: absolute; max-width: 252px; padding: 9px 13px; z-index: 5; pointer-events: none;
-  background: rgba(255,255,255,0.18);
-  -webkit-backdrop-filter: blur(16px) saturate(1.7); backdrop-filter: blur(16px) saturate(1.7);
+  background: rgba(255,255,255,0.10);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8); backdrop-filter: blur(20px) saturate(1.8);
   border: 1px solid rgba(255,255,255,0.55); border-radius: 13px;
   box-shadow: 0 10px 30px rgba(8,40,28,0.18), inset 0 1px 0 rgba(255,255,255,0.6);
   opacity: 0; transition: opacity .14s ease;
