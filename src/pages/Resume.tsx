@@ -110,7 +110,7 @@ export function Resume() {
                   </li>
                   <li className="flex gap-3">
                     <span className="text-blue-600">&bull;</span>
-                    <span>AI-assisted diabetic retinopathy screening (Microsoft Healthcare from the Eye)</span>
+                    <span>Health-systems operations for an oculomics medical device (Microsoft / Stanford Medicine HFTE)</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-blue-600">&bull;</span>

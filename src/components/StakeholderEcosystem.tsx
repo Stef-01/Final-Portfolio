@@ -69,11 +69,7 @@ const EDGES: Array<[string, string]> = [
 // here to tweak wording. Keep each entry to a real title + the institution.
 const ROLES: Record<string, RoleRef[]> = {
   // Financing · Oversight · Public Health
-  investors: [
-    { title: "GenieRX Director", org: "Harvard HSIL Venture Incubation Program" },
-    { title: "Spark Program Participant", org: "Johns Hopkins Pava Center" },
-    { title: "Founding Executive, Treasurer", org: "Stanford ANZ Club" },
-  ],
+  // (Investors & Capital intentionally left empty.)
   regulators: [
     { title: "Policy Officer", org: "Aus. DSS — NDIS Outcomes & Research Strategy" },
     { title: "Policy Officer", org: "Aus. DSS — NDIS Financial Policy & Strategy" },
@@ -84,14 +80,11 @@ const ROLES: Record<string, RoleRef[]> = {
     { title: "Research Assistant", org: "NCEPH, Australian National University" },
   ],
   // Innovation & Supply
-  pharma: [
-    { title: "Researcher", org: "Pharmacogenomics & LLM CDS, Stanford Medicine" },
-  ],
-  biotech: [
-    { title: "Student Project Manager", org: "Stanford Health Consulting Group — Aether AI" },
+  // (Pharmaceuticals and Biotech intentionally left empty.)
+  distributor: [
+    { title: "Product Mgmt / BD Intern", org: "Adcem Fidson JV — Stanford GSB SEED" },
   ],
   meddev: [
-    { title: "Product Mgmt / BD Intern", org: "Adcem Fidson JV — Stanford GSB SEED" },
     { title: "Student Project Manager", org: "Microsoft / Stanford Medicine HFTE" },
   ],
   research: [
@@ -109,7 +102,7 @@ const ROLES: Record<string, RoleRef[]> = {
   ],
   // Care Delivery — Providers
   hospitals: [
-    { title: "Student Consultant", org: "Stanford Health Consulting Group" },
+    { title: "Student Consultant", org: "Stanford Medicine Readmissions project" },
   ],
   physicians: [
     { title: "Clinical Education Project Lead", org: "NOURISH Resident Curriculum" },
@@ -117,7 +110,7 @@ const ROLES: Record<string, RoleRef[]> = {
   ],
   primarycare: [
     { title: "Lead Research Coordinator", org: "NOURISH, Stanford Medicine" },
-    { title: "Research Officer", org: "ANU — ATSI Preventive Health Checks" },
+    { title: "Research Officer", org: "ANU — Aboriginal & Torres Strait Islander preventive health" },
   ],
   // Patients & Community
   patients: [

@@ -535,3 +535,166 @@ export const industryRoles: Role[] = [
     },
   },
 ];
+
+// Policy & government roles — content taken verbatim-in-spirit from the role
+// record (ground truth). Note: the role document does not state exact dates;
+// periods below are inferred from context (the Oct 2022 NDIS budget anchors the
+// DSS roles to ~2021–2022) and should be confirmed.
+export const policyRoles: Role[] = [
+  {
+    id: "anu-atsi-implementation",
+    title: "Research Officer",
+    organization: "Australian National University",
+    period: "2022 – 2023",
+    location: "Canberra, Australia",
+    summary:
+      "Contributed to research on the implementation of preventive chronic-disease health checks in Aboriginal and Torres Strait Islander primary health care.",
+    deliverables: [
+      "Implementation research on preventive health checks",
+      "Aboriginal & Torres Strait Islander primary care focus",
+      "Chronic-disease prevention evidence",
+    ],
+    tags: ["Implementation", "Indigenous Health", "Primary Care"],
+    accent: "from-amber-500 to-orange-500",
+    link: "/project/indigenous-preventive-care",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "anu", label: "ANU", sublabel: "Australian National University", icon: "institution", x: 0.5, y: 0.16 },
+        { id: "checks", label: "Preventive health checks", sublabel: "Chronic-disease prevention", icon: "research", x: 0.16, y: 0.5 },
+        { id: "care", label: "Indigenous primary care", sublabel: "Aboriginal & Torres Strait Islander", icon: "users", x: 0.84, y: 0.5 },
+        { id: "impl", label: "Implementation research", sublabel: "What enables uptake", icon: "manuscript", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "anu", label: "Research Officer at the Australian National University" },
+        { from: "me", to: "checks", label: "Studied implementation of preventive chronic-disease health checks" },
+        { from: "me", to: "care", label: "Focused on Aboriginal and Torres Strait Islander primary health care" },
+        { from: "me", to: "impl", label: "Contributed implementation research evidence" },
+      ],
+    },
+  },
+  {
+    id: "dss-ndis-outcomes",
+    title: "Policy Officer",
+    organization: "Australian Dept. of Social Services — NDIS Outcomes & Research Strategy",
+    period: "2022",
+    location: "Canberra, Australia",
+    summary:
+      "Led development of protocols for policymaker–researcher partnerships, supported the establishment of a disability research advisory unit, advised on knowledge translation, and served on procurement panels.",
+    deliverables: [
+      "Policymaker–researcher partnership protocols",
+      "Support for a disability research advisory unit",
+      "Knowledge-translation advice + procurement panels",
+    ],
+    tags: ["NDIS", "Research Policy", "Knowledge Translation"],
+    accent: "from-amber-500 to-yellow-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "dss", label: "Dept. of Social Services", sublabel: "NDIS Outcomes & Research Strategy", icon: "institution", x: 0.5, y: 0.16 },
+        { id: "partnerships", label: "Partnership protocols", sublabel: "Policymaker–researcher", icon: "manuscript", x: 0.16, y: 0.5 },
+        { id: "unit", label: "Research advisory unit", sublabel: "Disability research — establishment", icon: "team", x: 0.84, y: 0.5 },
+        { id: "procurement", label: "Procurement panels", sublabel: "+ knowledge translation", icon: "supervisor", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "dss", label: "Policy Officer in NDIS Outcomes & Research Strategy" },
+        { from: "me", to: "partnerships", label: "Led development of policymaker–researcher partnership protocols" },
+        { from: "me", to: "unit", label: "Supported establishing a disability research advisory unit" },
+        { from: "me", to: "procurement", label: "Advised on knowledge translation and served on procurement panels" },
+      ],
+    },
+  },
+  {
+    id: "dss-ndis-financial",
+    title: "Policy Officer",
+    organization: "Australian Dept. of Social Services — NDIS Financial Policy & Strategy",
+    period: "2022",
+    location: "Canberra, Australia",
+    summary:
+      "Coordinated policy-proposal compliance and feedback with the Office of Best Practice to support the October 2022 NDIS budget, while producing ministerial briefs and new policy proposals.",
+    deliverables: [
+      "Policy-proposal compliance with the Office of Best Practice",
+      "Support for the October 2022 NDIS budget",
+      "Ministerial briefs + new policy proposals",
+    ],
+    tags: ["NDIS", "Budget", "Ministerial Briefs"],
+    accent: "from-orange-500 to-amber-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "obp", label: "Office of Best Practice", sublabel: "Compliance + feedback", icon: "supervisor", x: 0.5, y: 0.16 },
+        { id: "budget", label: "October 2022 NDIS budget", sublabel: "Proposal support", icon: "institution", x: 0.84, y: 0.5 },
+        { id: "briefs", label: "Ministerial briefs", sublabel: "For decision-makers", icon: "manuscript", x: 0.16, y: 0.5 },
+        { id: "proposals", label: "New policy proposals", sublabel: "Drafted + advanced", icon: "manuscript", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "obp", label: "Coordinated policy-proposal compliance with the Office of Best Practice" },
+        { from: "me", to: "budget", label: "Supported the October 2022 NDIS budget" },
+        { from: "me", to: "briefs", label: "Produced ministerial briefs" },
+        { from: "me", to: "proposals", label: "Drafted new policy proposals" },
+      ],
+    },
+  },
+  {
+    id: "dss-redress",
+    title: "Policy Officer",
+    organization: "Australian Dept. of Social Services — National Redress Scheme",
+    period: "2021 – 2022",
+    location: "Canberra, Australia",
+    summary:
+      "Facilitated Commonwealth, state, and territory collaboration to expand redress for survivors of institutional child sexual abuse, and wrote briefs translating complex policy advice for senior executives and Attorneys-General.",
+    deliverables: [
+      "Commonwealth–state–territory collaboration",
+      "Expanded redress for institutional-abuse survivors",
+      "Briefs for senior executives + Attorneys-General",
+    ],
+    tags: ["National Redress", "Intergovernmental", "Briefing"],
+    accent: "from-amber-600 to-orange-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "scheme", label: "National Redress Scheme", sublabel: "External Engagement Team", icon: "institution", x: 0.5, y: 0.16 },
+        { id: "jurisdictions", label: "Commonwealth · states · territories", sublabel: "Intergovernmental collaboration", icon: "team", x: 0.16, y: 0.5 },
+        { id: "survivors", label: "Survivors", sublabel: "Institutional child sexual abuse", icon: "users", x: 0.84, y: 0.5 },
+        { id: "ags", label: "Senior execs + Attorneys-General", sublabel: "Briefs translating policy advice", icon: "supervisor", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "scheme", label: "Policy Officer on the National Redress Scheme External Engagement Team" },
+        { from: "me", to: "jurisdictions", label: "Facilitated Commonwealth, state, and territory collaboration" },
+        { from: "me", to: "survivors", label: "Worked to expand redress for survivors of institutional child sexual abuse" },
+        { from: "me", to: "ags", label: "Wrote briefs translating complex policy advice for senior executives and Attorneys-General" },
+      ],
+    },
+  },
+  {
+    id: "parliamentary-library",
+    title: "Intern",
+    organization: "Parliamentary Library, Parliament of Australia",
+    period: "2021",
+    location: "Canberra, Australia",
+    summary:
+      "Internship in the Parliamentary Library's Social Policy Division — building experience in parliamentary research, social policy analysis, and public-sector briefing.",
+    deliverables: [
+      "Parliamentary research (Social Policy Division)",
+      "Social policy analysis",
+      "Public-sector briefing experience",
+    ],
+    tags: ["Parliamentary Research", "Social Policy", "Government"],
+    accent: "from-yellow-500 to-amber-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "library", label: "Parliamentary Library", sublabel: "Parliament of Australia", icon: "institution", x: 0.5, y: 0.16 },
+        { id: "division", label: "Social Policy Division", sublabel: "Internship placement", icon: "institution", x: 0.16, y: 0.5 },
+        { id: "research", label: "Parliamentary research", sublabel: "Evidence for decision-makers", icon: "research", x: 0.84, y: 0.5 },
+        { id: "briefing", label: "Public-sector briefing", sublabel: "Concise policy analysis", icon: "manuscript", x: 0.5, y: 0.84 },
+      ],
+      edges: [
+        { from: "me", to: "library", label: "Interned at the Parliamentary Library, Parliament of Australia" },
+        { from: "me", to: "division", label: "Placed in the Social Policy Division" },
+        { from: "me", to: "research", label: "Built experience in parliamentary research" },
+        { from: "me", to: "briefing", label: "Social policy analysis and public-sector briefing" },
+      ],
+    },
+  },
+];
