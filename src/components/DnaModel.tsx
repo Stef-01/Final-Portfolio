@@ -15,8 +15,8 @@ const BASE = 0x2563eb;
 const SEG_COLORS = [0x2563eb, 0x0ea5e9, 0x6366f1]; // blue / sky / indigo
 const DIM = 0xcbd5e1;
 
-const SLOW = 0.0028; // gentle idle spin
-const FAST = 0.02; // sped-up spin while hovering
+const SLOW = 0.0014; // gentle idle spin (50% slower than before)
+const FAST = SLOW * 1.33; // ~30% faster than idle while hovering
 
 /**
  * Renders the DNA strand GLB with a minimal three.js scene. The helix is laid
