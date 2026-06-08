@@ -19,13 +19,6 @@ import { usePhoneLayout } from "../hooks/usePhoneLayout";
  */
 
 type Zone = "fin" | "inn" | "care" | "pat";
-type Category =
-  | "Consulting"
-  | "Engineering"
-  | "Finance"
-  | "Research"
-  | "Policy"
-  | "Clinical";
 
 interface NodeDef {
   id: string;
@@ -36,10 +29,10 @@ interface NodeDef {
   zone: Zone;
 }
 
-interface Role {
-  cat: Category;
+// A real role played at a stakeholder: actual title + the institution.
+interface RoleRef {
   title: string;
-  loc?: string;
+  org: string;
 }
 
 const NODES: NodeDef[] = [
@@ -71,37 +64,69 @@ const EDGES: Array<[string, string]> = [
   ["research", "meddev"], ["research", "biotech"], ["research", "pharma"],
 ];
 
-// The roles the portfolio is actually about — shown as hover labels (desktop)
-// and inline (mobile). Each maps a stakeholder node to the real role played
-// there. Edit titles here to tweak wording. Keep them extremely concise.
-const ROLES: Record<string, Role> = {
+// The real roles played at each stakeholder — up to 3 per node, each its own
+// card. Titles and institutions are taken verbatim from the role record; edit
+// here to tweak wording. Keep each entry to a real title + the institution.
+const ROLES: Record<string, RoleRef[]> = {
   // Financing · Oversight · Public Health
-  investors: { cat: "Finance", title: "Health-tech financial modelling", loc: "Nigeria JV" },
-  regulators: { cat: "Policy", title: "NDIS outcomes & financial policy", loc: "Aus. DSS" },
-  pubhealth: { cat: "Research", title: "WHO GOARN deployment review", loc: "Geneva" },
+  investors: [
+    { title: "GenieRX Director", org: "Harvard HSIL Venture Incubation Program" },
+    { title: "Spark Program Participant", org: "Johns Hopkins Pava Center" },
+    { title: "Founding Executive, Treasurer", org: "Stanford ANZ Club" },
+  ],
+  regulators: [
+    { title: "Policy Officer", org: "Aus. DSS — NDIS Outcomes & Research Strategy" },
+    { title: "Policy Officer", org: "Aus. DSS — NDIS Financial Policy & Strategy" },
+    { title: "Intern", org: "Parliamentary Library, Parliament of Australia" },
+  ],
+  pubhealth: [
+    { title: "Research Assistant / Consultant", org: "WHO GOARN" },
+    { title: "Research Assistant", org: "NCEPH, Australian National University" },
+  ],
   // Innovation & Supply
-  pharma: { cat: "Research", title: "Pharmacogenomics prescribing research" },
-  biotech: { cat: "Consulting", title: "AetherAI commercial-viability review" },
-  meddev: { cat: "Engineering", title: "Developing a dialysis device", loc: "Nigeria" },
-  research: { cat: "Research", title: "Tumour-burden annotation, Han Lab" },
-  tech: { cat: "Finance", title: "Harvard HSIL venture incubation" },
-  healthit: { cat: "Engineering", title: "GenieRX PGx prescribing tool" },
+  pharma: [
+    { title: "Researcher", org: "Pharmacogenomics & LLM CDS, Stanford Medicine" },
+  ],
+  biotech: [
+    { title: "Student Project Manager", org: "Stanford Health Consulting Group — Aether AI" },
+  ],
+  meddev: [
+    { title: "Product Mgmt / BD Intern", org: "Adcem Fidson JV — Stanford GSB SEED" },
+    { title: "Student Project Manager", org: "Microsoft / Stanford Medicine HFTE" },
+  ],
+  research: [
+    { title: "Research Assistant", org: "Han Lab, Stanford QSU" },
+    { title: "Research Collaborator", org: "Harvard HSIL" },
+  ],
+  tech: [
+    { title: "Facilitator", org: "TLIA Startup Bootcamp, Nigeria" },
+    { title: "Mentor", org: "SCPKU Hackathon" },
+    { title: "Finalist & Category Winner", org: "Stanford XR Hack the Bay" },
+  ],
+  healthit: [
+    { title: "GenieRX Team Leader", org: "Harvard HSIL Hackathon" },
+    { title: "M.S. Thesis", org: "AI in pharmacogenomic prescribing, Stanford" },
+  ],
   // Care Delivery — Providers
-  hospitals: { cat: "Consulting", title: "Readmissions reduction project", loc: "Stanford" },
-  physicians: { cat: "Clinical", title: "Resident nutrition curriculum", loc: "NOURISH" },
-  primarycare: { cat: "Research", title: "Indigenous preventive-care work", loc: "ANU" },
+  hospitals: [
+    { title: "Student Consultant", org: "Stanford Health Consulting Group" },
+  ],
+  physicians: [
+    { title: "Clinical Education Project Lead", org: "NOURISH Resident Curriculum" },
+    { title: "Doctor of Medicine Student", org: "Macquarie University" },
+  ],
+  primarycare: [
+    { title: "Lead Research Coordinator", org: "NOURISH, Stanford Medicine" },
+    { title: "Research Officer", org: "ANU — ATSI Preventive Health Checks" },
+  ],
   // Patients & Community
-  patients: { cat: "Clinical", title: "Community health-centre care" },
-  advocacy: { cat: "Policy", title: "National Redress Scheme engagement" },
-};
-
-const CAT_DOT: Record<Category, string> = {
-  Consulting: "#6f86a3",
-  Engineering: "#6f9a78",
-  Finance: "#b0935f",
-  Research: "#8a7fa8",
-  Policy: "#a8776f",
-  Clinical: "#6f9aa0",
+  patients: [
+    { title: "Nursing Assistant", org: "Baxter Intl — Belconnen Community Health" },
+  ],
+  advocacy: [
+    { title: "Policy Officer", org: "Aus. DSS — National Redress Scheme" },
+    { title: "Treasurer", org: "ANU BIPOC Department" },
+  ],
 };
 
 const ZONES: Array<{ id: Zone; name: string }> = [
@@ -149,20 +174,23 @@ export function StakeholderEcosystem() {
               <div className="se-m-ztitle">{z.name}</div>
               <ul className="se-m-list">
                 {NODES.filter((n) => n.zone === z.id).map((n) => {
-                  const role = ROLES[n.id];
+                  const roles = ROLES[n.id];
                   return (
-                    <li key={n.id} className={`se-m-row${role ? " se-m-hasrole" : ""}`}>
+                    <li key={n.id} className={`se-m-row${roles ? " se-m-hasrole" : ""}`}>
                       <span className="se-m-emoji" aria-hidden="true">
                         {n.emoji}
                       </span>
                       <div className="se-m-text">
                         <span className="se-m-name">{n.label.join(" ")}</span>
-                        {role && (
-                          <span className="se-m-role">
-                            <i style={{ background: CAT_DOT[role.cat] }} />
-                            {role.cat} — {role.title}
-                            {role.loc ? ` · ${role.loc}` : ""}
-                          </span>
+                        {roles && (
+                          <div className="se-m-roles">
+                            {roles.map((r, i) => (
+                              <div key={i} className="se-m-rolebox">
+                                <span className="se-m-rt">{r.title}</span>
+                                <span className="se-m-ro">{r.org}</span>
+                              </div>
+                            ))}
+                          </div>
                         )}
                       </div>
                     </li>
@@ -196,10 +224,10 @@ export function StakeholderEcosystem() {
   };
 
   const cardNode = current ? NODE_BY_ID[current] : null;
-  const cardRole = current ? ROLES[current] : undefined;
+  const cardRoles = current ? ROLES[current] : undefined;
 
   let cardStyle: CSSProperties = {};
-  if (cardNode && cardRole) {
+  if (cardNode && cardRoles) {
     const leftPct = (cardNode.x / VB_W) * 100;
     const topPct = (cardNode.y / VB_H) * 100;
     if (cardNode.zone === "pat") {
@@ -260,14 +288,14 @@ export function StakeholderEcosystem() {
               const isActive = current === n.id;
               const isNear = neighbours.has(n.id);
               const cls = "se-node" + (isActive ? " se-active" : "") + (isNear ? " se-near" : "");
-              const role = ROLES[n.id];
+              const roles = ROLES[n.id];
               return (
                 <g
                   key={n.id}
                   className={cls}
                   role="button"
                   tabIndex={0}
-                  aria-label={n.label.join(" ") + (role ? `: ${role.title}` : "")}
+                  aria-label={n.label.join(" ") + (roles ? `: ${roles.map((r) => r.title).join(", ")}` : "")}
                   onMouseEnter={() => show(n.id)}
                   onFocus={() => show(n.id)}
                   onClick={(e) => {
@@ -293,8 +321,8 @@ export function StakeholderEcosystem() {
                       </tspan>
                     ))}
                   </text>
-                  {role && (
-                    <circle className="se-dot" cx={n.x + 21} cy={n.y - 21} r={4.5} fill={CAT_DOT[role.cat]} stroke="#fff" strokeWidth={1.5} />
+                  {roles && (
+                    <circle className="se-dot" cx={n.x + 21} cy={n.y - 21} r={4.5} fill="#6f86a3" stroke="#fff" strokeWidth={1.5} />
                   )}
                 </g>
               );
@@ -302,14 +330,14 @@ export function StakeholderEcosystem() {
           </g>
         </svg>
 
-        {cardNode && cardRole && (
-          <div className="se-card se-show" style={cardStyle}>
-            <div className="se-cat">
-              <i style={{ background: CAT_DOT[cardRole.cat] }} />
-              {cardRole.cat}
-            </div>
-            <div className="se-title">{cardRole.title}</div>
-            {cardRole.loc && <div className="se-meta">{cardRole.loc}</div>}
+        {cardNode && cardRoles && (
+          <div className="se-cardstack se-show" style={cardStyle}>
+            {cardRoles.map((r, i) => (
+              <div className="se-card" key={i}>
+                <div className="se-title">{r.title}</div>
+                <div className="se-org">{r.org}</div>
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -336,19 +364,23 @@ const CSS = `
 .se-edge.se-on { stroke: #6f86a3; stroke-width: 2.2; opacity: .95; }
 .se-map.se-dim .se-edge:not(.se-on) { opacity: .12; }
 .se-h { font: 700 14px ui-sans-serif, system-ui, sans-serif; fill: #5b6a78; }
-.se-card {
-  position: absolute; max-width: 188px; padding: 8px 11px; z-index: 5; pointer-events: none;
-  background: rgba(255,255,255,0.72);
-  -webkit-backdrop-filter: blur(9px) saturate(1.05); backdrop-filter: blur(9px) saturate(1.05);
-  border: 0.5px solid rgba(120,132,148,0.28); border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(20,30,45,0.10);
-  opacity: 0; transform: translateY(2px); transition: opacity .14s ease;
+/* Hover card stack — up to 3 separate glassmorphic boxes near the node */
+.se-cardstack {
+  position: absolute; z-index: 5; pointer-events: none;
+  display: flex; flex-direction: column; gap: 7px;
+  width: max-content; max-width: 248px;
+  opacity: 0; transition: opacity .14s ease;
 }
-.se-card.se-show { opacity: 1; }
-.se-card .se-cat { display: flex; align-items: center; gap: 5px; font: 600 9.5px ui-sans-serif, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #7a8896; margin-bottom: 3px; }
-.se-card .se-cat i { width: 5px; height: 5px; border-radius: 50%; display: inline-block; }
-.se-card .se-title { font: 600 12.5px/1.3 ui-sans-serif, system-ui, sans-serif; color: #21384a; }
-.se-card .se-meta { margin-top: 2px; font: 11px ui-sans-serif, system-ui, sans-serif; color: #8a93a0; }
+.se-cardstack.se-show { opacity: 1; }
+.se-card {
+  padding: 7px 11px; border-radius: 11px;
+  background: rgba(255,255,255,0.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6); backdrop-filter: blur(14px) saturate(1.6);
+  border: 0.5px solid rgba(255,255,255,0.6);
+  box-shadow: 0 6px 20px rgba(20,30,45,0.13), inset 0 0.5px 0 rgba(255,255,255,0.5);
+}
+.se-card .se-title { font: 600 12.5px/1.25 ui-sans-serif, system-ui, sans-serif; color: #1d2f3e; }
+.se-card .se-org { margin-top: 2px; font: 500 10.5px/1.3 ui-sans-serif, system-ui, sans-serif; color: #5b6a78; }
 
 /* ----- Mobile layout ----- */
 .se-m { display: flex; flex-direction: column; gap: 14px; }
@@ -356,14 +388,21 @@ const CSS = `
 .se-m-ztitle { font: 700 11px ui-sans-serif, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #5b6a78; margin-bottom: 10px; }
 .se-m-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .se-m-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; margin-bottom: 8px; border-radius: 12px; background: #fff; border: 0.5px solid #eef1f4; }
-.se-m-row.se-m-hasrole { border-color: #cdd6e0; background: #fbfdff; }
+.se-m-row.se-m-hasrole { border-color: #cdd6e0; background: #f4f7fb; }
 .se-m-emoji { font-size: 22px; line-height: 1.2; flex: 0 0 auto; }
-.se-m-text { display: flex; flex-direction: column; min-width: 0; }
+.se-m-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
 .se-m-name { font: 600 14px ui-sans-serif, system-ui, sans-serif; color: #22384a; }
-.se-m-role { display: inline-flex; align-items: center; gap: 6px; margin-top: 3px; font: 500 12px ui-sans-serif, system-ui, sans-serif; color: #5b6a78; }
-.se-m-role i { width: 6px; height: 6px; border-radius: 50%; flex: 0 0 auto; }
+.se-m-roles { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.se-m-rolebox {
+  display: flex; flex-direction: column; padding: 7px 10px; border-radius: 10px;
+  background: rgba(255,255,255,0.55);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3); backdrop-filter: blur(10px) saturate(1.3);
+  border: 0.5px solid rgba(140,152,168,0.28);
+}
+.se-m-rt { font: 600 12.5px ui-sans-serif, system-ui, sans-serif; color: #1d2f3e; }
+.se-m-ro { margin-top: 1px; font: 500 11px ui-sans-serif, system-ui, sans-serif; color: #5b6a78; }
 
 @media (prefers-reduced-motion: reduce) {
-  .se-node, .se-node .se-disc, .se-node .se-emoji, .se-edge, .se-card { transition: none; }
+  .se-node, .se-node .se-disc, .se-node .se-emoji, .se-edge, .se-cardstack { transition: none; }
 }
 `;
