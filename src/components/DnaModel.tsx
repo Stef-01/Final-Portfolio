@@ -17,9 +17,9 @@ const DIM = 0xcbd5e1;
 
 const IDLE = 0.00252; // idle spin — 80% quicker than the previous 0.0014
 const HOVER = IDLE * 0.5; // hovering SLOWS the spin by 50% (opposite of before)
-const DANCE = IDLE * 12; // load burst: 12x spin
-const DANCE_HOLD = 1500; // hold the 12x burst for 1.5s
-const DANCE_END = 2500; // then fade gradually to idle across the next 1s
+const DANCE = IDLE * 15; // load burst: 15x spin
+const DANCE_HOLD = 600; // hold the 15x burst for 0.6s
+const DANCE_END = 1400; // then fade gradually to idle across the next 0.8s
 
 /**
  * Renders the DNA strand GLB with a minimal three.js scene. The helix is laid
@@ -27,7 +27,7 @@ const DANCE_END = 2500; // then fade gradually to idle across the next 1s
  * the original 2D helix motion). The mesh is split into `segments` colour bands
  * by position along the long axis: idle shows uniform blue, hovering a segment
  * lights that band in its accent colour, dims the rest, and slows the spin.
- * On load it spins at 12x for 1.5s, then fades to idle across 1s.
+ * On load it spins at 15x for 0.6s, then fades to idle across 0.8s.
  * Lazy-loaded by the parent; three.js + GLB only download on reach.
  */
 export function DnaModel({ hovered, segments, reducedMotion, className }: DnaModelProps) {
@@ -181,7 +181,7 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
 
             const animate = () => {
                 const t = performance.now() - introStart;
-                // Load: 12x for 1.5s, then a 1s smoothstep fade to idle. After: hover slows, else idle.
+                // Load: 15x for 0.6s, then a 0.8s smoothstep fade to idle. After: hover slows, else idle.
                 let target: number;
                 if (t < DANCE_HOLD) {
                     target = DANCE;
