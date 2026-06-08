@@ -113,7 +113,7 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
 
                 const holder = new THREE.Group();
                 holder.add(model);
-                holder.scale.setScalar(4.6 / Math.max(...dims));
+                holder.scale.setScalar(9.2 / Math.max(...dims));
                 spin.add(holder);
 
                 // Per-vertex segment index along the long axis + colour buffer.

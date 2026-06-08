@@ -94,7 +94,7 @@ export const PrecisionMedicineSection = () => {
             )}
           </AnimatePresence>
 
-          <div className="relative h-[230px] w-full md:h-[360px]">
+          <div className="relative h-[340px] w-full md:h-[540px]">
             {prefersReducedMotion ? (
               fallbackHelix
             ) : (
