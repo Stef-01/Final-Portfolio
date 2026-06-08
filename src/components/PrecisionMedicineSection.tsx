@@ -99,7 +99,12 @@ export const PrecisionMedicineSection = () => {
               fallbackHelix
             ) : (
               <Suspense fallback={fallbackHelix}>
-                <DnaModel className="absolute inset-0 h-full w-full" reducedMotion={false} />
+                <DnaModel
+                  className="absolute inset-0 h-full w-full"
+                  hovered={hovered}
+                  segments={categories.length}
+                  reducedMotion={false}
+                />
               </Suspense>
             )}
 
@@ -175,29 +180,6 @@ export const PrecisionMedicineSection = () => {
           </motion.div>
         </AnimatePresence>
       </div>
-
-      {/* CC-BY attribution for the 3D model */}
-      <p className="mx-auto mt-12 max-w-3xl text-center text-[11px] leading-relaxed text-gray-400">
-        3D model:{" "}
-        <a
-          href="https://sketchfab.com/3d-models/dna--double--helix--ultra-154b7fdf15ac40de96a4eb3f433ada0d"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline transition-colors hover:text-gray-600"
-        >
-          “DNA Double Helix Ultra”
-        </a>{" "}
-        by consciousfractal, licensed{" "}
-        <a
-          href="http://creativecommons.org/licenses/by/4.0/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline transition-colors hover:text-gray-600"
-        >
-          CC-BY-4.0
-        </a>
-        .
-      </p>
     </section>
   );
 };
