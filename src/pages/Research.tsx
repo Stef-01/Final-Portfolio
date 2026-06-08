@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { FloatingBackButton } from "../components/FloatingBackButton";
+import { useGoBack } from "../hooks/useGoBack";
 import { ContactSection } from "../components/ContactSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
 import { SystemsMapSection } from "../components/SystemsMapSection";
@@ -10,6 +10,7 @@ import { CountUp } from "../components/CountUp";
 import { researchRoles } from "../types/roles";
 
 export function Research() {
+  const goBack = useGoBack();
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
@@ -18,13 +19,14 @@ export function Research() {
         {/* Blue accent wash ties this page to the home hero's premium look */}
         <div className="pointer-events-none absolute inset-x-0 -top-24 z-0 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_60%)]" />
         <div className="relative z-10 max-w-6xl mx-auto">
-          <Link
-            to="/"
+          <button
+            type="button"
+            onClick={goBack}
             className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[18px] font-medium">Back to Home</span>
-          </Link>
+            <span className="text-[18px] font-medium">Back</span>
+          </button>
 
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -81,7 +83,6 @@ export function Research() {
         roles={researchRoles}
         eyebrow="Research Timeline"
         title="A line through every research role"
-        intro="Scroll the timeline to move through each role. Each one offers two ways in — the case study for outputs and deliverables, and an interactive role network for the collaborators around it."
       />
 
       <SystemsMapSection />

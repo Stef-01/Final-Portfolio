@@ -7,19 +7,25 @@ import { usePhoneLayout } from "../hooks/usePhoneLayout";
  * ---------------------------------------------------------------------------
  * Interactive healthcare-stakeholder ecosystem map for the Systems Map
  * section. Hovering / focusing / tapping a stakeholder spotlights it and its
- * connections; the three stakeholders tied to real roles (Hospitals, Medical
- * Devices, Investors) reveal a small frosted role label.
+ * connections; stakeholders tied to a real role (see ROLES) reveal a small
+ * frosted role label.
  *
  * Desktop: an inline SVG node-graph (responsive via viewBox, keyboard
  * accessible, Esc clears the pinned selection).
- * Mobile (portrait phones): a stacked, zone-grouped list where the three
+ * Mobile (portrait phones): a stacked, zone-grouped list where the
  * role-bearing stakeholders show their role inline — no hover required.
  *
  * Zero external dependencies beyond the repo's usePhoneLayout hook.
  */
 
 type Zone = "fin" | "inn" | "care" | "pat";
-type Category = "Consulting" | "Engineering" | "Finance";
+type Category =
+  | "Consulting"
+  | "Engineering"
+  | "Finance"
+  | "Research"
+  | "Policy"
+  | "Clinical";
 
 interface NodeDef {
   id: string;
@@ -66,17 +72,36 @@ const EDGES: Array<[string, string]> = [
 ];
 
 // The roles the portfolio is actually about — shown as hover labels (desktop)
-// and inline (mobile).
+// and inline (mobile). Each maps a stakeholder node to the real role played
+// there. Edit titles here to tweak wording. Keep them extremely concise.
 const ROLES: Record<string, Role> = {
-  hospitals: { cat: "Consulting", title: "Consultant — readmissions reduction project" },
+  // Financing · Oversight · Public Health
+  investors: { cat: "Finance", title: "Health-tech financial modelling", loc: "Nigeria JV" },
+  regulators: { cat: "Policy", title: "NDIS outcomes & financial policy", loc: "Aus. DSS" },
+  pubhealth: { cat: "Research", title: "WHO GOARN deployment review", loc: "Geneva" },
+  // Innovation & Supply
+  pharma: { cat: "Research", title: "Pharmacogenomics prescribing research" },
+  biotech: { cat: "Consulting", title: "AetherAI commercial-viability review" },
   meddev: { cat: "Engineering", title: "Developing a dialysis device", loc: "Nigeria" },
-  investors: { cat: "Finance", title: "Venture-capital / health-tech finance role" },
+  research: { cat: "Research", title: "Tumour-burden annotation, Han Lab" },
+  tech: { cat: "Finance", title: "Harvard HSIL venture incubation" },
+  healthit: { cat: "Engineering", title: "GenieRX PGx prescribing tool" },
+  // Care Delivery — Providers
+  hospitals: { cat: "Consulting", title: "Readmissions reduction project", loc: "Stanford" },
+  physicians: { cat: "Clinical", title: "Resident nutrition curriculum", loc: "NOURISH" },
+  primarycare: { cat: "Research", title: "Indigenous preventive-care work", loc: "ANU" },
+  // Patients & Community
+  patients: { cat: "Clinical", title: "Community health-centre care" },
+  advocacy: { cat: "Policy", title: "National Redress Scheme engagement" },
 };
 
 const CAT_DOT: Record<Category, string> = {
   Consulting: "#6f86a3",
   Engineering: "#6f9a78",
   Finance: "#b0935f",
+  Research: "#8a7fa8",
+  Policy: "#a8776f",
+  Clinical: "#6f9aa0",
 };
 
 const ZONES: Array<{ id: Zone; name: string }> = [
@@ -269,7 +294,7 @@ export function StakeholderEcosystem() {
                     ))}
                   </text>
                   {role && (
-                    <circle className="se-dot" cx={n.x + 21} cy={n.y - 21} r={4.5} fill="#6f86a3" stroke="#fff" strokeWidth={1.5} />
+                    <circle className="se-dot" cx={n.x + 21} cy={n.y - 21} r={4.5} fill={CAT_DOT[role.cat]} stroke="#fff" strokeWidth={1.5} />
                   )}
                 </g>
               );

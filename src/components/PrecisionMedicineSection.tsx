@@ -65,10 +65,6 @@ export const PrecisionMedicineSection = () => {
         <h2 className="mx-auto max-w-3xl text-4xl md:text-6xl font-bold tracking-tighter text-black">
           A DNA-led map into the most translational precision-care work
         </h2>
-        <p className="mx-auto mt-5 max-w-2xl text-base md:text-xl leading-relaxed text-gray-500">
-          Hover across the helix to move between oncology, nutrition, and
-          pharmacogenomics.
-        </p>
       </div>
 
       {/* 3D helix stage */}

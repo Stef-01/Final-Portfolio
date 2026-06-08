@@ -1,13 +1,14 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { RolesGrid } from "../components/RolesGrid";
 import { CountUp } from "../components/CountUp";
 import { industryRoles } from "../types/roles";
+import { useGoBack } from "../hooks/useGoBack";
 
 export function Industry() {
+  const goBack = useGoBack();
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
@@ -16,13 +17,14 @@ export function Industry() {
         {/* Emerald accent wash ties this page to the home hero's premium look */}
         <div className="pointer-events-none absolute inset-x-0 -top-24 z-0 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.16),_transparent_60%)]" />
         <div className="relative z-10 max-w-6xl mx-auto">
-          <Link
-            to="/"
+          <button
+            type="button"
+            onClick={goBack}
             className="inline-flex items-center gap-2 text-gray-500 hover:text-emerald-600 transition-colors mb-12 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[18px] font-medium">Back to Home</span>
-          </Link>
+            <span className="text-[18px] font-medium">Back</span>
+          </button>
 
           <motion.div
             initial={{ opacity: 0, y: 28 }}

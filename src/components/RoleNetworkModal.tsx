@@ -305,11 +305,9 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -4 }}
                                         transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                                        className={`text-[13px] leading-snug ${
-                                            hoverLabel ? "text-gray-700" : "text-gray-400"
-                                        }`}
+                                        className="text-[13px] leading-snug text-gray-700"
                                     >
-                                        {hoverLabel ?? "Hover or tap any node or line to see what connects them."}
+                                        {hoverLabel ?? " "}
                                     </motion.p>
                                 </AnimatePresence>
                             </div>

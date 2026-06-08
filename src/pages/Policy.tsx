@@ -5,6 +5,7 @@ import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { policyInitiatives } from "../types/policy";
 import { projects } from "../types/project";
+import { useGoBack } from "../hooks/useGoBack";
 
 const icons = [Shield, HeartPulse, Landmark, Radar];
 
@@ -13,21 +14,23 @@ const icons = [Shield, HeartPulse, Landmark, Radar];
 const projectIds = new Set(projects.map((p) => p.id));
 
 export function Policy() {
+  const goBack = useGoBack();
   return (
     <div className="relative min-h-[100svh] overflow-hidden bg-white text-gray-900 py-16 md:py-20 px-4 md:px-8">
       <FloatingBackButton />
       {/* Amber accent wash carries the home hero's premium feel into Policy */}
       <div className="pointer-events-none absolute inset-x-0 -top-24 z-0 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(245,158,11,0.16),_transparent_60%)]" />
       <div className="relative z-10 max-w-[1200px] mx-auto">
-        <Link
-          to="/"
+        <button
+          type="button"
+          onClick={goBack}
           className="inline-flex items-center gap-2 text-gray-500 hover:text-amber-600 transition-colors mb-12 group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">
-            Back to Home
+            Back
           </span>
-        </Link>
+        </button>
 
         <motion.div
           initial={{ opacity: 0, y: 28 }}

@@ -10,7 +10,7 @@ interface RolesTimelineProps {
     roles: Role[];
     eyebrow: string;
     title: string;
-    intro: string;
+    intro?: string;
 }
 
 interface TimelineRowProps {
@@ -219,9 +219,11 @@ export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelinePro
                     <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
                         {title}
                     </h2>
-                    <p className="mt-4 text-base md:text-xl leading-relaxed text-gray-600">
-                        {intro}
-                    </p>
+                    {intro && (
+                        <p className="mt-4 text-base md:text-xl leading-relaxed text-gray-600">
+                            {intro}
+                        </p>
+                    )}
                 </div>
 
                 <div className="relative" ref={containerRef}>

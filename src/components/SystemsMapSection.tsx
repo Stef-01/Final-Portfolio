@@ -17,8 +17,6 @@ export const SystemsMapSection = () => {
         <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
           The healthcare system the work sits inside — financing and oversight,
           innovation and supply, care delivery, and patients and community.
-          Hover a stakeholder to trace its connections; a few reveal the role
-          I've actually played there.
         </p>
 
         <motion.div

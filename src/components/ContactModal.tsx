@@ -160,7 +160,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
                 {/* Email display */}
                 <div className="bg-gray-100 rounded-2xl px-6 py-4 text-center">
-                    <p className="text-sm text-gray-600 mb-1">Click to copy</p>
                     <p className="text-base font-medium text-gray-900">{email}</p>
                 </div>
             </div>

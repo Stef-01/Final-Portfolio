@@ -1,16 +1,18 @@
 import React, { useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
 import { NotFound } from "../components/NotFound";
 import { ImageWithFallback } from "../components/ImageWithFallback";
+import { useGoBack } from "../hooks/useGoBack";
 
 // Inner component is keyed by `id` from the wrapper below, so its state
 // resets cleanly on URL change without a setState-in-effect anti-pattern.
 const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
+    const goBack = useGoBack();
     const [activeModuleIndex, setActiveModuleIndex] = useState(0);
 
     const activeModule = useMemo(() => {
@@ -32,9 +34,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     <Link to="/" className="text-sm sm:text-xl font-bold tracking-tight text-black">
                         Stefan Thottunkal
                     </Link>
-                    <Link to="/">
-                        <Button type="secondary" label="Back to Home" className="w-auto min-w-[140px]" />
-                    </Link>
+                    <Button type="secondary" label="Back" className="w-auto min-w-[140px]" onClick={goBack} />
                 </div>
             </nav>
 
@@ -48,10 +48,10 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     />
                     <div className="relative z-10 grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
                         <div>
-                            <Link to="/" className="mb-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-gray-400 transition-colors hover:text-black">
+                            <button type="button" onClick={goBack} className="mb-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-gray-400 transition-colors hover:text-black">
                                 <ArrowLeft className="h-4 w-4" />
                                 Back
-                            </Link>
+                            </button>
                             <div className="mb-6 flex flex-wrap gap-2">
                                 {project.tags.map((tag) => (
                                     <span
@@ -203,9 +203,6 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
                                 Creative interaction systems that fit this case study
                             </h2>
-                            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
-                                These modules are not yet built as final project panels, but they define the kind of digital behavior, aesthetic motion, and narrative interaction that would make the case study feel premium inside the current portfolio system.
-                            </p>
 
                             <div className="mt-8 flex flex-wrap gap-3">
                                 {project.interactiveModules.map((module, index) => (
@@ -245,17 +242,6 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                     <div className="rounded-[24px] bg-white/6 p-5">
                                         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Motion and effects</p>
                                         <p className="mt-3 text-base leading-relaxed text-white/80">{activeModule.effect}</p>
-                                    </div>
-                                </div>
-
-                                <div className="mt-8 rounded-[26px] border border-white/8 bg-gradient-to-br from-white/8 to-white/4 p-5">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Why this matters</p>
-                                    <p className="mt-3 text-base leading-relaxed text-white/75">
-                                        The strongest panels in this portfolio should not just describe work. They should demonstrate how the underlying system thinks, moves, and reveals complexity. This interaction concept is designed to do exactly that.
-                                    </p>
-                                    <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">
-                                        Explore this concept direction
-                                        <ArrowUpRight className="h-4 w-4" />
                                     </div>
                                 </div>
                             </div>

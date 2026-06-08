@@ -1,18 +1,19 @@
 import { motion } from "motion/react";
 import { Briefcase, Award, GraduationCap, Mail, BookOpen, Trophy, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
+import { useGoBack } from "../hooks/useGoBack";
 
 export function Resume() {
+  const goBack = useGoBack();
   return (
     <div className="min-h-[100svh] bg-white text-gray-900 py-16 md:py-20 px-4 md:px-8">
       <FloatingBackButton />
       <div className="max-w-[1200px] mx-auto">
-        <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group">
+        <button type="button" onClick={goBack} className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group">
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">Back to Home</span>
-        </Link>
+          <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[18px]">Back</span>
+        </button>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}

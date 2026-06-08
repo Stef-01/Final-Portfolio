@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, MapPin, Calendar, Paperclip } from "lucide-react";
-import { Link } from "react-router-dom";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
+import { useGoBack } from "../hooks/useGoBack";
 
 interface ConferenceFile {
     url?: string;
@@ -195,6 +195,7 @@ const TalkSection = ({ title, eyebrow, talks, onFileClick }: TalkSectionProps) =
 );
 
 export function Presentations() {
+    const goBack = useGoBack();
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<ConferenceFile | null>(null);
 
@@ -209,13 +210,14 @@ export function Presentations() {
 
             <div className="px-4 pt-16 md:pt-20 md:px-8">
                 <div className="max-w-6xl mx-auto">
-                    <Link
-                        to="/"
+                    <button
+                        type="button"
+                        onClick={goBack}
                         className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors mb-12 group"
                     >
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                        <span className="text-[18px] font-medium">Back to Home</span>
-                    </Link>
+                        <span className="text-[18px] font-medium">Back</span>
+                    </button>
 
                     <motion.div
                         initial={{ opacity: 0, y: 28 }}
