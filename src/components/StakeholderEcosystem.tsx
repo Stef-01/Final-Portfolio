@@ -150,7 +150,10 @@ export function StakeholderEcosystem() {
   const isPhoneLayout = usePhoneLayout();
   const [active, setActive] = useState<string | null>(null);
   const [pinned, setPinned] = useState<string | null>(null);
-  const current = pinned ?? active;
+  // Hover/focus (active) takes priority so the card reveals on hover; a click
+  // pins a selection (handy for touch + keyboard) that persists once the
+  // pointer leaves.
+  const current = active ?? pinned;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -216,9 +219,6 @@ export function StakeholderEcosystem() {
     });
   }
 
-  const show = (id: string) => {
-    if (!pinned) setActive(id);
-  };
   const toggle = (id: string) => {
     setPinned((p) => (p === id ? null : id));
   };
@@ -296,8 +296,10 @@ export function StakeholderEcosystem() {
                   role="button"
                   tabIndex={0}
                   aria-label={n.label.join(" ") + (roles ? `: ${roles.map((r) => r.title).join(", ")}` : "")}
-                  onMouseEnter={() => show(n.id)}
-                  onFocus={() => show(n.id)}
+                  onMouseEnter={() => setActive(n.id)}
+                  onMouseLeave={() => setActive(null)}
+                  onFocus={() => setActive(n.id)}
+                  onBlur={() => setActive(null)}
                   onClick={(e) => {
                     e.stopPropagation();
                     toggle(n.id);
@@ -373,14 +375,14 @@ const CSS = `
 }
 .se-cardstack.se-show { opacity: 1; }
 .se-card {
-  padding: 7px 11px; border-radius: 11px;
-  background: rgba(255,255,255,0.5);
-  -webkit-backdrop-filter: blur(14px) saturate(1.6); backdrop-filter: blur(14px) saturate(1.6);
-  border: 0.5px solid rgba(255,255,255,0.6);
-  box-shadow: 0 6px 20px rgba(20,30,45,0.13), inset 0 0.5px 0 rgba(255,255,255,0.5);
+  padding: 8px 12px; border-radius: 12px;
+  background: rgba(255,255,255,0.16);
+  -webkit-backdrop-filter: blur(18px) saturate(1.9); backdrop-filter: blur(18px) saturate(1.9);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: 0 10px 30px rgba(20,30,45,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
 }
-.se-card .se-title { font: 600 12.5px/1.25 ui-sans-serif, system-ui, sans-serif; color: #1d2f3e; }
-.se-card .se-org { margin-top: 2px; font: 500 10.5px/1.3 ui-sans-serif, system-ui, sans-serif; color: #5b6a78; }
+.se-card .se-title { font: 700 12.5px/1.25 ui-sans-serif, system-ui, sans-serif; color: #16273a; }
+.se-card .se-org { margin-top: 2px; font: 500 10.5px/1.3 ui-sans-serif, system-ui, sans-serif; color: #51616f; }
 
 /* ----- Mobile layout ----- */
 .se-m { display: flex; flex-direction: column; gap: 14px; }
@@ -394,13 +396,14 @@ const CSS = `
 .se-m-name { font: 600 14px ui-sans-serif, system-ui, sans-serif; color: #22384a; }
 .se-m-roles { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
 .se-m-rolebox {
-  display: flex; flex-direction: column; padding: 7px 10px; border-radius: 10px;
-  background: rgba(255,255,255,0.55);
-  -webkit-backdrop-filter: blur(10px) saturate(1.3); backdrop-filter: blur(10px) saturate(1.3);
-  border: 0.5px solid rgba(140,152,168,0.28);
+  display: flex; flex-direction: column; padding: 8px 11px; border-radius: 11px;
+  background: rgba(255,255,255,0.22);
+  -webkit-backdrop-filter: blur(14px) saturate(1.7); backdrop-filter: blur(14px) saturate(1.7);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: 0 6px 18px rgba(20,30,45,0.14), inset 0 1px 0 rgba(255,255,255,0.55);
 }
-.se-m-rt { font: 600 12.5px ui-sans-serif, system-ui, sans-serif; color: #1d2f3e; }
-.se-m-ro { margin-top: 1px; font: 500 11px ui-sans-serif, system-ui, sans-serif; color: #5b6a78; }
+.se-m-rt { font: 700 12.5px ui-sans-serif, system-ui, sans-serif; color: #16273a; }
+.se-m-ro { margin-top: 1px; font: 500 11px ui-sans-serif, system-ui, sans-serif; color: #51616f; }
 
 @media (prefers-reduced-motion: reduce) {
   .se-node, .se-node .se-disc, .se-node .se-emoji, .se-edge, .se-cardstack { transition: none; }

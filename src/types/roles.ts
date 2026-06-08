@@ -248,12 +248,12 @@ export const researchRoles: Role[] = [
 export const industryRoles: Role[] = [
   {
     id: "nourish-founder",
-    title: "Co-founder / Product Lead",
-    organization: "NOURISH",
+    title: "Lead Research Coordinator",
+    organization: "NOURISH · Stanford Medicine",
     period: "Ongoing",
     location: "Stanford / Distributed",
     summary:
-      "Precision-nutrition product built around a teaching-kitchen intervention. Behavior-change design meets adaptive recommendation for culturally relevant preventive care.",
+      "Coordinating a precision-nutrition program built around a teaching-kitchen intervention — behavior-change design meets adaptive recommendation for culturally relevant preventive care.",
     deliverables: [
       "Meal-explorer prototype",
       "AI chef demo + storyboarding",
@@ -266,13 +266,13 @@ export const industryRoles: Role[] = [
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
-        { id: "cofounders", label: "Co-founders", sublabel: "Stanford-affiliated team", icon: "team", x: 0.5, y: 0.16 },
+        { id: "cofounders", label: "Stanford-affiliated team", sublabel: "Cross-disciplinary NOURISH team", icon: "team", x: 0.5, y: 0.16 },
         { id: "product", label: "Meal Explorer + AI chef", sublabel: "Prototype + demo", icon: "product", x: 0.16, y: 0.5 },
         { id: "prc", label: "Stanford PRC", sublabel: "Clinical research alignment", icon: "institution", x: 0.84, y: 0.5 },
         { id: "users", label: "Community users", sublabel: "Culturally-grounded behaviour change", icon: "users", x: 0.5, y: 0.84 },
       ],
       edges: [
-        { from: "me", to: "cofounders", label: "Co-founding NOURISH alongside a Stanford-affiliated team" },
+        { from: "me", to: "cofounders", label: "Coordinating across the Stanford-affiliated NOURISH team" },
         { from: "me", to: "product", label: "Leading product, design, and the AI features" },
         { from: "me", to: "prc", label: "Aligning the product with the Stanford PRC clinical research pipeline" },
         { from: "me", to: "users", label: "Designing for community-grounded, culturally-relevant behaviour change" },
