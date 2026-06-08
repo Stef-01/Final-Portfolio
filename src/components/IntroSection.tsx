@@ -48,14 +48,14 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="font-bold tracking-tight leading-[0.98] text-black text-[44px] md:text-[80px]"
                     >
-                        Turning complex evidence into things people can actually use.
+                        I work where health ideas either translate or stall: between the lab, the policy room, the clinic, and the market.
                     </motion.h2>
 
                     <motion.p
                         variants={itemVariants}
                         className="max-w-2xl text-lg md:text-2xl leading-relaxed text-gray-500"
                     >
-                        Health discovery matters. But the next decade will be shaped by who can turn evidence into systems that actually reach the communities current models miss.
+                        Proving something works is only the first problem. Getting it funded, trusted, adopted, and delivered to the people who need it is the harder one.
                     </motion.p>
                 </motion.div>
             </div>
