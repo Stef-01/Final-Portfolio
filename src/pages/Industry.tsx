@@ -88,9 +88,9 @@ export function Industry() {
             An overview of my health-tech work
           </h2>
           <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
-            Every venture here started from the same bet: the missing piece in
-            health isn't a better discovery, it's a working delivery path. An
-            overview of the nine, colour-coded by the role I played.
+            The through-line across this work is simple: health does not just need
+            better ideas. It needs delivery models that survive real incentives,
+            real institutions, and real lives.
           </p>
 
           <motion.div

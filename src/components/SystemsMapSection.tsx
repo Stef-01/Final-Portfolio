@@ -15,9 +15,8 @@ export const SystemsMapSection = () => {
           The healthcare ecosystem behind the work
         </h2>
         <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
-          A treatment dies in the gaps between who pays for it, who approves it,
-          who delivers it, and who needs it. You can't fix delivery from a single
-          seat, so I've worked across all four.
+          A treatment can fail at any handoff: who pays for it, who approves it,
+          who delivers it, and who needs it. My work sits across those handoffs.
         </p>
 
         <motion.div

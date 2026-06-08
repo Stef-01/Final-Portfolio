@@ -66,14 +66,14 @@ export const ScalehubStartupLp = (): JSX.Element => {
         <div className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20">
           <Badge className="mb-8" label="Stefan Thottunkal" showIcon={true} />
 
-          <h1 className="text-center text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-6 max-w-4xl leading-[0.95]">
-            Health tech, from research to reality
+          <h1 className="text-center text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-6 max-w-5xl leading-[0.98]">
+            I work where health ideas either translate or stall: between the lab, the policy room, the clinic, and the market.
           </h1>
 
           <p className="text-center text-base md:text-xl leading-relaxed text-gray-600 max-w-2xl mb-8">
-            I work the translation layer between the lab, the policy room, and
-            the market — because proving something works and getting it to people
-            are two different problems, and the second one is mine.
+            Proving something works is only the first problem. Getting it funded,
+            trusted, adopted, and delivered to the people who need it is the
+            harder one.
           </p>
 
           <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none">

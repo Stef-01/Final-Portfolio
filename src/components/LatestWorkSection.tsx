@@ -75,7 +75,7 @@ export const LatestWorkSection = () => {
                             transition={{ duration: 0.62, delay: 0.2 }}
                             className="mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600"
                         >
-                            A handful of projects chosen for one reason: each shows what it takes to move evidence into use when the budget, the system, and the patient are all real — where research, build, and judgment have to hold up at once.
+                            Selected projects showing what translation actually requires: credible evidence, practical delivery, institutional buy-in, and design around the people most often left out.
                         </motion.p>
 
                         <motion.div

@@ -55,7 +55,7 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="max-w-2xl text-lg md:text-2xl leading-relaxed text-gray-500"
                     >
-                        I believe the next decade of health won't be won in the lab — it'll be won by whoever can actually reach the people today's systems skip. That's the problem I've organised my work around.
+                        Health discovery matters. But the next decade will be shaped by who can turn evidence into systems that actually reach the communities current models miss.
                     </motion.p>
                 </motion.div>
             </div>
