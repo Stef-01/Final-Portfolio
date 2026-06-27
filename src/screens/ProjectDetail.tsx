@@ -6,7 +6,7 @@ import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
 import { NotFound } from "../components/NotFound";
 import { ImageWithFallback } from "../components/ImageWithFallback";
-import { LiveProjectPopout } from "../components/LiveProjectPopout";
+import { ProjectPopout } from "../components/ProjectPopout";
 import { useGoBack } from "../hooks/useGoBack";
 
 // Inner component is keyed by `id` from the wrapper below, so its state
@@ -252,11 +252,16 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 )}
             </main>
 
-            {project.liveDemo && (
-                <LiveProjectPopout
+            {project.popout && (
+                <ProjectPopout
                     title={project.title}
-                    description={project.liveDemo.description}
-                    url={project.liveDemo.url}
+                    eyebrow={project.popout.eyebrow}
+                    heading={project.popout.heading}
+                    description={project.popout.description}
+                    ctaLabel={project.popout.ctaLabel}
+                    collapsedLabel={project.popout.collapsedLabel}
+                    accessibleLabel={project.popout.accessibleLabel}
+                    url={project.popout.url}
                     image={project.media[1]?.src ?? project.image}
                     accent={project.accent}
                 />

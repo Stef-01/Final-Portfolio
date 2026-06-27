@@ -31,9 +31,14 @@ export interface ProjectInteractiveModule {
     effect: string;
 }
 
-export interface ProjectLiveDemo {
+export interface ProjectPopout {
     url: string;
+    eyebrow: string;
+    heading: string;
     description: string;
+    ctaLabel: string;
+    collapsedLabel: string;
+    accessibleLabel: string;
 }
 
 export interface Project {
@@ -54,7 +59,7 @@ export interface Project {
     sections: ProjectSection[];
     media: ProjectMedia[];
     interactiveModules: ProjectInteractiveModule[];
-    liveDemo?: ProjectLiveDemo;
+    popout?: ProjectPopout;
 }
 
 export const projects: Project[] = [
@@ -71,9 +76,14 @@ export const projects: Project[] = [
         tools: ["Figma", "React", "Supabase", "OpenAI API", "Airtable"],
         outcome: "Established a strong concept direction for a community-facing nutrition product that blends culturally specific meal planning with interactive chronic-disease education.",
         accent: "#0f766e",
-        liveDemo: {
+        popout: {
             url: "https://bud-hub-29-10.vercel.app/",
+            eyebrow: "Live experience",
+            heading: "Put SWAAD to the test",
             description: "Explore the working prototype, try the experience for yourself, and see how the concept behaves beyond the case study.",
+            ctaLabel: "Test SWAAD live",
+            collapsedLabel: "Try SWAAD live",
+            accessibleLabel: "Live SWAAD experience",
         },
         stats: [
             { label: "Focus", value: "Diabetes and hypertension prevention" },
@@ -139,73 +149,82 @@ export const projects: Project[] = [
     {
         id: "nourish-meal-explorer",
         title: "NOURISH Meal Explorer",
-        subtitle: "A meal-discovery and behavior-change experience for healthier everyday choices.",
-        description: "A polished nutrition product concept that helps users navigate meals through health goals, mood, context, and personal constraints, turning recommendation systems into something useful and humane.",
+        subtitle: "A culturally responsive meal-discovery platform being prepared for release through Stanford Medicine's NOURISH program.",
+        description: "I conceived, designed, and developed the Meal Explorer end to end—from product strategy and interaction design through the complete working platform. The current build uses placeholder recipe data while the NOURISH team prepares the real recipe library for release.",
         image: "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Product Design", "Nutrition", "Behavior Change"],
-        role: "Product strategist and experience designer",
-        client: "Self-initiated digital health concept",
-        duration: "Concept development and product-direction work",
-        tools: ["Figma", "React", "Prompt systems", "Service blueprinting"],
-        outcome: "Defined a stronger consumer-facing product direction for nutrition guidance that feels adaptive, personal, and visually premium.",
+        tags: ["Product Design", "Nutrition", "Product Engineering"],
+        role: "Product creator, UX/UI designer, and lead developer",
+        client: "NOURISH · Stanford Medicine",
+        duration: "Active development · release planned in the coming months",
+        tools: ["Product strategy", "Figma", "React", "Recommendation logic", "Content modelling"],
+        outcome: "Built the working platform from zero to handoff, including the original concept, product architecture, interface, and technical execution. A technical specialist is now embedding it into the Stanford Medicine NOURISH website.",
         accent: "#65a30d",
+        popout: {
+            url: "https://med.stanford.edu/nourish-project.html",
+            eyebrow: "In development",
+            heading: "Coming to Stanford Medicine",
+            description: "The working Meal Explorer uses placeholder recipes while the NOURISH team prepares the real library for release in the coming months.",
+            ctaLabel: "Visit NOURISH",
+            collapsedLabel: "Meal Explorer update",
+            accessibleLabel: "NOURISH Meal Explorer release update",
+        },
         stats: [
-            { label: "Product type", value: "Meal exploration and recommendation" },
-            { label: "Design focus", value: "Behavior change through interface quality" },
-            { label: "Primary surface", value: "Mobile-first recommendation flows" },
-            { label: "Differentiator", value: "Decision support without clinical heaviness" },
+            { label: "Stage", value: "Working platform in active development" },
+            { label: "Ownership", value: "Concept, design, and technical build" },
+            { label: "Content", value: "Placeholder data pending NOURISH recipes" },
+            { label: "Release", value: "Stanford Medicine NOURISH · coming months" },
         ],
         highlights: [
-            { title: "Less dashboard, more guidance", text: "The concept focuses on helping people decide rather than drowning them in metrics." },
-            { title: "High-quality product language", text: "NOURISH is designed to feel premium and trustworthy, closer to the best consumer products than to typical health apps." },
-            { title: "Behavioral nuance", text: "Mood, time, appetite, and real constraints are treated as first-class inputs into the recommendation system." },
+            { title: "Created and built end to end", text: "I originated the concept and independently carried it through product strategy, UX architecture, interface design, and full technical implementation." },
+            { title: "Transparent development state", text: "The product is functional; its recipes and supporting data are intentionally provisional until the NOURISH team supplies the reviewed launch library." },
+            { title: "Prepared for institutional release", text: "A technical specialist is now handling the behind-the-scenes embedding work required to bring the platform into the Stanford Medicine NOURISH website." },
         ],
         sections: [
             {
-                title: "The opportunity",
+                title: "The product opportunity",
                 body: [
-                    "Nutrition products often fail not because the advice is wrong, but because the interaction model is weak. They expect users to think like dietitians when most users simply need help choosing well in context.",
-                    "NOURISH was conceived as a more elegant meal-exploration experience: one that translates health intent into a clear, beautiful, confidence-building decision pathway.",
+                    "NOURISH creates free, culturally tailored nutrition resources that help communities pursue better health without abandoning familiar foods. Meal Explorer translates that mission into a guided digital product for discovering and understanding meals.",
+                    "Instead of asking people to interpret dense nutrition information on their own, the experience is designed to make healthier, culturally relevant choices easier to explore and act on.",
                 ],
             },
             {
-                title: "The design thesis",
+                title: "My ownership",
                 body: [
-                    "The core proposition is that food recommendation should feel editorial, adaptive, and supportive. Instead of overwhelming people with nutrient dashboards, the interface should guide them through a sequence of relevant decisions.",
-                    "That means clean mobile architecture, strong content hierarchy, and interactive states that make healthier options feel obvious rather than burdensome.",
+                    "I originated the product concept and independently carried it through product strategy, UX architecture, interface design, prototyping, and complete technical implementation. Every part of the working platform up to the current handoff was developed by me.",
+                    "The role extended beyond a design deliverable: I defined how the experience should work, built the interface, shaped its recommendation and content structures, and prepared the product for integration.",
                 ],
             },
             {
-                title: "Portfolio value",
+                title: "Current development state",
                 body: [
-                    "NOURISH gives the portfolio a stronger consumer-product signal while staying aligned with Stefan's public-health and nutrition interests.",
-                    "It works especially well alongside SWAAD because it shows a more refined, productized counterpart to the culturally grounded community-health direction.",
+                    "The application is functional, but the recipes and supporting data shown today are placeholders used to test the experience, content hierarchy, and interaction flows. Before release, the NOURISH team will replace them with real reviewed recipes and program content.",
+                    "A technical expert is now working behind the scenes to embed the completed product into the Stanford Medicine NOURISH website. Release is planned for the coming months, with my contribution spanning the original concept and the full product and technical execution that made the handoff possible.",
                 ],
             },
         ],
         media: [
-            { src: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1600&auto=format&fit=crop", alt: "Curated meal cards", caption: "A calmer, more editorial visual language for meal discovery and habit formation." },
-            { src: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop", alt: "Healthy food composition", caption: "High-quality food imagery supports appetite, aspiration, and trust." },
-            { src: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1600&auto=format&fit=crop", alt: "Ingredients selection", caption: "Ingredient and context inputs can be turned into an elegant recommendation engine rather than a form-heavy funnel." },
+            { src: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1600&auto=format&fit=crop", alt: "Curated meal cards", caption: "Current meal content is provisional, allowing the team to validate browsing, hierarchy, and decision support before the NOURISH recipe library is added." },
+            { src: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop", alt: "Healthy food composition", caption: "Food imagery is also provisional; the release will pair the completed experience with real recipes and content from the NOURISH team." },
+            { src: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1600&auto=format&fit=crop", alt: "Ingredients selection", caption: "The working interface establishes the structure for recipe context, practical constraints, and culturally relevant guidance ahead of Stanford Medicine integration." },
         ],
         interactiveModules: [
             {
-                title: "Adaptive Meal Deck",
-                summary: "A swipeable card system that adapts to dietary targets, mood, and available time.",
-                interaction: "Users move through meal options that explain why each suggestion fits the moment rather than simply listing nutrients.",
-                effect: "Layered card stacks, confident motion, and animated 'why this meal' rationales that feel premium instead of gamified.",
+                title: "Guided Meal Discovery",
+                summary: "A card-led journey that helps people explore meals through their goals, context, and available time.",
+                interaction: "Users move through options with clear cues that explain why a meal may fit, rather than receiving an undifferentiated recipe list.",
+                effect: "Layered cards and restrained transitions preserve orientation while making exploration feel responsive and considered.",
             },
             {
-                title: "Context Filter Studio",
-                summary: "A filter system where constraints such as cost, prep time, and protein goals reshape the meal universe in real time.",
-                interaction: "Sliders and discrete toggles change the meal field while preserving visual continuity.",
-                effect: "Fluid content rearrangement, subtle gradient shifts, and animated prioritization states.",
+                title: "Context-Aware Filters",
+                summary: "Practical constraints such as preparation time and nutrition goals refine the meal set without turning discovery into a form.",
+                interaction: "Simple controls reshape the available options while keeping the current decision context visible.",
+                effect: "Fluid rearrangement and clear selection states show how each preference changes the result set.",
             },
             {
-                title: "Behavior Trail",
-                summary: "A visual recap of how repeated small decisions can improve weekly dietary quality.",
-                interaction: "Users can inspect how one healthier choice compounds over several days without relying on punitive tracking metaphors.",
-                effect: "Calendar arcs, momentum trails, and soft progress states instead of aggressive dashboards.",
+                title: "Supportive Decision Layer",
+                summary: "Explanations connect each meal suggestion to practical nutrition reasoning without overwhelming people with metrics.",
+                interaction: "Users can inspect the rationale behind a suggestion and make a more informed choice without leaving the discovery flow.",
+                effect: "Progressive disclosure and calm emphasis keep the health context available without making the experience feel clinical.",
             },
         ],
     },
