@@ -31,6 +31,11 @@ export interface ProjectInteractiveModule {
     effect: string;
 }
 
+export interface ProjectLiveDemo {
+    url: string;
+    description: string;
+}
+
 export interface Project {
     id: string;
     title: string;
@@ -49,6 +54,7 @@ export interface Project {
     sections: ProjectSection[];
     media: ProjectMedia[];
     interactiveModules: ProjectInteractiveModule[];
+    liveDemo?: ProjectLiveDemo;
 }
 
 export const projects: Project[] = [
@@ -65,6 +71,10 @@ export const projects: Project[] = [
         tools: ["Figma", "React", "Supabase", "OpenAI API", "Airtable"],
         outcome: "Established a strong concept direction for a community-facing nutrition product that blends culturally specific meal planning with interactive chronic-disease education.",
         accent: "#0f766e",
+        liveDemo: {
+            url: "https://bud-hub-29-10.vercel.app/",
+            description: "Explore the working prototype, try the experience for yourself, and see how the concept behaves beyond the case study.",
+        },
         stats: [
             { label: "Focus", value: "Diabetes and hypertension prevention" },
             { label: "Audience", value: "Indian vegetarian communities in Logan" },
