@@ -98,7 +98,6 @@ export const researchRoles: Role[] = [
     ],
     tags: ["Precision Oncology", "Clinical ML", "Annotation"],
     accent: "from-rose-500 to-orange-400",
-    link: "/project/precision-oncology",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -163,7 +162,6 @@ export const researchRoles: Role[] = [
     ],
     tags: ["Indigenous Health", "Implementation", "Meta-analysis"],
     accent: "from-fuchsia-500 to-purple-500",
-    link: "/project/indigenous-preventive-care",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -226,7 +224,6 @@ export const researchRoles: Role[] = [
     ],
     tags: ["Global Health", "Surveillance", "ML"],
     accent: "from-slate-700 to-slate-500",
-    link: "/project/biothreat-modelling",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -280,13 +277,13 @@ export const industryRoles: Role[] = [
     },
   },
   {
-    id: "sous",
+    id: "casa",
     title: "Founder",
-    organization: "Sous",
+    organization: "Casa",
     period: "Ongoing",
     location: "Distributed",
     summary:
-      "Cooking-confidence platform — Duolingo-for-cooking. Users type a craving or photograph a dish; the app returns intelligently paired sides with guided cooking.",
+      "Consumer AI cooking-confidence platform. Users type a craving or photograph a dish; Casa turns that intent into practical meal directions, intelligently paired sides, and guided cooking.",
     deliverables: [
       "Craving parser + pairing engine",
       "Guided cook flow",
@@ -294,19 +291,19 @@ export const industryRoles: Role[] = [
     ],
     tags: ["Consumer AI", "Product", "Vision"],
     accent: "from-orange-500 to-amber-400",
-    link: "/project/swaad",
+    link: "/project/casa",
     featured: true,
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
         { id: "engineering", label: "Engineering team", sublabel: "Vision + craving-parser stack", icon: "team", x: 0.5, y: 0.16 },
-        { id: "product", label: "Sous app", sublabel: "Guided cook flow + skill tree", icon: "product", x: 0.16, y: 0.5 },
+        { id: "product", label: "Casa app", sublabel: "Guided cook flow + skill tree", icon: "product", x: 0.16, y: 0.5 },
         { id: "engine", label: "Pairing engine", sublabel: "Side-recommendation logic", icon: "research", x: 0.84, y: 0.5 },
         { id: "users", label: "Home cooks", sublabel: "First-time-confident users", icon: "users", x: 0.5, y: 0.84 },
       ],
       edges: [
         { from: "me", to: "engineering", label: "Leading engineering on vision parsing and craving-to-recipe stack" },
-        { from: "me", to: "product", label: "Designing the Sous guided-cook product and skill-tree progression" },
+        { from: "me", to: "product", label: "Designing the Casa guided-cook product and skill-tree progression" },
         { from: "me", to: "engine", label: "Designed the side-pairing recommendation engine" },
         { from: "me", to: "users", label: "Building cooking confidence for first-time home cooks" },
       ],
@@ -536,6 +533,105 @@ export const industryRoles: Role[] = [
   },
 ];
 
+export const educationRoles: Role[] = [
+  {
+    id: "tlia-entrepreneurship-bootcamp",
+    title: "Program Lead",
+    organization: "TLIA Entrepreneurship Bootcamp",
+    period: "2025",
+    location: "Nigeria / Remote",
+    summary:
+      "Designed and delivered an applied entrepreneurship bootcamp for TLIA's creative savants, translating venture-building into structured exercises for needs finding, validation, business-model design, and pitch development.",
+    deliverables: [
+      "Bootcamp curriculum architecture and learning journey",
+      "Needs-finding, pain-scoring, validation, and pitch exercises",
+      "Founder-facing teaching materials from the TLIA program deck",
+    ],
+    tags: ["Entrepreneurship Education", "Design Thinking", "Venture Building"],
+    accent: "from-emerald-500 to-teal-500",
+    featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "tlia", label: "TLIA", sublabel: "Bootcamp host", icon: "institution", x: 0.5, y: 0.15 },
+        { id: "learners", label: "Creative savants", sublabel: "Entrepreneurship learners", icon: "users", x: 0.84, y: 0.5 },
+        { id: "curriculum", label: "Curriculum", sublabel: "Needs finding → pitch", icon: "manuscript", x: 0.16, y: 0.5 },
+        { id: "venture", label: "Venture thesis", sublabel: "Validated problem + model", icon: "product", x: 0.5, y: 0.85 },
+      ],
+      edges: [
+        { from: "me", to: "tlia", label: "Served as Program Lead for the TLIA Entrepreneurship Bootcamp" },
+        { from: "me", to: "curriculum", label: "Designed the learning sequence and founder-facing exercises" },
+        { from: "me", to: "learners", label: "Taught creative savants to move from curiosity to tested venture ideas" },
+        { from: "me", to: "venture", label: "Built the bootcamp around testable venture theses and pitch-ready synthesis" },
+      ],
+    },
+  },
+  {
+    id: "anu-phd-student-teaching",
+    title: "PhD Student Teaching & Research Mentoring",
+    organization: "ANU National Centre for Epidemiology & Population Health",
+    period: "2022 – 2025",
+    location: "Canberra, Australia",
+    summary:
+      "Taught and mentored PhD students through evidence-synthesis work, including meta-analysis, scoping-review logic, PRISMA workflows, and publication-oriented research execution.",
+    deliverables: [
+      "Research-methods teaching for PhD students",
+      "Meta-analysis and scoping-review workflow support",
+      "Mentoring toward first-author publication outputs",
+    ],
+    tags: ["PhD Mentoring", "Meta-analysis", "Evidence Synthesis"],
+    accent: "from-purple-500 to-fuchsia-500",
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "anu", label: "ANU NCEPH", sublabel: "Research environment", icon: "institution", x: 0.5, y: 0.15 },
+        { id: "phd", label: "PhD students", sublabel: "Methods teaching + mentoring", icon: "mortarboard", x: 0.84, y: 0.5 },
+        { id: "methods", label: "Methods", sublabel: "Meta-analysis + scoping review", icon: "research", x: 0.16, y: 0.5 },
+        { id: "outputs", label: "Publication outputs", sublabel: "First-author execution support", icon: "manuscript", x: 0.5, y: 0.85 },
+      ],
+      edges: [
+        { from: "me", to: "anu", label: "Teaching and mentoring work within the ANU NCEPH research context" },
+        { from: "me", to: "phd", label: "Mentored PhD students through publication-oriented research execution" },
+        { from: "me", to: "methods", label: "Taught meta-analysis, scoping review, and PRISMA-style workflows" },
+        { from: "me", to: "outputs", label: "Supported translation of methods work into publishable outputs" },
+      ],
+    },
+  },
+  {
+    id: "nourish-pfeme-curriculum",
+    title: "Clinician Residency Curriculum Writer",
+    organization: "NOURISH PFEME · Stanford Medicine",
+    period: "Ongoing",
+    location: "Stanford, CA",
+    summary:
+      "Writing clinician-facing residency curriculum content for the NOURISH PFEME program, translating nutrition, behavior-change, and teaching-kitchen principles into practical educational material for clinical learners.",
+    deliverables: [
+      "Clinician-residency curriculum writing",
+      "Nutrition and behavior-change content translation",
+      "Teaching-kitchen concepts adapted for clinical education",
+    ],
+    tags: ["Clinical Education", "Nutrition", "Curriculum Design"],
+    accent: "from-lime-500 to-emerald-500",
+    link: "/project/nourish-meal-explorer",
+    featured: true,
+    network: {
+      nodes: [
+        { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
+        { id: "nourish", label: "NOURISH PFEME", sublabel: "Stanford Medicine", icon: "institution", x: 0.5, y: 0.15 },
+        { id: "clinicians", label: "Clinical learners", sublabel: "Residency curriculum audience", icon: "users", x: 0.84, y: 0.5 },
+        { id: "curriculum", label: "Curriculum", sublabel: "Clinician-facing modules", icon: "manuscript", x: 0.16, y: 0.5 },
+        { id: "nutrition", label: "Nutrition education", sublabel: "Behavior-change translation", icon: "research", x: 0.5, y: 0.85 },
+      ],
+      edges: [
+        { from: "me", to: "nourish", label: "Curriculum-writing role within the NOURISH PFEME education work" },
+        { from: "me", to: "curriculum", label: "Writing clinician-facing residency curriculum content" },
+        { from: "me", to: "clinicians", label: "Translating content for clinical learners rather than general users" },
+        { from: "me", to: "nutrition", label: "Connecting nutrition, teaching-kitchen, and behavior-change principles" },
+      ],
+    },
+  },
+];
+
 // Policy & government roles — content taken verbatim-in-spirit from the role
 // record (ground truth). Note: the role document does not state exact dates;
 // periods below are inferred from context (the Oct 2022 NDIS budget anchors the
@@ -556,7 +652,6 @@ export const policyRoles: Role[] = [
     ],
     tags: ["Implementation", "Indigenous Health", "Primary Care"],
     accent: "from-amber-500 to-orange-500",
-    link: "/project/indigenous-preventive-care",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },

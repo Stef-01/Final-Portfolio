@@ -11,16 +11,6 @@ export interface PolicyInitiative {
 
 export const policyInitiatives: PolicyInitiative[] = [
     {
-        id: "biothreat-modelling",
-        title: "Dynamic Biothreat Modelling",
-        subtitle: "Detecting AI-engineered biothreats through adaptive threat-modelling systems.",
-        description: "A national-capability oriented body of work exploring how AI-era biological threats might be detected, interpreted, and prioritized before they become operationally significant. The emphasis is on strategy, model logic, and decision frameworks rather than abstract speculation.",
-        role: "Researcher and systems strategist",
-        scope: "Biosecurity, AI risk, and national resilience",
-        period: "2025",
-        themes: ["Biosecurity", "AI Governance", "National Security"],
-    },
-    {
         id: "indigenous-implementation",
         title: "Indigenous Preventive Care Implementation",
         subtitle: "Understanding what makes preventive chronic-disease programs succeed in real primary-care settings.",

@@ -42,7 +42,7 @@ export function Industry() {
               Founding, advising, and building health-tech ventures
             </h1>
             <p className="mt-6 max-w-3xl text-base md:text-xl leading-relaxed text-gray-600">
-              NOURISH and Sous; GenieRX (2nd in the US, 7th of 3,500 at Harvard
+              NOURISH and Casa; GenieRX (2nd in the US, 7th of 3,500 at Harvard
               HSIL); the Adcem Fidson dialysis joint venture in Nigeria;
               Microsoft / Stanford Medicine HFTE; and the Stanford XR Hackathon
               (1st place, Social Good).

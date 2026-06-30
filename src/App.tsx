@@ -38,6 +38,9 @@ const Research = lazy(() =>
 const Industry = lazy(() =>
   import("./pages/Industry").then((module) => ({ default: module.Industry })),
 );
+const Education = lazy(() =>
+  import("./pages/Education").then((module) => ({ default: module.Education })),
+);
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
@@ -60,6 +63,7 @@ const AnimatedRoutes = () => {
         <Route path="/policy" element={<Policy />} />
         <Route path="/research" element={<Research />} />
         <Route path="/industry" element={<Industry />} />
+        <Route path="/education" element={<Education />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

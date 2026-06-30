@@ -246,8 +246,6 @@ export function StakeholderEcosystem() {
         >
           <title>Healthcare stakeholder ecosystem</title>
 
-          <rect x={3} y={3} width={1114} height={784} rx={18} fill="#ffffff" stroke="#edf0f3" />
-
           <rect x={37} y={82} width={1045} height={160} rx={16} fill="#eff2f6" stroke="#dde3ea" />
           <rect x={37} y={254} width={375} height={456} rx={16} fill="#e6ecf3" stroke="#dde3ea" />
           <rect x={428} y={254} width={375} height={456} rx={16} fill="#ebeff4" stroke="#dde3ea" />

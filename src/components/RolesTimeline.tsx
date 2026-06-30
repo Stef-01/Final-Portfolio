@@ -26,6 +26,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
 
     return (
         <li
+            id={`role-${role.id}`}
             onMouseEnter={onEnter}
             onFocus={onEnter}
             onClick={onEnter}

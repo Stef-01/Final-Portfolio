@@ -5,6 +5,7 @@ import { Button } from "../components/Button";
 import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
 import { ThreeLanesTeaser } from "../components/ThreeLanesTeaser";
+import { PressSection } from "../components/PressSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
 import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { ContactModal } from "../components/ContactModal";
@@ -34,6 +35,15 @@ export const ScalehubStartupLp = (): JSX.Element => {
   const handleViewWork = () => {
     document
       .getElementById("three-lanes")
+      ?.scrollIntoView({
+        behavior: prefersReducedMotion ? "instant" : "smooth",
+        block: "start",
+      });
+  };
+
+  const handleViewPress = () => {
+    document
+      .getElementById("press")
       ?.scrollIntoView({
         behavior: prefersReducedMotion ? "instant" : "smooth",
         block: "start",
@@ -84,6 +94,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
               onClick={() => setIsContactModalOpen(true)}
               className="w-full sm:w-[134px]"
             />
+            <Button
+              type="secondary"
+              label="Press"
+              onClick={handleViewPress}
+              className="w-full sm:w-[134px]"
+            />
           </div>
         </div>
       </div>
@@ -126,6 +142,10 @@ export const ScalehubStartupLp = (): JSX.Element => {
       <div className="relative z-10 bg-white">
         <AboutSection />
       </div>
+
+      <div className="relative z-10 bg-white">
+        <PressSection />
+      </div>
       </main>
 
       {/* Footer */}
@@ -157,6 +177,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
               Industry
             </Link>
             <Link
+              to="/education"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Education
+            </Link>
+            <Link
               to="/bio"
               className="text-gray-400 hover:text-white transition-colors"
             >
@@ -168,6 +194,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
             >
               Presentations
             </Link>
+            <a
+              href="#press"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Press
+            </a>
           </div>
         </div>
       </footer>

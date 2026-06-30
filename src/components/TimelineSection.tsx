@@ -76,7 +76,7 @@ export const TimelineSection = () => {
             title: "Stanford Biodesign",
             period: "2025",
             image: imgStanfordBiodesign,
-            description: "Immersive human centered health technology training, where we developed a novel ENT care platform to help prevent paediatric readmissions.",
+            description: "Completed the application-only Stanford Biodesign for Digital Health program, applying its needs-driven method with ENT surgeons, hospital teams, children, and parents to develop PainGone PainGuin.",
         },
         {
             id: "seed",
@@ -621,7 +621,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-2xl transition-all duration-300 ${hoveredItem === 'biodesign' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1800, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Immersive human centered health technology training, where we developed a novel ENT care platform to help prevent paediatric readmissions.</p>
+                        <p className="text-[20px]">Completed the application-only Stanford Biodesign for Digital Health program, applying its needs-driven method with ENT surgeons, hospital teams, children, and parents to develop PainGone PainGuin.</p>
                     </div>
 
                     {/* Hover Description - Stanford Seed */}

@@ -13,6 +13,8 @@ const categories = [
     id: "precision-oncology",
     label: "Precision Oncology",
     shortLabel: "Oncology",
+    targetId: "role-han-lab",
+    ctaLabel: "View research experience",
     blurb:
       "Tumour-burden annotation with the Han Lab at Stanford Medicine — turning lung-cancer imaging into reasoning a clinician can act on.",
   },
@@ -20,6 +22,8 @@ const categories = [
     id: "nourish-meal-explorer",
     label: "Precision Nutrition",
     shortLabel: "Nutrition",
+    route: "/project/nourish-meal-explorer",
+    ctaLabel: "Open case study",
     blurb:
       "NOURISH uses behaviour-change design and recommendation systems to make preventive nutrition stick, not just inform.",
   },
@@ -27,6 +31,8 @@ const categories = [
     id: "pgx-llm-copilot",
     label: "Pharmacogenomics",
     shortLabel: "Pharmacogenomics",
+    route: "/project/pgx-llm-copilot",
+    ctaLabel: "Open case study",
     blurb:
       "GenieRX turns pharmacogenomic evidence and CPIC guidelines into safer, more legible prescribing at the point of care.",
   },
@@ -40,7 +46,22 @@ export const PrecisionMedicineSection = () => {
 
   const activeIndex = hovered ?? selected;
   const active = categories[activeIndex];
-  const open = (index: number) => navigate(`/project/${categories[index].id}`);
+  const open = (index: number) => {
+    const category = categories[index];
+    setSelected(index);
+
+    if ("route" in category && category.route) {
+      navigate(category.route);
+      return;
+    }
+
+    if ("targetId" in category && category.targetId) {
+      document.getElementById(category.targetId)?.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    }
+  };
 
   const fallbackHelix = (
     <DnaHelix
@@ -150,7 +171,7 @@ export const PrecisionMedicineSection = () => {
               onClick={() => open(activeIndex)}
               className="group mt-5 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
             >
-              Open case study
+              {active.ctaLabel}
               <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
           </motion.div>

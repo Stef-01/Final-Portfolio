@@ -2,6 +2,39 @@ import swaadBranding from "../assets/swaad-branding.png";
 import swaadGame from "../assets/swaad-game.png";
 import swaadMealExplorer from "../assets/swaad-recipe-finder.png";
 import swaadNutriserve from "../assets/swaad-nutriserve.png";
+import hfteBiodesignFramework from "../assets/hfte/hfte-biodesign-framework.png";
+import hfteDeliverables from "../assets/hfte/hfte-deliverables.png";
+import hfteDeviceWorkflow from "../assets/hfte/hfte-device-and-diagnostic-workflow.png";
+import hfteNeed from "../assets/hfte/hfte-diabetic-retinopathy-need.png";
+import hfteRevenueModel from "../assets/hfte/hfte-revenue-model.png";
+import hfteScalingChallenges from "../assets/hfte/hfte-scaling-challenges.png";
+import hfteStakeholderEcosystem from "../assets/hfte/hfte-stakeholder-ecosystem.png";
+import hfteWorkflowComparison from "../assets/hfte/hfte-workflow-comparison.png";
+import adcemDialysisMarket from "../assets/adcem/adcem-dialysis-market-context.png";
+import adcemLocalManufacturing from "../assets/adcem/adcem-local-manufacturing-model.png";
+import adcemMarketPainPoints from "../assets/adcem/adcem-market-pain-points.png";
+import entDischargeResearch from "../assets/ent/ent-discharge-research.png";
+import entGapAnalysis from "../assets/ent/ent-gap-analysis.png";
+import entNeedStatement from "../assets/ent/ent-need-statement.png";
+import entPainGonePainGuinConcept from "../assets/ent/ent-paingone-painguin-concept.png";
+import entPathToPayment from "../assets/ent/ent-path-to-payment.png";
+import entProductWorkflow from "../assets/ent/ent-product-workflow.png";
+import entValueProposition from "../assets/ent/ent-value-proposition.png";
+import stanfordBiodesignClassroom from "../assets/ent/stanford-biodesign-digital-health-classroom.jpg";
+import stanfordBiodesignProcess from "../assets/ent/stanford-biodesign-process.png";
+import nourishDishDetail from "../assets/nourish/nourish-dish-detail.jpg";
+import nourishGeneratedPairing from "../assets/nourish/nourish-generated-pairing.jpg";
+import nourishMealDiscovery from "../assets/nourish/nourish-meal-discovery.jpg";
+import nourishMobileDiscovery from "../assets/nourish/nourish-mobile-discovery.jpg";
+import nourishPlateBalance from "../assets/nourish/nourish-plate-balance.jpg";
+import nourishShareablePlate from "../assets/nourish/nourish-shareable-plate.jpg";
+import neuragilityHero from "../assets/neuragility/neuragility-hero.webp";
+import neuragilityMovementDemo from "../assets/neuragility/neuragility-movement-demo.webp";
+import neuragilityShoulderContext from "../assets/neuragility/neuragility-shoulder-context.webp";
+import neuragilitySignalActivation from "../assets/neuragility/neuragility-signal-activation.webp";
+import neuragilitySignalBaseline from "../assets/neuragility/neuragility-signal-baseline.webp";
+import neuragilityWearable from "../assets/neuragility/neuragility-wearable.webp";
+import neuragilityXrTraining from "../assets/neuragility/neuragility-xr-training.webp";
 
 export interface ProjectStat {
     label: string;
@@ -22,6 +55,31 @@ export interface ProjectMedia {
     src: string;
     alt: string;
     caption: string;
+    fit?: "cover" | "contain";
+    aspect?: "4/3" | "16/9" | "8/5" | "9/16";
+}
+
+export interface ProjectVideo {
+    src: string;
+    poster?: string;
+    title: string;
+    caption: string;
+}
+
+export interface ProjectCaseStudyStep {
+    phase: string;
+    title: string;
+    rationale: string;
+    execution: string;
+}
+
+export interface ProjectCaseStudy {
+    question: string;
+    framing: string;
+    processEyebrow: string;
+    processHeading: string;
+    processSummary: string;
+    steps: ProjectCaseStudyStep[];
 }
 
 export interface ProjectInteractiveModule {
@@ -41,12 +99,19 @@ export interface ProjectPopout {
     accessibleLabel: string;
 }
 
+export interface ProjectLink {
+    label: string;
+    url: string;
+}
+
 export interface Project {
     id: string;
     title: string;
     subtitle: string;
     description: string;
     image: string;
+    heroFit?: "cover" | "contain";
+    heroAspect?: "16/9" | "8/5";
     tags: string[];
     role: string;
     client: string;
@@ -58,11 +123,163 @@ export interface Project {
     highlights: ProjectHighlight[];
     sections: ProjectSection[];
     media: ProjectMedia[];
+    video?: ProjectVideo;
     interactiveModules: ProjectInteractiveModule[];
+    interactiveEyebrow?: string;
+    interactiveHeading?: string;
+    interactiveActiveLabel?: string;
+    interactivePrimaryLabel?: string;
+    interactiveSecondaryLabel?: string;
+    caseStudy?: ProjectCaseStudy;
+    links?: ProjectLink[];
     popout?: ProjectPopout;
 }
 
 export const projects: Project[] = [
+    {
+        id: "casa",
+        title: "Casa",
+        subtitle: "A cooking-confidence platform that turns cravings, photos, and pantry context into guided home-cooking action.",
+        description: "Casa is a consumer AI cooking product distinct from SWAAD: instead of focusing on community-specific chronic-disease prevention, it focuses on helping everyday home cooks move from “I want something like this” to a confident, doable cooking path.",
+        image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop",
+        tags: ["Consumer AI", "Cooking Confidence", "Product Design"],
+        role: "Founder, product lead, and experience designer",
+        client: "Self-initiated consumer cooking venture",
+        duration: "Most recent venture direction · ongoing",
+        tools: ["Craving-to-recipe journey design", "Vision-led food input", "Recommendation logic", "Guided cooking UX", "Skill progression design", "Rapid prototyping", "React"],
+        outcome: "Separated Casa from SWAAD as its own consumer product thesis: a guided cooking platform that converts vague cravings and food photos into clear meal options, paired sides, and step-by-step confidence loops.",
+        accent: "#f97316",
+        stats: [
+            { label: "Product focus", value: "Cooking confidence for everyday home cooks" },
+            { label: "Input model", value: "Craving text, food photos, pantry context" },
+            { label: "Core output", value: "Doable meals, intelligent sides, guided cooking" },
+            { label: "Portfolio status", value: "Newest standalone venture case study" },
+        ],
+        highlights: [
+            { title: "Not SWAAD", text: "Casa is not the community nutrition platform. It is a consumer cooking-confidence product built around cravings, visual food recognition, and practical guided execution." },
+            { title: "From inspiration to action", text: "The product starts where many cooks start: an image, a craving, or a vague idea. Casa translates that fuzzy intent into meals a user can actually make." },
+            { title: "Confidence as the metric", text: "The interaction design focuses on reducing uncertainty: what to cook, what pairs with it, what step comes next, and how to build repeatable cooking skill." },
+        ],
+        sections: [
+            {
+                title: "Why Casa needed its own case study",
+                body: [
+                    "Casa and SWAAD sit near food, but they solve different problems. SWAAD is a culturally grounded health and nutrition platform for chronic-disease prevention. Casa is a consumer cooking-confidence product for people who want to cook more confidently at home.",
+                    "Keeping them separate makes the portfolio clearer: SWAAD shows public-health translation and culturally specific nutrition design; Casa shows consumer product thinking, multimodal AI interaction, and skill-building UX.",
+                ],
+            },
+            {
+                title: "The product thesis",
+                body: [
+                    "Most recipe products assume the user already knows what to search for. Casa begins earlier in the decision: a craving, a dish photo, a leftover ingredient, or the feeling of wanting food that tastes like something familiar.",
+                    "The opportunity is to convert inspiration into action. The system should infer the meal direction, suggest intelligent pairings, and then guide the user through cooking without making them feel inexperienced.",
+                ],
+            },
+            {
+                title: "The experience model",
+                body: [
+                    "Casa is structured around a simple loop: capture the craving, generate a practical direction, pair the meal with sides or supporting dishes, then guide the cook through the steps.",
+                    "The product avoids treating cooking as a static recipe lookup task. It behaves more like a coach: it narrows options, explains substitutions, sequences the work, and reinforces learning over time.",
+                ],
+            },
+            {
+                title: "Design and execution ownership",
+                body: [
+                    "I defined Casa as a standalone product direction, separated it from the SWAAD health platform, and shaped the core interaction model around craving input, image-based inspiration, pairing logic, guided cooking, and skill progression.",
+                    "The product work emphasizes practical execution ability: information architecture, recommendation framing, side-pairing logic, user confidence, and a repeatable cooking journey that can scale beyond one-off recipe cards.",
+                ],
+            },
+            {
+                title: "What comes next",
+                body: [
+                    "The next product questions are validation-focused: which input mode creates the fastest useful result, how users interpret side-pairing recommendations, and where guided cooking should be opinionated versus flexible.",
+                    "Those questions make Casa a strong portfolio piece because it shows the earliest strategic stage of a venture: naming the distinct product, clarifying the user job, and turning an AI capability into an understandable behavior loop.",
+                ],
+            },
+        ],
+        caseStudy: {
+            question: "How might a cooking app turn a craving or food photo into a confident meal decision instead of another overwhelming recipe search?",
+            framing: "Casa treats cooking confidence as the product problem. The design moves from vague intent to guided execution: understand the craving, propose a realistic meal, pair it with useful sides, and help the user complete the cooking process.",
+            processEyebrow: "Consumer product method",
+            processHeading: "From craving to confident cooking",
+            processSummary: "The case study shows how Casa converts an ambiguous food desire into a structured product journey: capture, interpret, pair, guide, and reinforce.",
+            steps: [
+                {
+                    phase: "Separate",
+                    title: "Split Casa from the SWAAD health thesis",
+                    rationale: "One food product cannot credibly represent both culturally specific chronic-disease prevention and broad consumer cooking confidence without blurring the user problem.",
+                    execution: "Created Casa as its own portfolio project, with its own route, role linkage, consumer framing, interaction model, and newest-project placement.",
+                },
+                {
+                    phase: "Capture",
+                    title: "Start from fuzzy intent",
+                    rationale: "Home cooks often begin with a craving, a photo, a pantry item, or a taste memory rather than a precise recipe title.",
+                    execution: "Framed Casa around craving text and image-led input so the product can meet the user before they know exactly what to search.",
+                },
+                {
+                    phase: "Interpret",
+                    title: "Turn inspiration into practical options",
+                    rationale: "AI generation is only useful if the output feels cookable, not just imaginative.",
+                    execution: "Defined the recommendation task around doable meals, available context, side pairings, and clear next actions rather than open-ended recipe dumping.",
+                },
+                {
+                    phase: "Guide",
+                    title: "Make cooking feel sequenced and safe",
+                    rationale: "Beginner confidence improves when the interface reduces timing uncertainty, hidden assumptions, and fear of making mistakes.",
+                    execution: "Positioned guided cooking, substitutions, and skill progression as core product surfaces rather than secondary educational content.",
+                },
+                {
+                    phase: "Reinforce",
+                    title: "Build repeatable confidence",
+                    rationale: "A successful cooking product should help users learn patterns they can reuse, not just complete one recipe.",
+                    execution: "Structured the product narrative around skill-tree progression, pairing memory, and repeated confidence loops across meals.",
+                },
+            ],
+        },
+        media: [
+            { src: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1600&auto=format&fit=crop", alt: "Home cook preparing ingredients at a kitchen counter", caption: "Casa starts from the practical reality of home cooking: limited confidence, limited time, and a need for clear next steps." },
+            { src: "https://images.unsplash.com/photo-1495521821757-a1efb6729352?q=80&w=1600&auto=format&fit=crop", alt: "Open cookbook and ingredients arranged on a kitchen table", caption: "The product reframes recipe discovery as guided decision-making rather than an endless search results page." },
+            { src: "https://images.unsplash.com/photo-1514986888952-8cd320577b68?q=80&w=1600&auto=format&fit=crop", alt: "Finished home-cooked meal served on a table with sides", caption: "Meal pairing is treated as a confidence tool: the user gets a complete direction, not just a single disconnected dish." },
+            { src: "https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1600&auto=format&fit=crop", alt: "Cook working at a stovetop with prepared ingredients nearby", caption: "The guided-cook flow turns inspiration into sequenced action, substitutions, and repeatable cooking skill." },
+        ],
+        interactiveEyebrow: "Experience architecture",
+        interactiveHeading: "The Casa loop: craving, interpretation, pairing, guidance",
+        interactiveActiveLabel: "Active product moment",
+        interactivePrimaryLabel: "User need",
+        interactiveSecondaryLabel: "Product response",
+        interactiveModules: [
+            {
+                title: "Craving input",
+                summary: "Users begin with a craving, a food photo, or a pantry clue instead of a precise recipe query.",
+                interaction: "Type what they want, upload or reference a dish, or start from available ingredients.",
+                effect: "The product meets users at the moment of inspiration before they have the vocabulary for a recipe search.",
+            },
+            {
+                title: "Meal direction",
+                summary: "Casa interprets fuzzy intent into a small set of cookable options.",
+                interaction: "Review meal candidates that are constrained by confidence, ingredients, and cooking effort.",
+                effect: "Reduces decision overload and converts AI output into a clear product choice.",
+            },
+            {
+                title: "Side pairing",
+                summary: "The product suggests supporting sides that make the meal feel complete.",
+                interaction: "Accept, swap, or simplify pairings without restarting the whole recommendation.",
+                effect: "Turns meal planning from isolated recipe lookup into a full-plate confidence experience.",
+            },
+            {
+                title: "Guided cook",
+                summary: "Casa sequences the cooking process so users know what to do now, next, and later.",
+                interaction: "Follow steps, substitutions, timing cues, and confidence prompts.",
+                effect: "Reduces anxiety at the point of execution, where most cooking products stop helping.",
+            },
+            {
+                title: "Skill memory",
+                summary: "Completed meals become patterns the user can repeat and adapt.",
+                interaction: "Save wins, reuse pairings, and gradually unlock more advanced techniques.",
+                effect: "Repositions Casa as a cooking-confidence system, not a one-off recipe generator.",
+            },
+        ],
+    },
     {
         id: "swaad",
         title: "SWAAD",
@@ -148,83 +365,161 @@ export const projects: Project[] = [
     },
     {
         id: "nourish-meal-explorer",
-        title: "NOURISH Meal Explorer",
-        subtitle: "A culturally responsive meal-discovery platform being prepared for release through Stanford Medicine's NOURISH program.",
-        description: "I conceived, designed, and developed the Meal Explorer end to end—from product strategy and interaction design through the complete working platform. The current build uses placeholder recipe data while the NOURISH team prepares the real recipe library for release.",
-        image: "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Product Design", "Nutrition", "Product Engineering"],
+        title: "NOURISH Meal Pairer AI",
+        subtitle: "Turning familiar meals into balanced, culturally relevant plates through a health-literacy-aware pairing experience.",
+        description: "I conceived, designed, and developed the working Meal Explorer platform end to end—from the product thesis and AI-assisted pairing flow through interaction design, accessibility, data structures, and technical implementation. The current build uses placeholder recipes while the NOURISH team prepares its reviewed launch library.",
+        image: nourishGeneratedPairing,
+        heroFit: "contain",
+        heroAspect: "8/5",
+        tags: ["AI Meal Pairing", "Nutrition Education", "Product Engineering"],
         role: "Product creator, UX/UI designer, and lead developer",
         client: "NOURISH · Stanford Medicine",
         duration: "Active development · release planned in the coming months",
-        tools: ["Product strategy", "Figma", "React", "Recommendation logic", "Content modelling"],
-        outcome: "Built the working platform from zero to handoff, including the original concept, product architecture, interface, and technical execution. A technical specialist is now embedding it into the Stanford Medicine NOURISH website.",
-        accent: "#65a30d",
+        tools: ["Human-centred design", "Nutrition research synthesis", "Low-health-literacy design", "Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Fuse.js", "Accessible interaction design"],
+        outcome: "Created the product concept and built the complete working platform to handoff. A technical specialist is now managing the institutional embedding work for the Stanford Medicine NOURISH website.",
+        accent: "#315f46",
+        links: [
+            { label: "Test the working product", url: "https://nourish-meal-explorer.vercel.app/" },
+            { label: "View the source code", url: "https://github.com/Stef-01/nourish-meal-explorer" },
+        ],
         popout: {
-            url: "https://med.stanford.edu/nourish-project.html",
-            eyebrow: "In development",
-            heading: "Coming to Stanford Medicine",
-            description: "The working Meal Explorer uses placeholder recipes while the NOURISH team prepares the real library for release in the coming months.",
-            ctaLabel: "Visit NOURISH",
-            collapsedLabel: "Meal Explorer update",
-            accessibleLabel: "NOURISH Meal Explorer release update",
+            url: "https://nourish-meal-explorer.vercel.app/",
+            eyebrow: "Working product",
+            heading: "Build a plate and test the flow",
+            description: "Try the complete pairing experience—from a familiar main dish to complementary sides, whole-plate evaluation, and a shareable result. Recipe data is currently provisional.",
+            ctaLabel: "Test Meal Pairer live",
+            collapsedLabel: "Try Meal Pairer",
+            accessibleLabel: "Live NOURISH Meal Pairer experience",
         },
         stats: [
-            { label: "Stage", value: "Working platform in active development" },
-            { label: "Ownership", value: "Concept, design, and technical build" },
-            { label: "Content", value: "Placeholder data pending NOURISH recipes" },
-            { label: "Release", value: "Stanford Medicine NOURISH · coming months" },
+            { label: "Ownership", value: "Concept → design → working product → handoff" },
+            { label: "Core flow", value: "Familiar meal → sides → inspect or swap → evaluate → share" },
+            { label: "Design priority", value: "Accessible across varied health-literacy levels" },
+            { label: "Release state", value: "Working build · reviewed NOURISH recipes pending" },
         ],
         highlights: [
-            { title: "Created and built end to end", text: "I originated the concept and independently carried it through product strategy, UX architecture, interface design, and full technical implementation." },
-            { title: "Transparent development state", text: "The product is functional; its recipes and supporting data are intentionally provisional until the NOURISH team supplies the reviewed launch library." },
-            { title: "Prepared for institutional release", text: "A technical specialist is now handling the behind-the-scenes embedding work required to bring the platform into the Stanford Medicine NOURISH website." },
+            { title: "Preserve identity before optimizing nutrition", text: "The main dish remains the anchor. The system improves the plate around a familiar meal instead of treating culture and health as competing goals." },
+            { title: "Reduce interpretation burden", text: "Search examples, food photography, local swaps, compact labels, and progressive disclosure replace dense nutrient tables and clinical language." },
+            { title: "Reason about the whole plate", text: "The experience delays evaluation until vegetables, protein, and carbohydrates can be considered together, making the recommendation easier to explain and act on." },
         ],
         sections: [
             {
-                title: "The product opportunity",
+                title: "The behavioural and nutrition problem",
                 body: [
-                    "NOURISH creates free, culturally tailored nutrition resources that help communities pursue better health without abandoning familiar foods. Meal Explorer translates that mission into a guided digital product for discovering and understanding meals.",
-                    "Instead of asking people to interpret dense nutrition information on their own, the experience is designed to make healthier, culturally relevant choices easier to explore and act on.",
+                    "Many nutrition tools begin with restriction, generic meal plans, or unfamiliar substitutions. That creates immediate friction for people who want practical guidance without abandoning culturally meaningful food.",
+                    "The product reframes the decision from “What should I stop eating?” to “What can I add or adjust around the meal I already know?” This moves nutrition education into a concrete composition task instead of a lecture.",
                 ],
             },
             {
-                title: "My ownership",
+                title: "Human-centred design across health-literacy levels",
                 body: [
-                    "I originated the product concept and independently carried it through product strategy, UX architecture, interface design, prototyping, and complete technical implementation. Every part of the working platform up to the current handoff was developed by me.",
-                    "The role extended beyond a design deliverable: I defined how the experience should work, built the interface, shaped its recommendation and content structures, and prepared the product for integration.",
+                    "I applied a Stanford d.school-style human-centred cycle: start from the lived meal context, define the narrow decision people need to make, prototype the smallest understandable flow, and use the working interface to expose where explanation or control is missing.",
+                    "To support people across health-literacy levels, the interface favors recognition over recall, one decision at a time, plain-language categories, visual meal composition, and optional detail. Nutrition reasoning remains available, but the user does not need to decode a nutrient dashboard before acting.",
+                ],
+            },
+            {
+                title: "The interaction model",
+                body: [
+                    "The flow begins with a familiar dish, generates culturally coherent sides, and keeps each recommendation locally inspectable and replaceable. Users can change one side without losing the rest of the plate or restarting the experience.",
+                    "Only after the plate is assembled does the product synthesize vegetables, protein, and carbohydrates into a simple balance view. The final pairing can then be downloaded, copied, or shared as a portable result.",
+                ],
+            },
+            {
+                title: "What I designed and built",
+                body: [
+                    "I originated the product thesis, defined the information architecture and pairing journey, designed the responsive interface, structured the meal and side-dish content model, and implemented the complete application.",
+                    "The working build uses Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Fuse.js, and structured pairing data. It includes keyboard-operable cards and dialogs, visible focus treatment, semantic labelling, responsive layouts, and reduced-motion behaviour.",
                 ],
             },
             {
                 title: "Current development state",
                 body: [
-                    "The application is functional, but the recipes and supporting data shown today are placeholders used to test the experience, content hierarchy, and interaction flows. Before release, the NOURISH team will replace them with real reviewed recipes and program content.",
-                    "A technical expert is now working behind the scenes to embed the completed product into the Stanford Medicine NOURISH website. Release is planned for the coming months, with my contribution spanning the original concept and the full product and technical execution that made the handoff possible.",
+                    "The application is functional, but the recipes and supporting data remain placeholders for testing interaction, content hierarchy, and pairing behaviour. The NOURISH team will replace them with reviewed recipes and program content before release.",
+                    "A technical specialist is handling the behind-the-scenes embedding work for the Stanford Medicine NOURISH website. This case study claims the concept, product design, and technical implementation I completed; it does not claim clinical validation, health outcomes, or launch adoption.",
                 ],
             },
         ],
+        caseStudy: {
+            question: "How might an AI meal-pairing tool improve a familiar meal without demanding unfamiliar substitutions or specialist nutrition knowledge?",
+            framing: "The design answer was to preserve the main dish, offer complementary sides as reversible choices, and explain balance only after the complete plate is visible. That principle shaped the product architecture, visual hierarchy, pairing logic, and accessibility decisions.",
+            processEyebrow: "Human-centred product method",
+            processHeading: "From familiar food to an explainable plate",
+            processSummary: "Each phase converted a nutrition principle into a product decision and then into working software. The sequence shows both the design reasoning and what I personally executed.",
+            steps: [
+                {
+                    phase: "Empathize",
+                    title: "Start from the meal people already choose",
+                    rationale: "Culturally meaningful food is a source of identity and familiarity. Beginning with replacement would add emotional and cognitive friction before guidance starts.",
+                    execution: "Made free-text meal search and recognisable examples the first interaction, then kept the selected main dish visually dominant throughout the experience.",
+                },
+                {
+                    phase: "Define",
+                    title: "Turn “eat healthier” into one tractable decision",
+                    rationale: "A broad instruction creates interpretation burden. Choosing complementary sides is specific, reversible, and easier to understand than rebuilding an entire diet.",
+                    execution: "Defined the product around a single job: pair one familiar main with sides that make the overall plate more balanced and coherent.",
+                },
+                {
+                    phase: "Prototype",
+                    title: "Make explanation available at the moment of choice",
+                    rationale: "People need enough context to trust or reject a suggestion, but too much information interrupts discovery and disadvantages users with less nutrition knowledge.",
+                    execution: "Built dish-detail dialogs with compact categories, plain-language context, recipe access, and a local swap action that preserves the rest of the pairing.",
+                },
+                {
+                    phase: "Synthesize",
+                    title: "Evaluate the whole plate, not isolated ingredients",
+                    rationale: "Meal quality is compositional. Vegetables, protein, and carbohydrates become more meaningful when assessed together rather than as disconnected scores.",
+                    execution: "Designed and implemented the plate-balance view, three-part legend, explanatory result state, and the transition from pairing to evaluation.",
+                },
+                {
+                    phase: "Deliver",
+                    title: "Build for accessibility, portability, and institutional handoff",
+                    rationale: "A persuasive prototype still needs responsive behaviour, keyboard access, realistic content structures, and a path into the host institution.",
+                    execution: "Implemented the full responsive product, accessible interactions, reduced-motion support, shareable output, repository, deployment, and handoff for Stanford Medicine embedding.",
+                },
+            ],
+        },
         media: [
-            { src: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1600&auto=format&fit=crop", alt: "Curated meal cards", caption: "Current meal content is provisional, allowing the team to validate browsing, hierarchy, and decision support before the NOURISH recipe library is added." },
-            { src: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1600&auto=format&fit=crop", alt: "Healthy food composition", caption: "Food imagery is also provisional; the release will pair the completed experience with real recipes and content from the NOURISH team." },
-            { src: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1600&auto=format&fit=crop", alt: "Ingredients selection", caption: "The working interface establishes the structure for recipe context, practical constraints, and culturally relevant guidance ahead of Stanford Medicine integration." },
+            { src: nourishMealDiscovery, alt: "NOURISH Meal Pairer search interface with a familiar-meal prompt and example dishes", caption: "Start with a meal the user already knows; examples reduce recall burden and make the first action immediately legible.", fit: "contain", aspect: "8/5" },
+            { src: nourishDishDetail, alt: "Dish-detail dialog showing a side dish, compact nutrition categories, a recipe link, and a swap action", caption: "Nutrition context and user control appear at the decision point without forcing the user to leave the pairing flow.", fit: "contain", aspect: "8/5" },
+            { src: nourishPlateBalance, alt: "Whole-plate evaluation showing the main dish and sides across vegetables, protein, and carbohydrate categories", caption: "The interface evaluates the completed plate across vegetables, protein, and carbohydrates instead of scoring one item in isolation.", fit: "contain", aspect: "8/5" },
+            { src: nourishShareablePlate, alt: "Share dialog offering download, copy, and share actions for the completed meal pairing", caption: "The recommendation becomes a portable result that can be downloaded, copied, or shared.", fit: "contain", aspect: "8/5" },
+            { src: nourishMobileDiscovery, alt: "Mobile NOURISH Meal Pairer search screen with a touch-friendly meal field and example dishes", caption: "The same search-first mental model compresses into a clear touch-friendly sequence on mobile.", fit: "contain", aspect: "9/16" },
         ],
+        interactiveEyebrow: "Experience architecture",
+        interactiveHeading: "How one familiar meal becomes an explainable, shareable plate",
+        interactiveActiveLabel: "Active step",
+        interactivePrimaryLabel: "User decision",
+        interactiveSecondaryLabel: "Design response",
         interactiveModules: [
             {
-                title: "Guided Meal Discovery",
-                summary: "A card-led journey that helps people explore meals through their goals, context, and available time.",
-                interaction: "Users move through options with clear cues that explain why a meal may fit, rather than receiving an undifferentiated recipe list.",
-                effect: "Layered cards and restrained transitions preserve orientation while making exploration feel responsive and considered.",
+                title: "Familiar meal",
+                summary: "The experience begins with a dish the user already recognizes and wants to keep.",
+                interaction: "Enter a meal directly or choose a concrete example without translating a broad health goal into search terminology.",
+                effect: "Recognition-first prompts lower cognitive demand and signal that the product will work with the user's food rather than against it.",
             },
             {
-                title: "Context-Aware Filters",
-                summary: "Practical constraints such as preparation time and nutrition goals refine the meal set without turning discovery into a form.",
-                interaction: "Simple controls reshape the available options while keeping the current decision context visible.",
-                effect: "Fluid rearrangement and clear selection states show how each preference changes the result set.",
+                title: "Complementary sides",
+                summary: "The pairing system keeps the main dish central and composes supporting sides around it.",
+                interaction: "Review the complete generated pairing while retaining the main meal as the fixed anchor.",
+                effect: "The visual hierarchy communicates adaptation rather than replacement and makes the system's recommendation easier to parse.",
             },
             {
-                title: "Supportive Decision Layer",
-                summary: "Explanations connect each meal suggestion to practical nutrition reasoning without overwhelming people with metrics.",
-                interaction: "Users can inspect the rationale behind a suggestion and make a more informed choice without leaving the discovery flow.",
-                effect: "Progressive disclosure and calm emphasis keep the health context available without making the experience feel clinical.",
+                title: "Inspect or swap",
+                summary: "Each suggested side remains independently explainable and replaceable.",
+                interaction: "Open dish details, inspect compact nutrition context, continue to a recipe, or swap only that side.",
+                effect: "Local reversible actions keep users in control and prevent one rejected recommendation from destroying the whole result.",
+            },
+            {
+                title: "Evaluate the plate",
+                summary: "The product synthesizes the completed meal across vegetables, protein, and carbohydrates.",
+                interaction: "Move from individual dishes to a single plate-balance view and inspect the explanation of the full composition.",
+                effect: "One visual model makes nutrition reasoning legible without demanding interpretation of a dense nutrient table.",
+            },
+            {
+                title: "Share the result",
+                summary: "The completed pairing becomes an artifact that can travel beyond the immediate session.",
+                interaction: "Download, copy, or share the plate while retaining the main dish and selected sides.",
+                effect: "Portability turns a recommendation into something users can revisit or discuss with others.",
             },
         ],
     },
@@ -302,435 +597,620 @@ export const projects: Project[] = [
         ],
     },
     {
-        id: "precision-oncology",
-        title: "Precision Oncology Signal Design",
-        subtitle: "Translating EGFR tumour-burden work into clearer precision-oncology reasoning.",
-        description: "A precision-oncology project shaped around Summer Han's EGFR tumour-burden work, focused on how signal-rich oncology insight can be turned into more legible clinical and product-facing decision structures.",
-        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Precision Oncology", "Clinical Research", "Decision Design"],
-        role: "Research translator and product-framing collaborator",
-        client: "Precision-oncology research context",
-        duration: "2025 translational design work",
-        tools: ["Signal interpretation", "Clinical workflow framing", "Narrative design", "Figma"],
-        outcome: "Developed a clearer way to think about how tumour-burden evidence can be represented, prioritized, and translated for higher-quality reasoning in precision-care environments.",
-        accent: "#f97316",
+        id: "neuragility-xr-prehab",
+        title: "NeurAgility XR Prehab",
+        subtitle: "XR Hack the Bay Social Good winner: a wearable-signal and immersive-training prototype for precision prehabilitation.",
+        description: "NeurAgility reframed prehab as an interactive feedback loop: wearable signals make body activation visible, while an XR environment turns repetitive movement into a guided, motivating task. The case study presents the hackathon prototype as product thinking, not a clinically validated intervention.",
+        image: neuragilityHero,
+        heroFit: "contain",
+        heroAspect: "16/9",
+        tags: ["XR", "Social Good", "Biofeedback"],
+        role: "Hackathon project contributor: XR concept, product framing, and prototype storytelling",
+        client: "XR Hack the Bay",
+        duration: "Hackathon prototype",
+        tools: ["XR prototyping", "Wearable signal feedback", "Movement-based interaction design", "Rapid product storytelling", "Social-good pitch development"],
+        outcome: "Won the Social Good category at XR Hack the Bay with a prototype positioning precision prehab as a clearer, more motivating interaction between body signals and immersive tasks.",
+        accent: "#7c3aed",
         stats: [
-            { label: "Domain", value: "Precision oncology and EGFR tumour burden" },
-            { label: "Focus", value: "Clinical signal translation" },
-            { label: "Primary challenge", value: "Making complex oncology insight legible" },
-            { label: "Strength", value: "Bridging research depth and decision design" },
+            { label: "Recognition", value: "XR Hack the Bay · Social Good winner" },
+            { label: "Prototype frame", value: "Wearable feedback + XR movement task" },
+            { label: "Design goal", value: "Make prehab clearer, more engaging, and easier to repeat" },
+            { label: "Evidence used here", value: "Screenshots extracted from the submitted demo video" },
         ],
         highlights: [
-            { title: "Signal over summary", text: "The work is strongest when it preserves the nuance of tumour-burden insight while still making the reasoning usable." },
-            { title: "High-consequence framing", text: "In oncology, interface clarity is not aesthetic polish; it changes how confidence, tradeoffs, and action are understood." },
-            { title: "A strong product translation story", text: "This project helps show how Stefan approaches advanced clinical research not just as knowledge, but as decision architecture." },
+            { title: "Signal visibility", text: "The prototype makes muscle activation and movement feedback part of the user experience instead of hiding it behind technical instrumentation." },
+            { title: "Motivation through embodied play", text: "The XR environment changes prehab from a repetitive instruction into a spatial task with visual goals, feedback, and progression cues." },
+            { title: "Responsible prototype framing", text: "The case study presents a hackathon-winning product concept and demo, without claiming clinical validation, adherence outcomes, or deployment." },
         ],
         sections: [
             {
-                title: "The opportunity",
+                title: "The design problem",
                 body: [
-                    "Precision-oncology workflows often depend on rich biomarkers, burden measures, and longitudinal patterns that are meaningful to specialists but hard to represent clearly in decision-facing tools.",
-                    "The opportunity here was to think through how EGFR tumour-burden work could be translated into a more navigable reasoning surface without flattening the science.",
+                    "Prehabilitation and rehabilitation exercises can be difficult to sustain because feedback is often delayed, abstract, or dependent on a specialist interpreting performance. For a hackathon setting, the opportunity was to ask how immersive design could make the body-feedback loop easier to understand.",
+                    "The product direction focused on precision prehab: make the user's movement and activation visible, then translate that signal into an XR task that feels less like compliance and more like progress.",
                 ],
             },
             {
-                title: "The design question",
+                title: "The prototype logic",
                 body: [
-                    "What matters is not simply displaying oncology data, but structuring the signal so users can understand what changed, why it matters, and what kind of action or interpretation should follow.",
-                    "That makes this a strong translational project: it sits between research insight, clinical judgment, and product-level clarity.",
+                    "The demo pairs wearable signal capture with an XR environment. The signal view establishes that body activity can be measured, while the immersive scene gives that activity a purpose through movement, targeting, and progression.",
+                    "This is the key design move: the interface does not ask users to interpret raw biosignals. It turns technical feedback into a visible, goal-oriented training loop.",
                 ],
             },
             {
-                title: "Why it belongs",
+                title: "Why the framing mattered",
                 body: [
-                    "This panel strengthens the portfolio's precision-medicine arc by adding a more explicitly oncology-facing story alongside pharmacogenomics and preventive nutrition.",
-                    "It also broadens the perception of Stefan's range for product and systems leaders looking for people who can work across very different forms of medical complexity.",
+                    "The Social Good pitch depended on more than novelty. The product story had to connect clinical need, user motivation, signal trust, and a feasible demo architecture within a short hackathon window.",
+                    "The final concept presents XR as a behavior-design layer around precision movement practice: more interpretable for users, more demonstrable for judges, and more aligned with a future care workflow than a standalone game.",
                 ],
             },
         ],
+        caseStudy: {
+            question: "How might XR make precision prehab feel clearer and more motivating without asking users to understand raw biosignal data?",
+            framing: "The answer was to split the problem into two interfaces: a technical evidence layer that shows body activation, and an immersive task layer that turns movement into understandable action. That separation made the prototype credible as health technology and legible as a user experience.",
+            processEyebrow: "Hackathon design method",
+            processHeading: "From raw movement data to embodied feedback",
+            processSummary: "The case-study arc follows the same product reasoning used in the demo: identify the prehab engagement gap, prove that signal can be captured, convert signal into user feedback, and package the result as a social-good product story.",
+            steps: [
+                {
+                    phase: "Frame",
+                    title: "Define prehab as a feedback problem",
+                    rationale: "If users cannot tell whether they are doing the movement well or why repetition matters, adherence becomes a motivation and comprehension problem.",
+                    execution: "Positioned NeurAgility around precision prehab rather than generic fitness, making the core promise about clearer feedback and guided repetition.",
+                },
+                {
+                    phase: "Instrument",
+                    title: "Make activation visible",
+                    rationale: "A health-tech prototype needs evidence that movement is being sensed, not just animated. Signal visibility builds trust in the concept.",
+                    execution: "Used demo footage showing wearable setup and signal changes between baseline and activation states as the evidence layer for the case study.",
+                },
+                {
+                    phase: "Translate",
+                    title: "Turn signal into an XR task",
+                    rationale: "Raw data is useful to experts, but users need goals, environmental cues, and feedback that map to the movement they are performing.",
+                    execution: "Built the story around the transition from technical signal readout to immersive movement training in a spatial world.",
+                },
+                {
+                    phase: "Motivate",
+                    title: "Use embodied play without losing the clinical intent",
+                    rationale: "The XR layer needed to feel engaging while still communicating prehab, control, and repeatable practice rather than pure entertainment.",
+                    execution: "Selected demo visuals that show body movement alongside the XR environment, so the case study links play mechanics back to physical practice.",
+                },
+                {
+                    phase: "Pitch",
+                    title: "Package the prototype as social-good infrastructure",
+                    rationale: "Hackathon judging rewards clear social value and feasibility, not just a technical demo.",
+                    execution: "Framed the outcome as a Social Good-winning concept for making precision prehab more understandable and motivating, while avoiding claims of clinical efficacy.",
+                },
+            ],
+        },
         media: [
-            { src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop", alt: "Oncology review context", caption: "Precision-oncology signal design depends on clarity under uncertainty, not just data density." },
-            { src: "https://images.unsplash.com/photo-1576671081837-49000212a370?q=80&w=1600&auto=format&fit=crop", alt: "Clinical insight and cancer care context", caption: "The goal is to make research-grade insight useful at the point of reasoning." },
-            { src: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1600&auto=format&fit=crop", alt: "Diagnostic and molecular analysis context", caption: "Good translational design preserves nuance while improving decisional clarity." },
+            { src: neuragilityHero, alt: "NeurAgility title frame reading Precision Prehab Made Easy", caption: "The demo positioned the prototype around a clear product promise: precision prehab made easier to understand and repeat.", fit: "contain", aspect: "16/9" },
+            { src: neuragilityWearable, alt: "Person wearing an XR headset and biosignal setup during the NeurAgility demo", caption: "The physical setup links the immersive experience to body-signal sensing rather than treating the XR world as a standalone game.", fit: "cover", aspect: "16/9" },
+            { src: neuragilitySignalBaseline, alt: "Baseline biosignal dashboard from the NeurAgility demo", caption: "A signal view establishes the evidence layer: movement can be detected and represented before it becomes user-facing feedback.", fit: "contain", aspect: "16/9" },
+            { src: neuragilitySignalActivation, alt: "Biosignal dashboard showing activation during the NeurAgility demo", caption: "The demo shows the contrast between low activity and activation, grounding the product story in observable feedback.", fit: "contain", aspect: "16/9" },
+            { src: neuragilityShoulderContext, alt: "Shoulder anatomy and digital interface visual from the NeurAgility demo", caption: "The case study anchors the product in shoulder-focused movement and prehab context rather than generic XR training.", fit: "cover", aspect: "16/9" },
+            { src: neuragilityXrTraining, alt: "First-person XR environment with movement targets in the NeurAgility prototype", caption: "The immersive environment converts exercise into a spatial task with visual goals and progression cues.", fit: "cover", aspect: "16/9" },
+            { src: neuragilityMovementDemo, alt: "Split-screen NeurAgility demo showing XR environment beside the person performing movement", caption: "The strongest proof-of-concept moment: the user moves in the room while the XR world represents the training task.", fit: "cover", aspect: "16/9" },
         ],
+        video: {
+            src: "/videos/neuragility-demo.mp4",
+            poster: neuragilityHero,
+            title: "Full NeurAgility demo video",
+            caption: "The complete submitted demo video shows the product framing, wearable setup, signal evidence, XR environment, and movement interaction as one continuous prototype story.",
+        },
+        interactiveEyebrow: "Experience model",
+        interactiveHeading: "How the prototype turns prehab into a feedback loop",
+        interactiveActiveLabel: "Prototype layer",
+        interactivePrimaryLabel: "User action",
+        interactiveSecondaryLabel: "Design purpose",
         interactiveModules: [
             {
-                title: "Tumour Burden Signal View",
-                summary: "A concept interface showing how tumour-burden change can be surfaced as a usable clinical signal.",
-                interaction: "Users inspect key shifts, comparison states, and explanatory layers that help connect signal movement to interpretation.",
-                effect: "Layered charts, confidence emphasis, and progressive disclosure of clinical context.",
+                title: "Calibrate",
+                summary: "The system starts with wearable setup and visible signal capture.",
+                interaction: "The user enters the XR setup while the demo confirms that movement or activation can be sensed.",
+                effect: "Calibration makes the experience feel grounded in body evidence rather than purely simulated motion.",
             },
             {
-                title: "Oncology Reasoning Lens",
-                summary: "A structured frame for understanding what a biomarker pattern suggests and what uncertainty still remains.",
-                interaction: "Tap into signal components to reveal the logic beneath the summary and what additional context would change confidence.",
-                effect: "Expanding cards, focus transitions, and crisp evidence-to-judgment pathways.",
+                title: "Move",
+                summary: "The user performs a guided movement inside the immersive task.",
+                interaction: "Movement becomes a spatial action, with the environment giving the user something concrete to aim for.",
+                effect: "The task reframes repetition as progress, reducing the boredom and ambiguity of exercise instructions.",
             },
             {
-                title: "Research-to-Workflow Translator",
-                summary: "A module that turns a research insight into a more usable decision-support surface.",
-                interaction: "Users toggle between raw research framing and clinical-facing product framing to see how translational choices alter usability.",
-                effect: "Mode-switch transitions, layered detail states, and narrative annotation.",
+                title: "Reflect",
+                summary: "Signal views provide a technical explanation of what the movement generated.",
+                interaction: "Baseline and activation states can be compared to show that the body-feedback loop is working.",
+                effect: "The prototype keeps trust-building evidence available without making raw signal interpretation the main user burden.",
+            },
+            {
+                title: "Pitch",
+                summary: "The final story connects XR novelty to a social-good use case.",
+                interaction: "The product narrative moves from body signal to training task to real-world prehab motivation.",
+                effect: "Judges can understand the value proposition quickly: clearer feedback, more engaging repetition, and a plausible future care workflow.",
             },
         ],
     },
     {
         id: "healthcare-from-the-eye",
         title: "Healthcare from the Eye",
-        subtitle: "Investigating the health-systems operations and disruptive potential of an oculomics medical device — across ophthalmology and primary care.",
-        description: "As Student Project Manager on the Microsoft / Stanford Medicine HFTE Initiative, led a student team investigating health-systems operations development for an oculomics medical device, and contributed to manuscript development on its disruptive potential in ophthalmology and primary care.",
-        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Oculomics", "Health Systems", "Medical Devices"],
-        role: "Student Project Manager (Microsoft / Stanford Medicine HFTE Initiative)",
-        client: "Microsoft / Stanford Medicine HFTE Initiative",
+        subtitle: "Designing an implementation model for AI-enabled diabetic-retinopathy screening across primary care, ophthalmology, payers, and technology partners.",
+        description: "As Student Project Manager for a Microsoft × Stanford MED 232 project focused on Topcon-enabled Healthcare from the Eye, I led a multidisciplinary team from needs finding through workflow design, stakeholder strategy, reimbursement analysis, and a scenario-based business model.",
+        image: hfteDeviceWorkflow,
+        heroFit: "contain",
+        heroAspect: "16/9",
+        tags: ["Health Systems", "AI Screening", "Stanford Biodesign"],
+        role: "Student Project Manager and health-systems lead",
+        client: "Microsoft × Stanford MED 232, with the Topcon-enabled HFTE ecosystem",
         duration: "2025",
-        tools: ["Health-systems mapping", "Operations analysis", "Literature synthesis", "Manuscript development"],
-        outcome: "Led a student team through a health-systems operations investigation of an oculomics device and contributed to a manuscript on its disruptive potential in ophthalmology and primary care.",
-        accent: "#7c3aed",
+        tools: ["Stanford Biodesign", "Stakeholder interviews", "Literature synthesis", "Workflow mapping", "Business modelling", "Reimbursement analysis", "Strategic planning", "Manuscript development"],
+        outcome: "Produced a scenario-based revenue model, HFTE awareness paper, and strategic action plan, while contributing to manuscript development on HFTE's disruptive potential.",
+        accent: "#8c1515",
         stats: [
-            { label: "Initiative", value: "Microsoft / Stanford Medicine HFTE" },
-            { label: "Device", value: "Oculomics medical device" },
-            { label: "Lens", value: "Health-systems operations" },
-            { label: "Output", value: "Manuscript — disruptive potential" },
+            { label: "Access focus", value: "Diabetic-retinopathy screening in rural and under-resourced settings" },
+            { label: "Care pathway", value: "Primary-care scan → AI grading → EHR → referral or follow-up" },
+            { label: "Scale barriers", value: "Workflow, adoption, and reimbursement" },
+            { label: "Deliverables", value: "Revenue model, awareness paper, and strategic action plan" },
         ],
         highlights: [
-            { title: "Beyond the model", text: "The question isn't only whether an oculomics device can detect disease — it's what the health system becomes once the device is inserted into ophthalmology and primary-care pathways." },
-            { title: "Operations, not just accuracy", text: "Led a student team investigating health-systems operations development — workflow, referral, and delivery questions — rather than treating the device as a pure algorithm." },
-            { title: "Toward a manuscript", text: "Contributed to manuscript development on the device's disruptive potential across ophthalmology and primary care." },
+            { title: "Designed the implementation, not the algorithm", text: "The project began from a harder question than diagnostic accuracy: what has to change across people, workflows, data, and incentives for AI screening to work in routine care?" },
+            { title: "Mapped value and friction together", text: "Patients, primary-care teams, eye specialists, health systems, payers, Microsoft, and Topcon each receive different benefits and inherit different work." },
+            { title: "Turned research into operating decisions", text: "Needs finding and secondary research were translated into a revised care pathway, scenario economics, adoption priorities, and a staged action plan." },
         ],
         sections: [
             {
-                title: "The framing",
+                title: "The need behind the technology",
                 body: [
-                    "An oculomics device reads the eye to surface signals far beyond it. Inserting one into care changes how risk is perceived, how labor is allocated, and where costs appear across ophthalmology and primary-care pathways.",
-                    "This project treats the device as a health system to be designed and interrogated, not just an algorithm to be admired.",
+                    "Diabetic retinopathy is a major source of preventable blindness, yet the source deck identified a persistent screening gap and materially lower access among rural and underserved populations. The problem was not simply whether retinal AI could detect disease; it was whether the health system could reach people early enough and move positive findings into care.",
+                    "Healthcare from the Eye combines non-invasive retinal imaging, AI-supported risk stratification and triage, and patient engagement. That means the product boundary extends from a camera in primary care through cloud infrastructure, graded results, EHR integration, consultation, referral, and follow-up.",
                 ],
             },
             {
-                title: "The investigation",
+                title: "Biodesign as the operating method",
                 body: [
-                    "The student team investigated health-systems operations development — workflow, referral capacity, and delivery models — and the conditions under which the device improves outcomes without shifting burdens elsewhere.",
-                    "That operations lens fed directly into manuscript development on the device's disruptive potential in ophthalmology and primary care.",
+                    "I led the team through Stanford Biodesign's identify, invent, and implement phases. Needs finding combined stakeholder conversations with literature review; concept screening reframed HFTE around benefits and burdens across the ecosystem; implementation work converted those insights into concrete operating and business decisions.",
+                    "The work deliberately moved beyond an efficacy story. An FDA-cleared or technically effective tool still has to fit clinical routines, earn staff buy-in, connect to the EHR, protect data, support follow-up capacity, and produce a credible reason for practices and payers to participate.",
                 ],
             },
             {
-                title: "What it produced",
+                title: "Rewriting the screening pathway",
                 body: [
-                    "A health-systems operations view of an oculomics device, and a contribution to a manuscript on its disruptive potential across ophthalmology and primary care.",
+                    "The team compared a specialist-dependent screening pathway with a primary-care workflow in which retinal images are captured and graded during the visit. The deck cites a UMass evaluation reporting a two-minute screening process and a 75% reduction in screening time compared with teleretinal imaging.",
+                    "The important design move was not speed alone. The redesigned pathway had to define image-quality checks, algorithmic grading, direct export into the EHR, physician consultation, urgent referral for mild or severe disease, and a twelve-month follow-up route for lower-risk results.",
+                ],
+            },
+            {
+                title: "The system that has to move",
+                body: [
+                    "The stakeholder map made implementation dependencies visible. Topcon and other imaging partners support oculomics; Microsoft provides connective cloud infrastructure; primary-care and eye-care organizations carry triage and treatment work; payers shape financial viability; and community and patient organizations influence awareness and uptake.",
+                    "Three scale barriers organized the strategy: workflow implementation, adoption, and reimbursement. Each demanded a different response—standardized workflows and training, lower-friction leasing and patient education, and a reimbursement narrative that positions screening as a gateway into appropriate care rather than a threat to downstream revenue.",
+                ],
+            },
+            {
+                title: "A business case, not a promised outcome",
+                body: [
+                    "The revenue model was built as a scenario tool, not as observed performance. It tested the economics of opportunistic screening using explicit assumptions about daily eligible patients, payer mix, reimbursement, equipment leasing, cloud and algorithm costs, and staff time.",
+                    "Under the deck's assumptions, the model estimated annual profit in the range of approximately $275,000 to $571,000 for 4,000–8,000 screened patients. Its purpose was to make the adoption conversation concrete and expose which assumptions require validation—not to claim realized revenue.",
+                ],
+            },
+            {
+                title: "What the project delivered",
+                body: [
+                    "The implementation work produced three connected outputs: an HFTE awareness paper to socialize the model and address misconceptions, a scenario-based revenue model to test financial viability, and a strategic action plan spanning workflow optimization, subsidized access, payer engagement, data stewardship, and future diagnostic collaboration.",
+                    "The same systems analysis also contributed to manuscript development on HFTE's disruptive potential across ophthalmology and primary care.",
                 ],
             },
         ],
+        caseStudy: {
+            question: "How might a two-minute retinal screen become a reliable care pathway rather than an isolated technical demonstration?",
+            framing: "The implementation problem sat outside the algorithm: the scan had to fit primary-care work, move results into the EHR, trigger appropriate referral and follow-up, align stakeholder incentives, and support a credible reimbursement and operating model.",
+            processEyebrow: "Stanford Biodesign method",
+            processHeading: "From unmet need to implementation strategy",
+            processSummary: "The project followed an identify–invent–implement logic. Each phase narrowed uncertainty and produced a decision artifact that the team could use to move the model forward.",
+            steps: [
+                {
+                    phase: "Identify",
+                    title: "Frame screening as an access and continuity problem",
+                    rationale: "Diagnostic capability does not prevent vision loss if underserved patients are not screened or if positive findings fail to reach treatment.",
+                    execution: "Led needs finding and literature synthesis around screening gaps, rural access, care fragmentation, and the end-to-end pathway from retinal capture to follow-up.",
+                },
+                {
+                    phase: "Map",
+                    title: "Make the ecosystem and incentive structure visible",
+                    rationale: "Primary care, ophthalmology, payers, technology partners, and patients experience different benefits, costs, and operational burdens.",
+                    execution: "Directed stakeholder mapping and translated interviews and research into value, burden, ownership, and dependency questions across the ecosystem.",
+                },
+                {
+                    phase: "Invent",
+                    title: "Redesign the service around the fast scan",
+                    rationale: "The speed advantage matters only when image quality, grading, EHR export, consultation, referral, and follow-up are deliberately connected.",
+                    execution: "Led comparison of specialist-dependent and primary-care pathways, then defined handoffs, result states, escalation routes, and follow-up requirements.",
+                },
+                {
+                    phase: "Model",
+                    title: "Expose the assumptions behind adoption",
+                    rationale: "Practices and payers need to see how patient volume, reimbursement, equipment, software, and staffing interact before committing resources.",
+                    execution: "Built a scenario-based revenue model that made payer mix, throughput, leasing, cloud, algorithm, and staff-cost assumptions explicit and testable.",
+                },
+                {
+                    phase: "Implement",
+                    title: "Convert analysis into a staged action plan",
+                    rationale: "Workflow, adoption, and reimbursement constraints cannot be solved as one generic scale problem; they require sequenced owners and evidence.",
+                    execution: "Produced the HFTE awareness paper, strategic action plan, and implementation priorities while contributing the systems analysis to manuscript development.",
+                },
+            ],
+        },
         media: [
-            { src: "https://images.unsplash.com/photo-1580281657527-47f249e8f4df?q=80&w=1600&auto=format&fit=crop", alt: "Eye screening context", caption: "Retinal AI is compelling precisely because it looks simple while touching a much larger system." },
-            { src: "https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?q=80&w=1600&auto=format&fit=crop", alt: "Medical analysis visuals", caption: "The strongest design move is to reveal second-order effects without losing clarity." },
-            { src: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1600&auto=format&fit=crop", alt: "Care pathway imagery", caption: "Patient pathways, referral flows, and operational incentives should all be visible in the story." },
+            { src: hfteNeed, alt: "Presentation slide explaining diabetic-retinopathy screening need, retinal damage, screening rates, and rural access disparities", caption: "The case begins with an access problem: preventable vision loss persists when screening does not reach people early enough.", fit: "contain", aspect: "16/9" },
+            { src: hfteBiodesignFramework, alt: "Stanford Biodesign framework showing identify, invent, and implement phases from needs finding through business planning", caption: "Biodesign provided the structure for moving from needs finding to a practical implementation model.", fit: "contain", aspect: "16/9" },
+            { src: hfteStakeholderEcosystem, alt: "Healthcare from the Eye ecosystem map grouping technology, health-care, payer, and patient-engagement partners", caption: "HFTE is an ecosystem product: technical performance and service delivery depend on different organizations moving together.", fit: "contain", aspect: "16/9" },
+            { src: hfteWorkflowComparison, alt: "Presentation slide comparing a 30-to-50-minute specialist workflow with a two-minute Healthcare from the Eye pathway", caption: "The redesigned pathway moves screening into primary care while preserving consultation, referral, and follow-up decisions.", fit: "contain", aspect: "16/9" },
+            { src: hfteScalingChallenges, alt: "Three-column analysis of workflow implementation, adoption, and reimbursement barriers with proposed responses", caption: "Scaling was treated as three linked design problems: workflow implementation, adoption, and reimbursement.", fit: "contain", aspect: "16/9" },
+            { src: hfteRevenueModel, alt: "Scenario revenue model showing patient volume, payer mix, equipment, cloud, algorithm, and staff-cost assumptions", caption: "The model makes assumptions visible so stakeholders can test the business case instead of debating it abstractly.", fit: "contain", aspect: "16/9" },
+            { src: hfteDeliverables, alt: "Presentation slide showing the three project deliverables: revenue model, HFTE awareness paper, and strategic action plan", caption: "Research was converted into three implementation artifacts rather than ending as a diagnostic summary.", fit: "contain", aspect: "16/9" },
         ],
+        interactiveEyebrow: "Implementation lenses",
+        interactiveHeading: "The operating model behind a two-minute eye screen",
+        interactiveActiveLabel: "Active lens",
+        interactivePrimaryLabel: "System view",
+        interactiveSecondaryLabel: "Design implication",
         interactiveModules: [
             {
-                title: "Stakeholder Impact Viewer",
-                summary: "A map showing how AI screening shifts value and burden across patients, clinicians, health systems, and payers.",
-                interaction: "Users toggle one stakeholder at a time to see primary gains, secondary costs, and hidden dependencies.",
-                effect: "Soft lens transitions, layered pathways, and node illumination that clarifies causality without clutter.",
+                title: "Care pathway",
+                summary: "A primary-care scan is only useful when quality control, grading, EHR export, consultation, referral, and follow-up form one reliable service.",
+                interaction: "Trace the pathway from retinal capture through a positive or lower-risk result and identify where ownership changes hands.",
+                effect: "Makes the hidden operational work around a fast clinical interaction visible and assignable.",
             },
             {
-                title: "Screening Funnel Simulator",
-                summary: "A simplified care-funnel model that makes throughput gains and leakage points visible.",
-                interaction: "Sliders adjust adoption, false positives, referral capacity, and follow-up rates.",
-                effect: "Animated funnel states and cascading flow responses that make system tradeoffs immediately legible.",
+                title: "Stakeholder value",
+                summary: "Patients, practices, specialists, payers, technology partners, and community organizations each experience a different value proposition.",
+                interaction: "Move between stakeholder perspectives to compare who benefits, who pays, who performs new work, and who carries follow-up risk.",
+                effect: "Prevents a single-actor business case from hiding the incentives that determine real adoption.",
             },
             {
-                title: "Externalities Matrix",
-                summary: "A matrix of intended effects versus downstream consequences.",
-                interaction: "Tapping a benefit reveals where it may produce compensating risk or new workflow demand.",
-                effect: "Expanding matrix cells, cross-linked annotations, and calm but high-information motion design.",
-            },
-        ],
-    },
-    {
-        id: "indigenous-preventive-care",
-        title: "Indigenous Preventive Care Pathways",
-        subtitle: "Understanding what shapes preventive health-check uptake in Indigenous primary care.",
-        description: "An implementation-focused health systems project examining what influences the prevention and early detection of chronic disease among Aboriginal and Torres Strait Islander communities in primary care.",
-        image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Implementation Science", "Indigenous Health", "Primary Care"],
-        role: "Research contributor and systems thinker",
-        client: "Public health and implementation research collaboration",
-        duration: "2023-2025 research cycle",
-        tools: ["Realist review methods", "Implementation mapping", "Systems synthesis"],
-        outcome: "Clarified the structural and relational conditions that shape health-check uptake, with direct relevance for equitable service design.",
-        accent: "#d97706",
-        stats: [
-            { label: "System", value: "Primary care and chronic disease prevention" },
-            { label: "Population focus", value: "Aboriginal and Torres Strait Islander communities" },
-            { label: "Method", value: "Implementation and realist-review lens" },
-            { label: "Strength", value: "Equity-centered systems analysis" },
-        ],
-        highlights: [
-            { title: "Not just access, but trust", text: "Uptake is shaped by relationships, continuity, and service design quality, not by availability alone." },
-            { title: "Operational relevance", text: "This work supports stronger policy and service design decisions by identifying what actually enables uptake in practice." },
-            { title: "Credibility through seriousness", text: "It gives the portfolio a grounded equity and implementation story that cannot be substituted with superficial 'social impact' language." },
-        ],
-        sections: [
-            {
-                title: "The challenge",
-                body: [
-                    "Preventive care programs often assume that offering a service is enough. In reality, participation depends on trust, relevance, continuity, staffing, cultural safety, and the way care is organized on the ground.",
-                    "This project looks at those mechanisms rather than treating uptake as a purely individual behavior problem.",
-                ],
+                title: "Scale barriers",
+                summary: "Workflow implementation, adoption, and reimbursement are separate constraints that reinforce one another.",
+                interaction: "Inspect each barrier alongside the team's proposed operating response, from staff training to lease incentives and payer engagement.",
+                effect: "Turns a generic call for scale into a prioritized set of implementation decisions.",
             },
             {
-                title: "The insight",
-                body: [
-                    "The most useful implementation insights are often structural. How systems invite, retain, and support people matters as much as what they recommend clinically.",
-                    "That makes this project particularly valuable in a portfolio because it shows Stefan working at the level of care pathways, institutions, and practical barriers.",
-                ],
+                title: "Business model",
+                summary: "The scenario model connects eligible patient volume and payer mix to recurring equipment, cloud, algorithm, and staffing costs.",
+                interaction: "Treat every figure as a variable to validate rather than a guaranteed result.",
+                effect: "Makes the economic logic auditable and shows where a pilot must collect better evidence.",
             },
             {
-                title: "Why it belongs in the portfolio",
-                body: [
-                    "This panel would show that Stefan's health-design lens is not limited to interfaces. It extends to delivery systems, community context, and the real conditions under which prevention succeeds or fails.",
-                ],
-            },
-        ],
-        media: [
-            { src: "https://images.unsplash.com/photo-1516549655669-df83a0774514?q=80&w=1600&auto=format&fit=crop", alt: "Primary care setting", caption: "Preventive care is as much a service-design problem as a clinical one." },
-            { src: "https://images.unsplash.com/photo-1584516150909-c43483ee7938?q=80&w=1600&auto=format&fit=crop", alt: "Healthcare pathway imagery", caption: "Care pathways, invitations, and trust signals shape whether prevention becomes real." },
-            { src: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1600&auto=format&fit=crop", alt: "Community health context", caption: "Community-facing health systems require relational intelligence as well as operational competence." },
-        ],
-        interactiveModules: [
-            {
-                title: "Barrier-to-Enabler Map",
-                summary: "An ecosystem view of what blocks and what enables preventive health-check uptake.",
-                interaction: "Users tap into service factors, workforce factors, and relational factors to see how each changes the pathway.",
-                effect: "Layered node animation, expanding pathway branches, and deliberate, respectful pacing.",
-            },
-            {
-                title: "Primary Care Pathway Lens",
-                summary: "A service blueprint showing where invitation, engagement, and follow-through break down.",
-                interaction: "Switch between current-state and redesigned pathway views.",
-                effect: "Pathway tracing, soft-stage transitions, and subtle emphasis on breakpoints and repair opportunities.",
-            },
-            {
-                title: "Trust and Continuity Explorer",
-                summary: "A concept surface showing how continuity, culture, and service design interact.",
-                interaction: "Different care scenarios reveal what changes when trust-building conditions are present or absent.",
-                effect: "Scenario toggles, gentle reveal animations, and calm visual storytelling.",
+                title: "Action roadmap",
+                summary: "Short-term workflow and payer work creates the base for longer-term subsidy, data-stewardship, and diagnostic-development partnerships.",
+                interaction: "Sequence the recommendations by dependency instead of treating all next steps as parallel.",
+                effect: "Clarifies what the ecosystem can act on now and what requires additional validation or institutional alignment.",
             },
         ],
     },
     {
         id: "ent-readmission-platform",
-        title: "ENT Readmission Prevention Platform",
-        subtitle: "A human-centered care experience designed to reduce avoidable pediatric readmissions.",
-        description: "A care-transition concept shaped through Stanford Biodesign that explores how better discharge support, follow-up orchestration, and caregiver guidance can prevent avoidable pediatric ENT readmissions.",
-        image: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Service Design", "Care Pathways", "Stanford Biodesign"],
+        title: "PainGone PainGuin",
+        subtitle: "A two-sided home-recovery concept for children after tonsillectomy and adenoidectomy.",
+        description: "Completed through the Stanford Biodesign for Digital Health program, this concept pairs caregiver guidance and proactive risk monitoring with a child-facing companion designed to support hydration, nutrition, medication, and pain-management routines during the first seven days at home.",
+        image: entPainGonePainGuinConcept,
+        heroFit: "contain",
+        heroAspect: "16/9",
+        tags: ["Pediatric ENT", "Digital Health", "Stanford Biodesign"],
         role: "Health innovation collaborator and service designer",
-        client: "Stanford Biodesign training context",
-        duration: "Immersive innovation sprint",
-        tools: ["Journey mapping", "Problem framing", "Concept prototyping", "Healthcare systems design"],
-        outcome: "Defined a clinically relevant product-and-service direction that centers caregiver confidence, follow-up quality, and safer transitions after discharge.",
-        accent: "#db2777",
+        client: "Stanford Biodesign for Digital Health · Team 6, Hospital at Home",
+        duration: "10-week experiential program",
+        tools: ["Clinical and end-user interviews", "Biodesign needs finding", "Need-statement development", "Literature synthesis", "Stakeholder mapping", "Concept generation and screening", "Care-pathway mapping", "Behavioral design", "Risk-escalation design", "Business-model assumptions", "Pilot planning"],
+        outcome: "Applied Stanford's needs-driven Biodesign process with ENT surgeons, hospital teams, children, and parents to develop an ENT-specific app-and-companion concept, home-recovery workflow, stakeholder value proposition, and staged validation plan.",
+        accent: "#c52f47",
+        links: [
+            { label: "Stanford Biodesign process", url: "https://biodesign.stanford.edu/about-us/process.html" },
+            { label: "Digital Health course", url: "https://biodesign.stanford.edu/programs/stanford-courses/biodesign-for-digital-health.html" },
+        ],
         stats: [
-            { label: "Care setting", value: "Pediatric ENT discharge and follow-up" },
-            { label: "Primary goal", value: "Reduce avoidable readmissions" },
-            { label: "Design focus", value: "Caregiver guidance and coordination" },
-            { label: "Strength", value: "Strong service design narrative" },
+            { label: "Program", value: "Application-only · BIOE 273 / MED 273" },
+            { label: "Critical window", value: "First seven days of recovery at home" },
+            { label: "User model", value: "Caregiver workflow + child-facing companion" },
+            { label: "Evidence status", value: "Concept and proposed pilot; not yet clinically validated" },
         ],
         highlights: [
-            { title: "A real patient journey problem", text: "The challenge sits in the messy space between hospital discharge, home care, and follow-up coordination." },
-            { title: "Human-centered by necessity", text: "For families, confusion after discharge is not a minor inconvenience; it can directly influence outcomes." },
-            { title: "A strong systems-and-interface bridge", text: "This project is ideal for showing how Stefan approaches service design, not just screen design." },
+            { title: "Learned in class, tested against the care context", text: "The program paired formal Biodesign teaching and expert mentorship with a real health challenge, requiring the team to move repeatedly between the framework, stakeholder evidence, and concept decisions." },
+            { title: "Designed with the whole recovery system", text: "ENT surgeons and hospital teams clarified clinical and workflow realities; children who had experienced tonsillitis and parents made the home-care burden, uncertainty, and cooperation problem tangible." },
+            { title: "Separated ambition from evidence", text: "Readmission reduction, dehydration detection, adherence, savings, and ROI appear as design targets or model assumptions—not as achieved outcomes." },
         ],
         sections: [
             {
-                title: "The problem space",
+                title: "Why the Biodesign program matters",
                 body: [
-                    "Readmissions do not happen in a vacuum. They often emerge from unclear instructions, caregiver uncertainty, weak communication, or fragmented transitions between care settings.",
-                    "This project focuses on how a better designed discharge experience can reduce preventable risk without adding needless complexity.",
+                    "Biodesign for Digital Health is a limited-enrollment, application-only Stanford course—BIOE 273 / MED 273—delivered through the Stanford Mussallem Center for Biodesign. The ten-week program brings multidisciplinary students into a project-based environment supported by experienced instructors, need coaches, mentors, and more than 50 digital-health and industry experts.",
+                    "Its significance is methodological as much as institutional. Stanford Biodesign has refined its need-driven health-technology innovation process since 2000. Rather than beginning with an attractive technology, teams begin with an important unmet need, generate and screen possible responses, and develop an implementation path capable of surviving clinical, operational, regulatory, payment, and business constraints.",
                 ],
             },
             {
-                title: "The concept",
+                title: "From the teaching framework to fieldwork",
                 body: [
-                    "The proposed platform improves discharge understanding, follow-up clarity, and ongoing caregiver support through better sequencing of information and touchpoints.",
-                    "Rather than treating discharge as a single event, it reframes it as a guided journey that extends beyond the hospital door.",
+                    "The official framework moves through Identify, Invent, and Implement, with iteration inside every phase. In this project, classroom teaching was immediately applied to a live pediatric ENT challenge: observe and research the recovery problem, define and filter the need, generate and compare concepts, and then test whether the lead concept could fit a real care pathway.",
+                    "We interviewed ENT surgeons, worked with hospital teams, and engaged end users—including children who had experienced tonsillitis and parents managing tonsillitis at home. This combination prevented the project from being shaped by one perspective alone: clinical stakeholders described safety, escalation, and discharge constraints, while families exposed the practical and emotional work of hydration, food, medication, pain, and uncertainty outside the hospital.",
                 ],
             },
             {
-                title: "Portfolio contribution",
+                title: "The recovery gap after discharge",
                 body: [
-                    "The project adds a highly legible healthcare service-design panel to the portfolio and balances the more AI-heavy work with a deeply human operational problem.",
+                    "The source research framed pediatric tonsillectomy and adenoidectomy recovery as a fragile transition from hospital to home. Caregivers may leave with a paper instruction sheet yet still be unsure how much a child should drink, whether pain is expected, when medication is due, or when a symptom requires clinical help.",
+                    "The first seven days concentrate the hardest work: pain can peak, appetite and fluid intake can fall, and children may resist eating, drinking, or taking medication. A caregiver-only information product would therefore address only half of the behavior problem.",
+                ],
+            },
+            {
+                title: "What the interviews changed",
+                body: [
+                    "The interviews shifted the problem away from generic discharge education. Parents did need clearer information, but the daily recovery routine also depended on whether a child in pain would drink, eat, and take medication. The design therefore had to support caregiver comprehension and child cooperation at the same time.",
+                    "Hospital and ENT perspectives also made escalation part of the product boundary. Logging symptoms without a clear response would simply move uncertainty into a screen. The concept therefore connected daily tracking to explainable risk flags, next-step guidance, and a route back to the care team.",
+                ],
+            },
+            {
+                title: "The PainGone PainGuin concept",
+                body: [
+                    "PainGone is the caregiver layer: a personalized care plan, medication and pain tracking, fluid and food logs, symptom check-ins, reminders, risk flags, a question-and-answer pathway, and a route to contact the care team. PainGuin is the child layer: a companion whose wellbeing reacts to the child's real recovery behaviors.",
+                    "The behavioral mechanism makes an abstract clinical instruction tangible. Drinking water or eating is represented as caring for PainGuin, while the caregiver retains the operational view needed to recognize patterns and act on risk.",
+                ],
+            },
+            {
+                title: "Designing the home-recovery loop",
+                body: [
+                    "The proposed journey begins at discharge, when the caregiver scans a QR code, installs the app, and receives a tailored plan. At home, the caregiver logs fluids, pain, medication, food, and symptoms while the child engages with PainGuin. The system then provides reminders and flags patterns associated with dehydration or uncontrolled pain.",
+                    "The escalation layer was designed to nudge caregivers before a problem becomes acute and to clarify when provider contact is appropriate. This is a proposed decision-support workflow, not an autonomous clinical diagnosis or a validated monitoring system.",
+                ],
+            },
+            {
+                title: "Design criteria and business logic",
+                body: [
+                    "The team translated the need into explicit must-have criteria covering readmission reduction, dehydration detection, caregiver comprehension, adherence, affordability, and safety. These thresholds functioned as concept-screening and future-validation targets; the project did not produce clinical performance data against them.",
+                    "The adoption model considered three stakeholders together: families, ENT departments and hospitals, and insurers. A B2B software model and national savings scenarios were developed to test plausibility, but all pricing, savings, and ROI figures in the deck are projections based on assumptions rather than realized results.",
+                ],
+            },
+            {
+                title: "What would need to happen next",
+                body: [
+                    "The proposed path begins with an early Stanford CHARIOT pilot focused on feasibility, usability, safety, caregiver comprehension, child engagement, and workflow fit. It would require a finalized MVP, clinical governance, data and IRB planning, and clear escalation protocols before any efficacy claim.",
+                    "Only after evidence from an initial pilot should the team test hospital purchasing, quality-improvement funding, reimbursement pathways, insurer partnerships, or expansion into other procedures. The case study therefore ends with a validation roadmap rather than a claim of launch or clinical impact.",
                 ],
             },
         ],
+        caseStudy: {
+            question: "How might an ENT recovery system help caregivers know what to do while motivating children to drink, eat, and take medication during the highest-risk week at home?",
+            framing: "The design challenge was not simply to digitize discharge instructions. It was to connect comprehension, child behavior, daily monitoring, and clinical escalation in one low-friction recovery loop—then define what evidence would be required before deployment.",
+            processEyebrow: "Stanford Biodesign for Digital Health",
+            processHeading: "Teaching framework → field evidence → testable care concept",
+            processSummary: "The project used Stanford Biodesign's Identify–Invent–Implement structure as an applied working method. Each phase shows how formal teaching was converted into interviews, design decisions, concept artifacts, and an evidence plan.",
+            steps: [
+                {
+                    phase: "Identify",
+                    title: "Observe the recovery system from multiple viewpoints",
+                    rationale: "A meaningful need cannot be defined from the hospital's perspective alone; the recovery work changes when the child and caregiver leave the clinical setting.",
+                    execution: "Interviewed ENT surgeons, worked with hospital teams, and engaged children with tonsillitis and parents alongside literature review to map pain, hydration, nutrition, medication, comprehension, and escalation challenges.",
+                },
+                {
+                    phase: "Identify",
+                    title: "Synthesize and filter the unmet need",
+                    rationale: "Needs finding only becomes actionable when observations are translated into a population, problem, outcome, and defensible set of screening criteria.",
+                    execution: "Framed the seven-day home-recovery need and filtered it through stakeholder relevance, caregiver comprehension, child cooperation, risk detection, affordability, adherence, and safety criteria.",
+                },
+                {
+                    phase: "Invent",
+                    title: "Generate and screen responses to the need",
+                    rationale: "Biodesign asks teams to compare concepts against the need rather than allowing an early favorite to define the problem retrospectively.",
+                    execution: "Compared parent-only, reactive, and generic pediatric approaches, then selected an ENT-specific two-sided model that addressed both caregiver decision-making and child behavior.",
+                },
+                {
+                    phase: "Invent",
+                    title: "Prototype the app, companion, and service loop",
+                    rationale: "The lead concept had to operate as a care pathway, not a disconnected feature list, and remain legible to both children and adults under stress.",
+                    execution: "Developed PainGone for plans, logs, reminders, questions, flags, and provider contact; paired it with PainGuin; and mapped discharge, daily routines, alerts, and escalation.",
+                },
+                {
+                    phase: "Implement",
+                    title: "Define a responsible validation pathway",
+                    rationale: "Readmission, safety, detection, adherence, and economic claims require prospective evidence and clinical governance before they can support deployment.",
+                    execution: "Outlined an MVP and Stanford CHARIOT pilot pathway, IRB and data planning, hospital partnerships, purchasing routes, and later reimbursement exploration.",
+                },
+            ],
+        },
         media: [
-            { src: "https://images.unsplash.com/photo-1584516150909-c43483ee7938?q=80&w=1600&auto=format&fit=crop", alt: "Hospital and caregiver context", caption: "Discharge quality lives at the intersection of clinical clarity and caregiver confidence." },
-            { src: "https://images.unsplash.com/photo-1579684385127-1ef15d5087a3?q=80&w=1600&auto=format&fit=crop", alt: "Pediatric care context", caption: "Pediatric care transitions demand interfaces and services that work for families under stress." },
-            { src: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop", alt: "Care pathway imagery", caption: "The most meaningful improvements often come from redesigning coordination, not just information density." },
+            { src: stanfordBiodesignProcess, alt: "Official Stanford Biodesign innovation-process framework showing the iterative Identify, Invent, and Implement phases", caption: "Stanford's official framework treats innovation as a repeatable, iterative process: identify the unmet need, invent against explicit criteria, and plan implementation. Source: Stanford Mussallem Center for Biodesign.", fit: "contain", aspect: "16/9" },
+            { src: stanfordBiodesignClassroom, alt: "Stanford Biodesign for Digital Health classroom with a student team presenting a mobile-health concept", caption: "The application-only course blends instruction, expert critique, teamwork, and project delivery. This official Stanford course image illustrates the learning environment; it is not the PainGone PainGuin team.", fit: "cover", aspect: "16/9" },
+            { src: entDischargeResearch, alt: "Research slide showing pediatric ENT anatomy and evidence that caregivers can misunderstand post-operative instructions about hydration, pain, and when to seek help", caption: "Need finding moved beyond the existence of discharge instructions to whether families can interpret and act on them at home.", fit: "contain", aspect: "16/9" },
+            { src: entNeedStatement, alt: "Stanford Biodesign need statement for improving home recovery after pediatric tonsillectomy or adenoidectomy", caption: "The 40% readmission-reduction figure was a design target used to focus concept development, not an achieved result.", fit: "contain", aspect: "16/9" },
+            { src: entProductWorkflow, alt: "Four-stage PainGone PainGuin workflow from discharge setup through daily tracking, child engagement, and caregiver alerts", caption: "The service connects discharge setup, a daily caregiver routine, child engagement, and risk-oriented support across the first week.", fit: "contain", aspect: "16/9" },
+            { src: entGapAnalysis, alt: "Gap analysis comparing parent-only, reactive, and generic pediatric tools with the proposed two-sided ENT-specific system", caption: "Concept differentiation came from addressing child behavior, proactive support, ENT specificity, and instruction comprehension together.", fit: "contain", aspect: "16/9" },
+            { src: entValueProposition, alt: "Stakeholder value proposition for pediatric ENT departments, children and caregivers, and insurers", caption: "The value hypothesis was mapped across the family, care-delivery, and payer perspectives rather than relying on a single-user benefit.", fit: "contain", aspect: "16/9" },
+            { src: entPathToPayment, alt: "Proposed path from a Stanford CHARIOT pilot to hospital purchasing and later reimbursement or insurer partnerships", caption: "The implementation pathway explicitly starts with evidence generation; purchasing and reimbursement are later hypotheses.", fit: "contain", aspect: "16/9" },
         ],
+        interactiveEyebrow: "Recovery workflow",
+        interactiveHeading: "How the two-sided recovery system works",
+        interactiveActiveLabel: "Active stage",
+        interactivePrimaryLabel: "Caregiver and child action",
+        interactiveSecondaryLabel: "Design response",
         interactiveModules: [
             {
-                title: "Discharge Journey Map",
-                summary: "A step-by-step journey surface showing what families need before leaving, at home, and during follow-up.",
-                interaction: "Users move through moments of uncertainty and see how better guidance changes risk exposure.",
-                effect: "Narrative timeline motion, state-aware cards, and supportive rather than flashy interaction design.",
+                title: "Discharge setup",
+                summary: "The caregiver scans a hospital-provided QR code, installs PainGone PainGuin, and receives a personalized recovery plan.",
+                interaction: "Confirm the procedure, medication schedule, hydration guidance, warning signs, care-team contact, and accessibility needs before leaving.",
+                effect: "Transforms a one-time paper handoff into an initialized recovery pathway with clear ownership and next actions.",
             },
             {
-                title: "Caregiver Confidence Layer",
-                summary: "A focused view of what instructions actually land and what remains confusing after discharge.",
-                interaction: "Tap on each discharge step to reveal information gaps, emotional load, and design opportunities.",
-                effect: "Micro-expansions, highlighted handoff points, and context-aware overlays.",
+                title: "Child engagement",
+                summary: "The child feeds, gives water to, and cares for PainGuin as a representation of their own recovery behaviors.",
+                interaction: "Connect real actions such as drinking or eating to immediate, age-appropriate feedback from the companion.",
+                effect: "Makes repetitive clinical instructions concrete and gives the child an active role in the recovery routine.",
             },
             {
-                title: "Follow-up Orchestration",
-                summary: "A coordination model for reminders, escalation, and next-step clarity.",
-                interaction: "Users inspect how messages, symptoms, and care actions evolve over time.",
-                effect: "Progressive sequencing, alert-state transitions, and calm operational clarity.",
-            },
-        ],
-    },
-    {
-        id: "biothreat-modelling",
-        title: "Dynamic Biothreat Modelling",
-        subtitle: "Designing signal-detection and response frameworks for AI-enabled biological risk.",
-        description: "A systems and policy design project exploring how dynamic threat modelling can improve the detection and interpretation of AI-engineered biological risk.",
-        image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Biosecurity", "AI Governance", "Systems Design"],
-        role: "Research collaborator and systems analyst",
-        client: "Ethics, policy, and biothreat presentation work",
-        duration: "2025 analytical and presentation work",
-        tools: ["Threat modelling", "Scenario design", "Systems mapping", "Presentation design"],
-        outcome: "Created a more dynamic way of thinking about AI-enabled biosecurity risk, helping translate abstract threat conversations into structured detection and response logic.",
-        accent: "#dc2626",
-        stats: [
-            { label: "Domain", value: "AI-enabled biosecurity risk" },
-            { label: "Approach", value: "Dynamic threat modelling" },
-            { label: "Portfolio strength", value: "Highly distinctive systems thinking" },
-            { label: "Output mode", value: "Analytical framework and presentation" },
-        ],
-        highlights: [
-            { title: "Memorable by design", text: "Very few portfolios can credibly speak about biothreat detection without sounding speculative or superficial." },
-            { title: "A systems-first lens", text: "The value of the work is in structuring uncertainty, not pretending it can be eliminated." },
-            { title: "Cross-disciplinary signal", text: "This project expands the portfolio into governance, security, and advanced systems analysis while staying coherent with Stefan's broader interests." },
-        ],
-        sections: [
-            {
-                title: "The problem",
-                body: [
-                    "AI changes the speed, scale, and accessibility of biological design capabilities. That creates a need for more dynamic ways of identifying where risk is emerging and how institutions should respond.",
-                    "Static threat lists are insufficient in a domain where signals, actors, and capabilities can shift quickly.",
-                ],
+                title: "Daily home routine",
+                summary: "The caregiver records fluids, food, pain scores, medication, and symptoms while receiving contextual reminders.",
+                interaction: "Review the day's recovery pattern instead of interpreting each data point or missed task in isolation.",
+                effect: "Creates a lightweight longitudinal view that can support comprehension and reveal patterns requiring attention.",
             },
             {
-                title: "The design move",
-                body: [
-                    "The project reframes biothreat analysis as an evolving system of signals, scenarios, and decision points rather than a fixed catalogue of hazards.",
-                    "This makes it possible to design interfaces and analytical frameworks that help people reason through uncertainty in a more structured way.",
-                ],
+                title: "Risk alerts",
+                summary: "The proposed system identifies patterns associated with dehydration or uncontrolled pain and nudges the caregiver before escalation.",
+                interaction: "Present the reason for the flag, the immediate recommended action, and the threshold for contacting the care team.",
+                effect: "Replaces a vague warning with a legible decision step while keeping clinical judgment and validation requirements explicit.",
             },
             {
-                title: "Why it belongs",
-                body: [
-                    "As a portfolio panel, Dynamic Biothreat Modelling adds intellectual range and a uniquely strategic dimension that complements the clinical and public-health work.",
-                ],
-            },
-        ],
-        media: [
-            { src: "https://images.unsplash.com/photo-1532634993-15f421e42ec0?q=80&w=1600&auto=format&fit=crop", alt: "Biosecurity lab context", caption: "The strongest visual treatment should feel structured, tense, and analytical rather than cinematic." },
-            { src: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=1600&auto=format&fit=crop", alt: "Systems and health research context", caption: "Complex risks need navigable models, not just alarming headlines." },
-            { src: "https://images.unsplash.com/photo-1518152006812-edab29b069ac?q=80&w=1600&auto=format&fit=crop", alt: "Signal and network imagery", caption: "Signal pathways and escalation states are core to the interaction language." },
-        ],
-        interactiveModules: [
-            {
-                title: "Scenario Escalation Engine",
-                summary: "A branching system that shows how risk evolves as signals accumulate across actors and environments.",
-                interaction: "Users test scenarios and see how risk posture changes as more information is revealed.",
-                effect: "Escalating states, branching paths, and alert gradients that remain rigorous rather than theatrical.",
-            },
-            {
-                title: "Signal Classification Grid",
-                summary: "A framework for separating noise, weak signals, and high-priority indicators.",
-                interaction: "Tapping signal cards reveals why they matter, how they interact, and what response paths they trigger.",
-                effect: "Matrix expansion, node-link motion, and controlled state transitions.",
-            },
-            {
-                title: "Response Architecture View",
-                summary: "A system map linking detection to institutional action.",
-                interaction: "Different stakeholder lenses reveal where response capacity is strong, fragile, or missing.",
-                effect: "Layered system maps, confidence contours, and progressive disclosure.",
+                title: "Provider escalation",
+                summary: "When a pattern crosses a defined threshold, the caregiver can contact the ENT team with structured context from the home-recovery log.",
+                interaction: "Share the relevant symptom, intake, pain, and medication history while preserving a clear emergency route.",
+                effect: "Supports a more informed handoff and defines the clinical governance that a future pilot would need to test.",
             },
         ],
     },
     {
         id: "dialysis-device-gtm",
-        title: "Dialysis Device Market Entry",
-        subtitle: "Go-to-market strategy for a medical device operating in a complex health system.",
-        description: "A strategy-oriented health innovation project focused on how a dialysis device could enter and scale in a challenging operating environment, balancing product, distribution, and health-system realities.",
-        image: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070&auto=format&fit=crop",
-        tags: ["MedTech Strategy", "Global Health", "Go-To-Market"],
-        role: "Strategy contributor and product-thinking advisor",
-        client: "Stanford Seed internship context",
-        duration: "Applied strategy internship",
-        tools: ["Market mapping", "Stakeholder analysis", "Product management", "Commercial strategy"],
-        outcome: "Developed a stronger understanding of how medical-device adoption depends on channels, incentives, operating conditions, and local market structure, not just technical merit.",
-        accent: "#0f766e",
+        title: "Adcem × Fidson Dialysis Access",
+        subtitle: "Building a local manufacturing and home peritoneal-dialysis pathway for Nigeria.",
+        description: "Through Stanford GSB SEED, I supported product management and business development for the Adcem Fidson joint venture—connecting manufacturing economics, a CR-CAPD home-therapy model, clinical implementation, validation design, and a route to scale.",
+        image: adcemLocalManufacturing,
+        heroFit: "contain",
+        heroAspect: "16/9",
+        tags: ["Dialysis Access", "Venture Strategy", "Local Manufacturing"],
+        role: "Product Management and Business Development Intern",
+        client: "Adcem Fidson Joint Venture · Stanford GSB SEED",
+        duration: "April–December 2025",
+        tools: ["Product management", "Business development", "Renal-care pathway design", "Financial modelling", "Partnership design", "Pilot planning", "Supply-chain strategy", "Clinical advisory coordination", "Implementation strategy"],
+        outcome: "Translated the venture thesis into pilot and implementation plans, financial modelling, partnership documents, audits, and supply-chain strategy for a proposed Nigerian dialysis-manufacturing and home-CAPD platform.",
+        accent: "#0b4a9f",
         stats: [
-            { label: "Context", value: "Dialysis device market entry in Nigeria" },
-            { label: "Focus", value: "Commercial strategy and product management" },
-            { label: "Portfolio role", value: "Venture and operating strategy" },
-            { label: "Differentiator", value: "Health-systems GTM perspective" },
+            { label: "Venture model", value: "Adcem channels and technology transfer × Fidson manufacturing" },
+            { label: "Flagship pathway", value: "CR-CAPD home peritoneal dialysis" },
+            { label: "Planned feasibility study", value: "20–26 weeks · 24–32 patients · four hospitals" },
+            { label: "My work", value: "Pilot, economics, partnerships, audits, and supply chain" },
         ],
         highlights: [
-            { title: "Not a standard design story", text: "This project proves Stefan can think through markets, channels, and operating constraints as well as interfaces." },
-            { title: "Global health realism", text: "It grounds innovation strategy in actual system conditions rather than imported assumptions." },
-            { title: "Useful portfolio breadth", text: "It adds a venture and commercialization dimension that strengthens the overall portfolio mix." },
+            { title: "Localization as product strategy", text: "The core move was to shift from importing finished dialysis products to importing inputs and transferring production into a Nigerian manufacturing line." },
+            { title: "The product includes care delivery", text: "A home-CAPD system only works when catheter coordination, staff preparation, patient training, infection prevention, and ongoing support are designed together." },
+            { title: "Validation before expansion", text: "The proposed feasibility study was structured to test clinical, operational, patient-experience, and economic assumptions before wider replication." },
         ],
         sections: [
             {
-                title: "The strategic problem",
+                title: "The access problem",
                 body: [
-                    "Medical devices do not succeed by virtue of technical quality alone. Adoption depends on trust, procurement, channel design, training, financing, and the fit between a product and the system in which it lands.",
-                    "This project focused on that deeper operating question rather than on surface-level market optimism.",
+                    "The joint-venture proposal framed a large renal-care gap in Nigeria: high chronic-kidney-disease burden, fewer than 250 dialysis centres concentrated in urban areas, and in-centre hemodialysis costs that can exceed the national monthly minimum wage several times over.",
+                    "Import dependence sits underneath that access problem. Finished dialysis products absorb freight, currency, and intermediary costs, while local pharmaceutical manufacturing supplies only a minority of domestic demand. The commercial challenge and the public-health challenge are therefore linked.",
                 ],
             },
             {
-                title: "The work",
+                title: "The joint-venture thesis",
                 body: [
-                    "The project examined go-to-market logic, stakeholder incentives, and product-management considerations for a dialysis device in Nigeria.",
-                    "That makes it a strong portfolio case study because it shows Stefan working across healthcare delivery, market design, and execution constraints.",
+                    "Adcem contributes dialysis expertise, technology transfer, raw-material sourcing, training, marketing, distribution, and an established renal-care network. Fidson contributes a Nigerian manufacturing facility, production labour, and integration into an existing pharmaceutical line.",
+                    "The future-state model replaces imported finished goods with locally manufactured dialysis consumables. That changes the cost structure while preserving a clear off-take and distribution route through Adcem's existing relationships.",
                 ],
             },
             {
-                title: "Why it matters",
+                title: "From a consumable to a care system",
                 body: [
-                    "As part of the portfolio, this panel broadens the story from design and research into commercialization and operating strategy without losing coherence with the health-systems theme.",
+                    "The flagship CR-CAPD pathway was designed around home-based continuous ambulatory peritoneal dialysis. The proposal combines the bag set, transfer set, catheter pathway, and supporting consumables with a practical implementation model.",
+                    "The planned patient experience included hospital-coordinated catheter placement, one-on-one training, infection-prevention protocols, four daily exchanges, monitoring and reporting, local-language learning materials, and 24/7 support. The product is therefore not only hardware; it is a supported care service.",
+                ],
+            },
+            {
+                title: "The pilot as validation infrastructure",
+                body: [
+                    "The proposal specified a 20–26 week feasibility study across four teaching hospitals in Lagos, Enugu, and Kano, with an initial 24–32 patients. Those are planned study parameters, not completed enrollment or outcomes.",
+                    "The measurement plan covered peritonitis and infection, fluid balance, hospitalizations, survival, quality of life, patient and provider feedback, ease of use, satisfaction, cost comparison with hemodialysis, and patient out-of-pocket spending. This made the pilot a learning system for clinical, operational, and business decisions.",
+                ],
+            },
+            {
+                title: "Preparing people and sites",
+                body: [
+                    "Before patient launch, each hospital would receive hands-on workshops for nephrologists and nurses on peritoneal-dialysis protocols, infection prevention, and patient coaching. Equipment and educational materials would be supplied so sites begin with a defined operating standard.",
+                    "At patient level, the education model moved from basic CAPD understanding to hands-on bag exchange, hygiene, symptom tracking, reporting, and continued support. Adoption was treated as a capability-building problem rather than a marketing message.",
+                ],
+            },
+            {
+                title: "My contribution and the scale pathway",
+                body: [
+                    "As Product Management and Business Development Intern, I worked across financial modelling, partnership documentation, pilot planning, implementation strategy, clinical advisory coordination, audits, and supply-chain planning.",
+                    "The proposed scale pathway used the feasibility study to support clinical publication, engagement with nephrology leaders and policymakers, insurance advocacy, community outreach, and future replication. This case study documents the strategy and planned implementation work; it does not claim that the pilot or projected clinical and commercial outcomes have already been achieved.",
                 ],
             },
         ],
+        caseStudy: {
+            question: "How might a dialysis joint venture lower structural access barriers while proving that a home-CAPD model can operate safely and sustainably?",
+            framing: "The answer could not be a product catalogue alone. It required a connected system spanning local manufacturing, venture governance, hospital readiness, patient training, clinical support, supply continuity, and an evidence plan capable of informing scale.",
+            processEyebrow: "Venture design method",
+            processHeading: "From market constraint to an executable care model",
+            processSummary: "The work treated affordability, delivery, and validation as one system. Each phase links the strategic reasoning to the product-management and business-development artifacts I helped produce.",
+            steps: [
+                {
+                    phase: "Frame",
+                    title: "Define the access problem beneath treatment demand",
+                    rationale: "Renal-care demand alone does not explain access. Import dependence, urban concentration, recurring consumable costs, and limited local production shape whether treatment is reachable.",
+                    execution: "Synthesised proposal evidence into a market problem statement connecting clinical need, treatment economics, supply exposure, and manufacturing capacity.",
+                },
+                {
+                    phase: "Structure",
+                    title: "Translate complementary assets into a joint operating model",
+                    rationale: "A joint venture only becomes executable when technology transfer, production, quality, sourcing, training, off-take, and distribution responsibilities are explicit.",
+                    execution: "Supported partnership documentation, financial modelling, governance planning, and the division of work between Adcem's dialysis capabilities and Fidson's manufacturing platform.",
+                },
+                {
+                    phase: "Design",
+                    title: "Treat CAPD as a supported service, not a bag set",
+                    rationale: "Home peritoneal dialysis transfers technical work to patients and caregivers, making catheter coordination, training, hygiene, monitoring, and support part of the product.",
+                    execution: "Mapped the proposed patient and hospital pathway across catheter placement, four daily exchanges, staff workshops, infection prevention, reporting, and 24/7 support.",
+                },
+                {
+                    phase: "Validate",
+                    title: "Use the feasibility study as a learning system",
+                    rationale: "Before expansion, the venture needs evidence across safety, usability, site readiness, patient experience, cost, and operational feasibility.",
+                    execution: "Supported the 20–26 week, four-hospital pilot design and its measurement plan across infection, fluid balance, hospitalisation, survival, quality of life, feedback, and spending.",
+                },
+                {
+                    phase: "Sequence",
+                    title: "Connect pilot evidence to scale decisions",
+                    rationale: "Clinical findings, manufacturing readiness, payer interest, professional advocacy, and community trust mature at different speeds and require different evidence.",
+                    execution: "Linked pilot outputs to publication, nephrology engagement, insurance advocacy, community outreach, supply-chain planning, and future replication decisions.",
+                },
+            ],
+        },
         media: [
-            { src: "https://images.unsplash.com/photo-1579684453377-8c5e6bb9c4e4?q=80&w=1600&auto=format&fit=crop", alt: "Medical device strategy context", caption: "Health innovation succeeds when go-to-market design is treated as part of the product." },
-            { src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1600&auto=format&fit=crop", alt: "Strategy and mapping context", caption: "Market-entry logic is often where strong products either scale or stall." },
-            { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop", alt: "Stakeholder planning context", caption: "Channels, incentives, and operational realities deserve as much attention as the device itself." },
+            { src: adcemDialysisMarket, alt: "Joint-venture proposal slide summarizing chronic kidney disease and dialysis demand estimates in Nigeria and across Africa", caption: "The proposal synthesised renal-care demand estimates to frame dialysis access as both a health-system and capacity problem.", fit: "contain", aspect: "16/9" },
+            { src: adcemMarketPainPoints, alt: "Four-part analysis of Nigeria's fragmented medical-supply market, import reliance, limited local production, and sector complexity", caption: "The market diagnosis connected fragmented supply, import exposure, limited local production, and regulatory and workforce constraints.", fit: "contain", aspect: "16/9" },
+            { src: adcemLocalManufacturing, alt: "Current-state and future-state model showing the shift from imported finished dialysis goods to local Nigerian manufacturing", caption: "The operating thesis is visible in one transition: import inputs, manufacture locally, and return cost savings to the care pathway.", fit: "contain", aspect: "16/9" },
         ],
+        interactiveEyebrow: "Venture workstreams",
+        interactiveHeading: "How manufacturing, care delivery, and evidence connect",
+        interactiveActiveLabel: "Active workstream",
+        interactivePrimaryLabel: "Operating model",
+        interactiveSecondaryLabel: "Validation need",
         interactiveModules: [
             {
-                title: "Market Entry Path Builder",
-                summary: "A concept tool showing different routes to distribution and adoption.",
-                interaction: "Users compare direct, partnership-led, and institution-led rollout models.",
-                effect: "Branching route animation, pathway highlighting, and structured decision feedback.",
+                title: "Local manufacturing",
+                summary: "Move from imported finished consumables to local production using Adcem's technology and channel relationships and Fidson's manufacturing line.",
+                interaction: "Map responsibility for technology transfer, raw-material sourcing, staff training, production, quality, off-take, and distribution.",
+                effect: "Validate production economics, regulatory requirements, quality systems, and whether savings reach providers and patients.",
             },
             {
-                title: "Stakeholder Incentive Map",
-                summary: "A visual model of who needs to believe what for adoption to work.",
-                interaction: "Tap providers, distributors, funders, and institutions to inspect incentives and friction points.",
-                effect: "Node activation, relationship paths, and layered emphasis on bottlenecks.",
+                title: "JV governance",
+                summary: "The partnership needs a clear bridge between board decisions, implementation work, and on-the-ground pilot execution.",
+                interaction: "Define which decisions sit with joint governance, the implementation team, hospital partners, clinical advisors, logistics, finance, and commercial teams.",
+                effect: "Test decision rights, escalation paths, accountability, and the operating cadence required before scale.",
             },
             {
-                title: "Operating Constraint Explorer",
-                summary: "A system surface for understanding how training, support, financing, and logistics shape GTM viability.",
-                interaction: "Users tune operational assumptions and watch the rollout profile change.",
-                effect: "Responsive system cards, subtle graph shifts, and clear constraint-state transitions.",
+                title: "CAPD pilot",
+                summary: "A planned multi-site feasibility study connects the product, hospital workflow, patient support, and evidence plan.",
+                interaction: "Trace the sequence from site preparation and catheter placement through home exchanges, support, monitoring, and follow-up.",
+                effect: "Validate safety, usability, site readiness, clinical outcomes, patient experience, and cost assumptions before expansion.",
+            },
+            {
+                title: "Patient enablement",
+                summary: "Home dialysis transfers meaningful work to patients and caregivers, so education and support are core product infrastructure.",
+                interaction: "Structure onboarding around CAPD understanding, hands-on exchange practice, hygiene, symptom tracking, reporting, and local-language materials.",
+                effect: "Validate comprehension, technique confidence, support demand, adherence, and infection-prevention performance.",
+            },
+            {
+                title: "Evidence to scale",
+                summary: "Clinical, operational, and economic evidence must travel from the pilot into policy, reimbursement, professional advocacy, and replication decisions.",
+                interaction: "Sequence publication, nephrology engagement, payer and government advocacy, community outreach, and future country expansion.",
+                effect: "Validate which audiences need which evidence and what must be proven before each next-stage commitment.",
             },
         ],
     },

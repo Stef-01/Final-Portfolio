@@ -20,7 +20,7 @@ export const SystemsMapSection = () => {
         </p>
 
         <motion.div
-          className="mt-10 rounded-[28px] border border-black/10 bg-[#fafafa] p-4 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]"
+          className="mt-10"
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}

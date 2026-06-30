@@ -9,11 +9,11 @@ export const DraggableCardsSection = () => {
     // NOTE: don't .filter(Boolean) here — cardLayouts is positional, so a missing
     // project must remain `undefined` so subsequent layouts don't shift.
     const featuredProjects = [
+        "casa",
         "swaad",
         "nourish-meal-explorer",
         "pgx-llm-copilot",
         "healthcare-from-the-eye",
-        "ent-readmission-platform",
     ].map((id) => projects.find((project) => project.id === id));
 
     // Precise card positions matching reference image

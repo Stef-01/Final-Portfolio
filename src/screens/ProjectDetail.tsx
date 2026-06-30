@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, ExternalLink, Sparkles } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
@@ -96,6 +96,22 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                     <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.outcome}</p>
                                 </div>
                             </div>
+                            {project.links && project.links.length > 0 && (
+                                <div className="flex flex-wrap gap-2 border-t border-black/8 pt-4">
+                                    {project.links.map((link) => (
+                                        <a
+                                            key={link.url}
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                                        >
+                                            {link.label}
+                                            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -109,14 +125,33 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     ))}
                 </div>
 
+                {project.caseStudy && (
+                    <section className="mt-10 grid gap-6 rounded-[32px] border border-black/8 bg-[#f7f7f5] p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Design question</p>
+                            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em]" style={{ color: project.accent }}>
+                                The decision behind the work
+                            </p>
+                        </div>
+                        <div>
+                            <h2 className="text-2xl font-semibold leading-tight tracking-tight text-black md:text-4xl">
+                                {project.caseStudy.question}
+                            </h2>
+                            <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
+                                {project.caseStudy.framing}
+                            </p>
+                        </div>
+                    </section>
+                )}
+
                 <div className="mt-14 overflow-hidden rounded-[34px] border border-black/8 bg-black shadow-2xl">
                     <ImageWithFallback
                         src={project.image}
                         alt={project.title}
                         fallbackInitial={project.title.charAt(0)}
                         accent={project.accent}
-                        wrapperClassName="h-[280px] w-full md:h-[620px]"
-                        className="h-[280px] w-full object-cover opacity-90 md:h-[620px]"
+                        wrapperClassName={project.heroAspect === "16/9" ? "aspect-video w-full" : project.heroAspect === "8/5" ? "aspect-[8/5] w-full" : "h-[280px] w-full md:h-[620px]"}
+                        className={`${project.heroAspect === "16/9" ? "aspect-video" : project.heroAspect === "8/5" ? "aspect-[8/5]" : "h-[280px] md:h-[620px]"} w-full ${project.heroFit === "contain" ? "object-contain opacity-100" : "object-cover opacity-90"}`}
                         loading="eager"
                         fetchPriority="high"
                         decoding="async"
@@ -124,8 +159,50 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     />
                 </div>
 
+                {project.video && (
+                    <section className="mt-16 overflow-hidden rounded-[36px] border border-black/8 bg-[#0f1115] shadow-[0_30px_90px_-55px_rgba(0,0,0,0.8)]">
+                        <div className="grid gap-0 xl:grid-cols-[0.28fr_0.72fr]">
+                            <div className="flex flex-col justify-between p-6 text-white md:p-8">
+                                <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">
+                                        Full demo
+                                    </p>
+                                    <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
+                                        {project.video.title}
+                                    </h2>
+                                    <p className="mt-5 text-base leading-relaxed text-white/70 md:text-lg">
+                                        {project.video.caption}
+                                    </p>
+                                </div>
+                                <a
+                                    href={project.video.src}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1115]"
+                                >
+                                    Open video file
+                                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                                </a>
+                            </div>
+                            <div className="bg-black">
+                                <video
+                                    className="aspect-video h-full w-full bg-black object-contain"
+                                    controls
+                                    playsInline
+                                    preload="metadata"
+                                    poster={project.video.poster}
+                                    aria-label={project.video.title}
+                                >
+                                    <source src={project.video.src} type="video/mp4" />
+                                    Your browser does not support embedded video. Use the open-video link to view the demo.
+                                </video>
+                            </div>
+                        </div>
+                    </section>
+                )}
+
                 <section className="mt-16 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-                    <div className="rounded-[32px] border border-black/8 bg-[#fafafa] p-6 md:p-8">
+                    <div className="self-start rounded-[32px] border border-black/8 bg-[#fafafa] p-6 md:p-8 lg:sticky lg:top-28">
                         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Core Themes</p>
                         <div className="mt-6 grid gap-5">
                             {project.highlights.map((highlight) => (
@@ -164,6 +241,52 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </div>
                 </section>
 
+                {project.caseStudy && (
+                    <section className="mt-16 rounded-[36px] border border-black/8 bg-[#fafafa] p-6 md:p-8">
+                        <div className="grid gap-8 lg:grid-cols-[0.36fr_0.64fr]">
+                            <div className="self-start lg:sticky lg:top-28">
+                                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">
+                                    {project.caseStudy.processEyebrow}
+                                </p>
+                                <h2 className="mt-3 text-3xl font-semibold tracking-tight text-black md:text-4xl">
+                                    {project.caseStudy.processHeading}
+                                </h2>
+                                <p className="mt-5 text-base leading-relaxed text-gray-600 md:text-lg">
+                                    {project.caseStudy.processSummary}
+                                </p>
+                            </div>
+
+                            <ol className="grid gap-4">
+                                {project.caseStudy.steps.map((step, index) => (
+                                    <li key={`${step.phase}-${step.title}`} className="grid gap-5 rounded-[28px] border border-black/8 bg-white p-5 shadow-[0_18px_45px_-38px_rgba(0,0,0,0.5)] md:grid-cols-[72px_1fr] md:p-6">
+                                        <div>
+                                            <span className="flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: project.accent }}>
+                                                {String(index + 1).padStart(2, "0")}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: project.accent }}>
+                                                {step.phase}
+                                            </p>
+                                            <h3 className="mt-2 text-2xl font-semibold tracking-tight text-black">{step.title}</h3>
+                                            <div className="mt-5 grid gap-4 md:grid-cols-2">
+                                                <div className="rounded-[20px] bg-[#f7f7f5] p-4">
+                                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Design rationale</p>
+                                                    <p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">{step.rationale}</p>
+                                                </div>
+                                                <div className="rounded-[20px] bg-[#f7f7f5] p-4">
+                                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">Execution evidence</p>
+                                                    <p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">{step.execution}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
+                    </section>
+                )}
+
                 <section className="mt-16">
                     <div className="mb-8">
                         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Visuals</p>
@@ -175,14 +298,14 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                         {project.media.map((item) => (
                             <figure key={item.caption} className="overflow-hidden rounded-[30px] border border-black/8 bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.45)]">
-                                <div className="aspect-[4/3] overflow-hidden bg-[#f5f5f5]">
+                                <div className={`${item.aspect === "16/9" ? "aspect-video" : item.aspect === "8/5" ? "aspect-[8/5]" : item.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden bg-[#f5f5f5]`}>
                                     <ImageWithFallback
                                         src={item.src}
                                         alt={item.alt}
                                         fallbackInitial={project.title.charAt(0)}
                                         accent={project.accent}
                                         wrapperClassName="h-full w-full"
-                                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                                        className={`h-full w-full transition-transform duration-700 ${item.fit === "contain" ? "object-contain" : "object-cover hover:scale-105"}`}
                                         loading="lazy"
                                         decoding="async"
                                         sizes="(max-width: 768px) 92vw, (max-width: 1280px) 46vw, 30vw"
@@ -200,9 +323,11 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 <section className="mt-16 overflow-hidden rounded-[36px] border border-black/8 bg-[#0f1115] p-6 text-white md:p-8">
                     <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
                         <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">Concept explorations</p>
+                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">
+                                {project.interactiveEyebrow ?? "Concept explorations"}
+                            </p>
                             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                                Interaction ideas prototyped for this project
+                                {project.interactiveHeading ?? "Interaction ideas prototyped for this project"}
                             </h2>
 
                             <div className="mt-8 flex flex-wrap gap-3">
@@ -211,6 +336,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                         key={module.title}
                                         type="button"
                                         onClick={() => setActiveModuleIndex(index)}
+                                        aria-pressed={index === activeModuleIndex}
                                         className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${index === activeModuleIndex
                                             ? "bg-white text-black"
                                             : "bg-white/8 text-white/70 hover:bg-white/14 hover:text-white"
@@ -226,7 +352,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                             <div className="rounded-[30px] border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
                                 <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-white/45">
                                     <Sparkles className="h-4 w-4" />
-                                    Active concept
+                                    {project.interactiveActiveLabel ?? "Active concept"}
                                 </div>
                                 <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white">
                                     {activeModule.title}
@@ -237,11 +363,15 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
                                 <div className="mt-8 grid gap-4 md:grid-cols-2">
                                     <div className="rounded-[24px] bg-white/6 p-5">
-                                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Interaction</p>
+                                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">
+                                            {project.interactivePrimaryLabel ?? "Interaction"}
+                                        </p>
                                         <p className="mt-3 text-base leading-relaxed text-white/80">{activeModule.interaction}</p>
                                     </div>
                                     <div className="rounded-[24px] bg-white/6 p-5">
-                                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">Motion and effects</p>
+                                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/40">
+                                            {project.interactiveSecondaryLabel ?? "Motion and effects"}
+                                        </p>
                                         <p className="mt-3 text-base leading-relaxed text-white/80">{activeModule.effect}</p>
                                     </div>
                                 </div>
