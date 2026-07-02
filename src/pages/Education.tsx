@@ -19,7 +19,7 @@ import { useGoBack } from "../hooks/useGoBack";
 import { educationRoles, type Role } from "../types/roles";
 
 const educationStats = [
-  { value: "3", label: "education roles shown" },
+  { value: "3", label: "teaching and curriculum roles" },
   { value: "ANU", label: "PhD student research teaching" },
   { value: "Stanford", label: "clinical nutrition curriculum writing" },
 ];
@@ -83,10 +83,9 @@ export function Education(): JSX.Element {
               Teaching research, clinical nutrition, and venture design
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600 md:text-xl">
-              A dedicated education track for roles that were previously buried:
-              ANU PhD-student methods teaching, the NOURISH PFEME clinician
-              residency curriculum writing role, and the TLIA entrepreneurship
-              bootcamp deep-dive.
+              Research-methods teaching at ANU, clinician-residency curriculum
+              development with Stanford Medicine NOURISH PFEME, and
+              entrepreneurship education as TLIA Bootcamp Program Lead.
             </p>
 
             <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -117,16 +116,15 @@ export function Education(): JSX.Element {
             <div className="mb-4 flex items-center gap-3">
               <span className="h-px w-8 bg-emerald-500" />
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
-                Education Roles
+                Teaching
               </p>
             </div>
             <h2 className="text-4xl font-bold tracking-tighter text-black md:text-6xl">
-              Every teaching role, visible and separated
+              Teaching and curriculum roles
             </h2>
             <p className="mt-4 text-base leading-relaxed text-gray-600 md:text-xl">
-              These are the education-specific responsibilities: research-methods
-              teaching, clinician curriculum writing, and entrepreneurship
-              facilitation. TLIA opens into the full case-study treatment below.
+              Designing learning experiences across research, clinical
+              nutrition, and venture creation.
             </p>
           </div>
 

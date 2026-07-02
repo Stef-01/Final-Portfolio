@@ -81,11 +81,11 @@ export function Industry() {
           <div className="mb-4 flex items-center gap-3">
             <span className="h-px w-8 bg-emerald-500" />
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
-              Venture Map
+              Portfolio
             </p>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
-            An overview of my health-tech work
+            Health-tech venture portfolio
           </h2>
           <p className="mt-4 max-w-2xl text-base md:text-xl leading-relaxed text-gray-600">
             The through-line across this work is simple: health does not just need
@@ -107,9 +107,9 @@ export function Industry() {
 
       <RolesGrid
         roles={industryRoles}
-        eyebrow="Industry Roles"
-        title="The ventures, one by one"
-        intro="Founding, advisory, and consulting work across the health-tech stack — from a teaching-kitchen nutrition program to a hackathon-winning prescribing tool and a dialysis joint venture in Nigeria."
+        eyebrow="Roles"
+        title="Founding and advisory work"
+        intro="Product creation, venture strategy, and operating-model design across nutrition, clinical decision support, diagnostics, and medical devices."
       />
 
       <ContactSection />

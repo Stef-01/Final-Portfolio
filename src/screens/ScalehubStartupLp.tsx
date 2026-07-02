@@ -7,7 +7,6 @@ import { AboutSection } from "../components/AboutSection";
 import { ThreeLanesTeaser } from "../components/ThreeLanesTeaser";
 import { PressSection } from "../components/PressSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
-import { DraggableCardsSection } from "../components/DraggableCardsSection";
 import { ContactModal } from "../components/ContactModal";
 import { FloatingSocials } from "../components/FloatingSocials";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
@@ -133,12 +132,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
         <LatestWorkSection />
       </div>
 
-      {/* Tinker projects — free scroll, not a snap target */}
-      <div className="relative z-10 bg-white py-20">
-        <DraggableCardsSection />
-      </div>
-
-      {/* About Section — free scroll, the bow→pills choreography needs it */}
+      {/* About Section */}
       <div className="relative z-10 bg-white">
         <AboutSection />
       </div>

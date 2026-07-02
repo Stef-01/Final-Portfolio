@@ -124,7 +124,10 @@ const TalkSection = ({ title, eyebrow, talks, onFileClick }: TalkSectionProps) =
     <section className="w-full bg-white px-4 pt-10 pb-12 md:px-8 md:pt-16 md:pb-20">
         <div className="mx-auto max-w-6xl">
             <div className="mb-10 max-w-3xl">
-                <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">{eyebrow}</p>
+                <div className="mb-4 flex items-center gap-3">
+                    <span className="h-px w-8 bg-blue-500" />
+                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">{eyebrow}</p>
+                </div>
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-black">
                     {title}
                 </h2>
@@ -208,8 +211,9 @@ export function Presentations() {
         <div className="min-h-[100svh] bg-white text-gray-900">
             <FloatingBackButton />
 
-            <div className="px-4 pt-16 md:pt-20 md:px-8">
-                <div className="max-w-6xl mx-auto">
+            <header className="relative overflow-hidden px-4 pt-16 md:px-8 md:pt-20">
+                <div className="pointer-events-none absolute inset-x-0 -top-24 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_60%)]" />
+                <div className="relative z-10 mx-auto max-w-6xl">
                     <button
                         type="button"
                         onClick={goBack}
@@ -224,7 +228,10 @@ export function Presentations() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7 }}
                     >
-                        <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">Speaking</p>
+                        <div className="mb-4 flex items-center gap-3">
+                            <span className="h-px w-8 bg-blue-500" />
+                            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Speaking</p>
+                        </div>
                         <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-black leading-[0.95]">
                             Talks, posters, and grand rounds
                         </h1>
@@ -242,9 +249,9 @@ export function Presentations() {
                             ].map((stat) => (
                                 <div
                                     key={stat.v}
-                                    className="rounded-[28px] border border-black/10 bg-[#fafafa] px-6 py-5 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]"
+                                    className="rounded-[28px] border border-white/60 bg-white/75 px-6 py-7 shadow-[0_30px_60px_-40px_rgba(59,130,246,0.55)] ring-1 ring-blue-500/10 backdrop-blur-md"
                                 >
-                                    <p className="text-4xl md:text-5xl font-bold tracking-tight text-black">
+                                    <p className="bg-gradient-to-br from-blue-600 to-indigo-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
                                         {stat.k}
                                     </p>
                                     <p className="mt-2 text-sm md:text-base text-gray-600">{stat.v}</p>
@@ -253,7 +260,7 @@ export function Presentations() {
                         </div>
                     </motion.div>
                 </div>
-            </div>
+            </header>
 
             <TalkSection
                 eyebrow="Conferences"

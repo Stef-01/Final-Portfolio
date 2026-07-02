@@ -4,19 +4,15 @@ import { WorkCard } from "./WorkCard";
 import { projects } from "../types/project";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
-const headingChips = ["Precision medicine", "Implementation", "Public systems"];
 const capabilityLanes = [
     {
         title: "Products",
-        description: "Interfaces, tools, and concepts designed to improve decision quality in health contexts.",
     },
     {
         title: "Systems",
-        description: "Work that translates complex research and operational realities into usable service and platform thinking.",
     },
     {
         title: "Advisory",
-        description: "Evidence framing and strategic work for institutional, public-sector, and implementation environments.",
     },
 ];
 
@@ -28,74 +24,33 @@ export const LatestWorkSection = () => {
             <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-64 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_62%)]" />
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="flex min-h-[100svh] snap-start snap-always flex-col items-center justify-center py-16 text-center md:py-20">
-                        <motion.div
-                            initial={{ opacity: 0, y: 18 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.55 }}
-                            className="mb-6 flex flex-wrap items-center justify-center gap-3"
-                        >
-                            {headingChips.map((chip, index) => (
-                                <motion.span
-                                    key={chip}
-                                    className="rounded-full border border-black/10 bg-white/90 px-4 py-2 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-gray-500 shadow-[0_18px_45px_-35px_rgba(0,0,0,0.4)]"
-                                    whileInView={prefersReducedMotion ? undefined : { y: [0, -5, 0] }}
-                                    viewport={{ once: false }}
-                                    transition={{ duration: 3.5 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                                >
-                                    {chip}
-                                </motion.span>
-                            ))}
-                        </motion.div>
-
-                        <motion.p
-                            initial={{ opacity: 0, y: 18 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.55, delay: 0.08 }}
-                            className="mb-4 text-xs md:text-sm font-semibold uppercase tracking-[0.32em] text-gray-400"
-                        >
-                            Selected Work
-                        </motion.p>
-
                         <motion.h2
                             initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.72, delay: 0.14 }}
+                            transition={{ duration: 0.72, delay: 0.08 }}
                             className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-5 leading-[0.95]"
                         >
                             Flagship projects across health, AI, and systems design
                         </motion.h2>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.62, delay: 0.2 }}
-                            className="mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600"
-                        >
-                            Selected projects showing what translation actually requires: credible evidence, practical delivery, institutional buy-in, and design around the people most often left out.
-                        </motion.p>
-
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.6, delay: 0.26 }}
-                            className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3"
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-3"
                         >
                             {capabilityLanes.map((lane, index) => (
                                 <motion.div
                                     key={lane.title}
-                                    className="rounded-[24px] border border-black/8 bg-white px-5 py-5 text-left shadow-[0_20px_45px_-36px_rgba(0,0,0,0.45)]"
+                                    className="rounded-full border border-black/10 bg-white px-5 py-2.5 text-center shadow-[0_18px_38px_-32px_rgba(0,0,0,0.4)]"
                                     initial={{ opacity: 0, y: prefersReducedMotion ? 10 : 22 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-80px" }}
                                     transition={{ duration: 0.48, delay: 0.3 + index * 0.05 }}
                                 >
-                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-400">{lane.title}</p>
-                                    <p className="mt-3 text-base font-medium leading-relaxed text-gray-700">{lane.description}</p>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">{lane.title}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -116,12 +71,12 @@ export const LatestWorkSection = () => {
                                 >
                                     <WorkCard
                                         id={project.id}
-                                        icon={project.title.charAt(0)}
                                         title={project.title}
                                         subtitle={project.subtitle}
                                         description={project.description}
                                         image={project.image}
-                                        tags={project.tags}
+                                        imageFit={project.heroFit}
+                                        imageAspect={project.heroAspect}
                                         className="bg-gray-50"
                                     />
                                 </motion.div>

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Sparkles } from "lucide-react";
+import { ExternalLink, Sparkles } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
 import { ContactSection } from "../components/ContactSection";
@@ -49,10 +49,6 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     />
                     <div className="relative z-10 grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
                         <div>
-                            <button type="button" onClick={goBack} className="mb-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-gray-400 transition-colors hover:text-black">
-                                <ArrowLeft className="h-4 w-4" />
-                                Back
-                            </button>
                             <div className="mb-6 flex flex-wrap gap-2">
                                 {project.tags.map((tag) => (
                                     <span
@@ -76,7 +72,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
                         <div className="grid gap-4 rounded-[28px] border border-black/8 bg-white/85 p-5 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.45)]">
                             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gray-400">
-                                Project Profile
+                                Scope
                             </p>
                             <div className="grid gap-4 sm:grid-cols-2">
                                 <div>
@@ -127,12 +123,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
                 {project.caseStudy && (
                     <section className="mt-10 grid gap-6 rounded-[32px] border border-black/8 bg-[#f7f7f5] p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">
-                        <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Design question</p>
-                            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.16em]" style={{ color: project.accent }}>
-                                The decision behind the work
-                            </p>
-                        </div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Design question</p>
                         <div>
                             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-black md:text-4xl">
                                 {project.caseStudy.question}
@@ -153,7 +144,6 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                         wrapperClassName={project.heroAspect === "16/9" ? "aspect-video w-full" : project.heroAspect === "8/5" ? "aspect-[8/5] w-full" : "h-[280px] w-full md:h-[620px]"}
                         className={`${project.heroAspect === "16/9" ? "aspect-video" : project.heroAspect === "8/5" ? "aspect-[8/5]" : "h-[280px] md:h-[620px]"} w-full ${project.heroFit === "contain" ? "object-contain opacity-100" : "object-cover opacity-90"}`}
                         loading="eager"
-                        fetchPriority="high"
                         decoding="async"
                         sizes="100vw"
                     />
@@ -203,7 +193,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
                 <section className="mt-16 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
                     <div className="self-start rounded-[32px] border border-black/8 bg-[#fafafa] p-6 md:p-8 lg:sticky lg:top-28">
-                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Core Themes</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Strategic priorities</p>
                         <div className="mt-6 grid gap-5">
                             {project.highlights.map((highlight) => (
                                 <div key={highlight.title} className="rounded-[24px] bg-white p-5 shadow-[0_18px_45px_-38px_rgba(0,0,0,0.5)]">
@@ -215,7 +205,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </div>
 
                     <div className="rounded-[32px] border border-black/8 bg-white p-6 md:p-8">
-                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Tooling and Practice</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Methods and tools</p>
                         <div className="mt-5 flex flex-wrap gap-2">
                             {project.tools.map((tool) => (
                                 <span key={tool} className="rounded-full border border-black/10 bg-[#f6f6f6] px-3 py-2 text-sm font-medium text-gray-700">
@@ -235,6 +225,26 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                             </p>
                                         ))}
                                     </div>
+                                    {section.media && (
+                                        <figure className="mt-6 overflow-hidden rounded-[26px] border border-black/8 bg-[#f5f3ef] shadow-[0_24px_60px_-44px_rgba(0,0,0,0.45)]">
+                                            <div className={`${section.media.aspect === "16/9" ? "aspect-video" : section.media.aspect === "8/5" ? "aspect-[8/5]" : section.media.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden`}>
+                                                <ImageWithFallback
+                                                    src={section.media.src}
+                                                    alt={section.media.alt}
+                                                    fallbackInitial={project.title.charAt(0)}
+                                                    accent={project.accent}
+                                                    wrapperClassName="h-full w-full"
+                                                    className={`h-full w-full ${section.media.fit === "contain" ? "object-contain" : "object-cover"}`}
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    sizes="(max-width: 1024px) 92vw, 54vw"
+                                                />
+                                            </div>
+                                            <figcaption className="border-t border-black/8 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
+                                                {section.media.caption}
+                                            </figcaption>
+                                        </figure>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -287,15 +297,20 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </section>
                 )}
 
+                {project.media.length > 0 && (
                 <section className="mt-16">
                     <div className="mb-8">
-                        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">Visuals</p>
+                        {project.mediaEyebrow && (
+                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gray-400">
+                                {project.mediaEyebrow}
+                            </p>
+                        )}
                         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-black md:text-4xl">
-                            The visuals, and the thinking behind them
+                            {project.mediaHeading ?? "Design evidence"}
                         </h2>
                     </div>
 
-                    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    <div className={`grid gap-6 md:grid-cols-2 ${project.mediaLayout === "editorial" ? "" : "xl:grid-cols-3"}`}>
                         {project.media.map((item) => (
                             <figure key={item.caption} className="overflow-hidden rounded-[30px] border border-black/8 bg-white shadow-[0_24px_60px_-40px_rgba(0,0,0,0.45)]">
                                 <div className={`${item.aspect === "16/9" ? "aspect-video" : item.aspect === "8/5" ? "aspect-[8/5]" : item.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden bg-[#f5f5f5]`}>
@@ -318,16 +333,19 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                         ))}
                     </div>
                 </section>
+                )}
 
                 {project.interactiveModules && project.interactiveModules.length > 0 && (
                 <section className="mt-16 overflow-hidden rounded-[36px] border border-black/8 bg-[#0f1115] p-6 text-white md:p-8">
                     <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
                         <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">
-                                {project.interactiveEyebrow ?? "Concept explorations"}
-                            </p>
+                            {project.interactiveEyebrow && (
+                                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">
+                                    {project.interactiveEyebrow}
+                                </p>
+                            )}
                             <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
-                                {project.interactiveHeading ?? "Interaction ideas prototyped for this project"}
+                                {project.interactiveHeading ?? "Product architecture"}
                             </h2>
 
                             <div className="mt-8 flex flex-wrap gap-3">
