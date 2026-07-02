@@ -4,23 +4,23 @@ import { ImageWithFallback } from "./ImageWithFallback";
 
 interface WorkCardProps {
     id: string;
-    icon: string;
     title: string;
     subtitle?: string;
     description: string;
     image: string;
-    tags?: string[];
+    imageFit?: "cover" | "contain";
+    imageAspect?: "16/9" | "8/5";
     className?: string;
 }
 
 export const WorkCard: React.FC<WorkCardProps> = ({
     id,
-    icon,
     title,
     subtitle,
     description,
     image,
-    tags = [],
+    imageFit = "cover",
+    imageAspect = "16/9",
     className = "",
 }) => {
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         <button
             type="button"
             onClick={handleClick}
-            className={`group relative grid w-full text-left bg-[#f5f5f5] rounded-3xl p-4 md:min-h-[min(78svh,720px)] md:grid-cols-[0.95fr_1.05fr] md:items-center md:gap-8 md:p-8 overflow-hidden cursor-pointer transition-all duration-700 ease-out hover:scale-[1.01] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] ${className}`}
+            className={`group relative grid w-full cursor-pointer overflow-hidden rounded-[32px] border border-black/5 bg-[#f5f5f5] p-5 text-left transition-all duration-700 ease-out hover:scale-[1.01] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] md:min-h-[min(78svh,720px)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:p-10 ${className}`}
         >
             {/* Arrow Icon */}
             <div className="absolute top-4 right-4 md:top-6 md:right-6 w-9 h-9 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5">
@@ -54,40 +54,35 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             </div>
 
             {/* Content */}
-            <div className="relative z-10 mb-6 md:mb-0">
-                <div className="flex items-center gap-3 mb-4 md:mb-5 pr-10 md:pr-0">
-                    <div className="w-10 h-10 md:w-11 md:h-11 bg-black rounded-xl flex items-center justify-center text-white text-lg md:text-xl font-bold transition-transform duration-500 group-hover:rotate-6">
-                        {icon}
-                    </div>
-                    <div>
-                        <h3 className="text-xl md:text-4xl font-bold leading-tight text-black">{title}</h3>
-                        {subtitle && (
-                            <p className="mt-0.5 max-w-xl text-xs md:text-sm text-gray-500">{subtitle}</p>
-                        )}
-                    </div>
-                </div>
-                <p className="text-sm md:text-lg text-gray-600 max-w-xl leading-relaxed">
+            <div className="relative z-10 mb-7 max-w-xl pr-10 md:mb-0 md:pr-0">
+                <h3 className="text-3xl font-bold leading-[0.98] tracking-tighter text-black md:text-5xl">
+                    {title}
+                </h3>
+                {subtitle && (
+                    <p className="mt-4 text-base font-medium leading-relaxed text-gray-700 md:text-lg">
+                        {subtitle}
+                    </p>
+                )}
+                <div className="my-6 h-px w-12 bg-black/15" aria-hidden="true" />
+                <p className="text-base leading-relaxed text-gray-600 md:text-lg">
                     {description}
                 </p>
-                {tags.length > 0 && (
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        {tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="rounded-full border border-black/10 bg-white/80 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-                )}
             </div>
 
             {/* Image */}
-            <div className="relative w-full h-[180px] md:h-full md:min-h-[420px] rounded-2xl overflow-hidden transition-transform duration-700 ease-out group-hover:scale-[1.025]">
+            <div
+                className={`relative w-full overflow-hidden rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.025] ${
+                    imageFit === "contain"
+                        ? `${imageAspect === "8/5" ? "aspect-[8/5]" : "aspect-video"} self-center bg-white`
+                        : "h-[180px] md:h-full md:min-h-[420px]"
+                }`}
+            >
                 <ImageWithFallback
                     src={image}
                     alt={title}
-                    fallbackInitial={icon}
+                    fallbackInitial={title.charAt(0)}
                     wrapperClassName="w-full h-full"
-                    className="w-full h-full object-cover"
+                    className={`h-full w-full ${imageFit === "contain" ? "object-contain" : "object-cover"}`}
                     loading="lazy"
                     decoding="async"
                     sizes="(max-width: 768px) 92vw, 900px"

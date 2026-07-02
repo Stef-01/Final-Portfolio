@@ -92,8 +92,8 @@ export function Research() {
 
       <RolesTimeline
         roles={researchRoles}
-        eyebrow="Research Timeline"
-        title="Every role, start to finish"
+        eyebrow="Appointments"
+        title="Research roles and collaborations"
       />
 
       <SystemsMapSection />
@@ -116,11 +116,11 @@ export function Research() {
                   </p>
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter text-black md:text-5xl">
-                  Selected publications and citation record
+                  Peer-reviewed publications
                 </h2>
                 <p className="mt-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                  Open the full publications view for paper cards, filters,
-                  full-text links, documents, and citation signals.
+                  Ten publications spanning pharmacogenomics, global health,
+                  implementation research, and clinical outcomes.
                 </p>
               </div>
 

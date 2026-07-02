@@ -74,22 +74,21 @@ export const PrecisionMedicineSection = () => {
   );
 
   return (
-    <section className="w-full bg-white px-4 py-24 md:px-8">
-      <div className="mx-auto max-w-4xl text-center">
-        <div className="mb-4 flex items-center justify-center gap-3">
+    <section className="w-full bg-white px-4 py-20 md:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-4 flex items-center gap-3">
           <span className="h-px w-8 bg-blue-500" />
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
             Precision Medicine
           </p>
-          <span className="h-px w-8 bg-blue-500" />
         </div>
-        <h2 className="mx-auto max-w-3xl text-4xl md:text-6xl font-bold tracking-tighter text-black">
-          Three strands of precision-care work
+        <h2 className="max-w-3xl text-4xl font-bold tracking-tighter text-black md:text-6xl">
+          Precision-care portfolio
         </h2>
       </div>
 
       {/* 3D helix stage */}
-      <div className="mx-auto mt-14 max-w-6xl">
+      <div className="mx-auto mt-10 max-w-6xl">
         <div className="relative">
           <div className="relative aspect-[5/2] w-full">
             {prefersReducedMotion ? (

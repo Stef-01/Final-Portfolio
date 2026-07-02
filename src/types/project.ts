@@ -35,6 +35,17 @@ import neuragilitySignalActivation from "../assets/neuragility/neuragility-signa
 import neuragilitySignalBaseline from "../assets/neuragility/neuragility-signal-baseline.webp";
 import neuragilityWearable from "../assets/neuragility/neuragility-wearable.webp";
 import neuragilityXrTraining from "../assets/neuragility/neuragility-xr-training.webp";
+import casaAiInputs from "../assets/casa/casa-ai-inputs.png";
+import casaAiIntelligenceLoop from "../assets/casa/casa-ai-intelligence-loop.png";
+import casaBusinessModel from "../assets/casa/casa-business-model.png";
+import casaGoToMarket from "../assets/casa/casa-go-to-market.png";
+import casaIntentToDinnerGap from "../assets/casa/casa-intent-to-dinner-gap.png";
+import casaPitchCover from "../assets/casa/casa-pitch-cover.png";
+import casaProductStack from "../assets/casa/casa-product-stack.png";
+import casaRestaurantCapacity from "../assets/casa/casa-restaurant-capacity.png";
+import casaSolutionPillars from "../assets/casa/casa-solution-pillars.png";
+import casaTwoSidedProblem from "../assets/casa/casa-two-sided-problem.png";
+import casaUnderstandMatchDeliver from "../assets/casa/casa-understand-match-deliver.png";
 
 export interface ProjectStat {
     label: string;
@@ -49,6 +60,7 @@ export interface ProjectHighlight {
 export interface ProjectSection {
     title: string;
     body: string[];
+    media?: ProjectMedia;
 }
 
 export interface ProjectMedia {
@@ -123,6 +135,9 @@ export interface Project {
     highlights: ProjectHighlight[];
     sections: ProjectSection[];
     media: ProjectMedia[];
+    mediaEyebrow?: string;
+    mediaHeading?: string;
+    mediaLayout?: "grid" | "editorial";
     video?: ProjectVideo;
     interactiveModules: ProjectInteractiveModule[];
     interactiveEyebrow?: string;
@@ -139,144 +154,162 @@ export const projects: Project[] = [
     {
         id: "casa",
         title: "Casa",
-        subtitle: "A cooking-confidence platform that turns cravings, photos, and pantry context into guided home-cooking action.",
-        description: "Casa is a consumer AI cooking product distinct from SWAAD: instead of focusing on community-specific chronic-disease prevention, it focuses on helping everyday home cooks move from “I want something like this” to a confident, doable cooking path.",
-        image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Consumer AI", "Cooking Confidence", "Product Design"],
-        role: "Founder, product lead, and experience designer",
-        client: "Self-initiated consumer cooking venture",
-        duration: "Most recent venture direction · ongoing",
-        tools: ["Craving-to-recipe journey design", "Vision-led food input", "Recommendation logic", "Guided cooking UX", "Skill progression design", "Rapid prototyping", "React"],
-        outcome: "Separated Casa from SWAAD as its own consumer product thesis: a guided cooking platform that converts vague cravings and food photos into clear meal options, paired sides, and step-by-step confidence loops.",
-        accent: "#f97316",
+        subtitle: "A culinary-medicine platform that turns personalised guidance into health-optimised meal kits from restaurants people already know.",
+        description: "Casa is a free consumer app, an AI intelligence layer, and a restaurant operating system designed as one connected service. It learns household preferences, matches people to practical meals, and gives restaurant partners the planning infrastructure to produce recurring kits.",
+        image: casaPitchCover,
+        heroFit: "contain",
+        heroAspect: "16/9",
+        tags: ["Culinary Medicine", "AI Product Strategy", "Marketplace Design"],
+        role: "Founder, product lead, and venture architect",
+        client: "Pre-seed venture concept",
+        duration: "2026 · ongoing",
+        tools: ["Service blueprinting", "Consumer journey mapping", "Preference graph design", "AI and ML product architecture", "Recommendation systems", "Restaurant workflow design", "Marketplace business modelling", "Clinician referral pathway"],
+        outcome: "Defined the end-to-end product system across the consumer experience, intelligence layer, restaurant operations, product standardisation, and marketplace model.",
+        accent: "#6a101b",
         stats: [
-            { label: "Product focus", value: "Cooking confidence for everyday home cooks" },
-            { label: "Input model", value: "Craving text, food photos, pantry context" },
-            { label: "Core output", value: "Doable meals, intelligent sides, guided cooking" },
-            { label: "Portfolio status", value: "Newest standalone venture case study" },
+            { label: "Consumer layer", value: "Planning, pantry support, guided cooking" },
+            { label: "Intelligence layer", value: "Preferences, ranking, trends, forecasting" },
+            { label: "Supply layer", value: "Restaurant-made kits using existing capacity" },
+            { label: "Business model", value: "Meal kits, B2B services, restaurant SaaS" },
         ],
         highlights: [
-            { title: "Not SWAAD", text: "Casa is not the community nutrition platform. It is a consumer cooking-confidence product built around cravings, visual food recognition, and practical guided execution." },
-            { title: "From inspiration to action", text: "The product starts where many cooks start: an image, a craving, or a vague idea. Casa translates that fuzzy intent into meals a user can actually make." },
-            { title: "Confidence as the metric", text: "The interaction design focuses on reducing uncertainty: what to cook, what pairs with it, what step comes next, and how to build repeatable cooking skill." },
+            { title: "Design around the failure point", text: "The product begins where healthy intention usually collapses: a tired household facing dinner, shopping, preparation, and nutritional uncertainty at once." },
+            { title: "One service, three operating surfaces", text: "The consumer app, restaurant OS, and product studio are coordinated by a shared intelligence layer rather than designed as disconnected products." },
+            { title: "Learning compounds across both sides", text: "Orders, skips, preference signals, and kit outcomes improve household matching while giving restaurant partners clearer recurring-demand signals." },
         ],
         sections: [
             {
-                title: "Why Casa needed its own case study",
+                title: "The gap between intention and dinner",
                 body: [
-                    "Casa and SWAAD sit near food, but they solve different problems. SWAAD is a culturally grounded health and nutrition platform for chronic-disease prevention. Casa is a consumer cooking-confidence product for people who want to cook more confidently at home.",
-                    "Keeping them separate makes the portfolio clearer: SWAAD shows public-health translation and culturally specific nutrition design; Casa shows consumer product thinking, multimodal AI interaction, and skill-building UX.",
+                    "The design problem is not a shortage of recipes. On a weeknight, people still have to find something trustworthy, judge whether it suits their goals and culture, work out what they already own, shop, prepare, and cook while tired.",
+                    "Casa reframes that chain as a single service-design problem. The aim is to remove avoidable decisions while keeping the user informed and in control.",
                 ],
+                media: { src: casaIntentToDinnerGap, alt: "Casa journey map showing five points where eating well at home breaks down", caption: "The source journey identifies five compounding failure points, from recipe discovery to the final effort of cooking.", fit: "contain", aspect: "16/9" },
             },
             {
-                title: "The product thesis",
+                title: "Make culinary medicine usable",
                 body: [
-                    "Most recipe products assume the user already knows what to search for. Casa begins earlier in the decision: a craving, a dish photo, a leftover ingredient, or the feeling of wanting food that tastes like something familiar.",
-                    "The opportunity is to convert inspiration into action. The system should infer the meal direction, suggest intelligent pairings, and then guide the user through cooking without making them feel inexperienced.",
+                    "The consumer proposition combines practitioner-informed recipes, guided cooking, smart-pantry support, and restaurant-prepared kits. Users can engage at the level that fits the night: learn and cook, reduce shopping friction, or order a matched kit.",
+                    "The information architecture is deliberately progressive. Health guidance and meal planning remain accessible in the free app; paid fulfillment enters when convenience is the more important job.",
                 ],
+                media: { src: casaSolutionPillars, alt: "Casa solution architecture showing health-optimised recipes, guided cooking, smart pantry, and meal kits", caption: "Three service pillars connect trusted meal guidance to practical household execution.", fit: "contain", aspect: "16/9" },
             },
             {
-                title: "The experience model",
+                title: "Understand, match, deliver",
                 body: [
-                    "Casa is structured around a simple loop: capture the craving, generate a practical direction, pair the meal with sides or supporting dishes, then guide the cook through the steps.",
-                    "The product avoids treating cooking as a static recipe lookup task. It behaves more like a coach: it narrows options, explains substitutions, sequences the work, and reinforces learning over time.",
+                    "The core journey moves through three jobs. First, Casa learns diet, taste, routine, and meal-planning context. Second, an agent turns that context into ranked meals and relevant restaurant-kit options. Third, the user cooks with guidance or receives the kit on demand or through a subscription.",
+                    "This sequence keeps the experience understandable: intelligence is expressed through a better recommendation and a clearer next step, not through technical language.",
                 ],
+                media: { src: casaUnderstandMatchDeliver, alt: "Casa experience flow from understanding a user to matching meals and delivering meal kits", caption: "The consumer journey translates a complex platform into three legible actions: understand, match, and deliver.", fit: "contain", aspect: "16/9" },
             },
             {
-                title: "Design and execution ownership",
+                title: "A coordinated product stack",
                 body: [
-                    "I defined Casa as a standalone product direction, separated it from the SWAAD health platform, and shaped the core interaction model around craving input, image-based inspiration, pairing logic, guided cooking, and skill progression.",
-                    "The product work emphasizes practical execution ability: information architecture, recommendation framing, side-pairing logic, user confidence, and a repeatable cooking journey that can scale beyond one-off recipe cards.",
+                    "The consumer app is only the visible edge. Behind it, the restaurant OS supports build sheets, batch plans, labels, and analytics, while the product studio standardises recipes, nutrition data, and packaging.",
+                    "I mapped these as interdependent surfaces so the customer promise remains executable in the kitchen. A recommendation is only valuable when the supply-side workflow can produce it consistently.",
                 ],
+                media: { src: casaProductStack, alt: "Casa product stack showing the consumer app, AI intelligence layer, restaurant OS, and product studio", caption: "The stack links the experience layer to the operational infrastructure needed to fulfill it.", fit: "contain", aspect: "16/9" },
             },
             {
-                title: "What comes next",
+                title: "The intelligence and learning loop",
                 body: [
-                    "The next product questions are validation-focused: which input mode creates the fastest useful result, how users interpret side-pairing recommendations, and where guided cooking should be opinionated versus flexible.",
-                    "Those questions make Casa a strong portfolio piece because it shows the earliest strategic stage of a venture: naming the distinct product, clarifying the user job, and turning an AI capability into an understandable behavior loop.",
+                    "LLMs translate qualitative tastes into structured meal preferences. Ranking models prioritise kits by likely fit and completion. Agents surface demand and trend signals that restaurant partners can use in product decisions.",
+                    "The preference graph connects planning, personalisation, orders, subscriptions, recurring kits, and recipe-redesign sprints. Every interaction creates a signal that can improve the next household recommendation or supply decision.",
                 ],
+                media: { src: casaAiIntelligenceLoop, alt: "Casa AI intelligence loop connecting meal planning, personalisation, trend signals, orders, and restaurant recipe redesign", caption: "The supplied intelligence-layer architecture shows how household and restaurant signals form a reinforcing learning loop.", fit: "contain", aspect: "16/9" },
+            },
+            {
+                title: "Unlock supply without building kitchens",
+                body: [
+                    "Casa’s supply thesis starts with an existing asset: restaurant staff, equipment, and ingredients are concentrated around lunch and dinner peaks, leaving periods of underused capacity.",
+                    "The operating model converts selected downtime into planned kit production. That creates a potential recurring revenue line for restaurants while allowing Casa to scale supply through local partners rather than a central kitchen.",
+                ],
+                media: { src: casaRestaurantCapacity, alt: "Casa capacity model showing meal-kit preparation between restaurant lunch and dinner peaks", caption: "A time-based service blueprint positions kit preparation in the capacity valleys between service peaks.", fit: "contain", aspect: "16/9" },
             },
         ],
         caseStudy: {
-            question: "How might a cooking app turn a craving or food photo into a confident meal decision instead of another overwhelming recipe search?",
-            framing: "Casa treats cooking confidence as the product problem. The design moves from vague intent to guided execution: understand the craving, propose a realistic meal, pair it with useful sides, and help the user complete the cooking process.",
-            processEyebrow: "Consumer product method",
-            processHeading: "From craving to confident cooking",
-            processSummary: "The case study shows how Casa converts an ambiguous food desire into a structured product journey: capture, interpret, pair, guide, and reinforce.",
+            question: "How might we make culinary medicine workable on a busy weeknight while using restaurant capacity that already exists?",
+            framing: "Casa treats household decision fatigue and restaurant underutilisation as one system. The design connects personalised guidance, a clear consumer journey, an intelligence layer, and operational tools that let local kitchens fulfill the promise.",
+            processEyebrow: "Venture design method",
+            processHeading: "From recurring failure point to operating system",
+            processSummary: "The process moved from the household problem to a two-sided service blueprint, then tested whether product architecture, fulfillment, and economics could reinforce one another.",
             steps: [
                 {
-                    phase: "Separate",
-                    title: "Split Casa from the SWAAD health thesis",
-                    rationale: "One food product cannot credibly represent both culturally specific chronic-disease prevention and broad consumer cooking confidence without blurring the user problem.",
-                    execution: "Created Casa as its own portfolio project, with its own route, role linkage, consumer framing, interaction model, and newest-project placement.",
+                    phase: "Frame",
+                    title: "Locate the real dinner breakdown",
+                    rationale: "Recipe discovery, trust, shopping, optimisation, and cooking are usually treated as separate tasks, even though users experience them as one exhausting chain.",
+                    execution: "Mapped the end-to-end household journey and defined the design opportunity at the point where good intention repeatedly collapses into an expensive, opaque takeaway decision.",
                 },
                 {
-                    phase: "Capture",
-                    title: "Start from fuzzy intent",
-                    rationale: "Home cooks often begin with a craving, a photo, a pantry item, or a taste memory rather than a precise recipe title.",
-                    execution: "Framed Casa around craving text and image-led input so the product can meet the user before they know exactly what to search.",
+                    phase: "Simplify",
+                    title: "Turn a complex discipline into three user jobs",
+                    rationale: "Culinary medicine is inaccessible when people must interpret nutrition evidence, personalise it, and execute it alone.",
+                    execution: "Organised the experience around understand, match, and deliver, with progressive support from free guidance through to a restaurant-prepared kit.",
                 },
                 {
-                    phase: "Interpret",
-                    title: "Turn inspiration into practical options",
-                    rationale: "AI generation is only useful if the output feels cookable, not just imaginative.",
-                    execution: "Defined the recommendation task around doable meals, available context, side pairings, and clear next actions rather than open-ended recipe dumping.",
+                    phase: "Connect",
+                    title: "Design the intelligence as a feedback system",
+                    rationale: "Personalisation cannot depend on a static onboarding questionnaire; it must improve from actual choices, skips, orders, and completion signals.",
+                    execution: "Mapped LLM preference translation, ML ranking, agent-led trend discovery, and the preference graph that connects household behaviour to restaurant decisions.",
                 },
                 {
-                    phase: "Guide",
-                    title: "Make cooking feel sequenced and safe",
-                    rationale: "Beginner confidence improves when the interface reduces timing uncertainty, hidden assumptions, and fear of making mistakes.",
-                    execution: "Positioned guided cooking, substitutions, and skill progression as core product surfaces rather than secondary educational content.",
+                    phase: "Operationalise",
+                    title: "Make the recommendation fulfillable",
+                    rationale: "A consumer promise fails if restaurant teams cannot standardise, forecast, batch, label, and analyse the product behind it.",
+                    execution: "Designed the four-layer stack across the consumer app, intelligence layer, restaurant OS, and product studio, then mapped kit production into restaurant capacity valleys.",
                 },
                 {
-                    phase: "Reinforce",
-                    title: "Build repeatable confidence",
-                    rationale: "A successful cooking product should help users learn patterns they can reuse, not just complete one recipe.",
-                    execution: "Structured the product narrative around skill-tree progression, pairing memory, and repeated confidence loops across meals.",
+                    phase: "Model",
+                    title: "Align access with marketplace economics",
+                    rationale: "Charging for basic guidance would narrow access and weaken the preference data needed to improve matching.",
+                    execution: "Kept the consumer app free and structured potential revenue around recurring kits, supplier and brand services, and restaurant SaaS, with clinician referral as the initial trust channel.",
                 },
             ],
         },
         media: [
-            { src: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1600&auto=format&fit=crop", alt: "Home cook preparing ingredients at a kitchen counter", caption: "Casa starts from the practical reality of home cooking: limited confidence, limited time, and a need for clear next steps." },
-            { src: "https://images.unsplash.com/photo-1495521821757-a1efb6729352?q=80&w=1600&auto=format&fit=crop", alt: "Open cookbook and ingredients arranged on a kitchen table", caption: "The product reframes recipe discovery as guided decision-making rather than an endless search results page." },
-            { src: "https://images.unsplash.com/photo-1514986888952-8cd320577b68?q=80&w=1600&auto=format&fit=crop", alt: "Finished home-cooked meal served on a table with sides", caption: "Meal pairing is treated as a confidence tool: the user gets a complete direction, not just a single disconnected dish." },
-            { src: "https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1600&auto=format&fit=crop", alt: "Cook working at a stovetop with prepared ingredients nearby", caption: "The guided-cook flow turns inspiration into sequenced action, substitutions, and repeatable cooking skill." },
+            { src: casaTwoSidedProblem, alt: "Casa two-sided problem frame comparing household dinner friction with restaurant operating friction", caption: "The venture begins with two connected unmet needs: households need lower-friction dinner decisions, while restaurants need predictable recurring demand.", fit: "contain", aspect: "16/9" },
+            { src: casaAiInputs, alt: "Casa AI model connecting household signals, restaurant capacity, trend intelligence, and creator content", caption: "The intelligence layer combines household, supply, trend, and content signals instead of treating personalisation as a consumer-only problem.", fit: "contain", aspect: "16/9" },
+            { src: casaBusinessModel, alt: "Casa business model showing meal-kit subscriptions, brand consulting, and restaurant software", caption: "The commercial model keeps the consumer guidance layer free while monetising fulfillment and supply-side services.", fit: "contain", aspect: "16/9" },
+            { src: casaGoToMarket, alt: "Casa go-to-market loop connecting clinician referral, app onboarding, and patient use", caption: "The initial go-to-market hypothesis uses clinician trust to reach people who need the service before expanding to a broader consumer market.", fit: "contain", aspect: "16/9" },
         ],
+        mediaEyebrow: "Venture evidence",
+        mediaHeading: "Product, intelligence, and market logic in one system",
+        mediaLayout: "editorial",
         interactiveEyebrow: "Experience architecture",
-        interactiveHeading: "The Casa loop: craving, interpretation, pairing, guidance",
-        interactiveActiveLabel: "Active product moment",
-        interactivePrimaryLabel: "User need",
-        interactiveSecondaryLabel: "Product response",
+        interactiveHeading: "How the platform compounds value",
+        interactiveActiveLabel: "System layer",
+        interactivePrimaryLabel: "What it coordinates",
+        interactiveSecondaryLabel: "Why it matters",
         interactiveModules: [
             {
-                title: "Craving input",
-                summary: "Users begin with a craving, a food photo, or a pantry clue instead of a precise recipe query.",
-                interaction: "Type what they want, upload or reference a dish, or start from available ingredients.",
-                effect: "The product meets users at the moment of inspiration before they have the vocabulary for a recipe search.",
+                title: "Consumer app",
+                summary: "A free planning and guidance layer learns the household before asking it to buy.",
+                interaction: "Health coaching, meal planning, smart-pantry support, swaps, bridge meals, and guided cooking.",
+                effect: "Reduces the number of decisions between intention and dinner while building a richer preference model.",
             },
             {
-                title: "Meal direction",
-                summary: "Casa interprets fuzzy intent into a small set of cookable options.",
-                interaction: "Review meal candidates that are constrained by confidence, ingredients, and cooking effort.",
-                effect: "Reduces decision overload and converts AI output into a clear product choice.",
+                title: "Intelligence layer",
+                summary: "A shared decision layer translates behaviour into better matching and clearer demand signals.",
+                interaction: "Preference translation, meal and kit ranking, recommendations, forecasting, and trend discovery.",
+                effect: "Each order, skip, and kit outcome improves the next consumer recommendation and supply decision.",
             },
             {
-                title: "Side pairing",
-                summary: "The product suggests supporting sides that make the meal feel complete.",
-                interaction: "Accept, swap, or simplify pairings without restarting the whole recommendation.",
-                effect: "Turns meal planning from isolated recipe lookup into a full-plate confidence experience.",
+                title: "Restaurant OS",
+                summary: "The operating layer turns personalised demand into work that a restaurant team can execute.",
+                interaction: "Build sheets, batch planning, labels, production analytics, and recurring-kit workflows.",
+                effect: "Makes the consumer promise operationally credible and converts idle capacity into planned production.",
             },
             {
-                title: "Guided cook",
-                summary: "Casa sequences the cooking process so users know what to do now, next, and later.",
-                interaction: "Follow steps, substitutions, timing cues, and confidence prompts.",
-                effect: "Reduces anxiety at the point of execution, where most cooking products stop helping.",
+                title: "Product studio",
+                summary: "A standardisation layer converts restaurant menu items into repeatable Casa products.",
+                interaction: "Recipe redesign, nutrition data, kit format, packaging, and kitchen quality assurance.",
+                effect: "Preserves the value of familiar local restaurants while creating consistent meal-kit products.",
             },
             {
-                title: "Skill memory",
-                summary: "Completed meals become patterns the user can repeat and adapt.",
-                interaction: "Save wins, reuse pairings, and gradually unlock more advanced techniques.",
-                effect: "Repositions Casa as a cooking-confidence system, not a one-off recipe generator.",
+                title: "Marketplace loop",
+                summary: "Consumer demand, restaurant execution, and product learning reinforce one another.",
+                interaction: "Recurring kits and subscriptions return outcome data to the preference graph and product studio.",
+                effect: "Moves Casa beyond a recommendation interface toward a defensible operating and learning system.",
             },
         ],
     },
@@ -297,7 +330,7 @@ export const projects: Project[] = [
             url: "https://bud-hub-29-10.vercel.app/",
             eyebrow: "Live experience",
             heading: "Put SWAAD to the test",
-            description: "Explore the working prototype, try the experience for yourself, and see how the concept behaves beyond the case study.",
+            description: "Explore the working prototype and test how the experience behaves beyond static screens.",
             ctaLabel: "Test SWAAD live",
             collapsedLabel: "Try SWAAD live",
             accessibleLabel: "Live SWAAD experience",
@@ -331,7 +364,7 @@ export const projects: Project[] = [
             {
                 title: "Why it matters",
                 body: [
-                    "This project demonstrates how public health evidence, interface design, and community insight can be translated into a product that feels both serious and joyful.",
+                    "The work translates public-health evidence, interface design, and community insight into a product that feels both serious and joyful.",
                     "It is one of the clearest expressions of Stefan's broader thesis: digital health tools work better when they respect culture, motivation, and everyday behavior rather than assuming compliance.",
                 ],
             },
@@ -435,7 +468,7 @@ export const projects: Project[] = [
                 title: "Current development state",
                 body: [
                     "The application is functional, but the recipes and supporting data remain placeholders for testing interaction, content hierarchy, and pairing behaviour. The NOURISH team will replace them with reviewed recipes and program content before release.",
-                    "A technical specialist is handling the behind-the-scenes embedding work for the Stanford Medicine NOURISH website. This case study claims the concept, product design, and technical implementation I completed; it does not claim clinical validation, health outcomes, or launch adoption.",
+                    "A technical specialist is handling the behind-the-scenes embedding work for the Stanford Medicine NOURISH website. My documented contribution covers concept creation, product design, and technical implementation; clinical validation, health outcomes, and launch adoption remain outside the current evidence.",
                 ],
             },
         ],
@@ -600,7 +633,7 @@ export const projects: Project[] = [
         id: "neuragility-xr-prehab",
         title: "NeurAgility XR Prehab",
         subtitle: "XR Hack the Bay Social Good winner: a wearable-signal and immersive-training prototype for precision prehabilitation.",
-        description: "NeurAgility reframed prehab as an interactive feedback loop: wearable signals make body activation visible, while an XR environment turns repetitive movement into a guided, motivating task. The case study presents the hackathon prototype as product thinking, not a clinically validated intervention.",
+        description: "NeurAgility reframed prehab as an interactive feedback loop: wearable signals make body activation visible, while an XR environment turns repetitive movement into a guided, motivating task. It remains a hackathon prototype and has not been clinically validated.",
         image: neuragilityHero,
         heroFit: "contain",
         heroAspect: "16/9",
@@ -620,7 +653,7 @@ export const projects: Project[] = [
         highlights: [
             { title: "Signal visibility", text: "The prototype makes muscle activation and movement feedback part of the user experience instead of hiding it behind technical instrumentation." },
             { title: "Motivation through embodied play", text: "The XR environment changes prehab from a repetitive instruction into a spatial task with visual goals, feedback, and progression cues." },
-            { title: "Responsible prototype framing", text: "The case study presents a hackathon-winning product concept and demo, without claiming clinical validation, adherence outcomes, or deployment." },
+            { title: "Responsible prototype framing", text: "The evidence covers a hackathon-winning product concept and working demo, without claiming clinical validation, adherence outcomes, or deployment." },
         ],
         sections: [
             {
@@ -650,7 +683,7 @@ export const projects: Project[] = [
             framing: "The answer was to split the problem into two interfaces: a technical evidence layer that shows body activation, and an immersive task layer that turns movement into understandable action. That separation made the prototype credible as health technology and legible as a user experience.",
             processEyebrow: "Hackathon design method",
             processHeading: "From raw movement data to embodied feedback",
-            processSummary: "The case-study arc follows the same product reasoning used in the demo: identify the prehab engagement gap, prove that signal can be captured, convert signal into user feedback, and package the result as a social-good product story.",
+            processSummary: "The work moved from the prehab engagement gap to signal capture, interpretable user feedback, and a coherent social-good product proposition.",
             steps: [
                 {
                     phase: "Frame",
@@ -662,7 +695,7 @@ export const projects: Project[] = [
                     phase: "Instrument",
                     title: "Make activation visible",
                     rationale: "A health-tech prototype needs evidence that movement is being sensed, not just animated. Signal visibility builds trust in the concept.",
-                    execution: "Used demo footage showing wearable setup and signal changes between baseline and activation states as the evidence layer for the case study.",
+                    execution: "Used demo footage showing wearable setup and signal changes between baseline and activation states as the primary evidence.",
                 },
                 {
                     phase: "Translate",
@@ -674,7 +707,7 @@ export const projects: Project[] = [
                     phase: "Motivate",
                     title: "Use embodied play without losing the clinical intent",
                     rationale: "The XR layer needed to feel engaging while still communicating prehab, control, and repeatable practice rather than pure entertainment.",
-                    execution: "Selected demo visuals that show body movement alongside the XR environment, so the case study links play mechanics back to physical practice.",
+                    execution: "Selected demo visuals that show body movement alongside the XR environment, linking play mechanics back to physical practice.",
                 },
                 {
                     phase: "Pitch",
@@ -689,7 +722,7 @@ export const projects: Project[] = [
             { src: neuragilityWearable, alt: "Person wearing an XR headset and biosignal setup during the NeurAgility demo", caption: "The physical setup links the immersive experience to body-signal sensing rather than treating the XR world as a standalone game.", fit: "cover", aspect: "16/9" },
             { src: neuragilitySignalBaseline, alt: "Baseline biosignal dashboard from the NeurAgility demo", caption: "A signal view establishes the evidence layer: movement can be detected and represented before it becomes user-facing feedback.", fit: "contain", aspect: "16/9" },
             { src: neuragilitySignalActivation, alt: "Biosignal dashboard showing activation during the NeurAgility demo", caption: "The demo shows the contrast between low activity and activation, grounding the product story in observable feedback.", fit: "contain", aspect: "16/9" },
-            { src: neuragilityShoulderContext, alt: "Shoulder anatomy and digital interface visual from the NeurAgility demo", caption: "The case study anchors the product in shoulder-focused movement and prehab context rather than generic XR training.", fit: "cover", aspect: "16/9" },
+            { src: neuragilityShoulderContext, alt: "Shoulder anatomy and digital interface visual from the NeurAgility demo", caption: "The product is anchored in shoulder-focused movement and prehab rather than generic XR training.", fit: "cover", aspect: "16/9" },
             { src: neuragilityXrTraining, alt: "First-person XR environment with movement targets in the NeurAgility prototype", caption: "The immersive environment converts exercise into a spatial task with visual goals and progression cues.", fit: "cover", aspect: "16/9" },
             { src: neuragilityMovementDemo, alt: "Split-screen NeurAgility demo showing XR environment beside the person performing movement", caption: "The strongest proof-of-concept moment: the user moves in the room while the XR world represents the training task.", fit: "cover", aspect: "16/9" },
         ],
@@ -794,7 +827,7 @@ export const projects: Project[] = [
                 ],
             },
             {
-                title: "What the project delivered",
+                title: "Deliverables",
                 body: [
                     "The implementation work produced three connected outputs: an HFTE awareness paper to socialize the model and address misconceptions, a scenario-based revenue model to test financial viability, and a strategic action plan spanning workflow optimization, subsidized access, payer engagement, data stewardship, and future diagnostic collaboration.",
                     "The same systems analysis also contributed to manuscript development on HFTE's disruptive potential across ophthalmology and primary care.",
@@ -971,7 +1004,7 @@ export const projects: Project[] = [
                 title: "What would need to happen next",
                 body: [
                     "The proposed path begins with an early Stanford CHARIOT pilot focused on feasibility, usability, safety, caregiver comprehension, child engagement, and workflow fit. It would require a finalized MVP, clinical governance, data and IRB planning, and clear escalation protocols before any efficacy claim.",
-                    "Only after evidence from an initial pilot should the team test hospital purchasing, quality-improvement funding, reimbursement pathways, insurer partnerships, or expansion into other procedures. The case study therefore ends with a validation roadmap rather than a claim of launch or clinical impact.",
+                    "Only after evidence from an initial pilot should the team test hospital purchasing, quality-improvement funding, reimbursement pathways, insurer partnerships, or expansion into other procedures. The work therefore ends with a validation roadmap rather than a claim of launch or clinical impact.",
                 ],
             },
         ],
@@ -1128,7 +1161,7 @@ export const projects: Project[] = [
                 title: "My contribution and the scale pathway",
                 body: [
                     "As Product Management and Business Development Intern, I worked across financial modelling, partnership documentation, pilot planning, implementation strategy, clinical advisory coordination, audits, and supply-chain planning.",
-                    "The proposed scale pathway used the feasibility study to support clinical publication, engagement with nephrology leaders and policymakers, insurance advocacy, community outreach, and future replication. This case study documents the strategy and planned implementation work; it does not claim that the pilot or projected clinical and commercial outcomes have already been achieved.",
+                    "The proposed scale pathway used the feasibility study to support clinical publication, engagement with nephrology leaders and policymakers, insurance advocacy, community outreach, and future replication. The evidence documents strategy and planned implementation; the pilot and projected clinical or commercial outcomes have not yet been achieved.",
                 ],
             },
         ],

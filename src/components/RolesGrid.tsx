@@ -31,9 +31,12 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
     <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 max-w-3xl">
-          <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-3">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-8 bg-emerald-500" />
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
             {eyebrow}
-          </p>
+            </p>
+          </div>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
             {title}
           </h2>

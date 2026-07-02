@@ -30,11 +30,8 @@ export function PressSection(): JSX.Element {
               Press
             </div>
             <h2 className="max-w-3xl text-4xl font-bold leading-[0.95] tracking-tighter text-black md:text-6xl">
-              Press
+              In the press
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-600 md:text-lg">
-              Selected coverage and public features.
-            </p>
           </motion.div>
 
           <div className="grid gap-4">
