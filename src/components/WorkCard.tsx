@@ -33,7 +33,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         <button
             type="button"
             onClick={handleClick}
-            className={`group relative grid w-full cursor-pointer overflow-hidden rounded-[32px] border border-black/5 bg-[#f5f5f5] p-5 text-left transition-all duration-700 ease-out hover:scale-[1.01] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] md:min-h-[min(78svh,720px)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:p-10 ${className}`}
+            className={`group relative grid w-full cursor-pointer overflow-hidden rounded-[32px] border border-black/5 bg-[#f5f5f5] p-5 text-center transition-all duration-700 ease-out hover:scale-[1.01] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] md:min-h-[min(78svh,720px)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:p-10 ${className}`}
         >
             {/* Arrow Icon */}
             <div className="absolute top-4 right-4 md:top-6 md:right-6 w-9 h-9 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5">
@@ -54,17 +54,17 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             </div>
 
             {/* Content */}
-            <div className="relative z-10 mb-7 max-w-xl pr-10 md:mb-0 md:pr-0">
-                <h3 className="text-3xl font-bold leading-[0.98] tracking-tighter text-black md:text-5xl">
+            <div className="relative z-10 mx-auto mb-7 max-w-md px-5 md:mb-0 md:px-0">
+                <h3 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
                     {title}
                 </h3>
                 {subtitle && (
-                    <p className="mt-4 text-base font-medium leading-relaxed text-gray-700 md:text-lg">
+                    <p className="mt-3 text-xs font-medium leading-relaxed text-gray-700">
                         {subtitle}
                     </p>
                 )}
-                <div className="my-6 h-px w-12 bg-black/15" aria-hidden="true" />
-                <p className="text-base leading-relaxed text-gray-600 md:text-lg">
+                <div className="mx-auto my-4 h-px w-10 bg-black/15" aria-hidden="true" />
+                <p className="text-xs leading-relaxed text-gray-600">
                     {description}
                 </p>
             </div>

@@ -7,15 +7,12 @@ import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 const capabilityLanes = [
     {
         title: "Products",
-        description: "Interfaces, tools, and concepts designed to improve decision quality in health contexts.",
     },
     {
         title: "Systems",
-        description: "Work that translates complex research and operational realities into usable service and platform thinking.",
     },
     {
         title: "Advisory",
-        description: "Evidence framing and strategic work for institutional, public-sector, and implementation environments.",
     },
 ];
 
@@ -37,36 +34,23 @@ export const LatestWorkSection = () => {
                             Flagship projects across health, AI, and systems design
                         </motion.h2>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.62, delay: 0.14 }}
-                            className="mx-auto max-w-3xl text-base md:text-xl leading-relaxed text-gray-600"
-                        >
-                            Products, services, and operating models designed to
-                            move evidence into clinical, institutional, and
-                            community practice.
-                        </motion.p>
-
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3"
+                            className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-3"
                         >
                             {capabilityLanes.map((lane, index) => (
                                 <motion.div
                                     key={lane.title}
-                                    className="rounded-[24px] border border-black/8 bg-white px-5 py-5 text-left shadow-[0_20px_45px_-36px_rgba(0,0,0,0.45)]"
+                                    className="rounded-full border border-black/10 bg-white px-5 py-2.5 text-center shadow-[0_18px_38px_-32px_rgba(0,0,0,0.4)]"
                                     initial={{ opacity: 0, y: prefersReducedMotion ? 10 : 22 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-80px" }}
                                     transition={{ duration: 0.48, delay: 0.3 + index * 0.05 }}
                                 >
-                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-400">{lane.title}</p>
-                                    <p className="mt-3 text-base font-medium leading-relaxed text-gray-700">{lane.description}</p>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">{lane.title}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
