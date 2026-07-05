@@ -161,27 +161,25 @@ export const researchRoles: Role[] = [
 
 export const industryRoles: Role[] = [
   {
-    id: "nourish-founder",
-    title: "Lead Research Coordinator",
-    organization: "NOURISH · Stanford Medicine",
+    id: "coethia",
+    title: "Partnerships & Strategy Officer",
+    organization: "Coethia Inc.",
     period: "Ongoing",
-    location: "Stanford / Distributed",
     summary:
-      "Coordinating a precision-nutrition program built around a teaching-kitchen intervention, combining behavior-change design with adaptive recommendation for culturally relevant preventive care.",
+      "Leading partnerships and strategy across product, technology, and procurement — from partner-facing concepts and customer discovery to the medical consensus project and the pitch-and-procurement pipeline.",
     deliverables: [
-      "Meal-explorer prototype",
-      "AI chef demo + storyboarding",
-      "Clinical research pipeline alignment",
+      "Business partnerships — mockups and interactive concepts for the Coethia Digest reports, and customer discovery",
+      "Technology — working alongside the technical team on the medical consensus project (ongoing)",
+      "Pitch & procurement — pitch decks and content for the procurement pipeline",
     ],
-    tags: ["Product", "Nutrition", "Consumer Health"],
+    tags: ["Partnerships", "Strategy", "Product Design"],
     accent: "bg-emerald-500",
-    link: "/project/nourish-meal-explorer",
     featured: true,
     network: {
       nodes: [
-        { id: "prc", label: "Stanford PRC", sublabel: "Clinical research alignment", kind: "host", relation: "Aligning the program with the Stanford PRC clinical research pipeline." },
-        { id: "team", label: "NOURISH team", sublabel: "Cross-disciplinary, Stanford-affiliated", kind: "team", relation: "Coordinating product, design, and AI across the Stanford-affiliated NOURISH team." },
-        { id: "users", label: "Community users", sublabel: "Culturally-grounded behaviour change", kind: "community", relation: "Designing for community-grounded, culturally-relevant behaviour change." },
+        { id: "coethia", label: "Coethia Inc.", sublabel: "Partnerships & strategy", kind: "host", relation: "Partnerships & Strategy Officer at Coethia Inc." },
+        { id: "tech", label: "Technical team", sublabel: "Medical consensus project", kind: "team", relation: "Working alongside the technical team on the medical consensus project (ongoing)." },
+        { id: "partners", label: "Partners & customers", sublabel: "Digest concepts + procurement", kind: "community", relation: "Building partner-facing Digest concepts, running customer discovery, and developing the procurement pipeline." },
       ],
     },
   },

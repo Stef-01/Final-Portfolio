@@ -39,7 +39,7 @@ export function Industry() {
               Founding, advising, and building health-tech ventures
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
-              NOURISH and Casa; GenieRX (2nd in the US at Harvard HSIL); the
+              Coethia and Casa; GenieRX (2nd in the US at Harvard HSIL); the
               Adcem–Fidson dialysis joint venture in Nigeria; Microsoft /
               Stanford Medicine HFTE; and the Stanford XR Hackathon.
             </p>
@@ -60,7 +60,7 @@ export function Industry() {
       <section className="w-full bg-white px-4 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
-            Venture portfolio
+            Industry experience
           </h2>
 
           <motion.div

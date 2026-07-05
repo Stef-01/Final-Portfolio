@@ -36,7 +36,7 @@ interface Venture {
 }
 
 const RAW: Array<Omit<Venture, "x" | "y">> = [
-  { id: "nourish", emoji: "🥗", name: "NOURISH", role: "Lead Research Coordinator · precision nutrition", cat: "Building" },
+  { id: "coethia", emoji: "🤝", name: "Coethia", role: "Partnerships & Strategy Officer · concepts, tech, procurement", cat: "Building" },
   { id: "casa", emoji: "🍳", name: "Casa", role: "Founder · cooking-confidence app", cat: "Building" },
   { id: "genierx", emoji: "💊", name: "GenieRX", role: "Team Leader → Director · 2nd US, 7th of 3,500", cat: "Building" },
   { id: "adcem", emoji: "🩺", name: "Adcem Fidson", role: "Product / BD Intern · dialysis JV, Nigeria", cat: "Building" },
