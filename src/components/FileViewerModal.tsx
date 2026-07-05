@@ -38,10 +38,10 @@ const FileViewerContent = ({
     return (
       <div className="flex flex-col items-center justify-center h-full text-gray-400">
         <FileText className="w-20 h-20 mb-4" />
-        <p className="text-[20px] font-['Clash_Grotesk',_sans-serif] font-medium">
+        <p className="text-xl font-['Clash_Grotesk',_sans-serif] font-medium">
           No file available
         </p>
-        <p className="text-[16px] text-gray-500 mt-2">
+        <p className="text-base text-gray-500 mt-2">
           Upload your presentation file to view it here
         </p>
       </div>
@@ -93,7 +93,7 @@ const FileViewerContent = ({
     default:
       return (
         <div className="flex items-center justify-center h-full text-gray-400">
-          <p className="text-[18px]">Unsupported file type</p>
+          <p className="text-lg">Unsupported file type</p>
         </div>
       );
   }
@@ -174,7 +174,7 @@ export function FileViewerModal({
                   ) : (
                     <FileText className="w-6 h-6 text-[#EBFF57]" />
                   )}
-                  <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-[22px] text-white">
+                  <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-2xl text-white">
                     {fileName}
                   </h3>
                 </div>
@@ -188,7 +188,7 @@ export function FileViewerModal({
                       whileTap={{ scale: 0.95 }}
                     >
                       <Download className="w-5 h-5" />
-                      <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-[16px]">
+                      <span className="font-['Clash_Grotesk',_sans-serif] font-medium text-base">
                         Download
                       </span>
                     </motion.button>

@@ -94,7 +94,7 @@ export function Resume(): JSX.Element {
             className="group mb-12 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-blue-600"
           >
             <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            <span className="text-[18px] font-medium">Back</span>
+            <span className="text-lg font-medium">Back</span>
           </button>
 
           <motion.div
@@ -102,7 +102,7 @@ export function Resume(): JSX.Element {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <h1 className="max-w-5xl text-5xl font-bold leading-[1.02] tracking-tight text-black md:text-7xl">
+            <h1 className="max-w-5xl t-display font-bold leading-[1.02] tracking-tight text-black">
               Stefan Thottunkal
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-xl">
@@ -139,7 +139,7 @@ export function Resume(): JSX.Element {
 
       <main className="mx-auto max-w-6xl space-y-24 px-4 py-20 md:px-8 md:py-24">
         <section>
-          <h2 className="mb-8 text-3xl font-bold tracking-tight text-black md:text-4xl">
+          <h2 className="mb-8 t-h2 font-bold tracking-tight text-black">
             Education
           </h2>
           <div className="grid gap-5 lg:grid-cols-3">
@@ -165,7 +165,7 @@ export function Resume(): JSX.Element {
         </section>
 
         <section>
-          <h2 className="mb-8 text-3xl font-bold tracking-tight text-black md:text-4xl">
+          <h2 className="mb-8 t-h2 font-bold tracking-tight text-black">
             Current research
           </h2>
           <ul className="max-w-3xl divide-y divide-black/5">
@@ -178,7 +178,7 @@ export function Resume(): JSX.Element {
         </section>
 
         <section>
-          <h2 className="mb-8 text-3xl font-bold tracking-tight text-black md:text-4xl">
+          <h2 className="mb-8 t-h2 font-bold tracking-tight text-black">
             Awards and fellowships
           </h2>
           <div className="grid gap-5 md:grid-cols-2">
@@ -202,7 +202,7 @@ export function Resume(): JSX.Element {
         </section>
 
         <section>
-          <h2 className="mb-8 text-3xl font-bold tracking-tight text-black md:text-4xl">
+          <h2 className="mb-8 t-h2 font-bold tracking-tight text-black">
             Methods and subject matter
           </h2>
           <div className="flex flex-wrap gap-3">

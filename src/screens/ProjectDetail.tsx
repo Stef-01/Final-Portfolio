@@ -53,7 +53,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                     </span>
                                 ))}
                             </div>
-                            <h1 className="max-w-4xl text-4xl font-bold leading-[1.02] tracking-tight text-black md:text-6xl">
+                            <h1 className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
                                 {project.title}
                             </h1>
                             <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-2xl">
@@ -119,7 +119,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     <section className="mt-10 grid gap-6 rounded-2xl bg-[#fafafa] p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">
                         <p className="text-sm font-medium text-gray-500">Design question</p>
                         <div>
-                            <h2 className="text-3xl font-bold leading-tight tracking-tight text-black md:text-4xl">
+                            <h2 className="t-h2 font-bold leading-tight tracking-tight text-black">
                                 {project.caseStudy.question}
                             </h2>
                             <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
@@ -151,7 +151,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                     <p className="text-sm font-medium text-white/60">
                                         Full demo
                                     </p>
-                                    <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                                    <h2 className="mt-3 t-h2 font-bold tracking-tight">
                                         {project.video.title}
                                     </h2>
                                     <p className="mt-5 text-base leading-relaxed text-white/70 md:text-lg">
@@ -252,7 +252,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                 <p className="text-sm font-medium text-gray-500">
                                     {project.caseStudy.processEyebrow}
                                 </p>
-                                <h2 className="mt-3 text-3xl font-bold tracking-tight text-black md:text-4xl">
+                                <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
                                     {project.caseStudy.processHeading}
                                 </h2>
                                 <p className="mt-5 text-base leading-relaxed text-gray-600 md:text-lg">
@@ -299,7 +299,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                 {project.mediaEyebrow}
                             </p>
                         )}
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight text-black md:text-4xl">
+                        <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
                             {project.mediaHeading ?? "Design evidence"}
                         </h2>
                     </div>
@@ -338,7 +338,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                     {project.interactiveEyebrow}
                                 </p>
                             )}
-                            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                            <h2 className="mt-3 t-h2 font-bold tracking-tight">
                                 {project.interactiveHeading ?? "Product architecture"}
                             </h2>
 

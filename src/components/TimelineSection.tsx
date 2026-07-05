@@ -250,7 +250,7 @@ export const TimelineSection = () => {
     return (
         <div className="w-full overflow-hidden bg-white pt-20 pb-32" ref={timelineContainerRef}>
             <div className="mx-auto mb-12 max-w-5xl px-4 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">The environments that shaped the work</h2>
+                <h2 className="t-h2 font-bold tracking-tight text-black">The environments that shaped the work</h2>
             </div>
             <div
                 style={{
@@ -568,7 +568,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'bhlth' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2468, top: 325, maxWidth: 600, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Bachelor of Health Science at ANU, grounding me in population health and equity.</p>
+                        <p className="text-xl">Bachelor of Health Science at ANU, grounding me in population health and equity.</p>
                     </div>
 
                     {/* Hover Description - National Internships */}
@@ -576,7 +576,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'internships' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1505, top: 555, maxWidth: 700, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Parliamentary policy internship translating complex evidence into post COVID recovery recommendations.</p>
+                        <p className="text-xl">Parliamentary policy internship translating complex evidence into post COVID recovery recommendations.</p>
                     </div>
 
                     {/* Hover Description - 180 Degrees Consulting */}
@@ -584,7 +584,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'consulting' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2341 - 100, top: 555, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Financial strategy advisory for a large education nonprofit, strengthening my analytical and client skills.</p>
+                        <p className="text-xl">Financial strategy advisory for a large education nonprofit, strengthening my analytical and client skills.</p>
                     </div>
 
                     {/* Hover Description - MD */}
@@ -592,7 +592,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'md' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 496, maxWidth: 600, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Macquarie University MD training, building my clinical foundations for work with underserved communities.</p>
+                        <p className="text-xl">Macquarie University MD training, building my clinical foundations for work with underserved communities.</p>
                     </div>
 
                     {/* Hover Description - M.S */}
@@ -600,7 +600,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'ms' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 1287, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Community Health and Prevention Research at Stanford, focusing on precision medicine and health equity.</p>
+                        <p className="text-xl">Community Health and Prevention Research at Stanford, focusing on precision medicine and health equity.</p>
                     </div>
 
                     {/* Hover Description - Stanford Biodesign */}
@@ -608,7 +608,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'biodesign' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1800, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Completed the application-only Stanford Biodesign for Digital Health program, applying its needs-driven method with ENT surgeons, hospital teams, children, and parents to develop PainGone PainGuin.</p>
+                        <p className="text-xl">Completed the application-only Stanford Biodesign for Digital Health program, applying its needs-driven method with ENT surgeons, hospital teams, children, and parents to develop PainGone PainGuin.</p>
                     </div>
 
                     {/* Hover Description - Stanford Seed */}
@@ -616,7 +616,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'seed' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2499 - 150, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Stanford Seed internship in Nigeria, advising go to market strategy and product management for a dialysis medical device.</p>
+                        <p className="text-xl">Stanford Seed internship in Nigeria, advising go to market strategy and product management for a dialysis medical device.</p>
                     </div>
 
                     {/* Hover Description - Harvard */}
@@ -624,7 +624,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'harvard' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1947, top: 1545, maxWidth: 700, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Harvard Venture Building Program, a four week course taught by VCs and Harvard Business School and Harvard T H Chan faculty.</p>
+                        <p className="text-xl">Harvard Venture Building Program, a four week course taught by VCs and Harvard Business School and Harvard T H Chan faculty.</p>
                     </div>
 
                     {/* Hover Description - HSIL */}
@@ -632,7 +632,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'hsil' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1825, top: 1727, maxWidth: 800, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Ten week HSIL competition where our team placed 7th of 3,500 after four national and international rounds, leading to invitation into the Venture Building Program.</p>
+                        <p className="text-xl">Ten week HSIL competition where our team placed 7th of 3,500 after four national and international rounds, leading to invitation into the Venture Building Program.</p>
                     </div>
 
                     {/* Hover Description - Hopkins */}
@@ -640,7 +640,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'hopkins' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1945, top: 2026, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Programming with Johns Hopkins University across its venture and entrepreneurship initiatives.</p>
+                        <p className="text-xl">Programming with Johns Hopkins University across its venture and entrepreneurship initiatives.</p>
                     </div>
 
                     {/* Hover Description - Pava Center */}
@@ -648,7 +648,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'pava' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2108, top: 2165, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-[20px]">Entrepreneurship training at the Pava Center, refining venture design for impactful health startups.</p>
+                        <p className="text-xl">Entrepreneurship training at the Pava Center, refining venture design for impactful health startups.</p>
                     </div>
                 </div>
             </div>

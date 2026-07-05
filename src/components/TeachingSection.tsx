@@ -59,7 +59,7 @@ export function TeachingSection(): JSX.Element {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-black md:text-4xl">
+            <h2 className="max-w-3xl t-h2 font-bold tracking-tight text-black">
               Teaching entrepreneurship like a design discipline
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600">

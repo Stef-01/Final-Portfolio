@@ -76,7 +76,7 @@ export const PrecisionMedicineSection = () => {
   return (
     <section className="w-full bg-white px-4 py-20 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-black md:text-4xl">
+        <h2 className="max-w-3xl t-h2 font-bold tracking-tight text-black">
           Precision-care portfolio
         </h2>
       </div>

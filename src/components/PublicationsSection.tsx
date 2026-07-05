@@ -171,7 +171,7 @@ export function PublicationsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-[0.68fr_0.32fr] lg:items-end">
           <div>
-            <h2 className="max-w-4xl font-serif text-3xl font-medium tracking-tight text-[#121820] md:text-4xl">
+            <h2 className="max-w-4xl font-serif t-h2 font-medium tracking-tight text-[#121820]">
               Research you can inspect, cite, and read.
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600">
@@ -265,7 +265,7 @@ export function PublicationsSection() {
 
         <div className="mt-20">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold tracking-tight text-black md:text-4xl">
+            <h2 className="t-h2 font-bold tracking-tight text-black">
               Work moving through the research pipeline
             </h2>
           </div>

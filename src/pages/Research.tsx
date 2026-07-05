@@ -27,7 +27,7 @@ export function Research() {
             className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[18px] font-medium">Back</span>
+            <span className="text-lg font-medium">Back</span>
           </button>
 
           <motion.div
@@ -35,7 +35,7 @@ export function Research() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-black leading-[1.02]">
+            <h1 className="t-h1 font-bold tracking-tight text-black leading-[1.02]">
               Clinical, precision, and population health research
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
@@ -86,7 +86,7 @@ export function Research() {
             className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
           >
             <div className="max-w-3xl">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
+              <h2 className="t-h2 font-bold tracking-tight text-black">
                 Peer-reviewed publications
               </h2>
               <p className="mt-4 text-base leading-relaxed text-gray-600">

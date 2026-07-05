@@ -19,7 +19,7 @@ export const ContactSection: React.FC = () => {
         <>
             <div className="bg-black text-white py-16 px-4 md:px-8 mt-20">
                 <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-8">Get in touch</h2>
+                    <h2 className="t-h2 font-bold mb-8">Get in touch</h2>
                     <div className="flex justify-center">
                         <Button
                             type="secondary"

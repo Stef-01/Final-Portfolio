@@ -38,7 +38,7 @@ export function Education(): JSX.Element {
             className="group mb-12 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-emerald-600"
           >
             <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            <span className="text-[18px] font-medium">Back</span>
+            <span className="text-lg font-medium">Back</span>
           </button>
 
           <motion.div
@@ -46,7 +46,7 @@ export function Education(): JSX.Element {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <h1 className="max-w-4xl text-4xl font-bold leading-[1.02] tracking-tight text-black md:text-6xl">
+            <h1 className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
               Teaching research, clinical nutrition, and venture design
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
@@ -70,7 +70,7 @@ export function Education(): JSX.Element {
 
       <section className="w-full bg-white px-4 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-12 text-3xl font-bold tracking-tight text-black md:text-4xl">
+          <h2 className="mb-12 t-h2 font-bold tracking-tight text-black">
             Teaching and curriculum roles
           </h2>
 

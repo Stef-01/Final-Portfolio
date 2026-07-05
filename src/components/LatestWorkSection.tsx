@@ -28,7 +28,7 @@ export const LatestWorkSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.72, delay: 0.08 }}
-                            className="text-3xl md:text-4xl font-bold tracking-tight mb-5"
+                            className="t-h2 font-bold tracking-tight mb-5"
                         >
                             Flagship projects across health, AI, and systems design
                         </motion.h2>

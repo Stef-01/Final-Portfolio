@@ -23,7 +23,7 @@ export function PressSection(): JSX.Element {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-black md:text-4xl">
+            <h2 className="max-w-3xl t-h2 font-bold tracking-tight text-black">
               In the press
             </h2>
           </motion.div>

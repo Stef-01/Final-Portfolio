@@ -125,7 +125,7 @@ interface TalkSectionProps {
 const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
     <section className="w-full bg-white px-4 pt-10 pb-12 md:px-8 md:pt-16 md:pb-20">
         <div className="mx-auto max-w-6xl">
-            <h2 className="mb-10 text-3xl md:text-4xl font-bold tracking-tight text-black">
+            <h2 className="mb-10 t-h2 font-bold tracking-tight text-black">
                 {title}
             </h2>
 
@@ -197,7 +197,7 @@ export function Presentations() {
                         className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors mb-12 group"
                     >
                         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                        <span className="text-[18px] font-medium">Back</span>
+                        <span className="text-lg font-medium">Back</span>
                     </button>
 
                     <motion.div
@@ -205,7 +205,7 @@ export function Presentations() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7 }}
                     >
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-black leading-[1.02]">
+                        <h1 className="t-h1 font-bold tracking-tight text-black leading-[1.02]">
                             Talks, posters, and grand rounds
                         </h1>
                         <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">

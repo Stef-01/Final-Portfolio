@@ -27,7 +27,7 @@ export function Industry() {
             className="inline-flex items-center gap-2 text-gray-500 hover:text-emerald-600 transition-colors mb-12 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[18px] font-medium">Back</span>
+            <span className="text-lg font-medium">Back</span>
           </button>
 
           <motion.div
@@ -35,7 +35,7 @@ export function Industry() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-black leading-[1.02]">
+            <h1 className="t-h1 font-bold tracking-tight text-black leading-[1.02]">
               Founding, advising, and building health-tech ventures
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
@@ -59,7 +59,7 @@ export function Industry() {
 
       <section className="w-full bg-white px-4 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
+          <h2 className="t-h2 font-bold tracking-tight text-black">
             Industry experience
           </h2>
 

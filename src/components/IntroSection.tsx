@@ -39,7 +39,7 @@ export function IntroSection() {
                 >
                     <motion.h2
                         variants={itemVariants}
-                        className="font-bold tracking-tight leading-[1.05] text-black text-4xl md:text-6xl"
+                        className="font-bold tracking-tight leading-[1.05] text-black t-h1"
                     >
                         I work where health ideas either translate or stall: between the lab, the policy room, the clinic, and the market.
                     </motion.h2>

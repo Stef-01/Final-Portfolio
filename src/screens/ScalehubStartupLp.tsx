@@ -59,7 +59,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
         </Suspense>
 
         <div className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20">
-          <h1 className="text-center text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 max-w-4xl leading-[0.98]">
+          <h1 className="text-center t-display font-bold tracking-tight mb-6 max-w-4xl leading-[0.98]">
             Stefan Thottunkal
           </h1>
 

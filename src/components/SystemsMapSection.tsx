@@ -5,7 +5,7 @@ export const SystemsMapSection = () => {
   return (
     <section className="w-full bg-white px-4 py-20 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
+        <h2 className="t-h2 font-bold tracking-tight text-black">
           The healthcare ecosystem behind the work
         </h2>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-600">
