@@ -38,7 +38,7 @@ export const researchRoles: Role[] = [
     period: "Mar 2025 – present",
     location: "Stanford, CA",
     summary:
-      "Lung-cancer ML work with Prof. Summer Han — EGFR tumor-burden annotation and translating oncology model outputs into usable precision-care reasoning.",
+      "Lung-cancer ML with Prof. Summer Han — EGFR tumor-burden annotation, turning model outputs into precision-care reasoning.",
     deliverables: [
       "Tumor burden annotation pipeline",
       "EGFR mutation sub-cohort analysis",
@@ -54,7 +54,7 @@ export const researchRoles: Role[] = [
     period: "Jan 2025 – present",
     location: "Stanford, CA",
     summary:
-      "Led a student team investigating health-systems operations development for an oculomics medical device, and contributed to manuscript development on its disruptive potential in ophthalmology and primary care.",
+      "Led a student team on health-systems operations for an oculomics device, and co-wrote a manuscript on its potential in ophthalmology and primary care.",
     deliverables: [
       "Health-systems operations analysis",
       "Student-team coordination",
@@ -106,7 +106,7 @@ export const industryRoles: Role[] = [
     organization: "Coethia Inc.",
     period: "Ongoing",
     summary:
-      "Leading partnerships and strategy across product, technology, and procurement — from partner-facing concepts and customer discovery to the medical consensus project and the pitch-and-procurement pipeline.",
+      "Leading partnerships and strategy across product, technology, and procurement.",
     deliverables: [
       "Business partnerships — mockups and interactive concepts for the Coethia Digest reports, and customer discovery",
       "Technology — working alongside the technical team on the medical consensus project (ongoing)",
@@ -141,7 +141,7 @@ export const industryRoles: Role[] = [
     period: "Apr – Dec 2025",
     location: "Nigeria",
     summary:
-      "Worked on an affordable home peritoneal dialysis platform in Nigeria — pilot planning, clinical advisory work, implementation strategy, financial modelling, partnership documents, audits, and supply-chain planning.",
+      "Product and business development for an affordable home peritoneal-dialysis platform in Nigeria.",
     deliverables: [
       "Financial modelling + partnership documents",
       "Pilot planning & implementation strategy",
@@ -177,7 +177,7 @@ export const industryRoles: Role[] = [
     period: "Mar – Jun 2025",
     location: "Stanford Hospital · Hospital Medicine",
     summary:
-      "Led a consulting project to reduce medical readmissions at Stanford Hospital (Quality for Hospital Medicine, Department of Medicine) — stakeholder interviews, survey analysis, workflow review, and strategic recommendations.",
+      "Led a consulting project to reduce medical readmissions at Stanford Hospital, for Quality in Hospital Medicine.",
     deliverables: [
       "Stakeholder interviews + survey analysis",
       "Workflow review",
@@ -193,7 +193,7 @@ export const industryRoles: Role[] = [
     period: "Jan – Mar 2025",
     location: "Stanford HealthREx Lab",
     summary:
-      "Led a consulting project evaluating the commercial viability of AetherAI — stakeholder interviews, patient and clinician needs analysis, commercial strategy, market positioning, and regulatory considerations.",
+      "Led a consulting project evaluating the commercial viability of Aether AI.",
     deliverables: [
       "Stakeholder interviews + clinician needs analysis",
       "Commercial strategy & market positioning",
@@ -209,7 +209,7 @@ export const industryRoles: Role[] = [
     period: "Jan 2025 – present",
     location: "Stanford, CA",
     summary:
-      "Led a student team investigating health-systems operations development for an oculomics medical device, and contributed to manuscript development on its disruptive potential in ophthalmology and primary care.",
+      "Led a student team on health-systems operations for an oculomics device, and co-wrote a manuscript on its potential in ophthalmology and primary care.",
     deliverables: [
       "Health-systems operations analysis",
       "Student-team coordination",
@@ -261,7 +261,7 @@ export const educationRoles: Role[] = [
     period: "2025",
     location: "Nigeria / Remote",
     summary:
-      "Designed and delivered an applied entrepreneurship bootcamp for TLIA's creative savants, translating venture-building into structured exercises for needs finding, validation, business-model design, and pitch development.",
+      "Designed and delivered an applied entrepreneurship bootcamp for TLIA's creative savants — venture-building as structured, testable exercises.",
     deliverables: [
       "Bootcamp curriculum architecture and learning sequence",
       "Needs-finding, pain-scoring, validation, and pitch exercises",
@@ -278,7 +278,7 @@ export const educationRoles: Role[] = [
     period: "2022 – 2025",
     location: "Canberra, Australia",
     summary:
-      "Taught and mentored PhD students through evidence-synthesis work, including meta-analysis, scoping-review logic, PRISMA workflows, and publication-oriented research execution.",
+      "Taught and mentored PhD students through evidence-synthesis work, from meta-analysis to first-author publication.",
     deliverables: [
       "Research-methods teaching for PhD students",
       "Meta-analysis and scoping-review workflow support",
@@ -294,7 +294,7 @@ export const educationRoles: Role[] = [
     period: "Ongoing",
     location: "Stanford, CA",
     summary:
-      "Writing clinician-facing residency curriculum content for the NOURISH PFEME program, translating nutrition, behavior-change, and teaching-kitchen principles into practical educational material for clinical learners.",
+      "Writing clinician-facing residency curriculum for the NOURISH PFEME program, translating nutrition and behavior-change principles for clinical learners.",
     deliverables: [
       "Clinician-residency curriculum writing",
       "Nutrition and behavior-change content translation",

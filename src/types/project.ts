@@ -400,7 +400,7 @@ export const projects: Project[] = [
         id: "nourish-meal-explorer",
         title: "NOURISH Meal Pairer AI",
         subtitle: "Turning familiar meals into balanced, culturally relevant plates through a health-literacy-aware pairing experience.",
-        description: "I conceived, designed, and developed the working Meal Explorer platform end to end—from the product thesis and AI-assisted pairing flow through interaction design, accessibility, data structures, and technical implementation. The current build uses placeholder recipes while the NOURISH team prepares its reviewed launch library.",
+        description: "I conceived, designed, and built the Meal Explorer end to end — from the product thesis and AI-assisted pairing flow through interaction design, accessibility, and implementation. The current build uses placeholder recipes while the NOURISH team prepares its reviewed launch library.",
         image: nourishGeneratedPairing,
         heroFit: "contain",
         heroAspect: "8/5",

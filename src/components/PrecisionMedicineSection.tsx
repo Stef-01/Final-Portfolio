@@ -25,7 +25,7 @@ const categories = [
     route: "/project/nourish-meal-explorer",
     ctaLabel: "Open case study",
     blurb:
-      "NOURISH uses behaviour-change design and recommendation systems to make preventive nutrition stick, not just inform.",
+      "NOURISH pairs behaviour-change design with recommendation systems so preventive nutrition actually sticks.",
   },
   {
     id: "pgx-llm-copilot",

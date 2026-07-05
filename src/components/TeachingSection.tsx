@@ -13,7 +13,7 @@ import tliaTitle from "../assets/teaching/tlia-title.webp";
 const roleCards = [
   {
     title: "Program architecture",
-    text: "Built the bootcamp as a staged curriculum: identity and curiosity mapping, user observation, pain scoring, validation experiments, business models, and pitch synthesis.",
+    text: "Built the bootcamp as a staged curriculum that runs from curiosity mapping to a pitch-ready thesis.",
   },
   {
     title: "Facilitation for creative savants",
@@ -63,7 +63,7 @@ export function TeachingSection(): JSX.Element {
               Teaching entrepreneurship like a design discipline
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600">
-              As Program Lead, I converted entrepreneurship from abstract advice into a repeatable practice: observe real people, define the pain, test assumptions cheaply, model the opportunity, and communicate the venture clearly.
+              As Program Lead, I turned entrepreneurship from advice into a repeatable practice: observe real people, define the pain, test cheaply, and pitch clearly.
             </p>
           </motion.div>
 
@@ -116,7 +116,7 @@ export function TeachingSection(): JSX.Element {
               From curiosity to a testable venture thesis
             </h3>
             <p className="mt-4 text-base leading-relaxed text-gray-600">
-              The TLIA deck turns startup education into repeatable exercises: map identity, observe real users, score pain, frame hypotheses, test cheaply, model the business, and pitch clearly.
+              The TLIA deck turns startup education into a sequence of hands-on exercises, from mapping identity to a pitch-ready thesis.
             </p>
             <div className="mt-6 overflow-hidden rounded-lg">
               <ImageWithFallback
