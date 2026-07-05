@@ -1,26 +1,3 @@
-// A role network describes the people and groups behind a role — not its
-// deliverables. Every collaborator is one of four kinds so the diagram reads
-// consistently across every role, and the renderer lays them out and colours
-// the legend from these alone.
-export type CollaboratorKind = "host" | "team" | "person" | "community";
-
-export interface NetworkNode {
-  id: string;
-  /** Name of the person, team, host, or community */
-  label: string;
-  /** Short descriptor of who or what they are */
-  sublabel?: string;
-  /** Host institution, a team, an individual, or a community served */
-  kind: CollaboratorKind;
-  /** How I worked with them — revealed on hover */
-  relation: string;
-}
-
-export interface RoleNetwork {
-  /** Collaborators only; the centre "me" node is added by the renderer. */
-  nodes: NetworkNode[];
-}
-
 export interface Role {
   id: string;
   title: string;
@@ -33,7 +10,6 @@ export interface Role {
   accent: string;
   link?: string;
   featured?: boolean;
-  network?: RoleNetwork;
 }
 
 export const researchRoles: Role[] = [
@@ -54,14 +30,6 @@ export const researchRoles: Role[] = [
     accent: "bg-emerald-500",
     link: "/project/nourish-meal-explorer",
     featured: true,
-    network: {
-      nodes: [
-        { id: "prc", label: "Stanford PRC", sublabel: "Prevention Research Center", kind: "host", relation: "Coordinating the precision-nutrition research agenda within the Stanford Prevention Research Center." },
-        { id: "pi", label: "Trial investigators", sublabel: "Principal investigators", kind: "person", relation: "Reporting to the trial investigators on protocol fidelity and study design." },
-        { id: "team", label: "Cross-disciplinary team", sublabel: "Dietitians, behaviour-change, MDs", kind: "team", relation: "Working alongside dietitians, behaviour-change designers, and MD investigators." },
-        { id: "cohorts", label: "Community cohorts", sublabel: "Recruitment + fidelity", kind: "community", relation: "Coordinating recruitment and curriculum fidelity across community cohorts." },
-      ],
-    },
   },
   {
     id: "han-lab",
@@ -78,13 +46,6 @@ export const researchRoles: Role[] = [
     ],
     tags: ["Precision Oncology", "Clinical ML", "Annotation"],
     accent: "bg-rose-500",
-    network: {
-      nodes: [
-        { id: "han-lab", label: "Han Lab", sublabel: "Stanford School of Medicine", kind: "host", relation: "Lung-cancer ML research within the Han Lab at Stanford School of Medicine." },
-        { id: "pi", label: "Prof. Summer Han", sublabel: "Principal investigator", kind: "person", relation: "Working under Prof. Summer Han on the lung-cancer ML programme." },
-        { id: "oncology", label: "Oncology ML collaborators", sublabel: "Annotation + modelling", kind: "team", relation: "Collaborating on tumour-burden annotation and EGFR sub-cohort modelling." },
-      ],
-    },
   },
   {
     id: "microsoft-hfte",
@@ -103,13 +64,6 @@ export const researchRoles: Role[] = [
     accent: "bg-cyan-500",
     link: "/project/healthcare-from-the-eye",
     featured: true,
-    network: {
-      nodes: [
-        { id: "hfte", label: "HFTE Initiative", sublabel: "Microsoft / Stanford Medicine", kind: "host", relation: "Project convened under the Microsoft / Stanford Medicine HFTE Initiative." },
-        { id: "team", label: "Student team", sublabel: "Led the investigation", kind: "team", relation: "Leading a student team through the health-systems investigation." },
-        { id: "clinicians", label: "Ophthalmology + primary care", sublabel: "Clinical stakeholders", kind: "community", relation: "Mapping oculomics device pathways across ophthalmology and primary care." },
-      ],
-    },
   },
   {
     id: "anu-nceph",
@@ -126,13 +80,6 @@ export const researchRoles: Role[] = [
     ],
     tags: ["Indigenous Health", "Implementation", "Meta-analysis"],
     accent: "bg-teal-500",
-    network: {
-      nodes: [
-        { id: "nceph", label: "ANU NCEPH", sublabel: "Epidemiology & population health", kind: "host", relation: "Implementation and evidence-synthesis work within the ANU National Centre for Epidemiology & Population Health." },
-        { id: "supervisor", label: "Supervisor", sublabel: "Head of MAE program", kind: "person", relation: "Working under the Head of the ANU Master of Applied Epidemiology program." },
-        { id: "phd", label: "PhD students", sublabel: "Mentored to first-author", kind: "person", relation: "Mentoring PhD students in meta-analysis and scoping-review methods through to first-author publication." },
-      ],
-    },
   },
   {
     id: "who-goarn",
@@ -149,13 +96,6 @@ export const researchRoles: Role[] = [
     ],
     tags: ["Global Health", "Surveillance", "ML"],
     accent: "bg-slate-600",
-    network: {
-      nodes: [
-        { id: "goarn", label: "WHO GOARN", sublabel: "Geneva secretariat", kind: "host", relation: "Reporting into the WHO GOARN secretariat in Geneva on global outbreak response." },
-        { id: "strategy-group", label: "Strategic-plan working group", sublabel: "GOARN 2022–26 plan", kind: "team", relation: "Contributing with the working group on the GOARN 2022–26 Strategic Plan." },
-        { id: "coauthors", label: "WPSAR co-authors", sublabel: "Surveillance-analytics paper", kind: "team", relation: "Co-authoring the WPSAR paper bridging counterterrorism analytics and public-health surveillance." },
-      ],
-    },
   },
 ];
 
@@ -175,13 +115,6 @@ export const industryRoles: Role[] = [
     tags: ["Partnerships", "Strategy", "Product Design"],
     accent: "bg-emerald-500",
     featured: true,
-    network: {
-      nodes: [
-        { id: "coethia", label: "Coethia Inc.", sublabel: "Partnerships & strategy", kind: "host", relation: "Partnerships & Strategy Officer at Coethia Inc." },
-        { id: "tech", label: "Technical team", sublabel: "Medical consensus project", kind: "team", relation: "Working alongside the technical team on the medical consensus project (ongoing)." },
-        { id: "partners", label: "Partners & customers", sublabel: "Digest concepts + procurement", kind: "community", relation: "Building partner-facing Digest concepts, running customer discovery, and developing the procurement pipeline." },
-      ],
-    },
   },
   {
     id: "casa",
@@ -200,12 +133,6 @@ export const industryRoles: Role[] = [
     accent: "bg-orange-500",
     link: "/project/casa",
     featured: true,
-    network: {
-      nodes: [
-        { id: "engineering", label: "Engineering team", sublabel: "Vision + craving-parser stack", kind: "team", relation: "Leading engineering on vision parsing and the craving-to-recipe stack." },
-        { id: "users", label: "Home cooks", sublabel: "First-time-confident users", kind: "community", relation: "Building cooking confidence for first-time home cooks." },
-      ],
-    },
   },
   {
     id: "adcem-seed",
@@ -224,13 +151,6 @@ export const industryRoles: Role[] = [
     accent: "bg-yellow-500",
     link: "/project/dialysis-device-gtm",
     featured: true,
-    network: {
-      nodes: [
-        { id: "seed", label: "Stanford GSB SEED", sublabel: "Program host", kind: "host", relation: "Placed through the Stanford GSB SEED program." },
-        { id: "adcem", label: "Adcem–Fidson JV", sublabel: "Home dialysis, Nigeria", kind: "host", relation: "Working with the Adcem–Fidson joint venture on affordable home peritoneal dialysis in Nigeria." },
-        { id: "partners", label: "Clinical + supply-chain partners", sublabel: "Advisory + operations", kind: "team", relation: "Coordinating clinical advisory and supply-chain partners for pilot planning and implementation." },
-      ],
-    },
   },
   {
     id: "genierx-hsil",
@@ -249,13 +169,6 @@ export const industryRoles: Role[] = [
     accent: "bg-sky-500",
     link: "/project/pgx-llm-copilot",
     featured: true,
-    network: {
-      nodes: [
-        { id: "hsil", label: "Harvard HSIL", sublabel: "Hackathon + incubation host", kind: "host", relation: "Building and incubating GenieRX through the Harvard HSIL hackathon and Venture Incubation Program." },
-        { id: "team", label: "Five-person team", sublabel: "Led through the hackathon", kind: "team", relation: "Leading a five-person team to 2nd nationally (USA) and 7th of 3,500 globally." },
-        { id: "mentors", label: "HSIL mentors", sublabel: "Venture incubation", kind: "person", relation: "Directing GenieRX with HSIL venture-incubation mentors." },
-      ],
-    },
   },
   {
     id: "stanford-hospital-consulting",
@@ -272,13 +185,6 @@ export const industryRoles: Role[] = [
     ],
     tags: ["Consulting", "Readmissions", "Health Systems"],
     accent: "bg-blue-500",
-    network: {
-      nodes: [
-        { id: "leads", label: "Hospital Medicine leads", sublabel: "Stanford Dept. of Medicine", kind: "person", relation: "Engaged by the Quality team in Hospital Medicine, Department of Medicine." },
-        { id: "team", label: "Consulting team", sublabel: "Stanford Health Consulting Group", kind: "team", relation: "Leading a Stanford Health Consulting Group project team." },
-        { id: "stakeholders", label: "Frontline + leadership", sublabel: "Interviewed across the service", kind: "community", relation: "Interviewing frontline and leadership stakeholders to shape readmission-reduction recommendations." },
-      ],
-    },
   },
   {
     id: "aetherai-healthrex",
@@ -295,13 +201,6 @@ export const industryRoles: Role[] = [
     ],
     tags: ["Clinical AI", "Commercial Strategy", "Consulting"],
     accent: "bg-teal-500",
-    network: {
-      nodes: [
-        { id: "healthrex", label: "Stanford HealthREx Lab", sublabel: "Host lab", kind: "host", relation: "Consulting project run out of the Stanford HealthREx Lab." },
-        { id: "aether", label: "Aether AI", sublabel: "Clinical-AI venture", kind: "team", relation: "Evaluating the commercial viability of the Aether AI clinical-AI venture." },
-        { id: "needs", label: "Patients + clinicians", sublabel: "Needs interviews", kind: "community", relation: "Running patient and clinician needs interviews to inform commercial and regulatory strategy." },
-      ],
-    },
   },
   {
     id: "microsoft-hfte-industry",
@@ -319,13 +218,6 @@ export const industryRoles: Role[] = [
     tags: ["Oculomics", "Health Systems", "Medical Devices"],
     accent: "bg-cyan-500",
     link: "/project/healthcare-from-the-eye",
-    network: {
-      nodes: [
-        { id: "hfte", label: "HFTE Initiative", sublabel: "Microsoft / Stanford Medicine", kind: "host", relation: "Project convened under the Microsoft / Stanford Medicine HFTE Initiative." },
-        { id: "team", label: "Student team", sublabel: "Coordinated the investigation", kind: "team", relation: "Coordinating a student team through the health-systems investigation." },
-        { id: "clinicians", label: "Ophthalmology + primary care", sublabel: "Clinical stakeholders", kind: "community", relation: "Mapping oculomics device pathways across ophthalmology and primary care." },
-      ],
-    },
   },
   {
     id: "stanford-xr",
@@ -342,12 +234,6 @@ export const industryRoles: Role[] = [
     ],
     tags: ["XR", "BCI", "Hackathon"],
     accent: "bg-rose-500",
-    network: {
-      nodes: [
-        { id: "xr", label: "Stanford XR Hackathon", sublabel: "48-hour build", kind: "host", relation: "Competing in the Stanford XR Hackathon — 1st place Social Good, 3rd place BCI, Overall Finalist." },
-        { id: "team", label: "Interdisciplinary build team", sublabel: "48-hour co-builders", kind: "team", relation: "Leading an interdisciplinary build team across the 48-hour build." },
-      ],
-    },
   },
   {
     id: "nora",
@@ -364,12 +250,6 @@ export const industryRoles: Role[] = [
     ],
     tags: ["Advisory", "Early Stage", "Consumer"],
     accent: "bg-teal-500",
-    network: {
-      nodes: [
-        { id: "founders", label: "NORA founders", sublabel: "Early-stage founding team", kind: "team", relation: "Advising the NORA founding team on product, clinical strategy, and fundraising narrative." },
-        { id: "partners", label: "Healthcare partners", sublabel: "Introductions + scoping", kind: "community", relation: "Making healthcare partnership introductions and scoping early opportunities." },
-      ],
-    },
   },
 ];
 
@@ -390,12 +270,6 @@ export const educationRoles: Role[] = [
     tags: ["Entrepreneurship Education", "Design Thinking", "Venture Building"],
     accent: "bg-emerald-500",
     featured: true,
-    network: {
-      nodes: [
-        { id: "tlia", label: "TLIA", sublabel: "Bootcamp host", kind: "host", relation: "Program Lead for the TLIA Entrepreneurship Bootcamp." },
-        { id: "learners", label: "Creative savants", sublabel: "Founder-learners", kind: "community", relation: "Teaching creative savants to move from curiosity to tested venture ideas and pitch-ready synthesis." },
-      ],
-    },
   },
   {
     id: "anu-phd-student-teaching",
@@ -412,12 +286,6 @@ export const educationRoles: Role[] = [
     ],
     tags: ["PhD Mentoring", "Meta-analysis", "Evidence Synthesis"],
     accent: "bg-teal-500",
-    network: {
-      nodes: [
-        { id: "anu", label: "ANU NCEPH", sublabel: "Research environment", kind: "host", relation: "Teaching and mentoring within the ANU NCEPH research environment." },
-        { id: "phd", label: "PhD students", sublabel: "Mentees", kind: "person", relation: "Mentoring PhD students in meta-analysis, scoping review, and PRISMA-style workflows through to first-author outputs." },
-      ],
-    },
   },
   {
     id: "nourish-pfeme-curriculum",
@@ -436,12 +304,6 @@ export const educationRoles: Role[] = [
     accent: "bg-emerald-500",
     link: "/project/nourish-meal-explorer",
     featured: true,
-    network: {
-      nodes: [
-        { id: "nourish", label: "NOURISH PFEME", sublabel: "Stanford Medicine", kind: "host", relation: "Writing residency curriculum within the NOURISH PFEME program at Stanford Medicine." },
-        { id: "clinicians", label: "Clinical learners", sublabel: "Residency audience", kind: "community", relation: "Writing clinician-facing curriculum that translates nutrition and behaviour-change principles for clinical learners." },
-      ],
-    },
   },
 ];
 
@@ -465,12 +327,6 @@ export const policyRoles: Role[] = [
     ],
     tags: ["Implementation", "Indigenous Health", "Primary Care"],
     accent: "bg-amber-500",
-    network: {
-      nodes: [
-        { id: "anu", label: "ANU", sublabel: "Australian National University", kind: "host", relation: "Research Officer at the Australian National University studying implementation of preventive chronic-disease health checks." },
-        { id: "care", label: "Indigenous primary care", sublabel: "Aboriginal & Torres Strait Islander", kind: "community", relation: "Focused on Aboriginal and Torres Strait Islander primary health care and what enables uptake." },
-      ],
-    },
   },
   {
     id: "dss-ndis-outcomes",
@@ -487,13 +343,6 @@ export const policyRoles: Role[] = [
     ],
     tags: ["NDIS", "Research Policy", "Knowledge Translation"],
     accent: "bg-amber-500",
-    network: {
-      nodes: [
-        { id: "dss", label: "Dept. of Social Services", sublabel: "NDIS Outcomes & Research", kind: "host", relation: "Policy Officer in NDIS Outcomes & Research Strategy." },
-        { id: "unit", label: "Disability research advisory unit", sublabel: "Establishment support", kind: "team", relation: "Supporting the establishment of a disability research advisory unit." },
-        { id: "researchers", label: "Researchers + panels", sublabel: "Partnerships + procurement", kind: "person", relation: "Building policymaker–researcher partnership protocols and serving on procurement panels." },
-      ],
-    },
   },
   {
     id: "dss-ndis-financial",
@@ -510,13 +359,6 @@ export const policyRoles: Role[] = [
     ],
     tags: ["NDIS", "Budget", "Ministerial Briefs"],
     accent: "bg-orange-500",
-    network: {
-      nodes: [
-        { id: "dss", label: "Dept. of Social Services", sublabel: "NDIS Financial Policy", kind: "host", relation: "Policy Officer in NDIS Financial Policy & Strategy, supporting the October 2022 NDIS budget." },
-        { id: "obp", label: "Office of Best Practice", sublabel: "Compliance + feedback", kind: "person", relation: "Coordinating policy-proposal compliance and feedback with the Office of Best Practice." },
-        { id: "ministers", label: "Ministers + decision-makers", sublabel: "Briefs + proposals", kind: "person", relation: "Producing ministerial briefs and drafting new policy proposals for decision-makers." },
-      ],
-    },
   },
   {
     id: "dss-redress",
@@ -533,14 +375,6 @@ export const policyRoles: Role[] = [
     ],
     tags: ["National Redress", "Intergovernmental", "Briefing"],
     accent: "bg-amber-600",
-    network: {
-      nodes: [
-        { id: "scheme", label: "National Redress Scheme", sublabel: "External Engagement Team", kind: "host", relation: "Policy Officer on the National Redress Scheme External Engagement Team." },
-        { id: "jurisdictions", label: "Commonwealth · states · territories", sublabel: "Intergovernmental collaboration", kind: "team", relation: "Facilitating Commonwealth, state, and territory collaboration to expand redress." },
-        { id: "survivors", label: "Survivors", sublabel: "Institutional child sexual abuse", kind: "community", relation: "Working to expand redress for survivors of institutional child sexual abuse." },
-        { id: "ags", label: "Senior execs + Attorneys-General", sublabel: "Briefing audience", kind: "person", relation: "Writing briefs translating complex policy advice for senior executives and Attorneys-General." },
-      ],
-    },
   },
   {
     id: "parliamentary-library",
@@ -557,11 +391,5 @@ export const policyRoles: Role[] = [
     ],
     tags: ["Parliamentary Research", "Social Policy", "Government"],
     accent: "bg-yellow-500",
-    network: {
-      nodes: [
-        { id: "library", label: "Parliamentary Library", sublabel: "Parliament of Australia", kind: "host", relation: "Interned at the Parliamentary Library, Parliament of Australia." },
-        { id: "division", label: "Social Policy Division", sublabel: "Placement team", kind: "team", relation: "Placed within the Social Policy Division for parliamentary research and public-sector briefing." },
-      ],
-    },
   },
 ];

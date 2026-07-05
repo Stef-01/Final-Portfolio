@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, MapPin, Network } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
-import { RoleNetworkModal } from "./RoleNetworkModal";
 
 interface RolesGridProps {
   roles: Role[];
@@ -15,17 +14,6 @@ const cardClasses =
   "group relative block rounded-2xl bg-[#fafafa] p-6 md:p-8 transition-transform";
 
 export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
-  const [activeRole, setActiveRole] = useState<Role | null>(null);
-
-  useEffect(() => {
-    if (!activeRole) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveRole(null);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [activeRole]);
-
   return (
     <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
       <div className="mx-auto max-w-6xl">
@@ -46,28 +34,11 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
                   <p className="text-sm font-medium text-gray-500">
                     {role.period} · {role.organization}
                   </p>
-                  <div className="relative z-20 flex items-center gap-2">
-                    {role.network && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          e.preventDefault();
-                          setActiveRole(role);
-                        }}
-                        aria-label="View role network"
-                        title="View role network"
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white text-gray-700 transition-all duration-200 hover:border-black hover:text-black hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
-                      >
-                        <Network className="h-4 w-4" strokeWidth={1.5} />
-                      </button>
-                    )}
-                    {role.link && (
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                        <ArrowUpRight className="h-4 w-4" />
-                      </span>
-                    )}
-                  </div>
+                  {role.link && (
+                    <span className="relative z-20 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </span>
+                  )}
                 </div>
 
                 <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black">
@@ -163,8 +134,6 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
           })}
         </div>
       </div>
-
-      <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} accent="#059669" />
     </section>
   );
 };

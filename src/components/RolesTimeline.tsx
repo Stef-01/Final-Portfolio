@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
-import { ArrowUpRight, Network } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
-import { RoleNetworkModal } from "./RoleNetworkModal";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 interface RolesTimelineProps {
@@ -17,10 +16,9 @@ interface TimelineRowProps {
     expanded: boolean;
     pulse: boolean;
     onEnter: () => void;
-    onNetworkClick: (role: Role) => void;
 }
 
-const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: TimelineRowProps) => {
+const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
     const isExternal = !!role.link && /^https?:\/\//.test(role.link);
 
     return (
@@ -104,13 +102,10 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
                                 </div>
                             )}
 
-                            {/* Action menu — appears with the body. Each role can
-                                expose any subset of actions (case study link, role
-                                network). Hover lifts each chip, click triggers the
-                                relevant flow. */}
-                            <div className="mt-6 flex flex-wrap gap-2.5">
-                                {role.link &&
-                                    (isExternal ? (
+                            {/* Case-study link, when the role has one. */}
+                            {role.link && (
+                                <div className="mt-6 flex flex-wrap gap-2.5">
+                                    {isExternal ? (
                                         <a
                                             href={role.link}
                                             target="_blank"
@@ -128,20 +123,9 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
                                             Open case study
                                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
                                         </Link>
-                                    ))}
-
-                                {role.network && (
-                                    <button
-                                        type="button"
-                                        onClick={() => onNetworkClick(role)}
-                                        aria-label="View role network"
-                                        className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-600 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
-                                    >
-                                        <Network className="h-3.5 w-3.5" strokeWidth={1.5} />
-                                        View network
-                                    </button>
-                                )}
-                            </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </motion.div>
                 )}
@@ -151,7 +135,6 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
 };
 
 export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
-    const [activeRole, setActiveRole] = useState<Role | null>(null);
     // The "expanded" row defaults to the most recent (first) role, then the
     // scroll playhead drives it (with hover/tap as desktop overrides).
     const [hoveredId, setHoveredId] = useState<string | null>(roles[0]?.id ?? null);
@@ -166,15 +149,6 @@ export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
         offset: ["start 55%", "end 45%"],
     });
     const spineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-    useEffect(() => {
-        if (!activeRole) return;
-        const onKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape") setActiveRole(null);
-        };
-        window.addEventListener("keydown", onKey);
-        return () => window.removeEventListener("keydown", onKey);
-    }, [activeRole]);
 
     // Active role = the last row whose top has crossed a ~42% viewport playhead.
     // Monotonic with scroll, so it never jitters as rows expand. Touch-friendly:
@@ -265,15 +239,12 @@ export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
                                     expanded={hoveredId === role.id}
                                     pulse={hoveredId === role.id && !prefersReducedMotion}
                                     onEnter={() => setHoveredId(role.id)}
-                                    onNetworkClick={setActiveRole}
                                 />
                             </div>
                         ))}
                     </ol>
                 </div>
             </div>
-
-            <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} accent="#2563eb" />
         </section>
     );
 };

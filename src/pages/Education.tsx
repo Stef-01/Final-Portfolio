@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowUpRight, ChevronDown, Network } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
-import { RoleNetworkModal } from "../components/RoleNetworkModal";
 import { TeachingSection } from "../components/TeachingSection";
 import { useGoBack } from "../hooks/useGoBack";
-import { educationRoles, type Role } from "../types/roles";
+import { educationRoles } from "../types/roles";
 
 const educationStats = [
   { value: "3", label: "teaching and curriculum roles" },
@@ -17,18 +16,8 @@ const educationStats = [
 
 export function Education(): JSX.Element {
   const goBack = useGoBack();
-  const [activeRole, setActiveRole] = useState<Role | null>(null);
   const [showTliaDetail, setShowTliaDetail] = useState(false);
   const tliaDetailRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!activeRole) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActiveRole(null);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [activeRole]);
 
   const openTliaDetail = () => {
     setShowTliaDetail(true);
@@ -166,21 +155,6 @@ export function Education(): JSX.Element {
                         <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                       </Link>
                     )}
-
-                    {role.network && (
-                      <button
-                        type="button"
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          setActiveRole(role);
-                        }}
-                        aria-label={`View ${role.title} network`}
-                        className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:-translate-y-0.5 hover:border-emerald-600 hover:text-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600/40 focus-visible:ring-offset-2"
-                      >
-                        <Network className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
-                        Network
-                      </button>
-                    )}
                   </div>
                 </motion.article>
               );
@@ -206,8 +180,6 @@ export function Education(): JSX.Element {
       </AnimatePresence>
 
       <ContactSection />
-
-      <RoleNetworkModal role={activeRole} onClose={() => setActiveRole(null)} accent="#059669" />
     </div>
   );
 }
