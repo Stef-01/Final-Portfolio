@@ -35,22 +35,14 @@ export function IntroSection() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="flex flex-col items-center gap-10 md:gap-12"
+                    className="flex flex-col items-center"
                 >
-                    <motion.p
-                        variants={itemVariants}
-                        className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.32em] text-gray-400"
-                    >
-                        Mission
-                    </motion.p>
-
                     <motion.h2
                         variants={itemVariants}
-                        className="font-bold tracking-tight leading-[0.98] text-black text-[44px] md:text-[80px]"
+                        className="font-bold tracking-tight leading-[1.05] text-black text-4xl md:text-6xl"
                     >
                         I work where health ideas either translate or stall: between the lab, the policy room, the clinic, and the market.
                     </motion.h2>
-
                 </motion.div>
             </div>
         </section>

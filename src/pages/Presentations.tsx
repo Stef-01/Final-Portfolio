@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, MapPin, Calendar, Paperclip } from "lucide-react";
+import { ArrowLeft, Paperclip } from "lucide-react";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
@@ -110,28 +110,24 @@ const invited: Talk[] = [
     },
 ];
 
-const cardClasses =
-    "group relative block overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]";
+const fileLabel: Record<ConferenceFile["type"], string> = {
+    pdf: "View slides",
+    video: "Watch video",
+    image: "View image",
+};
 
 interface TalkSectionProps {
     title: string;
-    eyebrow: string;
     talks: Talk[];
     onFileClick: (file: ConferenceFile) => void;
 }
 
-const TalkSection = ({ title, eyebrow, talks, onFileClick }: TalkSectionProps) => (
+const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
     <section className="w-full bg-white px-4 pt-10 pb-12 md:px-8 md:pt-16 md:pb-20">
         <div className="mx-auto max-w-6xl">
-            <div className="mb-10 max-w-3xl">
-                <div className="mb-4 flex items-center gap-3">
-                    <span className="h-px w-8 bg-blue-500" />
-                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">{eyebrow}</p>
-                </div>
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-black">
-                    {title}
-                </h2>
-            </div>
+            <h2 className="mb-10 text-3xl md:text-4xl font-bold tracking-tight text-black">
+                {title}
+            </h2>
 
             <div className="grid gap-5 md:grid-cols-2">
                 {talks.map((talk, index) => (
@@ -141,53 +137,35 @@ const TalkSection = ({ title, eyebrow, talks, onFileClick }: TalkSectionProps) =
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
                         transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25) }}
-                        className={cardClasses}
+                        className="rounded-2xl bg-[#fafafa] p-6 md:p-8"
                     >
-                        <div className="flex items-start justify-between gap-4 mb-5">
-                            <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
-                                {talk.date}
-                            </span>
-                            {talk.role && (
-                                <span className="rounded-full border border-black/15 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500">
-                                    {talk.role}
-                                </span>
-                            )}
-                        </div>
+                        <p className="text-sm font-medium text-gray-500">
+                            {talk.date}
+                            {talk.location ? ` · ${talk.location}` : ""}
+                            {talk.role ? ` · ${talk.role}` : ""}
+                        </p>
 
-                        {talk.venue && (
-                            <p className="text-sm uppercase tracking-[0.2em] text-gray-500">{talk.venue}</p>
-                        )}
-                        <h3 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight text-black leading-tight">
+                        <h3 className="mt-3 text-xl md:text-2xl font-bold tracking-tight text-black leading-tight">
                             {talk.title}
                         </h3>
-
-                        <p className="mt-5 text-base leading-relaxed text-gray-700">{talk.topic}</p>
-
-                        {talk.collaborators && (
-                            <p className="mt-4 text-sm italic text-gray-500">{talk.collaborators}</p>
+                        {talk.venue && (
+                            <p className="mt-1 text-sm text-gray-500">{talk.venue}</p>
                         )}
 
-                        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-gray-500">
-                            {talk.location && (
-                                <span className="inline-flex items-center gap-1.5">
-                                    <MapPin className="h-3.5 w-3.5" />
-                                    {talk.location}
-                                </span>
-                            )}
-                            <span className="inline-flex items-center gap-1.5">
-                                <Calendar className="h-3.5 w-3.5" />
-                                {talk.date}
-                            </span>
-                        </div>
+                        <p className="mt-4 text-base leading-relaxed text-gray-700">{talk.topic}</p>
+
+                        {talk.collaborators && (
+                            <p className="mt-3 text-sm text-gray-500">{talk.collaborators}</p>
+                        )}
 
                         {talk.file?.url && (
                             <button
                                 type="button"
                                 onClick={() => onFileClick(talk.file)}
-                                className="mt-6 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                className="mt-6 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                             >
                                 <Paperclip className="h-3.5 w-3.5" />
-                                View {talk.file.type.toUpperCase()}
+                                {fileLabel[talk.file.type]}
                             </button>
                         )}
                     </motion.div>
@@ -211,9 +189,8 @@ export function Presentations() {
         <div className="min-h-[100svh] bg-white text-gray-900">
             <FloatingBackButton />
 
-            <header className="relative overflow-hidden px-4 pt-16 md:px-8 md:pt-20">
-                <div className="pointer-events-none absolute inset-x-0 -top-24 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.16),_transparent_60%)]" />
-                <div className="relative z-10 mx-auto max-w-6xl">
+            <header className="px-4 pt-16 md:px-8 md:pt-20">
+                <div className="mx-auto max-w-6xl">
                     <button
                         type="button"
                         onClick={goBack}
@@ -228,50 +205,40 @@ export function Presentations() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7 }}
                     >
-                        <div className="mb-4 flex items-center gap-3">
-                            <span className="h-px w-8 bg-blue-500" />
-                            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">Speaking</p>
-                        </div>
-                        <h1 className="text-4xl md:text-8xl font-bold tracking-tighter text-black leading-[0.95]">
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-black leading-[1.02]">
                             Talks, posters, and grand rounds
                         </h1>
-                        <p className="mt-6 max-w-3xl text-base md:text-xl leading-relaxed text-gray-600">
-                            Conference presentations and invited talks across precision medicine,
-                            pharmacogenomics, oculomics, indigenous health, and biosecurity — work
-                            shared at Stanford, AMSA, Lowitja, CEI, CPIC, and the QUAD Fellowship.
+                        <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
+                            Conference presentations and invited talks across precision
+                            medicine, pharmacogenomics, oculomics, Indigenous health, and
+                            biosecurity.
                         </p>
 
-                        <div className="mt-10 grid gap-4 md:grid-cols-3">
+                        <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
                             {[
                                 { k: String(conferences.length), v: "conference presentations" },
-                                { k: String(invited.length), v: "invited talks & grand rounds" },
+                                { k: String(invited.length), v: "invited talks and grand rounds" },
                                 { k: "5+", v: "institutions across 3 countries" },
                             ].map((stat) => (
-                                <div
-                                    key={stat.v}
-                                    className="rounded-[28px] border border-white/60 bg-white/75 px-6 py-7 shadow-[0_30px_60px_-40px_rgba(59,130,246,0.55)] ring-1 ring-blue-500/10 backdrop-blur-md"
-                                >
-                                    <p className="bg-gradient-to-br from-blue-600 to-indigo-500 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
-                                        {stat.k}
-                                    </p>
-                                    <p className="mt-2 text-sm md:text-base text-gray-600">{stat.v}</p>
+                                <div key={stat.v} className="flex items-baseline gap-2">
+                                    <dt className="sr-only">{stat.v}</dt>
+                                    <dd className="text-lg font-semibold text-black">{stat.k}</dd>
+                                    <span className="text-sm text-gray-500">{stat.v}</span>
                                 </div>
                             ))}
-                        </div>
+                        </dl>
                     </motion.div>
                 </div>
             </header>
 
             <TalkSection
-                eyebrow="Conferences"
                 title="Conference presentations"
                 talks={conferences}
                 onFileClick={handleFileClick}
             />
 
             <TalkSection
-                eyebrow="Invited"
-                title="Invited talks & grand rounds"
+                title="Invited talks and grand rounds"
                 talks={invited}
                 onFileClick={handleFileClick}
             />

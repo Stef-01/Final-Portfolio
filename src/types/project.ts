@@ -585,7 +585,7 @@ export const projects: Project[] = [
                 title: "The problem",
                 body: [
                     "Clinicians are expected to make safe prescribing decisions in environments where time is limited, information is fragmented, and pharmacogenomic insight is not always easy to retrieve or interpret in context.",
-                    "The opportunity was not merely to generate answers with a model, but to design a decision-support layer that helps clinicians move from genotype to action with clarity and confidence.",
+                    "The opportunity was to design a decision-support layer that helps clinicians move from genotype to action, rather than simply generating answers with a model.",
                 ],
             },
             {
@@ -606,12 +606,12 @@ export const projects: Project[] = [
         media: [
             { src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop", alt: "Clinical review context", caption: "The opportunity lies in improving decision quality inside time-constrained care environments." },
             { src: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1600&auto=format&fit=crop", alt: "Healthcare technology workflow", caption: "Clinical intelligence is only useful when surfaced at the right moment in the right form." },
-            { src: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop", alt: "Precision medicine context", caption: "Precision medicine requires not just insight, but interface quality that makes action feel safe and legible." },
+            { src: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop", alt: "Precision medicine context", caption: "Precision medicine depends on interface quality that makes action feel safe and legible." },
         ],
         interactiveModules: [
             {
                 title: "Genotype-to-Action Workflow",
-                summary: "A guided sequence that transforms pharmacogenomic findings into concrete prescribing guidance.",
+                summary: "A guided sequence that turns pharmacogenomic findings into concrete prescribing guidance.",
                 interaction: "Clinicians inspect a patient context, view medication implications, and expand evidence layers only where needed.",
                 effect: "Progressive disclosure, evidence drawers, and crisp transitions between patient state, recommendation, and rationale.",
             },
@@ -954,7 +954,7 @@ export const projects: Project[] = [
             {
                 title: "Why the Biodesign program matters",
                 body: [
-                    "Biodesign for Digital Health is a limited-enrollment, application-only Stanford course—BIOE 273 / MED 273—delivered through the Stanford Mussallem Center for Biodesign. The ten-week program brings multidisciplinary students into a project-based environment supported by experienced instructors, need coaches, mentors, and more than 50 digital-health and industry experts.",
+                    "Biodesign for Digital Health is a limited-enrollment, application-only Stanford course (BIOE 273 / MED 273) delivered through the Stanford Mussallem Center for Biodesign. The ten-week program brings multidisciplinary students into a project-based environment supported by experienced instructors, need coaches, mentors, and more than 50 digital-health and industry experts.",
                     "Its significance is methodological as much as institutional. Stanford Biodesign has refined its need-driven health-technology innovation process since 2000. Rather than beginning with an attractive technology, teams begin with an important unmet need, generate and screen possible responses, and develop an implementation path capable of surviving clinical, operational, regulatory, payment, and business constraints.",
                 ],
             },
@@ -1067,7 +1067,7 @@ export const projects: Project[] = [
                 title: "Discharge setup",
                 summary: "The caregiver scans a hospital-provided QR code, installs PainGone PainGuin, and receives a personalized recovery plan.",
                 interaction: "Confirm the procedure, medication schedule, hydration guidance, warning signs, care-team contact, and accessibility needs before leaving.",
-                effect: "Transforms a one-time paper handoff into an initialized recovery pathway with clear ownership and next actions.",
+                effect: "Turns a one-time paper handoff into an initialized recovery pathway with clear ownership and next actions.",
             },
             {
                 title: "Child engagement",

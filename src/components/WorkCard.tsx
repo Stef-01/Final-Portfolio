@@ -33,7 +33,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         <button
             type="button"
             onClick={handleClick}
-            className={`group relative grid w-full cursor-pointer overflow-hidden rounded-[32px] border border-black/5 bg-[#f5f5f5] p-5 text-center transition-all duration-700 ease-out hover:scale-[1.01] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] md:min-h-[min(78svh,720px)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:p-10 ${className}`}
+            className={`group relative grid w-full cursor-pointer overflow-hidden rounded-2xl border border-black/10 bg-[#f5f5f5] p-5 text-center transition-all duration-700 ease-out hover:scale-[1.01] hover:border-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] md:min-h-[min(78svh,720px)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:p-10 ${className}`}
         >
             {/* Arrow Icon */}
             <div className="absolute top-4 right-4 md:top-6 md:right-6 w-9 h-9 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5">
@@ -59,12 +59,12 @@ export const WorkCard: React.FC<WorkCardProps> = ({
                     {title}
                 </h3>
                 {subtitle && (
-                    <p className="mt-3 text-xs font-medium leading-relaxed text-gray-700">
+                    <p className="mt-3 text-sm font-medium leading-relaxed text-gray-700">
                         {subtitle}
                     </p>
                 )}
-                <div className="mx-auto my-4 h-px w-10 bg-black/15" aria-hidden="true" />
-                <p className="text-xs leading-relaxed text-gray-600">
+                <div className="mx-auto my-5 h-px w-10 bg-black/15" aria-hidden="true" />
+                <p className="text-sm leading-relaxed text-gray-600">
                     {description}
                 </p>
             </div>
@@ -89,8 +89,6 @@ export const WorkCard: React.FC<WorkCardProps> = ({
                 />
             </div>
 
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 transition-all duration-700 pointer-events-none" />
         </button>
     );
 };

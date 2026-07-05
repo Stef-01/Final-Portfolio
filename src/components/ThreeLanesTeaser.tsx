@@ -44,7 +44,7 @@ const lanes: Lane[] = [
 
 export function ThreeLanesTeaser() {
   return (
-    <section className="flex w-full items-center bg-white px-5 py-10 md:px-8 md:py-14">
+    <section className="flex min-h-[100svh] w-full items-center bg-white px-5 py-16 md:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-3 md:grid-cols-4 md:gap-0 md:divide-x md:divide-black/10">
           {lanes.map((lane, index) => {

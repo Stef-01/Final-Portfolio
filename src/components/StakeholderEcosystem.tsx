@@ -8,7 +8,7 @@ import { usePhoneLayout } from "../hooks/usePhoneLayout";
  * Interactive healthcare-stakeholder ecosystem map for the Systems Map
  * section. Hovering / focusing / tapping a stakeholder spotlights it and its
  * connections; stakeholders tied to a real role (see ROLES) reveal a small
- * frosted role label.
+ * role label card.
  *
  * Desktop: an inline SVG node-graph (responsive via viewBox, keyboard
  * accessible, Esc clears the pinned selection).
@@ -172,7 +172,7 @@ export function StakeholderEcosystem() {
                 {NODES.filter((n) => n.zone === z.id).map((n) => {
                   const roles = ROLES[n.id];
                   return (
-                    <li key={n.id} className={`se-m-row${roles ? " se-m-hasrole" : ""}`}>
+                    <li key={n.id} className="se-m-row">
                       <span className="se-m-emoji" aria-hidden="true">
                         {n.emoji}
                       </span>
@@ -251,10 +251,10 @@ export function StakeholderEcosystem() {
           <rect x={428} y={254} width={375} height={456} rx={16} fill="#ebeff4" stroke="#dde3ea" />
           <rect x={819} y={256} width={263} height={456} rx={16} fill="#e8edf3" stroke="#dde3ea" />
 
-          <text className="se-h" x={560} y={112} textAnchor="middle">FINANCING · OVERSIGHT · PUBLIC HEALTH</text>
-          <text className="se-h" x={224} y={284} textAnchor="middle">INNOVATION &amp; SUPPLY</text>
-          <text className="se-h" x={616} y={284} textAnchor="middle">CARE DELIVERY — PROVIDERS</text>
-          <text className="se-h" x={950} y={286} textAnchor="middle">PATIENTS &amp; COMMUNITY</text>
+          <text className="se-h" x={560} y={112} textAnchor="middle">Financing · Oversight · Public Health</text>
+          <text className="se-h" x={224} y={284} textAnchor="middle">Innovation &amp; Supply</text>
+          <text className="se-h" x={616} y={284} textAnchor="middle">Care Delivery — Providers</text>
+          <text className="se-h" x={950} y={286} textAnchor="middle">Patients &amp; Community</text>
 
           <g>
             {EDGES.map(([a, b], i) => {
@@ -353,11 +353,11 @@ const CSS = `
 .se-node.se-active .se-ring { stroke: #6f86a3; }
 .se-node.se-near { filter: saturate(1); }
 .se-map.se-dim .se-node:not(.se-active):not(.se-near) { opacity: .4; }
-.se-edge { stroke: #8c939c; stroke-width: 1.5; opacity: .55; transition: stroke .18s, stroke-width .18s, opacity .18s; }
+.se-edge { stroke: #8c939c; stroke-width: 1.5; opacity: .55; transition: stroke .18s, opacity .18s; }
 .se-edge.se-on { stroke: #6f86a3; stroke-width: 2.2; opacity: .95; }
 .se-map.se-dim .se-edge:not(.se-on) { opacity: .12; }
 .se-h { font: 700 14px ui-sans-serif, system-ui, sans-serif; fill: #5b6a78; }
-/* Hover card stack — up to 3 separate glassmorphic boxes near the node */
+/* Hover card stack — up to 3 solid boxes near the node */
 .se-cardstack {
   position: absolute; z-index: 5; pointer-events: none;
   display: flex; flex-direction: column; gap: 7px;
@@ -367,32 +367,24 @@ const CSS = `
 .se-cardstack.se-show { opacity: 1; }
 .se-card {
   padding: 8px 12px; border-radius: 12px;
-  background: rgba(255,255,255,0.10);
-  -webkit-backdrop-filter: blur(20px) saturate(1.9); backdrop-filter: blur(20px) saturate(1.9);
-  border: 1px solid rgba(255,255,255,0.55);
-  box-shadow: 0 10px 30px rgba(20,30,45,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(20,30,45,0.22);
 }
 .se-card .se-title { font: 700 12.5px/1.25 ui-sans-serif, system-ui, sans-serif; color: #16273a; }
 .se-card .se-org { margin-top: 2px; font: 500 10.5px/1.3 ui-sans-serif, system-ui, sans-serif; color: #51616f; }
 
 /* ----- Mobile layout ----- */
 .se-m { display: flex; flex-direction: column; gap: 14px; }
-.se-m-zone { border: 0.5px solid #dde3ea; border-radius: 16px; background: #f6f8fb; padding: 14px 14px 6px; }
-.se-m-ztitle { font: 700 11px ui-sans-serif, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #5b6a78; margin-bottom: 10px; }
-.se-m-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.se-m-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; margin-bottom: 8px; border-radius: 12px; background: #fff; border: 0.5px solid #eef1f4; }
-.se-m-row.se-m-hasrole { border-color: #cdd6e0; background: #f4f7fb; }
+.se-m-zone { border-radius: 16px; background: #f6f8fb; padding: 14px 14px 6px; }
+.se-m-ztitle { font: 700 12px ui-sans-serif, system-ui, sans-serif; color: #5b6a78; margin-bottom: 10px; }
+.se-m-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.se-m-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 2px; margin-bottom: 8px; }
 .se-m-emoji { font-size: 22px; line-height: 1.2; flex: 0 0 auto; }
 .se-m-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
 .se-m-name { font: 600 14px ui-sans-serif, system-ui, sans-serif; color: #22384a; }
 .se-m-roles { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
-.se-m-rolebox {
-  display: flex; flex-direction: column; padding: 8px 11px; border-radius: 11px;
-  background: rgba(255,255,255,0.14);
-  -webkit-backdrop-filter: blur(16px) saturate(1.7); backdrop-filter: blur(16px) saturate(1.7);
-  border: 1px solid rgba(255,255,255,0.55);
-  box-shadow: 0 6px 18px rgba(20,30,45,0.14), inset 0 1px 0 rgba(255,255,255,0.55);
-}
+.se-m-rolebox { display: flex; flex-direction: column; }
 .se-m-rt { font: 700 12.5px ui-sans-serif, system-ui, sans-serif; color: #16273a; }
 .se-m-ro { margin-top: 1px; font: 500 11px ui-sans-serif, system-ui, sans-serif; color: #51616f; }
 

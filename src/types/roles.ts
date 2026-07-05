@@ -64,7 +64,7 @@ export const researchRoles: Role[] = [
       "Behavior-change evaluation frameworks",
     ],
     tags: ["Precision Nutrition", "Behavior Change", "Community Health"],
-    accent: "from-emerald-500 to-lime-400",
+    accent: "bg-emerald-500",
     link: "/project/nourish-meal-explorer",
     featured: true,
     network: {
@@ -90,14 +90,14 @@ export const researchRoles: Role[] = [
     period: "Mar 2025 – present",
     location: "Stanford, CA",
     summary:
-      "Lung-cancer ML work with Prof. Summer Han — EGFR tumor-burden annotation and translating signal-rich oncology outputs into usable precision-care reasoning.",
+      "Lung-cancer ML work with Prof. Summer Han — EGFR tumor-burden annotation and translating oncology model outputs into usable precision-care reasoning.",
     deliverables: [
       "Tumor burden annotation pipeline",
       "EGFR mutation sub-cohort analysis",
       "Preparation of manuscript drafts",
     ],
     tags: ["Precision Oncology", "Clinical ML", "Annotation"],
-    accent: "from-rose-500 to-orange-400",
+    accent: "bg-rose-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -128,7 +128,7 @@ export const researchRoles: Role[] = [
       "Manuscript on disruptive potential",
     ],
     tags: ["Oculomics", "Health Systems", "Medical Devices"],
-    accent: "from-cyan-500 to-blue-500",
+    accent: "bg-cyan-500",
     link: "/project/healthcare-from-the-eye",
     featured: true,
     network: {
@@ -161,7 +161,7 @@ export const researchRoles: Role[] = [
       "PhD-student mentoring → first-author outputs",
     ],
     tags: ["Indigenous Health", "Implementation", "Meta-analysis"],
-    accent: "from-fuchsia-500 to-purple-500",
+    accent: "bg-teal-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -223,7 +223,7 @@ export const researchRoles: Role[] = [
       "Surveillance-analytics review",
     ],
     tags: ["Global Health", "Surveillance", "ML"],
-    accent: "from-slate-700 to-slate-500",
+    accent: "bg-slate-600",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -250,14 +250,14 @@ export const industryRoles: Role[] = [
     period: "Ongoing",
     location: "Stanford / Distributed",
     summary:
-      "Coordinating a precision-nutrition program built around a teaching-kitchen intervention — behavior-change design meets adaptive recommendation for culturally relevant preventive care.",
+      "Coordinating a precision-nutrition program built around a teaching-kitchen intervention, combining behavior-change design with adaptive recommendation for culturally relevant preventive care.",
     deliverables: [
       "Meal-explorer prototype",
       "AI chef demo + storyboarding",
       "Clinical research pipeline alignment",
     ],
     tags: ["Product", "Nutrition", "Consumer Health"],
-    accent: "from-emerald-500 to-lime-400",
+    accent: "bg-emerald-500",
     link: "/project/nourish-meal-explorer",
     featured: true,
     network: {
@@ -290,7 +290,7 @@ export const industryRoles: Role[] = [
       "Skill-tree progression design",
     ],
     tags: ["Consumer AI", "Product", "Vision"],
-    accent: "from-orange-500 to-amber-400",
+    accent: "bg-orange-500",
     link: "/project/casa",
     featured: true,
     network: {
@@ -323,7 +323,7 @@ export const industryRoles: Role[] = [
       "Supply-chain planning + audits",
     ],
     tags: ["Global Health", "Med Devices", "Implementation"],
-    accent: "from-yellow-500 to-orange-500",
+    accent: "bg-yellow-500",
     link: "/project/dialysis-device-gtm",
     featured: true,
     network: {
@@ -356,7 +356,7 @@ export const industryRoles: Role[] = [
       "Venture Incubation Program (Director)",
     ],
     tags: ["PGx", "Clinical AI", "Venture"],
-    accent: "from-sky-500 to-violet-500",
+    accent: "bg-sky-500",
     link: "/project/pgx-llm-copilot",
     featured: true,
     network: {
@@ -389,7 +389,7 @@ export const industryRoles: Role[] = [
       "Strategic readmission-reduction recommendations",
     ],
     tags: ["Consulting", "Readmissions", "Health Systems"],
-    accent: "from-blue-500 to-indigo-500",
+    accent: "bg-blue-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -420,7 +420,7 @@ export const industryRoles: Role[] = [
       "Regulatory considerations",
     ],
     tags: ["Clinical AI", "Commercial Strategy", "Consulting"],
-    accent: "from-fuchsia-500 to-purple-500",
+    accent: "bg-teal-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -451,7 +451,7 @@ export const industryRoles: Role[] = [
       "Manuscript on disruptive potential (ophthalmology + primary care)",
     ],
     tags: ["Oculomics", "Health Systems", "Medical Devices"],
-    accent: "from-cyan-500 to-blue-500",
+    accent: "bg-cyan-500",
     link: "/project/healthcare-from-the-eye",
     network: {
       nodes: [
@@ -483,7 +483,7 @@ export const industryRoles: Role[] = [
       "Overall Finalist",
     ],
     tags: ["XR", "BCI", "Hackathon"],
-    accent: "from-rose-500 to-pink-500",
+    accent: "bg-rose-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -514,7 +514,7 @@ export const industryRoles: Role[] = [
       "Partnership intros",
     ],
     tags: ["Advisory", "Early Stage", "Consumer"],
-    accent: "from-teal-500 to-emerald-500",
+    accent: "bg-teal-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -543,12 +543,12 @@ export const educationRoles: Role[] = [
     summary:
       "Designed and delivered an applied entrepreneurship bootcamp for TLIA's creative savants, translating venture-building into structured exercises for needs finding, validation, business-model design, and pitch development.",
     deliverables: [
-      "Bootcamp curriculum architecture and learning journey",
+      "Bootcamp curriculum architecture and learning sequence",
       "Needs-finding, pain-scoring, validation, and pitch exercises",
       "Founder-facing teaching materials from the TLIA program deck",
     ],
     tags: ["Entrepreneurship Education", "Design Thinking", "Venture Building"],
-    accent: "from-emerald-500 to-teal-500",
+    accent: "bg-emerald-500",
     featured: true,
     network: {
       nodes: [
@@ -580,7 +580,7 @@ export const educationRoles: Role[] = [
       "Mentoring toward first-author publication outputs",
     ],
     tags: ["PhD Mentoring", "Meta-analysis", "Evidence Synthesis"],
-    accent: "from-purple-500 to-fuchsia-500",
+    accent: "bg-teal-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -611,7 +611,7 @@ export const educationRoles: Role[] = [
       "Teaching-kitchen concepts adapted for clinical education",
     ],
     tags: ["Clinical Education", "Nutrition", "Curriculum Design"],
-    accent: "from-lime-500 to-emerald-500",
+    accent: "bg-emerald-500",
     link: "/project/nourish-meal-explorer",
     featured: true,
     network: {
@@ -651,7 +651,7 @@ export const policyRoles: Role[] = [
       "Chronic-disease prevention evidence",
     ],
     tags: ["Implementation", "Indigenous Health", "Primary Care"],
-    accent: "from-amber-500 to-orange-500",
+    accent: "bg-amber-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -682,7 +682,7 @@ export const policyRoles: Role[] = [
       "Knowledge-translation advice + procurement panels",
     ],
     tags: ["NDIS", "Research Policy", "Knowledge Translation"],
-    accent: "from-amber-500 to-yellow-500",
+    accent: "bg-amber-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -713,7 +713,7 @@ export const policyRoles: Role[] = [
       "Ministerial briefs + new policy proposals",
     ],
     tags: ["NDIS", "Budget", "Ministerial Briefs"],
-    accent: "from-orange-500 to-amber-500",
+    accent: "bg-orange-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -744,7 +744,7 @@ export const policyRoles: Role[] = [
       "Briefs for senior executives + Attorneys-General",
     ],
     tags: ["National Redress", "Intergovernmental", "Briefing"],
-    accent: "from-amber-600 to-orange-500",
+    accent: "bg-amber-600",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },
@@ -775,7 +775,7 @@ export const policyRoles: Role[] = [
       "Public-sector briefing experience",
     ],
     tags: ["Parliamentary Research", "Social Policy", "Government"],
-    accent: "from-yellow-500 to-amber-500",
+    accent: "bg-yellow-500",
     network: {
       nodes: [
         { id: "me", label: "Me", icon: "me", x: 0.5, y: 0.5 },

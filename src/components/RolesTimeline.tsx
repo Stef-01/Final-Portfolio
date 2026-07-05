@@ -8,7 +8,6 @@ import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 interface RolesTimelineProps {
     roles: Role[];
-    eyebrow: string;
     title: string;
     intro?: string;
 }
@@ -49,9 +48,8 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
                 style={{ boxShadow: "0 0 0 4px white" }}
             />
 
-            {/* Date eyebrow */}
             <p
-                className={`text-[11px] font-semibold uppercase tracking-[0.28em] transition-opacity duration-300 ${
+                className={`text-sm font-medium transition-opacity duration-300 ${
                     expanded ? "text-gray-500" : "text-gray-400"
                 }`}
             >
@@ -98,7 +96,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
                                     {role.tags.slice(0, 4).map((tag) => (
                                         <span
                                             key={tag}
-                                            className="rounded-full border border-black/12 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-500"
+                                            className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-gray-600"
                                         >
                                             {tag}
                                         </span>
@@ -117,7 +115,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
                                             href={role.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
+                                            className="group/action inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                                         >
                                             Open case study
                                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
@@ -125,7 +123,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
                                     ) : (
                                         <Link
                                             to={role.link}
-                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-lg shadow-blue-500/30 transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
+                                            className="group/action inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                                         >
                                             Open case study
                                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
@@ -137,7 +135,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
                                         type="button"
                                         onClick={() => onNetworkClick(role)}
                                         aria-label="View role network"
-                                        className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-600 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
+                                        className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-600 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
                                     >
                                         <Network className="h-3.5 w-3.5" strokeWidth={1.5} />
                                         View network
@@ -152,7 +150,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter, onNetworkClick }: Timelin
     );
 };
 
-export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelineProps) => {
+export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
     const [activeRole, setActiveRole] = useState<Role | null>(null);
     // The "expanded" row defaults to the most recent (first) role, then the
     // scroll playhead drives it (with hover/tap as desktop overrides).
@@ -210,14 +208,8 @@ export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelinePro
     return (
         <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
             <div className="mx-auto max-w-5xl">
-                <div className="mb-16 max-w-3xl">
-                    <div className="mb-4 flex items-center gap-3">
-                        <span className="h-px w-8 bg-blue-500" />
-                        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-                            {eyebrow}
-                        </p>
-                    </div>
-                    <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
+                <div className="mb-12 max-w-3xl">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
                         {title}
                     </h2>
                     {intro && (
@@ -238,22 +230,19 @@ export const RolesTimeline = ({ roles, eyebrow, title, intro }: RolesTimelinePro
                     {prefersReducedMotion ? (
                         <div
                             aria-hidden="true"
-                            className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 to-indigo-500"
+                            className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-blue-600"
                         />
                     ) : (
                         <>
                             <motion.div
                                 aria-hidden="true"
-                                className="absolute left-[19px] md:left-[23px] top-0 w-px bg-gradient-to-b from-blue-500 to-indigo-500"
+                                className="absolute left-[19px] md:left-[23px] top-0 w-px bg-blue-600"
                                 style={{ height: spineHeight }}
                             />
                             <motion.div
                                 aria-hidden="true"
-                                className="absolute left-[14px] md:left-[18px] z-20 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-blue-500"
-                                style={{
-                                    top: spineHeight,
-                                    boxShadow: "0 0 12px 4px rgba(37,99,235,0.55)",
-                                }}
+                                className="absolute left-[14px] md:left-[18px] z-20 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-blue-600"
+                                style={{ top: spineHeight }}
                             />
                         </>
                     )}

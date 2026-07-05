@@ -45,7 +45,7 @@ export function AboutSection() {
                     className="relative"
                 >
                     {/* Browser Window Container - Updated Design */}
-                    <div className="bg-white rounded-3xl border-[3px] border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] aspect-[4/3] relative overflow-hidden z-10">
+                    <div className="bg-white rounded-2xl border-[3px] border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] aspect-[4/3] relative overflow-hidden z-10">
                         {/* Window Header - Minimal */}
                         <div className="h-14 border-b-[3px] border-black flex items-center px-6 gap-3 bg-white z-20 relative">
                             <div className="w-4 h-4 rounded-full bg-[#FF5F57] border-2 border-black"></div>
@@ -168,8 +168,6 @@ export function AboutSection() {
                         </svg>
                     </div>
 
-                    {/* Decorative Elements behind window */}
-                    <div className="absolute -z-10 top-10 -left-10 w-full h-full bg-[#F0FDF4] rounded-3xl blur-3xl opacity-50"></div>
                 </motion.div>
 
                 {/* Right Column: Text Content */}
@@ -218,14 +216,6 @@ export function AboutSection() {
                         </svg>
                     </motion.div>
 
-                    {/* Bottom Line */}
-                    <motion.div
-                        className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mt-8"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: 96 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.8 }}
-                    />
                 </div>
             </div>
         </section>

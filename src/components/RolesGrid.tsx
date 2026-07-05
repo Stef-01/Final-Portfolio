@@ -7,15 +7,14 @@ import { RoleNetworkModal } from "./RoleNetworkModal";
 
 interface RolesGridProps {
   roles: Role[];
-  eyebrow: string;
   title: string;
   intro: string;
 }
 
 const cardClasses =
-  "group relative block overflow-hidden rounded-[28px] border border-black/10 bg-[#fafafa] p-6 md:p-8 shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] transition-transform";
+  "group relative block rounded-2xl bg-[#fafafa] p-6 md:p-8 transition-transform";
 
-export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
+export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
   const [activeRole, setActiveRole] = useState<Role | null>(null);
 
   useEffect(() => {
@@ -30,17 +29,11 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
   return (
     <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-16 max-w-3xl">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="h-px w-8 bg-emerald-500" />
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-600">
-            {eyebrow}
-            </p>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-black">
+        <div className="mb-12 max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-black">
             {title}
           </h2>
-          <p className="mt-4 text-base md:text-xl leading-relaxed text-gray-600">
+          <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-600">
             {intro}
           </p>
         </div>
@@ -49,10 +42,10 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
           {roles.map((role, index) => {
             const body = (
               <>
-                <div className="flex items-start justify-between gap-4 mb-5">
-                  <span className="rounded-full bg-black px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
-                    {role.period}
-                  </span>
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <p className="text-sm font-medium text-gray-500">
+                    {role.period} · {role.organization}
+                  </p>
                   <div className="relative z-20 flex items-center gap-2">
                     {role.network && (
                       <button
@@ -77,21 +70,18 @@ export const RolesGrid = ({ roles, eyebrow, title, intro }: RolesGridProps) => {
                   </div>
                 </div>
 
-                <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
-                  {role.organization}
-                </p>
-                <h3 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight text-black">
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-black">
                   {role.title}
                 </h3>
 
                 {role.location && (
-                  <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-gray-500">
+                  <div className="mt-2 inline-flex items-center gap-1.5 text-sm text-gray-500">
                     <MapPin className="h-3.5 w-3.5" />
                     {role.location}
                   </div>
                 )}
 
-                <p className="mt-5 text-base leading-relaxed text-gray-700">
+                <p className="mt-4 text-base leading-relaxed text-gray-700">
                   {role.summary}
                 </p>
 

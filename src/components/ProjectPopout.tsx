@@ -37,7 +37,7 @@ export const ProjectPopout = ({
                     onClick={() => setIsOpen(true)}
                     aria-expanded="false"
                     aria-label={`Open ${accessibleLabel}`}
-                    className="group inline-flex items-center gap-3 rounded-full border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black shadow-[0_18px_60px_-24px_rgba(0,0,0,0.45)] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 motion-reduce:transition-none"
+                    className="group inline-flex items-center gap-3 rounded-full border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black shadow-xl transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 motion-reduce:transition-none"
                 >
                     <span
                         className="flex h-8 w-8 items-center justify-center rounded-full text-white"
@@ -59,7 +59,7 @@ export const ProjectPopout = ({
         <aside
             aria-label={accessibleLabel}
             data-testid="project-popout"
-            className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 z-[60] overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_28px_90px_-30px_rgba(0,0,0,0.55)] sm:left-auto sm:w-[390px] md:bottom-6 md:right-6"
+            className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 z-[60] overflow-hidden rounded-2xl border border-black/10 bg-white shadow-xl sm:left-auto sm:w-[390px] md:bottom-6 md:right-6"
         >
             <div className="sm:grid sm:grid-cols-[108px_1fr]">
                 <div className="relative hidden min-h-[174px] overflow-hidden bg-[#f3f3f3] sm:block">
@@ -73,10 +73,6 @@ export const ProjectPopout = ({
                         decoding="async"
                         sizes="108px"
                     />
-                    <div
-                        className="pointer-events-none absolute inset-0 mix-blend-multiply"
-                        style={{ background: `linear-gradient(180deg, transparent 45%, ${accent}99 100%)` }}
-                    />
                 </div>
 
                 <div className="relative p-5 pr-12">
@@ -89,7 +85,7 @@ export const ProjectPopout = ({
                         <X className="h-4 w-4" aria-hidden="true" />
                     </button>
 
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gray-400">
+                    <p className="text-sm font-medium text-gray-500">
                         {eyebrow}
                     </p>
                     <h2 className="mt-2 text-xl font-semibold tracking-tight text-black">

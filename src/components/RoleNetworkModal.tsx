@@ -19,7 +19,7 @@ import type { NetworkIcon, Role, RoleNetwork } from "../types/roles";
 interface RoleNetworkModalProps {
     role: Role | null;
     onClose: () => void;
-    /** Accent hex used for the centre "me" node and eyebrow. Defaults to black. */
+    /** Accent hex used for the centre "me" node. Defaults to black. */
     accent?: string;
 }
 
@@ -211,11 +211,11 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
             {role && role.network && (
                 <motion.div
                     key="backdrop"
-                    initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                    animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
-                    exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                    className="fixed inset-0 z-[80] flex items-center justify-center bg-black/35 px-4"
+                    className="fixed inset-0 z-[80] flex items-center justify-center bg-black/40 px-4"
                     onClick={onClose}
                 >
                     <motion.div
@@ -224,20 +224,11 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
                         exit={{ opacity: 0, y: 18, scale: 0.97 }}
                         transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                         onClick={(e) => e.stopPropagation()}
-                        className="relative w-full max-w-[860px] overflow-hidden rounded-[32px] bg-white shadow-[0_60px_120px_-30px_rgba(0,0,0,0.45),_0_8px_24px_-12px_rgba(0,0,0,0.18)]"
+                        className="relative w-full max-w-[860px] overflow-hidden rounded-2xl bg-white shadow-xl"
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="role-network-title"
                     >
-                        {/* Subtle radial wash so the diagram has depth without colour */}
-                        <div
-                            className="pointer-events-none absolute inset-0"
-                            style={{
-                                background:
-                                    "radial-gradient(ellipse at 50% 35%, rgba(0,0,0,0.04) 0%, rgba(255,255,255,0) 65%)",
-                            }}
-                        />
-
                         <button
                             type="button"
                             onClick={onClose}
@@ -248,7 +239,7 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
                         </button>
 
                         <div className="relative px-10 pt-9 pb-2">
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.32em]" style={{ color: accent }}>
+                            <p className="text-sm font-medium text-gray-500">
                                 Role network
                             </p>
                             <h3
@@ -297,7 +288,7 @@ export const RoleNetworkModal: React.FC<RoleNetworkModalProps> = ({ role, onClos
 
                             {/* Description tray — height-stable, cross-fades the
                                 label string when the hovered edge/node changes. */}
-                            <div className="mx-2 mt-1 min-h-[48px] rounded-[18px] border border-black/8 bg-[#fafafa] px-5 py-3">
+                            <div className="mx-2 mt-1 min-h-[48px] rounded-lg bg-[#fafafa] px-5 py-3">
                                 <AnimatePresence mode="wait" initial={false}>
                                     <motion.p
                                         key={hoverLabel ?? "placeholder"}

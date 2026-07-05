@@ -104,14 +104,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="contact-modal-title"
-                className={`relative w-full bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl animate-in fade-in zoom-in duration-300 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
+                className={`relative w-full bg-white rounded-2xl shadow-xl animate-in fade-in zoom-in duration-300 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}
                 <button
                     ref={closeButtonRef}
                     onClick={onClose}
-                    className={`absolute w-12 h-12 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-all flex items-center justify-center z-10 ${isPhoneLayout ? "top-3 right-3" : "-top-4 -right-4"}`}
+                    className={`absolute w-12 h-12 bg-white rounded-full border border-black/10 hover:bg-gray-100 transition-colors flex items-center justify-center z-10 ${isPhoneLayout ? "top-3 right-3" : "-top-4 -right-4"}`}
                     aria-label="Close"
                 >
                     <X className="w-5 h-5" />
@@ -124,7 +124,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                         onClick={handleEmailClick}
                         className="flex flex-col items-center gap-3 group"
                     >
-                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center`}>
+                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-black text-white rounded-full hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center`}>
                             {emailCopied ? (
                                 <>
                                     <Check className="w-12 h-12 text-white mb-1" />
@@ -151,7 +151,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                         rel="noopener noreferrer"
                         className="flex flex-col items-center gap-3 group"
                     >
-                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-gradient-to-br from-blue-600 to-blue-700 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center`}>
+                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-black text-white rounded-full hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center`}>
                             <Linkedin className="w-12 h-12 text-white mb-1" />
                             <span className="text-white font-semibold text-sm">LinkedIn</span>
                         </div>

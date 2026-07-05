@@ -1,6 +1,5 @@
 import React, { Suspense, lazy, useState } from "react";
 import { Link } from "react-router-dom";
-import { Badge } from "../components/Badge";
 import { Button } from "../components/Button";
 import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
@@ -40,15 +39,6 @@ export const ScalehubStartupLp = (): JSX.Element => {
       });
   };
 
-  const handleViewPress = () => {
-    document
-      .getElementById("press")
-      ?.scrollIntoView({
-        behavior: prefersReducedMotion ? "instant" : "smooth",
-        block: "start",
-      });
-  };
-
   return (
     <div className="bg-white flex flex-col w-full overflow-x-hidden">
       <main>
@@ -59,7 +49,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
             <div
               className={`${
                 isPhoneLayout ? "absolute" : "fixed"
-              } inset-0 z-0 bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100`}
+              } inset-0 z-0 bg-gray-50`}
             />
           }
         >
@@ -69,10 +59,8 @@ export const ScalehubStartupLp = (): JSX.Element => {
         </Suspense>
 
         <div className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20">
-          <Badge className="mb-8" label="Stefan Thottunkal" showIcon={true} />
-
-          <h1 className="text-center text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-6 max-w-4xl leading-[0.95]">
-            Transforming Digital Health Experiences
+          <h1 className="text-center text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-6 max-w-4xl leading-[0.98]">
+            Stefan Thottunkal
           </h1>
 
           <p className="text-center text-base md:text-xl leading-relaxed text-gray-600 max-w-2xl mb-8">
@@ -83,20 +71,14 @@ export const ScalehubStartupLp = (): JSX.Element => {
           <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none">
             <Button
               type="primary"
-              label="See the work"
+              label="View work"
               onClick={handleViewWork}
               className="w-full sm:w-[134px]"
             />
             <Button
               type="secondary"
-              label="Contact Me"
+              label="Contact"
               onClick={() => setIsContactModalOpen(true)}
-              className="w-full sm:w-[134px]"
-            />
-            <Button
-              type="secondary"
-              label="Press"
-              onClick={handleViewPress}
               className="w-full sm:w-[134px]"
             />
           </div>
@@ -114,13 +96,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
 
       {/* Timeline Section — explicitly NOT a snap target (taller than viewport) */}
-      <Suspense
-        fallback={
-          <div className="h-screen w-full bg-white flex items-center justify-center">
-            Loading Timeline...
-          </div>
-        }
-      >
+      <Suspense fallback={<div className="h-screen w-full bg-white" aria-hidden="true" />}>
         <div className="relative z-10 bg-white">
           <TimelineSection />
         </div>

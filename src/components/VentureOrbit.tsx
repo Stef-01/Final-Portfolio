@@ -9,7 +9,7 @@ import { usePhoneLayout } from "../hooks/usePhoneLayout";
  * ventures arranged around it on a slowly-rotating orbit, colour-coded by how
  * Stefan engaged (building / consulting / advising). Hovering / focusing a
  * venture spotlights it, sends a flowing current down the connector, and
- * reveals a frosted glass card with the real role played there.
+ * reveals a card with the real role played there.
  *
  * Desktop: inline SVG (responsive via viewBox, keyboard accessible).
  * Mobile (portrait phones): a stacked list — no hover required.
@@ -155,7 +155,6 @@ export function VentureOrbit() {
 
           {/* Hub */}
           <g className="vo-hub">
-            <circle cx={CX} cy={CY} r={62} className="vo-hub-glow" />
             <circle cx={CX} cy={CY} r={52} className="vo-hub-disc" />
             <text className="vo-hub-t" x={CX} y={CY - 6} textAnchor="middle">
               Health Tech
@@ -249,16 +248,14 @@ const CSS = `
 .vo-ring-2 { stroke: rgba(16,185,129,0.16); }
 @keyframes vo-spin { to { transform: rotate(360deg); } }
 
-.vo-edge { stroke: #cdd9d2; stroke-width: 1.4; opacity: .5; transition: stroke-width .18s, opacity .18s; }
+.vo-edge { stroke: #cdd9d2; stroke-width: 1.4; opacity: .5; transition: opacity .18s; }
 .vo-edge.vo-on { stroke-width: 2.4; opacity: .98; stroke-dasharray: 7 7; animation: vo-flow 0.7s linear infinite; }
 .vo-map.vo-dim .vo-edge:not(.vo-on) { opacity: .12; }
 @keyframes vo-flow { to { stroke-dashoffset: -28; } }
 
-.vo-hub .vo-hub-glow { fill: rgba(16,185,129,0.14); animation: vo-pulse 5.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 .vo-hub .vo-hub-disc { fill: #ffffff; stroke: rgba(16,185,129,0.5); stroke-width: 1.5; }
 .vo-hub .vo-hub-t { font: 700 17px ui-sans-serif, system-ui, sans-serif; fill: #0f7a5a; }
-.vo-hub .vo-hub-s { font: 600 12px ui-sans-serif, system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; fill: #5b8a78; }
-@keyframes vo-pulse { 0%,100% { opacity: .55; transform: scale(1); } 50% { opacity: .9; transform: scale(1.08); } }
+.vo-hub .vo-hub-s { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: #5b8a78; }
 
 .vo-node { cursor: pointer; outline: none; transition: opacity .18s; }
 .vo-node .vo-disc { fill: #f6faf8; stroke: rgba(15,40,30,0.08); stroke-width: 1; transition: transform .18s; transform-box: fill-box; transform-origin: center; }
@@ -272,14 +269,13 @@ const CSS = `
 
 .vo-card {
   position: absolute; max-width: 252px; padding: 9px 13px; z-index: 5; pointer-events: none;
-  background: rgba(255,255,255,0.10);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8); backdrop-filter: blur(20px) saturate(1.8);
-  border: 1px solid rgba(255,255,255,0.55); border-radius: 13px;
-  box-shadow: 0 10px 30px rgba(8,40,28,0.18), inset 0 1px 0 rgba(255,255,255,0.6);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1); border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(8,40,28,0.18);
   opacity: 0; transition: opacity .14s ease;
 }
 .vo-card.vo-show { opacity: 1; }
-.vo-card-cat { display: flex; align-items: center; gap: 5px; font: 700 9.5px ui-sans-serif, system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #5f6f5f; margin-bottom: 3px; }
+.vo-card-cat { display: flex; align-items: center; gap: 5px; font: 600 11px ui-sans-serif, system-ui, sans-serif; color: #5f6f5f; margin-bottom: 3px; }
 .vo-card-cat i { width: 6px; height: 6px; border-radius: 50%; }
 .vo-card-name { font: 700 14px/1.2 ui-sans-serif, system-ui, sans-serif; color: #11362a; }
 .vo-card-role { margin-top: 2px; font: 500 11.5px/1.35 ui-sans-serif, system-ui, sans-serif; color: #4f6a5f; }
@@ -290,16 +286,16 @@ const CSS = `
 
 /* ----- Mobile ----- */
 .vo-m-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.vo-m-row { display: flex; align-items: flex-start; gap: 11px; padding: 11px 13px; border-radius: 14px; background: #f4faf7; border: 0.5px solid #d6e7df; }
+.vo-m-row { display: flex; align-items: flex-start; gap: 11px; padding: 11px 13px; border-radius: 14px; background: #f4faf7; }
 .vo-m-emoji { font-size: 24px; line-height: 1.1; flex: 0 0 auto; }
 .vo-m-text { display: flex; flex-direction: column; min-width: 0; }
 .vo-m-name { font: 700 15px ui-sans-serif, system-ui, sans-serif; color: #11362a; }
 .vo-m-role { margin-top: 2px; font: 500 12.5px/1.4 ui-sans-serif, system-ui, sans-serif; color: #4f6a5f; }
-.vo-m-cat { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; font: 700 10px ui-sans-serif, system-ui, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #5f6f5f; }
+.vo-m-cat { display: inline-flex; align-items: center; gap: 6px; margin-top: 5px; font: 600 11px ui-sans-serif, system-ui, sans-serif; color: #5f6f5f; }
 .vo-m-cat i { width: 7px; height: 7px; border-radius: 50%; flex: 0 0 auto; }
 
 @media (prefers-reduced-motion: reduce) {
-  .vo-rings, .vo-hub .vo-hub-glow { animation: none; }
+  .vo-rings { animation: none; }
   .vo-edge.vo-on { animation: none; }
   .vo-node, .vo-node .vo-disc, .vo-node .vo-emoji, .vo-node .vo-ringlet, .vo-edge, .vo-card { transition: none; }
 }

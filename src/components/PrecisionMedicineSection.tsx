@@ -76,13 +76,7 @@ export const PrecisionMedicineSection = () => {
   return (
     <section className="w-full bg-white px-4 py-20 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-4 flex items-center gap-3">
-          <span className="h-px w-8 bg-blue-500" />
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
-            Precision Medicine
-          </p>
-        </div>
-        <h2 className="max-w-3xl text-4xl font-bold tracking-tighter text-black md:text-6xl">
+        <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-black md:text-4xl">
           Precision-care portfolio
         </h2>
       </div>

@@ -21,7 +21,6 @@ export const LatestWorkSection = () => {
 
     return (
         <section className="relative overflow-hidden px-4 md:px-8 bg-white" id="work">
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-64 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_62%)]" />
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="flex min-h-[100svh] snap-start snap-always flex-col items-center justify-center py-16 text-center md:py-20">
                         <motion.h2
@@ -29,7 +28,7 @@ export const LatestWorkSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.72, delay: 0.08 }}
-                            className="text-4xl sm:text-5xl md:text-8xl font-bold tracking-tighter mb-5 leading-[0.95]"
+                            className="text-3xl md:text-4xl font-bold tracking-tight mb-5"
                         >
                             Flagship projects across health, AI, and systems design
                         </motion.h2>
@@ -44,13 +43,13 @@ export const LatestWorkSection = () => {
                             {capabilityLanes.map((lane, index) => (
                                 <motion.div
                                     key={lane.title}
-                                    className="rounded-full border border-black/10 bg-white px-5 py-2.5 text-center shadow-[0_18px_38px_-32px_rgba(0,0,0,0.4)]"
+                                    className="rounded-full border border-black/10 bg-white px-5 py-2.5 text-center"
                                     initial={{ opacity: 0, y: prefersReducedMotion ? 10 : 22 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-80px" }}
                                     transition={{ duration: 0.48, delay: 0.3 + index * 0.05 }}
                                 >
-                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">{lane.title}</p>
+                                    <p className="text-sm font-medium text-gray-500">{lane.title}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
