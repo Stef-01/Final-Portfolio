@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { projects } from "../types/project";
@@ -14,15 +14,6 @@ import { useGoBack } from "../hooks/useGoBack";
 const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
     const goBack = useGoBack();
-    const [activeModuleIndex, setActiveModuleIndex] = useState(0);
-
-    const activeModule = useMemo(() => {
-        if (!project) {
-            return null;
-        }
-
-        return project.interactiveModules[activeModuleIndex] ?? project.interactiveModules[0];
-    }, [activeModuleIndex, project]);
 
     if (!project) {
         return <NotFound />;
@@ -329,68 +320,6 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 </section>
                 )}
 
-                {project.interactiveModules && project.interactiveModules.length > 0 && (
-                <section className="mt-16 overflow-hidden rounded-2xl bg-[#0f1115] p-6 text-white md:p-8">
-                    <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-                        <div>
-                            {project.interactiveEyebrow && (
-                                <p className="text-sm font-medium text-white/60">
-                                    {project.interactiveEyebrow}
-                                </p>
-                            )}
-                            <h2 className="mt-3 t-h2 font-bold tracking-tight">
-                                {project.interactiveHeading ?? "Product architecture"}
-                            </h2>
-
-                            <div className="mt-8 flex flex-wrap gap-3">
-                                {project.interactiveModules.map((module, index) => (
-                                    <button
-                                        key={module.title}
-                                        type="button"
-                                        onClick={() => setActiveModuleIndex(index)}
-                                        aria-pressed={index === activeModuleIndex}
-                                        className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${index === activeModuleIndex
-                                            ? "bg-white text-black"
-                                            : "bg-white/8 text-white/70 hover:bg-white/14 hover:text-white"
-                                            }`}
-                                    >
-                                        {module.title}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {activeModule && (
-                            <div>
-                                <p className="text-sm font-medium text-white/60">
-                                    {project.interactiveActiveLabel ?? "Active concept"}
-                                </p>
-                                <h3 className="mt-4 text-xl font-bold tracking-tight text-white md:text-2xl">
-                                    {activeModule.title}
-                                </h3>
-                                <p className="mt-4 text-base leading-relaxed text-white/75">
-                                    {activeModule.summary}
-                                </p>
-
-                                <div className="mt-8 grid gap-6 md:grid-cols-2">
-                                    <div>
-                                        <p className="text-sm font-medium text-white/60">
-                                            {project.interactivePrimaryLabel ?? "Interaction"}
-                                        </p>
-                                        <p className="mt-3 text-base leading-relaxed text-white/80">{activeModule.interaction}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-medium text-white/60">
-                                            {project.interactiveSecondaryLabel ?? "Motion and effects"}
-                                        </p>
-                                        <p className="mt-3 text-base leading-relaxed text-white/80">{activeModule.effect}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </section>
-                )}
             </main>
 
             {project.popout && (

@@ -94,13 +94,6 @@ export interface ProjectCaseStudy {
     steps: ProjectCaseStudyStep[];
 }
 
-export interface ProjectInteractiveModule {
-    title: string;
-    summary: string;
-    interaction: string;
-    effect: string;
-}
-
 export interface ProjectPopout {
     url: string;
     eyebrow: string;
@@ -139,12 +132,6 @@ export interface Project {
     mediaHeading?: string;
     mediaLayout?: "grid" | "editorial";
     video?: ProjectVideo;
-    interactiveModules: ProjectInteractiveModule[];
-    interactiveEyebrow?: string;
-    interactiveHeading?: string;
-    interactiveActiveLabel?: string;
-    interactivePrimaryLabel?: string;
-    interactiveSecondaryLabel?: string;
     caseStudy?: ProjectCaseStudy;
     links?: ProjectLink[];
     popout?: ProjectPopout;
@@ -189,7 +176,7 @@ export const projects: Project[] = [
             {
                 title: "Make culinary medicine usable",
                 body: [
-                    "The consumer proposition combines practitioner-informed recipes, guided cooking, smart-pantry support, and restaurant-prepared kits. Users can engage at the level that fits the night: learn and cook, reduce shopping friction, or order a matched kit.",
+                    "The consumer offer combines practitioner-informed recipes, guided cooking, smart-pantry support, and restaurant-prepared kits. Users engage at the level that fits the night: learn and cook, cut shopping friction, or order a matched kit.",
                     "The information architecture is deliberately progressive. Health guidance and meal planning remain accessible in the free app; paid fulfillment enters when convenience is the more important job.",
                 ],
                 media: { src: casaSolutionPillars, alt: "Casa solution architecture showing health-optimised recipes, guided cooking, smart pantry, and meal kits", caption: "Three service pillars connect trusted meal guidance to practical household execution.", fit: "contain", aspect: "16/9" },
@@ -275,43 +262,6 @@ export const projects: Project[] = [
         mediaEyebrow: "Venture evidence",
         mediaHeading: "Product, intelligence, and market logic in one system",
         mediaLayout: "editorial",
-        interactiveEyebrow: "Experience architecture",
-        interactiveHeading: "How the platform compounds value",
-        interactiveActiveLabel: "System layer",
-        interactivePrimaryLabel: "What it coordinates",
-        interactiveSecondaryLabel: "Why it matters",
-        interactiveModules: [
-            {
-                title: "Consumer app",
-                summary: "A free planning and guidance layer learns the household before asking it to buy.",
-                interaction: "Health coaching, meal planning, smart-pantry support, swaps, bridge meals, and guided cooking.",
-                effect: "Reduces the number of decisions between intention and dinner while building a richer preference model.",
-            },
-            {
-                title: "Intelligence layer",
-                summary: "A shared decision layer translates behaviour into better matching and clearer demand signals.",
-                interaction: "Preference translation, meal and kit ranking, recommendations, forecasting, and trend discovery.",
-                effect: "Each order, skip, and kit outcome improves the next consumer recommendation and supply decision.",
-            },
-            {
-                title: "Restaurant OS",
-                summary: "The operating layer turns personalised demand into work that a restaurant team can execute.",
-                interaction: "Build sheets, batch planning, labels, production analytics, and recurring-kit workflows.",
-                effect: "Makes the consumer promise operationally credible and converts idle capacity into planned production.",
-            },
-            {
-                title: "Product studio",
-                summary: "A standardisation layer converts restaurant menu items into repeatable Casa products.",
-                interaction: "Recipe redesign, nutrition data, kit format, packaging, and kitchen quality assurance.",
-                effect: "Preserves the value of familiar local restaurants while creating consistent meal-kit products.",
-            },
-            {
-                title: "Marketplace loop",
-                summary: "Consumer demand, restaurant execution, and product learning reinforce one another.",
-                interaction: "Recurring kits and subscriptions return outcome data to the preference graph and product studio.",
-                effect: "Moves Casa beyond a recommendation interface toward a defensible operating and learning system.",
-            },
-        ],
     },
     {
         id: "swaad",
@@ -374,26 +324,6 @@ export const projects: Project[] = [
             { src: swaadMealExplorer, alt: "SWAAD recipe flow", caption: "Meal discovery experience structured around preferences, pantry context, and health goals." },
             { src: swaadNutriserve, alt: "SWAAD educational game", caption: "Interactive nutrition learning translated into playful service mechanics." },
             { src: swaadGame, alt: "SWAAD game screen", caption: "Gamified interfaces designed to make tradeoffs in food decisions legible and memorable." },
-        ],
-        interactiveModules: [
-            {
-                title: "Plate Intelligence",
-                summary: "A drag-and-drop plate builder that visualizes how swaps affect carb quality, sodium load, and satiety.",
-                interaction: "Users assemble a meal and instantly see what small changes improve metabolic outcomes without changing the cultural identity of the dish.",
-                effect: "Soft card-lift interactions, animated nutrient pulses, and before/after overlays that make improvements feel tangible.",
-            },
-            {
-                title: "Market-to-Meal Explorer",
-                summary: "A local produce and pricing surface that connects what is in season to what can be cooked tonight.",
-                interaction: "Tap produce cards to reveal meal suggestions, health rationale, and culturally relevant preparation options.",
-                effect: "Stacked ingredient cards, price-to-recipe transitions, and subtle route animations between produce and meals.",
-            },
-            {
-                title: "Nutrition Game Loop",
-                summary: "A lightweight simulation where serving choices influence energy, glucose stability, and disease-risk education.",
-                interaction: "Players serve meals to different profiles and receive contextual feedback on where they helped or harmed outcomes.",
-                effect: "Playful status meters, ingredient feedback chips, and animated lesson summaries instead of static advice blocks.",
-            },
         ],
     },
     {
@@ -518,50 +448,13 @@ export const projects: Project[] = [
             { src: nourishShareablePlate, alt: "Share dialog offering download, copy, and share actions for the completed meal pairing", caption: "The recommendation becomes a portable result that can be downloaded, copied, or shared.", fit: "contain", aspect: "8/5" },
             { src: nourishMobileDiscovery, alt: "Mobile NOURISH Meal Pairer search screen with a touch-friendly meal field and example dishes", caption: "The same search-first mental model compresses into a clear touch-friendly sequence on mobile.", fit: "contain", aspect: "9/16" },
         ],
-        interactiveEyebrow: "Experience architecture",
-        interactiveHeading: "How one familiar meal becomes an explainable, shareable plate",
-        interactiveActiveLabel: "Active step",
-        interactivePrimaryLabel: "User decision",
-        interactiveSecondaryLabel: "Design response",
-        interactiveModules: [
-            {
-                title: "Familiar meal",
-                summary: "The experience begins with a dish the user already recognizes and wants to keep.",
-                interaction: "Enter a meal directly or choose a concrete example without translating a broad health goal into search terminology.",
-                effect: "Recognition-first prompts lower cognitive demand and signal that the product will work with the user's food rather than against it.",
-            },
-            {
-                title: "Complementary sides",
-                summary: "The pairing system keeps the main dish central and composes supporting sides around it.",
-                interaction: "Review the complete generated pairing while retaining the main meal as the fixed anchor.",
-                effect: "The visual hierarchy communicates adaptation rather than replacement and makes the system's recommendation easier to parse.",
-            },
-            {
-                title: "Inspect or swap",
-                summary: "Each suggested side remains independently explainable and replaceable.",
-                interaction: "Open dish details, inspect compact nutrition context, continue to a recipe, or swap only that side.",
-                effect: "Local reversible actions keep users in control and prevent one rejected recommendation from destroying the whole result.",
-            },
-            {
-                title: "Evaluate the plate",
-                summary: "The product synthesizes the completed meal across vegetables, protein, and carbohydrates.",
-                interaction: "Move from individual dishes to a single plate-balance view and inspect the explanation of the full composition.",
-                effect: "One visual model makes nutrition reasoning legible without demanding interpretation of a dense nutrient table.",
-            },
-            {
-                title: "Share the result",
-                summary: "The completed pairing becomes an artifact that can travel beyond the immediate session.",
-                interaction: "Download, copy, or share the plate while retaining the main dish and selected sides.",
-                effect: "Portability turns a recommendation into something users can revisit or discuss with others.",
-            },
-        ],
     },
     {
         id: "pgx-llm-copilot",
         title: "Pharmacogenomics LLM Copilot",
         subtitle: "GenieRX — an LLM tool for gene-guided prescribing. 2nd in the US and 7th of 3,500 teams globally at Harvard HSIL.",
-        description: "GenieRX is an LLM pharmacogenomics tool that supports gene-guided prescribing across commonly prescribed medications. Built with a five-person team at the Harvard Health Systems Innovation Lab (HSIL) hackathon and advanced through the HSIL Venture Incubation Program, it connects to Stefan's Stanford research on CPIC-guideline-based prescribing and LLM clinical decision support.",
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop",
+        description: "An LLM tool that turns a patient's genotype into safer prescribing across commonly prescribed medications. Built with a five-person team at the Harvard HSIL hackathon, advanced through its Venture Incubation Program, and grounded in Stanford research on CPIC-guideline prescribing.",
+        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
         tags: ["Pharmacogenomics", "Clinical Decision Support", "LLM"],
         role: "GenieRX Team Leader → Director (Harvard HSIL); pharmacogenomics CDS researcher (Stanford Medicine)",
         client: "Harvard Health Systems Innovation Lab · Stanford Medicine",
@@ -576,57 +469,37 @@ export const projects: Project[] = [
             { label: "Foundations", value: "CPIC guidelines + LLM CDS (Stanford)" },
         ],
         highlights: [
-            { title: "A real workflow problem", text: "Pharmacogenomic knowledge is valuable, but often too fragmented or hard to apply under time pressure." },
-            { title: "Proven in competition", text: "Built by a five-person team and judged 2nd nationally (USA) and 7th of 3,500 teams globally at the Harvard HSIL hackathon, then advanced into the Venture Incubation Program." },
-            { title: "Grounded in research", text: "The decision-support direction draws on Stanford research into CPIC-guideline-based prescribing and the translation of pharmacogenomics into real clinical workflows." },
+            { title: "The gap", text: "Pharmacogenomic guidance exists, but it is scattered and hard to apply while prescribing under time pressure." },
+            { title: "2nd in the US", text: "Judged 2nd nationally and 7th of 3,500 teams at Harvard HSIL, then taken into the Venture Incubation Program." },
+            { title: "Grounded in research", text: "Built on Stanford research into CPIC-guideline prescribing and translating pharmacogenomics into clinical workflows." },
         ],
         sections: [
             {
                 title: "The problem",
                 body: [
-                    "Clinicians are expected to make safe prescribing decisions in environments where time is limited, information is fragmented, and pharmacogenomic insight is not always easy to retrieve or interpret in context.",
-                    "The opportunity was to design a decision-support layer that helps clinicians move from genotype to action, rather than simply generating answers with a model.",
+                    "Clinicians prescribe under time pressure, with pharmacogenomic evidence scattered across guidelines and databases.",
+                    "GenieRX moves them from genotype to a concrete prescribing action, instead of just answering a question.",
                 ],
             },
             {
-                title: "The product direction",
+                title: "How it works",
                 body: [
-                    "The concept centers on an LLM-assisted copilot that organizes clinical context, pharmacogenomic evidence, and prescribing recommendations into a usable workflow surface.",
-                    "Rather than imitating a chatbot for its own sake, the design aims to reduce friction, reveal provenance, and make tradeoffs explicit where they matter most.",
+                    "The copilot pulls patient context, pharmacogenomic evidence, and a recommended action onto one screen.",
+                    "It shows where each recommendation comes from and where the dose or drug-choice tradeoffs sit, so a clinician can trust it or override it.",
                 ],
             },
             {
                 title: "Why it matters",
                 body: [
-                    "Pharmacogenomics can make prescribing safer, but only if gene-guided guidance reaches clinicians at the moment of decision. GenieRX targets exactly that gap.",
-                    "The work pairs a competition-tested build with Stanford research on CPIC-guideline-based prescribing, so the interface direction is grounded in how pharmacogenomics actually translates into clinical workflows.",
+                    "Pharmacogenomics only improves safety when the guidance reaches the clinician while they prescribe — GenieRX delivers it there.",
+                    "It pairs a competition-tested build with Stanford research on how CPIC guidelines translate into real prescribing.",
                 ],
             },
         ],
         media: [
-            { src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop", alt: "Clinical review context", caption: "The opportunity lies in improving decision quality inside time-constrained care environments." },
-            { src: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1600&auto=format&fit=crop", alt: "Healthcare technology workflow", caption: "Clinical intelligence is only useful when surfaced at the right moment in the right form." },
-            { src: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop", alt: "Precision medicine context", caption: "Precision medicine depends on interface quality that makes action feel safe and legible." },
-        ],
-        interactiveModules: [
-            {
-                title: "Genotype-to-Action Workflow",
-                summary: "A guided sequence that turns pharmacogenomic findings into concrete prescribing guidance.",
-                interaction: "Clinicians inspect a patient context, view medication implications, and expand evidence layers only where needed.",
-                effect: "Progressive disclosure, evidence drawers, and crisp transitions between patient state, recommendation, and rationale.",
-            },
-            {
-                title: "Evidence Rail",
-                summary: "A supporting panel that keeps trust-building evidence in view without overwhelming the main workflow.",
-                interaction: "Users can toggle between concise clinical guidance and full justification, including uncertainty or caveats.",
-                effect: "Sliding panels, layered emphasis, and animated confidence states that remain calm and clinical.",
-            },
-            {
-                title: "Decision Comparison View",
-                summary: "A split-screen exploration of standard prescribing versus PGx-informed prescribing.",
-                interaction: "Switching states reveals where the AI assistant clarifies risk, alternatives, or dose implications.",
-                effect: "Side-by-side state transitions, highlighted delta regions, and structured comparison animations.",
-            },
+            { src: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=1600&auto=format&fit=crop", alt: "Assorted prescription medications", caption: "Gene-guided prescribing spans commonly prescribed medications across drug classes." },
+            { src: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1600&auto=format&fit=crop", alt: "Prescription blister packs", caption: "CPIC guidelines map specific gene variants to dose and drug-choice changes." },
+            { src: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1600&auto=format&fit=crop", alt: "Medication capsules from a prescription bottle", caption: "The copilot surfaces that guidance at the moment a prescription is written." },
         ],
     },
     {
@@ -638,10 +511,10 @@ export const projects: Project[] = [
         heroFit: "contain",
         heroAspect: "16/9",
         tags: ["XR", "Social Good", "Biofeedback"],
-        role: "Hackathon project contributor: XR concept, product framing, and prototype storytelling",
+        role: "Hackathon contributor: XR concept, interaction design, and prototype build",
         client: "XR Hack the Bay",
         duration: "Hackathon prototype",
-        tools: ["XR prototyping", "Wearable signal feedback", "Movement-based interaction design", "Rapid product storytelling", "Social-good pitch development"],
+        tools: ["XR prototyping", "Wearable biosignal feedback", "Movement-based interaction design", "Rapid prototyping"],
         outcome: "Won the Social Good category at XR Hack the Bay with a prototype positioning precision prehab as a clearer, more motivating interaction between body signals and immersive tasks.",
         accent: "#7c3aed",
         stats: [
@@ -651,39 +524,39 @@ export const projects: Project[] = [
             { label: "Evidence used here", value: "Screenshots extracted from the submitted demo video" },
         ],
         highlights: [
-            { title: "Signal visibility", text: "The prototype makes muscle activation and movement feedback part of the user experience instead of hiding it behind technical instrumentation." },
-            { title: "Motivation through embodied play", text: "The XR environment changes prehab from a repetitive instruction into a spatial task with visual goals, feedback, and progression cues." },
-            { title: "Responsible prototype framing", text: "The evidence covers a hackathon-winning product concept and working demo, without claiming clinical validation, adherence outcomes, or deployment." },
+            { title: "Visible signals", text: "Muscle activation and movement feedback are shown to the user, not buried in instrumentation." },
+            { title: "Movement as a task", text: "The XR environment turns repetitive prehab into a spatial task with visual goals and progression." },
+            { title: "Honest scope", text: "A hackathon-winning concept and working demo — no claims of clinical validation or deployment." },
         ],
         sections: [
             {
-                title: "The design problem",
+                title: "The problem",
                 body: [
-                    "Prehabilitation and rehabilitation exercises can be difficult to sustain because feedback is often delayed, abstract, or dependent on a specialist interpreting performance. For a hackathon setting, the opportunity was to ask how immersive design could make the body-feedback loop easier to understand.",
-                    "The product direction focused on precision prehab: make the user's movement and activation visible, then translate that signal into an XR task that feels less like compliance and more like progress.",
+                    "Prehab exercises are hard to sustain: feedback is delayed, abstract, or needs a specialist to interpret.",
+                    "NeurAgility makes the user's movement and activation visible, then turns that signal into an XR task that feels like progress rather than compliance.",
                 ],
             },
             {
-                title: "The prototype logic",
+                title: "How it works",
                 body: [
-                    "The demo pairs wearable signal capture with an XR environment. The signal view establishes that body activity can be measured, while the immersive scene gives that activity a purpose through movement, targeting, and progression.",
-                    "This is the key design move: the interface does not ask users to interpret raw biosignals. It turns technical feedback into a visible, goal-oriented training loop.",
+                    "Wearable signal capture drives an XR environment: the signal view proves movement is measured, and the immersive scene gives it a goal.",
+                    "Users never read raw biosignals — the prototype turns them into a visible, goal-oriented training loop.",
                 ],
             },
             {
-                title: "Why the framing mattered",
+                title: "Why it works",
                 body: [
-                    "The Social Good pitch depended on more than novelty. The product story had to connect clinical need, user motivation, signal trust, and a feasible demo architecture within a short hackathon window.",
-                    "The final concept presents XR as a behavior-design layer around precision movement practice: more interpretable for users, more demonstrable for judges, and more aligned with a future care workflow than a standalone game.",
+                    "The loop connects clinical need, user motivation, and trustworthy signals, not just a novel headset demo.",
+                    "XR sits as a behaviour layer around precision movement practice — closer to a care workflow than a standalone game.",
                 ],
             },
         ],
         caseStudy: {
             question: "How might XR make precision prehab feel clearer and more motivating without asking users to understand raw biosignal data?",
-            framing: "The answer was to split the problem into two interfaces: a technical evidence layer that shows body activation, and an immersive task layer that turns movement into understandable action. That separation made the prototype credible as health technology and legible as a user experience.",
+            framing: "It splits into two interfaces: an evidence layer that shows body activation, and a task layer that turns movement into action. That split keeps the prototype credible as health tech and clear as a user experience.",
             processEyebrow: "Hackathon design method",
             processHeading: "From raw movement data to embodied feedback",
-            processSummary: "The work moved from the prehab engagement gap to signal capture, interpretable user feedback, and a coherent social-good product proposition.",
+            processSummary: "From the prehab engagement gap to signal capture, interpretable feedback, and a working social-good demo.",
             steps: [
                 {
                     phase: "Frame",
@@ -710,10 +583,10 @@ export const projects: Project[] = [
                     execution: "Selected demo visuals that show body movement alongside the XR environment, linking play mechanics back to physical practice.",
                 },
                 {
-                    phase: "Pitch",
-                    title: "Package the prototype as social-good infrastructure",
-                    rationale: "Hackathon judging rewards clear social value and feasibility, not just a technical demo.",
-                    execution: "Framed the outcome as a Social Good-winning concept for making precision prehab more understandable and motivating, while avoiding claims of clinical efficacy.",
+                    phase: "Deliver",
+                    title: "Ship a working social-good demo",
+                    rationale: "The prototype had to show clear social value and feasibility, not just a technical trick.",
+                    execution: "Delivered a Social Good-winning demo that makes precision prehab clearer and more motivating, without claiming clinical efficacy.",
                 },
             ],
         },
@@ -721,7 +594,7 @@ export const projects: Project[] = [
             { src: neuragilityHero, alt: "NeurAgility title frame reading Precision Prehab Made Easy", caption: "The demo positioned the prototype around a clear product promise: precision prehab made easier to understand and repeat.", fit: "contain", aspect: "16/9" },
             { src: neuragilityWearable, alt: "Person wearing an XR headset and biosignal setup during the NeurAgility demo", caption: "The physical setup links the immersive experience to body-signal sensing rather than treating the XR world as a standalone game.", fit: "cover", aspect: "16/9" },
             { src: neuragilitySignalBaseline, alt: "Baseline biosignal dashboard from the NeurAgility demo", caption: "A signal view establishes the evidence layer: movement can be detected and represented before it becomes user-facing feedback.", fit: "contain", aspect: "16/9" },
-            { src: neuragilitySignalActivation, alt: "Biosignal dashboard showing activation during the NeurAgility demo", caption: "The demo shows the contrast between low activity and activation, grounding the product story in observable feedback.", fit: "contain", aspect: "16/9" },
+            { src: neuragilitySignalActivation, alt: "Biosignal dashboard showing activation during the NeurAgility demo", caption: "The demo contrasts low activity with activation — feedback you can see.", fit: "contain", aspect: "16/9" },
             { src: neuragilityShoulderContext, alt: "Shoulder anatomy and digital interface visual from the NeurAgility demo", caption: "The product is anchored in shoulder-focused movement and prehab rather than generic XR training.", fit: "cover", aspect: "16/9" },
             { src: neuragilityXrTraining, alt: "First-person XR environment with movement targets in the NeurAgility prototype", caption: "The immersive environment converts exercise into a spatial task with visual goals and progression cues.", fit: "cover", aspect: "16/9" },
             { src: neuragilityMovementDemo, alt: "Split-screen NeurAgility demo showing XR environment beside the person performing movement", caption: "The strongest proof-of-concept moment: the user moves in the room while the XR world represents the training task.", fit: "cover", aspect: "16/9" },
@@ -732,37 +605,6 @@ export const projects: Project[] = [
             title: "Full NeurAgility demo video",
             caption: "The complete submitted demo video shows the product framing, wearable setup, signal evidence, XR environment, and movement interaction as one continuous prototype story.",
         },
-        interactiveEyebrow: "Experience model",
-        interactiveHeading: "How the prototype turns prehab into a feedback loop",
-        interactiveActiveLabel: "Prototype layer",
-        interactivePrimaryLabel: "User action",
-        interactiveSecondaryLabel: "Design purpose",
-        interactiveModules: [
-            {
-                title: "Calibrate",
-                summary: "The system starts with wearable setup and visible signal capture.",
-                interaction: "The user enters the XR setup while the demo confirms that movement or activation can be sensed.",
-                effect: "Calibration makes the experience feel grounded in body evidence rather than purely simulated motion.",
-            },
-            {
-                title: "Move",
-                summary: "The user performs a guided movement inside the immersive task.",
-                interaction: "Movement becomes a spatial action, with the environment giving the user something concrete to aim for.",
-                effect: "The task reframes repetition as progress, reducing the boredom and ambiguity of exercise instructions.",
-            },
-            {
-                title: "Reflect",
-                summary: "Signal views provide a technical explanation of what the movement generated.",
-                interaction: "Baseline and activation states can be compared to show that the body-feedback loop is working.",
-                effect: "The prototype keeps trust-building evidence available without making raw signal interpretation the main user burden.",
-            },
-            {
-                title: "Pitch",
-                summary: "The final story connects XR novelty to a social-good use case.",
-                interaction: "The product narrative moves from body signal to training task to real-world prehab motivation.",
-                effect: "Judges can understand the value proposition quickly: clearer feedback, more engaging repetition, and a plausible future care workflow.",
-            },
-        ],
     },
     {
         id: "healthcare-from-the-eye",
@@ -882,43 +724,6 @@ export const projects: Project[] = [
             { src: hfteRevenueModel, alt: "Scenario revenue model showing patient volume, payer mix, equipment, cloud, algorithm, and staff-cost assumptions", caption: "The model makes assumptions visible so stakeholders can test the business case instead of debating it abstractly.", fit: "contain", aspect: "16/9" },
             { src: hfteDeliverables, alt: "Presentation slide showing the three project deliverables: revenue model, HFTE awareness paper, and strategic action plan", caption: "Research was converted into three implementation artifacts rather than ending as a diagnostic summary.", fit: "contain", aspect: "16/9" },
         ],
-        interactiveEyebrow: "Implementation lenses",
-        interactiveHeading: "The operating model behind a two-minute eye screen",
-        interactiveActiveLabel: "Active lens",
-        interactivePrimaryLabel: "System view",
-        interactiveSecondaryLabel: "Design implication",
-        interactiveModules: [
-            {
-                title: "Care pathway",
-                summary: "A primary-care scan is only useful when quality control, grading, EHR export, consultation, referral, and follow-up form one reliable service.",
-                interaction: "Trace the pathway from retinal capture through a positive or lower-risk result and identify where ownership changes hands.",
-                effect: "Makes the hidden operational work around a fast clinical interaction visible and assignable.",
-            },
-            {
-                title: "Stakeholder value",
-                summary: "Patients, practices, specialists, payers, technology partners, and community organizations each experience a different value proposition.",
-                interaction: "Move between stakeholder perspectives to compare who benefits, who pays, who performs new work, and who carries follow-up risk.",
-                effect: "Prevents a single-actor business case from hiding the incentives that determine real adoption.",
-            },
-            {
-                title: "Scale barriers",
-                summary: "Workflow implementation, adoption, and reimbursement are separate constraints that reinforce one another.",
-                interaction: "Inspect each barrier alongside the team's proposed operating response, from staff training to lease incentives and payer engagement.",
-                effect: "Turns a generic call for scale into a prioritized set of implementation decisions.",
-            },
-            {
-                title: "Business model",
-                summary: "The scenario model connects eligible patient volume and payer mix to recurring equipment, cloud, algorithm, and staffing costs.",
-                interaction: "Treat every figure as a variable to validate rather than a guaranteed result.",
-                effect: "Makes the economic logic auditable and shows where a pilot must collect better evidence.",
-            },
-            {
-                title: "Action roadmap",
-                summary: "Short-term workflow and payer work creates the base for longer-term subsidy, data-stewardship, and diagnostic-development partnerships.",
-                interaction: "Sequence the recommendations by dependency instead of treating all next steps as parallel.",
-                effect: "Clarifies what the ecosystem can act on now and what requires additional validation or institutional alignment.",
-            },
-        ],
     },
     {
         id: "ent-readmission-platform",
@@ -933,7 +738,7 @@ export const projects: Project[] = [
         client: "Stanford Biodesign for Digital Health · Team 6, Hospital at Home",
         duration: "10-week experiential program",
         tools: ["Clinical and end-user interviews", "Biodesign needs finding", "Need-statement development", "Literature synthesis", "Stakeholder mapping", "Concept generation and screening", "Care-pathway mapping", "Behavioral design", "Risk-escalation design", "Business-model assumptions", "Pilot planning"],
-        outcome: "Applied Stanford's needs-driven Biodesign process with ENT surgeons, hospital teams, children, and parents to develop an ENT-specific app-and-companion concept, home-recovery workflow, stakeholder value proposition, and staged validation plan.",
+        outcome: "Applied Stanford's needs-driven Biodesign process with ENT surgeons, hospital teams, children, and parents to develop an ENT-specific app-and-companion concept, home-recovery workflow, stakeholder value map, and staged validation plan.",
         accent: "#c52f47",
         links: [
             { label: "Stanford Biodesign process", url: "https://biodesign.stanford.edu/about-us/process.html" },
@@ -1057,43 +862,6 @@ export const projects: Project[] = [
             { src: entValueProposition, alt: "Stakeholder value proposition for pediatric ENT departments, children and caregivers, and insurers", caption: "The value hypothesis was mapped across the family, care-delivery, and payer perspectives rather than relying on a single-user benefit.", fit: "contain", aspect: "16/9" },
             { src: entPathToPayment, alt: "Proposed path from a Stanford CHARIOT pilot to hospital purchasing and later reimbursement or insurer partnerships", caption: "The implementation pathway explicitly starts with evidence generation; purchasing and reimbursement are later hypotheses.", fit: "contain", aspect: "16/9" },
         ],
-        interactiveEyebrow: "Recovery workflow",
-        interactiveHeading: "How the two-sided recovery system works",
-        interactiveActiveLabel: "Active stage",
-        interactivePrimaryLabel: "Caregiver and child action",
-        interactiveSecondaryLabel: "Design response",
-        interactiveModules: [
-            {
-                title: "Discharge setup",
-                summary: "The caregiver scans a hospital-provided QR code, installs PainGone PainGuin, and receives a personalized recovery plan.",
-                interaction: "Confirm the procedure, medication schedule, hydration guidance, warning signs, care-team contact, and accessibility needs before leaving.",
-                effect: "Turns a one-time paper handoff into an initialized recovery pathway with clear ownership and next actions.",
-            },
-            {
-                title: "Child engagement",
-                summary: "The child feeds, gives water to, and cares for PainGuin as a representation of their own recovery behaviors.",
-                interaction: "Connect real actions such as drinking or eating to immediate, age-appropriate feedback from the companion.",
-                effect: "Makes repetitive clinical instructions concrete and gives the child an active role in the recovery routine.",
-            },
-            {
-                title: "Daily home routine",
-                summary: "The caregiver records fluids, food, pain scores, medication, and symptoms while receiving contextual reminders.",
-                interaction: "Review the day's recovery pattern instead of interpreting each data point or missed task in isolation.",
-                effect: "Creates a lightweight longitudinal view that can support comprehension and reveal patterns requiring attention.",
-            },
-            {
-                title: "Risk alerts",
-                summary: "The proposed system identifies patterns associated with dehydration or uncontrolled pain and nudges the caregiver before escalation.",
-                interaction: "Present the reason for the flag, the immediate recommended action, and the threshold for contacting the care team.",
-                effect: "Replaces a vague warning with a legible decision step while keeping clinical judgment and validation requirements explicit.",
-            },
-            {
-                title: "Provider escalation",
-                summary: "When a pattern crosses a defined threshold, the caregiver can contact the ENT team with structured context from the home-recovery log.",
-                interaction: "Share the relevant symptom, intake, pain, and medication history while preserving a clear emergency route.",
-                effect: "Supports a more informed handoff and defines the clinical governance that a future pilot would need to test.",
-            },
-        ],
     },
     {
         id: "dialysis-device-gtm",
@@ -1208,43 +976,6 @@ export const projects: Project[] = [
             { src: adcemDialysisMarket, alt: "Joint-venture proposal slide summarizing chronic kidney disease and dialysis demand estimates in Nigeria and across Africa", caption: "The proposal synthesised renal-care demand estimates to frame dialysis access as both a health-system and capacity problem.", fit: "contain", aspect: "16/9" },
             { src: adcemMarketPainPoints, alt: "Four-part analysis of Nigeria's fragmented medical-supply market, import reliance, limited local production, and sector complexity", caption: "The market diagnosis connected fragmented supply, import exposure, limited local production, and regulatory and workforce constraints.", fit: "contain", aspect: "16/9" },
             { src: adcemLocalManufacturing, alt: "Current-state and future-state model showing the shift from imported finished dialysis goods to local Nigerian manufacturing", caption: "The operating thesis is visible in one transition: import inputs, manufacture locally, and return cost savings to the care pathway.", fit: "contain", aspect: "16/9" },
-        ],
-        interactiveEyebrow: "Venture workstreams",
-        interactiveHeading: "How manufacturing, care delivery, and evidence connect",
-        interactiveActiveLabel: "Active workstream",
-        interactivePrimaryLabel: "Operating model",
-        interactiveSecondaryLabel: "Validation need",
-        interactiveModules: [
-            {
-                title: "Local manufacturing",
-                summary: "Move from imported finished consumables to local production using Adcem's technology and channel relationships and Fidson's manufacturing line.",
-                interaction: "Map responsibility for technology transfer, raw-material sourcing, staff training, production, quality, off-take, and distribution.",
-                effect: "Validate production economics, regulatory requirements, quality systems, and whether savings reach providers and patients.",
-            },
-            {
-                title: "JV governance",
-                summary: "The partnership needs a clear bridge between board decisions, implementation work, and on-the-ground pilot execution.",
-                interaction: "Define which decisions sit with joint governance, the implementation team, hospital partners, clinical advisors, logistics, finance, and commercial teams.",
-                effect: "Test decision rights, escalation paths, accountability, and the operating cadence required before scale.",
-            },
-            {
-                title: "CAPD pilot",
-                summary: "A planned multi-site feasibility study connects the product, hospital workflow, patient support, and evidence plan.",
-                interaction: "Trace the sequence from site preparation and catheter placement through home exchanges, support, monitoring, and follow-up.",
-                effect: "Validate safety, usability, site readiness, clinical outcomes, patient experience, and cost assumptions before expansion.",
-            },
-            {
-                title: "Patient enablement",
-                summary: "Home dialysis transfers meaningful work to patients and caregivers, so education and support are core product infrastructure.",
-                interaction: "Structure onboarding around CAPD understanding, hands-on exchange practice, hygiene, symptom tracking, reporting, and local-language materials.",
-                effect: "Validate comprehension, technique confidence, support demand, adherence, and infection-prevention performance.",
-            },
-            {
-                title: "Evidence to scale",
-                summary: "Clinical, operational, and economic evidence must travel from the pilot into policy, reimbursement, professional advocacy, and replication decisions.",
-                interaction: "Sequence publication, nephrology engagement, payer and government advocacy, community outreach, and future country expansion.",
-                effect: "Validate which audiences need which evidence and what must be proven before each next-stage commitment.",
-            },
         ],
     },
 ];
