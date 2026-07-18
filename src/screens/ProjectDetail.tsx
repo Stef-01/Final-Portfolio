@@ -7,6 +7,9 @@ import { ContactSection } from "../components/ContactSection";
 import { NotFound } from "../components/NotFound";
 import { ImageWithFallback } from "../components/ImageWithFallback";
 import { ProjectPopout } from "../components/ProjectPopout";
+import { ScrollProgressBar } from "../components/motion/ScrollProgressBar";
+import { RevealGroup, RevealItem } from "../components/motion/Reveal";
+import { DURATION } from "../motion/tokens";
 import { useGoBack } from "../hooks/useGoBack";
 
 // Inner component is keyed by `id` from the wrapper below, so its state
@@ -21,6 +24,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
     return (
         <div className="bg-white min-h-[100svh]">
+            <ScrollProgressBar color={project.accent} />
             <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white">
                 <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 pt-[env(safe-area-inset-top)] md:px-8">
                     <Link to="/" className="text-sm sm:text-xl font-bold tracking-tight text-black">
@@ -33,27 +37,30 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
             <main className="mx-auto max-w-7xl px-4 pb-20 pt-28 md:px-8 md:pt-32">
                 <div className="rounded-2xl bg-[#fafafa] p-6 md:p-10">
                     <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
-                        <div>
+                        <RevealGroup onMount stagger={0.09}>
                             <div className="mb-6 flex flex-wrap gap-2">
                                 {project.tags.map((tag) => (
-                                    <span
+                                    <RevealItem
                                         key={tag}
+                                        as="span"
+                                        y={12}
+                                        duration={DURATION.fast}
                                         className="rounded-full border border-black/10 bg-white px-3 py-1 text-sm font-medium text-gray-500"
                                     >
                                         {tag}
-                                    </span>
+                                    </RevealItem>
                                 ))}
                             </div>
-                            <h1 className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
+                            <RevealItem as="h1" y={26} className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
                                 {project.title}
-                            </h1>
-                            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-2xl">
+                            </RevealItem>
+                            <RevealItem as="p" y={20} className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-2xl">
                                 {project.subtitle}
-                            </p>
-                            <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
+                            </RevealItem>
+                            <RevealItem as="p" y={16} className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
                                 {project.description}
-                            </p>
-                        </div>
+                            </RevealItem>
+                        </RevealGroup>
 
                         <div className="grid gap-4">
                             <p className="text-sm font-medium text-gray-500">
@@ -97,14 +104,14 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </div>
                 </div>
 
-                <div className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
+                <RevealGroup stagger={0.07} className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
                     {project.stats.map((stat) => (
-                        <div key={stat.label}>
+                        <RevealItem key={stat.label} y={14} duration={DURATION.fast}>
                             <p className="text-lg font-semibold text-black">{stat.value}</p>
                             <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
-                        </div>
+                        </RevealItem>
                     ))}
-                </div>
+                </RevealGroup>
 
                 {project.caseStudy && (
                     <section className="mt-10 grid gap-6 rounded-2xl bg-[#fafafa] p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">

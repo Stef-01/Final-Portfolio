@@ -34,19 +34,17 @@ export const ContactSection: React.FC = () => {
                         aria-label="Site sections"
                         className="mt-12 flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm"
                     >
-                        <Link
-                            to="/"
-                            className="text-gray-400 transition-colors hover:text-white"
-                        >
-                            Home
-                        </Link>
-                        {links.map((link) => (
+                        {[{ to: "/", label: "Home" }, ...links].map((link) => (
                             <Link
                                 key={link.to}
                                 to={link.to}
-                                className="text-gray-400 transition-colors hover:text-white"
+                                className="group relative rounded-sm text-gray-400 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                             >
                                 {link.label}
+                                <span
+                                    aria-hidden="true"
+                                    className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-white transition-transform duration-200 ease-out group-hover:origin-left group-hover:scale-x-100 motion-reduce:transition-none"
+                                />
                             </Link>
                         ))}
                     </nav>

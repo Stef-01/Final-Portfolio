@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { TeachingSection } from "../components/TeachingSection";
+import { StatValue } from "../components/CountUp";
 import { useGoBack } from "../hooks/useGoBack";
 import { educationRoles } from "../types/roles";
 
@@ -59,7 +60,9 @@ export function Education(): JSX.Element {
               {educationStats.map((stat) => (
                 <div key={stat.label} className="flex items-baseline gap-2">
                   <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">{stat.value}</dd>
+                  <dd className="text-lg font-semibold text-black">
+                    <StatValue value={stat.value} />
+                  </dd>
                   <span className="text-sm text-gray-500">{stat.label}</span>
                 </div>
               ))}

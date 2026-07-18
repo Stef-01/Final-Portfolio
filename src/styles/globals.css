@@ -261,7 +261,25 @@ html.snap-page {
   }
 }
 
+/* Smooth anchor scrolling. Safe alongside the magnetic pager — its rAF loop
+   always passes `behavior: "instant"`, which overrides this per call. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Brand text selection */
+::selection {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
 /* Custom Scrollbar */
+html {
+  scrollbar-color: #d4d4d4 var(--background); /* Firefox */
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

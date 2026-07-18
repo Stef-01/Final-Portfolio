@@ -53,11 +53,13 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
     className = "",
     style,
     onError,
+    onLoad,
     srcSet,
     sizes,
     ...rest
 }) => {
     const [failed, setFailed] = useState(!src);
+    const [loaded, setLoaded] = useState(false);
     const responsive = buildResponsiveUnsplash(typeof src === "string" ? src : undefined);
     const resolvedSrcSet = srcSet ?? responsive.srcSet;
     // A srcSet needs a `sizes` hint to pick the right candidate; default to
@@ -77,12 +79,25 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 
     return (
         <img
+            // Cached images can finish before React attaches onLoad — the ref
+            // callback catches that case via `complete` so they never sit at
+            // opacity 0.
+            ref={(node) => {
+                if (node?.complete && !loaded) setLoaded(true);
+            }}
             src={responsive.src ?? src}
             srcSet={resolvedSrcSet}
             sizes={resolvedSizes}
             alt={alt}
-            className={className}
-            style={style}
+            className={`${className} transition-opacity duration-300 ease-out motion-reduce:transition-none`}
+            // Inline opacity (not a utility class) so it can't fight
+            // caller-supplied opacity-* classes: it wins while loading and is
+            // removed entirely once loaded.
+            style={loaded ? style : { ...style, opacity: 0 }}
+            onLoad={(e) => {
+                setLoaded(true);
+                onLoad?.(e);
+            }}
             onError={(e) => {
                 setFailed(true);
                 onError?.(e);

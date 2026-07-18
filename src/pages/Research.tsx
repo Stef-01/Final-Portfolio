@@ -8,6 +8,7 @@ import { PublicationsSection } from "../components/PublicationsSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
 import { SystemsMapSection } from "../components/SystemsMapSection";
 import { RolesTimeline } from "../components/RolesTimeline";
+import { StatValue } from "../components/CountUp";
 import { researchRoles } from "../types/roles";
 import { googleScholarUrl, scholarMetrics } from "../types/publications";
 
@@ -52,7 +53,7 @@ export function Research() {
                 { k: scholarMetrics.i10Index, v: "i10-index" },
               ].map((stat) => (
                 <span key={stat.v} className="flex items-baseline gap-2">
-                  <span className="text-lg font-semibold text-black">{stat.k}</span>
+                  <StatValue value={stat.k} className="text-lg font-semibold text-black" />
                   <span className="text-sm text-gray-500">{stat.v}</span>
                 </span>
               ))}

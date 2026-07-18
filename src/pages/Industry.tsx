@@ -4,6 +4,7 @@ import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { RolesGrid } from "../components/RolesGrid";
 import { VentureOrbit } from "../components/VentureOrbit";
+import { StatValue } from "../components/CountUp";
 import { industryRoles } from "../types/roles";
 import { useGoBack } from "../hooks/useGoBack";
 
@@ -48,7 +49,9 @@ export function Industry() {
               {stats.map((stat) => (
                 <div key={stat.label} className="flex items-baseline gap-2">
                   <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">{stat.value}</dd>
+                  <dd className="text-lg font-semibold text-black">
+                    <StatValue value={stat.value} />
+                  </dd>
                   <span className="text-sm text-gray-500">{stat.label}</span>
                 </div>
               ))}
