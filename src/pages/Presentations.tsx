@@ -4,7 +4,9 @@ import { ArrowLeft, Paperclip } from "lucide-react";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
+import { StatValue } from "../components/CountUp";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 interface ConferenceFile {
     url?: string;
@@ -136,8 +138,12 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
-                        transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25) }}
-                        className="rounded-2xl bg-[#fafafa] p-6 md:p-8"
+                        transition={{
+                            duration: 0.5,
+                            delay: Math.min(index * 0.05, 0.25),
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="rounded-2xl bg-[#fafafa] p-6 transition-colors duration-300 hover:bg-[#f4f4f2] md:p-8"
                     >
                         <p className="text-sm font-medium text-gray-500">
                             {talk.date}
@@ -177,6 +183,7 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
 
 export function Presentations() {
     const goBack = useGoBack();
+    usePageTitle("Presentations");
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<ConferenceFile | null>(null);
 
@@ -222,7 +229,9 @@ export function Presentations() {
                             ].map((stat) => (
                                 <div key={stat.v} className="flex items-baseline gap-2">
                                     <dt className="sr-only">{stat.v}</dt>
-                                    <dd className="text-lg font-semibold text-black">{stat.k}</dd>
+                                    <dd className="text-lg font-semibold text-black">
+                                        <StatValue value={stat.k} />
+                                    </dd>
                                     <span className="text-sm text-gray-500">{stat.v}</span>
                                 </div>
                             ))}

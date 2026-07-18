@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight, ChevronDown } from "lucide-react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageTitle } from "../hooks/usePageTitle";
 import { ContactSection } from "../components/ContactSection";
 import { PublicationsSection } from "../components/PublicationsSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
@@ -14,6 +15,7 @@ import { googleScholarUrl, scholarMetrics } from "../types/publications";
 
 export function Research() {
   const goBack = useGoBack();
+  usePageTitle("Research");
   const [showPublications, setShowPublications] = useState(false);
 
   return (

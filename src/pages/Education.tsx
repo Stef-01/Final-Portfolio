@@ -7,6 +7,7 @@ import { FloatingBackButton } from "../components/FloatingBackButton";
 import { TeachingSection } from "../components/TeachingSection";
 import { StatValue } from "../components/CountUp";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageTitle } from "../hooks/usePageTitle";
 import { educationRoles } from "../types/roles";
 
 const educationStats = [
@@ -17,6 +18,7 @@ const educationStats = [
 
 export function Education(): JSX.Element {
   const goBack = useGoBack();
+  usePageTitle("Education");
   const [showTliaDetail, setShowTliaDetail] = useState(false);
   const tliaDetailRef = useRef<HTMLDivElement>(null);
 
@@ -85,10 +87,18 @@ export function Education(): JSX.Element {
                 <motion.article
                   key={role.id}
                   initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                      delay: Math.min(index * 0.06, 0.18),
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+                  }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.18) }}
-                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
+                  whileHover={isTlia ? { y: -6 } : undefined}
                   onClick={isTlia ? openTliaDetail : undefined}
                   className={`flex min-h-full flex-col rounded-2xl bg-[#fafafa] p-6 md:p-7 ${
                     isTlia ? "cursor-pointer transition-colors hover:bg-[#f4f4f2]" : ""

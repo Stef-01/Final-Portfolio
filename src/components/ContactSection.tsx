@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import { ContactModal } from "./ContactModal";
+import { Reveal } from "./motion/Reveal";
 
 const links = [
     { to: "/research", label: "Research" },
@@ -19,7 +20,9 @@ export const ContactSection: React.FC = () => {
         <>
             <div className="bg-black text-white py-16 px-4 md:px-8 mt-20">
                 <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="t-h2 font-bold mb-8">Get in touch</h2>
+                    <Reveal as="h2" y={18} className="t-h2 font-bold mb-8">
+                        Get in touch
+                    </Reveal>
                     <div className="flex justify-center">
                         <Button
                             type="secondary"

@@ -6,6 +6,7 @@ import { RolesTimeline } from "../components/RolesTimeline";
 import { StatValue } from "../components/CountUp";
 import { policyRoles } from "../types/roles";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 const stats = [
   { value: "5", label: "policy and government roles" },
@@ -15,6 +16,7 @@ const stats = [
 
 export function Policy() {
   const goBack = useGoBack();
+  usePageTitle("Policy");
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />

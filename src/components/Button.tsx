@@ -32,10 +32,13 @@ export const Button = ({
             } ${className}`}
         >
             {showIcon && (
-                <ArrowUpRight
-                    className="w-6 h-6 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none"
-                    aria-hidden="true"
-                />
+                // Arrow slide-swap: the visible arrow exits toward the top
+                // right while a clone enters from the bottom left — implies
+                // travel without moving the button itself.
+                <span className="relative h-6 w-6 overflow-hidden" aria-hidden="true">
+                    <ArrowUpRight className="absolute inset-0 h-6 w-6 transition-transform duration-300 ease-out group-hover:translate-x-4 group-hover:-translate-y-4 motion-reduce:transition-none" />
+                    <ArrowUpRight className="absolute inset-0 h-6 w-6 -translate-x-4 translate-y-4 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:translate-y-0 motion-reduce:transition-none" />
+                </span>
             )}
             <span className="font-bold text-sm tracking-normal leading-normal whitespace-nowrap">
                 {label}

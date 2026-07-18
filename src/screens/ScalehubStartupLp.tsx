@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useRef, useState } from "react";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   motion,
@@ -16,8 +16,10 @@ import { LatestWorkSection } from "../components/LatestWorkSection";
 import { ContactModal } from "../components/ContactModal";
 import { FloatingSocials } from "../components/FloatingSocials";
 import { Magnetic } from "../components/motion/Magnetic";
+import { SplitTextReveal } from "../components/motion/SplitTextReveal";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import { useMagneticScroll } from "../hooks/useMagneticScroll";
+import { usePageTitle } from "../hooks/usePageTitle";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { DURATION, EASE_OUT } from "../motion/tokens";
 
@@ -89,11 +91,38 @@ const heroItem = (delay: number) => ({
   transition: { duration: DURATION.slow, delay, ease: EASE_OUT },
 });
 
+const timeFormatter = new Intl.DateTimeFormat("en-US", {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+  timeZone: "America/Los_Angeles",
+});
+
+/** Live local time in the footer — the small "this site is alive" signal. */
+const LocalTime = () => {
+  const [now, setNow] = useState(() => timeFormatter.format(new Date()));
+
+  useEffect(() => {
+    const id = window.setInterval(
+      () => setNow(timeFormatter.format(new Date())),
+      30_000,
+    );
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <span className="tabular-nums" aria-label={`Local time in Stanford, California: ${now}`}>
+      Stanford, CA — {now}
+    </span>
+  );
+};
+
 export const ScalehubStartupLp = (): JSX.Element => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isPhoneLayout = usePhoneLayout();
   const prefersReducedMotion = usePrefersReducedMotion();
   useMagneticScroll();
+  usePageTitle("");
 
   // The footer is pinned behind the page (sticky uncover), but the desktop
   // hero keeps a fixed full-viewport Spline layer at the same z plane — the
@@ -161,12 +190,16 @@ export const ScalehubStartupLp = (): JSX.Element => {
           style={prefersReducedMotion ? undefined : { x: parallaxX, y: parallaxY }}
           className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20"
         >
-          <motion.h1
-            {...heroItem(0.1)}
+          <SplitTextReveal
+            as="h1"
+            text="Stefan Thottunkal"
+            splitBy="char"
+            onMount
+            delay={0.12}
+            stagger={0.032}
+            duration={0.65}
             className="text-center t-display font-bold tracking-tight mb-6 max-w-4xl leading-[0.98]"
-          >
-            Stefan Thottunkal
-          </motion.h1>
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 18, filter: "blur(7px)" }}
@@ -271,8 +304,10 @@ export const ScalehubStartupLp = (): JSX.Element => {
             <p className="select-none whitespace-nowrap text-center font-bold leading-none tracking-tight text-white [font-size:clamp(1.9rem,9.4vw,8.25rem)]">
               Stefan Thottunkal
             </p>
-            <p className="mt-6 text-center text-xs text-gray-500">
-              © {new Date().getFullYear()} Stefan Thottunkal
+            <p className="mt-6 flex flex-wrap items-center justify-center gap-x-3 text-center text-xs text-gray-500">
+              <LocalTime />
+              <span aria-hidden="true">·</span>
+              <span>© {new Date().getFullYear()} Stefan Thottunkal</span>
             </p>
           </div>
         </div>

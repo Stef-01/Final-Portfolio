@@ -7,6 +7,7 @@ import { VentureOrbit } from "../components/VentureOrbit";
 import { StatValue } from "../components/CountUp";
 import { industryRoles } from "../types/roles";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 const stats = [
   { value: "9", label: "ventures and advisory engagements" },
@@ -16,6 +17,7 @@ const stats = [
 
 export function Industry() {
   const goBack = useGoBack();
+  usePageTitle("Industry");
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />

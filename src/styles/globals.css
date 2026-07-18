@@ -261,6 +261,17 @@ html.snap-page {
   }
 }
 
+/* Lane spotlight: hovering one lane dims its siblings. Scoped to
+   hover-capable devices; plain CSS so there is no utility-order fight. */
+@media (hover: hover) {
+  .lane-row .lane-item {
+    transition: opacity 0.3s ease;
+  }
+  .lane-row:has(a:hover) .lane-item:not(:has(a:hover)) {
+    opacity: 0.4;
+  }
+}
+
 /* Smooth anchor scrolling. Safe alongside the magnetic pager — its rAF loop
    always passes `behavior: "instant"`, which overrides this per call. */
 @media (prefers-reduced-motion: no-preference) {

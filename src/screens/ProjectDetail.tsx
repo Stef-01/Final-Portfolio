@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import {
+    AnimatePresence,
+    motion,
+    useInView,
+    useScroll,
+    useMotionValueEvent,
+} from "motion/react";
 import { ExternalLink } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
@@ -9,14 +16,49 @@ import { ImageWithFallback } from "../components/ImageWithFallback";
 import { ProjectPopout } from "../components/ProjectPopout";
 import { ScrollProgressBar } from "../components/motion/ScrollProgressBar";
 import { RevealGroup, RevealItem } from "../components/motion/Reveal";
-import { DURATION } from "../motion/tokens";
+import { DURATION, EASE_OUT } from "../motion/tokens";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageTitle } from "../hooks/usePageTitle";
+
+/**
+ * Case-study top bar that steps out of the way while reading: hides on
+ * scroll-down past the header zone, returns on any scroll-up. The transform
+ * is disabled under reduced motion via MotionConfig, leaving the nav pinned.
+ */
+const HideOnScrollNav = ({ children }: { children: React.ReactNode }) => {
+    const { scrollY } = useScroll();
+    const [hidden, setHidden] = useState(false);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        if (latest > previous && latest > 220) {
+            setHidden(true);
+        } else if (latest < previous) {
+            setHidden(false);
+        }
+    });
+
+    return (
+        <motion.nav
+            animate={{ y: hidden ? "-100%" : "0%" }}
+            transition={{ duration: 0.32, ease: EASE_OUT }}
+            className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white"
+        >
+            {children}
+        </motion.nav>
+    );
+};
 
 // Inner component is keyed by `id` from the wrapper below, so its state
 // resets cleanly on URL change without a setState-in-effect anti-pattern.
 const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
     const goBack = useGoBack();
+    usePageTitle(project?.title);
+
+    // The compact title docks into the nav once the header card scrolls out.
+    const headerRef = useRef<HTMLDivElement>(null);
+    const headerInView = useInView(headerRef, { margin: "-96px 0px 0px 0px" });
 
     if (!project) {
         return <NotFound />;
@@ -25,17 +67,35 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
     return (
         <div className="bg-white min-h-[100svh]">
             <ScrollProgressBar color={project.accent} />
-            <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white">
-                <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 pt-[env(safe-area-inset-top)] md:px-8">
+            <HideOnScrollNav>
+                <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 pt-[env(safe-area-inset-top)] md:px-8">
                     <Link to="/" className="text-sm sm:text-xl font-bold tracking-tight text-black">
                         Stefan Thottunkal
                     </Link>
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-[38%] -translate-x-1/2 items-center justify-center overflow-hidden md:flex"
+                    >
+                        <AnimatePresence>
+                            {!headerInView && (
+                                <motion.span
+                                    initial={{ y: 18, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    exit={{ y: -18, opacity: 0 }}
+                                    transition={{ duration: 0.28, ease: EASE_OUT }}
+                                    className="truncate text-sm font-semibold text-gray-600"
+                                >
+                                    {project.title}
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
+                    </div>
                     <Button type="secondary" label="Back" className="w-auto min-w-[140px]" onClick={goBack} />
                 </div>
-            </nav>
+            </HideOnScrollNav>
 
             <main className="mx-auto max-w-7xl px-4 pb-20 pt-28 md:px-8 md:pt-32">
-                <div className="rounded-2xl bg-[#fafafa] p-6 md:p-10">
+                <div ref={headerRef} className="rounded-2xl bg-[#fafafa] p-6 md:p-10">
                     <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
                         <RevealGroup onMount stagger={0.09}>
                             <div className="mb-6 flex flex-wrap gap-2">
