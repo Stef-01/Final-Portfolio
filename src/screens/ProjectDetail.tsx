@@ -14,6 +14,7 @@ import { ContactSection } from "../components/ContactSection";
 import { NotFound } from "../components/NotFound";
 import { ImageWithFallback } from "../components/ImageWithFallback";
 import { ProjectPopout } from "../components/ProjectPopout";
+import { ProcessFlow } from "../components/ProcessFlow";
 import { ScrollProgressBar } from "../components/motion/ScrollProgressBar";
 import { RevealGroup, RevealItem } from "../components/motion/Reveal";
 import { DURATION, EASE_OUT } from "../motion/tokens";
@@ -174,16 +175,13 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 </RevealGroup>
 
                 {project.caseStudy && (
-                    <section className="mt-10 grid gap-6 rounded-2xl bg-[#fafafa] p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">
-                        <p className="text-sm font-medium text-gray-500">Design question</p>
-                        <div>
-                            <h2 className="t-h2 font-bold leading-tight tracking-tight text-black">
-                                {project.caseStudy.question}
-                            </h2>
-                            <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
-                                {project.caseStudy.framing}
-                            </p>
-                        </div>
+                    <section className="mt-10 rounded-2xl bg-[#fafafa] p-6 md:p-10">
+                        <h2 className="max-w-4xl t-h2 font-bold leading-tight tracking-tight text-black">
+                            {project.caseStudy.question}
+                        </h2>
+                        <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-600">
+                            {project.caseStudy.framing}
+                        </p>
                     </section>
                 )}
 
@@ -245,8 +243,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
                 <section className="mt-16 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
                     <div className="self-start rounded-2xl bg-[#fafafa] p-6 md:p-8 lg:sticky lg:top-28">
-                        <p className="text-sm font-medium text-gray-500">Strategic priorities</p>
-                        <div className="mt-6 grid gap-6">
+                        <div className="grid gap-6">
                             {project.highlights.map((highlight) => (
                                 <div key={highlight.title}>
                                     <h3 className="text-xl font-bold tracking-tight text-black md:text-2xl">{highlight.title}</h3>
@@ -254,25 +251,24 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                 </div>
                             ))}
                         </div>
-                    </div>
 
-                    <div className="rounded-2xl bg-[#fafafa] p-6 md:p-8">
-                        <p className="text-sm font-medium text-gray-500">Methods and tools</p>
-                        <div className="mt-5 flex flex-wrap gap-2">
+                        <div className="mt-8 flex flex-wrap gap-2 border-t border-black/5 pt-6">
                             {project.tools.map((tool) => (
-                                <span key={tool} className="rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-medium text-gray-700">
+                                <span key={tool} className="rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-medium text-gray-600">
                                     {tool}
                                 </span>
                             ))}
                         </div>
+                    </div>
 
-                        <div className="mt-8 space-y-8">
+                    <div className="rounded-2xl bg-[#fafafa] p-6 md:p-8">
+                        <div className="space-y-8">
                             {project.sections.map((section) => (
                                 <div key={section.title}>
-                                    <h2 className="text-2xl font-bold tracking-tight text-black md:text-3xl">{section.title}</h2>
+                                    <h2 className="text-xl font-bold tracking-tight text-black md:text-2xl">{section.title}</h2>
                                     <div className="mt-4 space-y-4">
                                         {section.body.map((paragraph) => (
-                                            <p key={paragraph} className="text-base leading-relaxed text-gray-600 md:text-lg">
+                                            <p key={paragraph} className="text-base leading-relaxed text-gray-600">
                                                 {paragraph}
                                             </p>
                                         ))}
@@ -307,44 +303,15 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     <section className="mt-16 rounded-2xl bg-[#fafafa] p-6 md:p-8">
                         <div className="grid gap-8 lg:grid-cols-[0.36fr_0.64fr]">
                             <div className="self-start lg:sticky lg:top-28">
-                                <p className="text-sm font-medium text-gray-500">
-                                    {project.caseStudy.processEyebrow}
-                                </p>
-                                <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
+                                <h2 className="t-h2 font-bold tracking-tight text-black">
                                     {project.caseStudy.processHeading}
                                 </h2>
-                                <p className="mt-5 text-base leading-relaxed text-gray-600 md:text-lg">
+                                <p className="mt-5 text-base leading-relaxed text-gray-600">
                                     {project.caseStudy.processSummary}
                                 </p>
                             </div>
 
-                            <ol className="grid gap-10">
-                                {project.caseStudy.steps.map((step, index) => (
-                                    <li key={`${step.phase}-${step.title}`} className="grid gap-5 md:grid-cols-[72px_1fr]">
-                                        <div>
-                                            <span className="flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: project.accent }}>
-                                                {String(index + 1).padStart(2, "0")}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-medium text-gray-500">
-                                                {step.phase}
-                                            </p>
-                                            <h3 className="mt-2 text-xl font-bold tracking-tight text-black md:text-2xl">{step.title}</h3>
-                                            <div className="mt-5 grid gap-4 md:grid-cols-2">
-                                                <div>
-                                                    <p className="text-sm font-medium text-gray-500">Design rationale</p>
-                                                    <p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">{step.rationale}</p>
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-medium text-gray-500">Execution evidence</p>
-                                                    <p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">{step.execution}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ol>
+                            <ProcessFlow steps={project.caseStudy.steps} accent={project.accent} />
                         </div>
                     </section>
                 )}
@@ -358,7 +325,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                             </p>
                         )}
                         <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
-                            {project.mediaHeading ?? "Design evidence"}
+                            {project.mediaHeading ?? "Gallery"}
                         </h2>
                     </div>
 
