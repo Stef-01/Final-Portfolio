@@ -98,15 +98,62 @@ Acceptance: one typographic voice, one accent system, no emoji in chrome.
    WebP/AVIF at display resolution.
 5. Budget: landing JS < 200kB gz before Spline; LCP < 2.0s on Fast 3G+.
 
-### Stage 8 — Accessibility, SEO, measurement
-1. Heading-order audit (several pages jump h1→h3); landmark roles; skip link.
-2. Contrast pass on gray-400 text on white (fails AA at small sizes — bump to
-   gray-500 where it carries meaning).
-3. `sitemap.xml` + `robots.txt`; JSON-LD `CreativeWork` per project page.
-4. Vercel Analytics custom events: process-flow step changes, accordion opens,
-   contact clicks, file-viewer opens — measures whether the interactive
-   modalities actually get used.
-5. Lighthouse CI (or equivalent) run recorded per PR.
+### Stage 8 — SEO & AI discoverability program
+
+Goal: when a person — or an AI assistant — asks "who works on pharmacogenomics
+CDS / Indigenous health implementation / health-tech ventures", this site is
+findable, quotable, and correctly attributed. Positioning principle: authority
+is asserted through verifiable markers (QUAD Fellow, Stanford M.S., 2nd US at
+Harvard HSIL, 10 publications, named institutions), never through adjectives —
+both search rankers and LLMs discount self-description and reward evidence.
+
+**8a — On-site technical SEO (implemented in this PR)**
+- `usePageMeta`: per-route title, meta description, canonical, `og:*`, and
+  twitter tags. Canonical pins the primary origin — the repo deploys to two
+  Vercel projects and canonicals stop the mirrors competing as duplicates.
+- `og-image.png` (1200×630 typographic card) + `apple-touch-icon.png`;
+  `twitter:card = summary_large_image`.
+- `robots.txt` (all crawlers allowed; explicit sections welcoming GPTBot,
+  OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, et al.).
+- `sitemap.xml` — 16 URLs (7 routes + 8 projects + home). Regenerate when a
+  project is added.
+- `llms.txt` — machine-readable site summary for AI assistants; critical
+  because the app is client-rendered and most AI crawlers do not execute JS.
+- Structured data: enriched static `Person` (+affiliations, alumniOf, awards,
+  knowsAbout) and `WebSite` in index.html (readable without JS); per-project
+  `CreativeWork` + `BreadcrumbList`; per-publication `ScholarlyArticle` list
+  on /research.
+- Soft-404 mitigation: NotFound sets `robots: noindex` (the SPA rewrite
+  answers every path with a 200).
+- `<noscript>` bio block with links; accordion titles are real `<h3>`s so the
+  document outline survives progressive disclosure.
+
+**8b — Rendering strategy (next, highest-leverage remaining item)**
+The single biggest AI-discoverability constraint is client-side rendering:
+GPTBot/ClaudeBot/PerplexityBot index the empty shell + static head only.
+Options, in order of preference:
+1. Build-time prerender of all 16 routes (e.g. vite-prerender-plugin or a
+   Playwright snapshot step writing static HTML per route) — no framework
+   change, full HTML for every crawler.
+2. Migrate to a framework with SSG (Astro/Next) — bigger lift, revisit only
+   if the site grows.
+Acceptance: `curl` of any route returns the visible text content.
+
+**8c — Off-site authority (user actions; the site can only support these)**
+- Google Search Console + Bing Webmaster: verify, submit sitemap.
+- Keep Google Scholar profile current (it already feeds AI training/retrieval).
+- ORCID record linking the publications; add ORCID URL to `sameAs`.
+- Ensure LinkedIn headline matches the site's positioning language.
+- University/lab pages (Stanford NOURISH, Han Lab) linking here — institutional
+  backlinks are the strongest E-E-A-T signal available.
+- Conference organizers (CPIC, Lowitja, AMSA) listing talks with links.
+
+**8d — Accessibility + measurement (unchanged scope)**
+- Heading-order audit; landmark roles; skip link; contrast pass on gray-400.
+- Vercel Analytics custom events: process-flow steps, accordion opens,
+  contact clicks, file-viewer opens.
+- Lighthouse (or equivalent) recorded per PR; CWV as a ranking input ties
+  stage 7 performance work back into SEO.
 
 ---
 

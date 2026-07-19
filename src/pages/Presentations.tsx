@@ -6,7 +6,7 @@ import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { StatValue } from "../components/CountUp";
 import { useGoBack } from "../hooks/useGoBack";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 interface ConferenceFile {
     url?: string;
@@ -183,7 +183,12 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
 
 export function Presentations() {
     const goBack = useGoBack();
-    usePageTitle("Presentations");
+    usePageMeta({
+        title: "Presentations",
+        path: "/presentations",
+        description:
+            "Conference presentations, posters, and invited talks: Stanford Grand Rounds, CPIC, Lowitja, AMSA Global Health, TETHICON, and the QUAD Fellowship Summit.",
+    });
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<ConferenceFile | null>(null);
 

@@ -28,27 +28,31 @@ export function SectionAccordion({ sections, fallbackInitial }: SectionAccordion
                 const open = index === openIndex;
                 return (
                     <div key={section.title} className="border-t border-black/8 first:border-t-0">
-                        <button
-                            type="button"
-                            aria-expanded={open}
-                            aria-controls={`${baseId}-panel-${index}`}
-                            onClick={() => setOpenIndex(open ? -1 : index)}
-                            className="group flex w-full items-center justify-between gap-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 rounded-sm"
-                        >
-                            <span
-                                className={`text-lg font-bold tracking-tight transition-colors duration-200 md:text-xl ${
-                                    open ? "text-black" : "text-gray-400 group-hover:text-black"
-                                }`}
+                        {/* Real heading wraps the disclosure button so the
+                            document outline survives for crawlers and AT. */}
+                        <h3 className="m-0">
+                            <button
+                                type="button"
+                                aria-expanded={open}
+                                aria-controls={`${baseId}-panel-${index}`}
+                                onClick={() => setOpenIndex(open ? -1 : index)}
+                                className="group flex w-full items-center justify-between gap-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 rounded-sm"
                             >
-                                {section.title}
-                            </span>
-                            <ChevronDown
-                                aria-hidden="true"
-                                className={`h-4 w-4 shrink-0 text-gray-400 transition-transform duration-300 motion-reduce:transition-none ${
-                                    open ? "rotate-180" : ""
-                                }`}
-                            />
-                        </button>
+                                <span
+                                    className={`text-lg font-bold tracking-tight transition-colors duration-200 md:text-xl ${
+                                        open ? "text-black" : "text-gray-400 group-hover:text-black"
+                                    }`}
+                                >
+                                    {section.title}
+                                </span>
+                                <ChevronDown
+                                    aria-hidden="true"
+                                    className={`h-4 w-4 shrink-0 text-gray-400 transition-transform duration-300 motion-reduce:transition-none ${
+                                        open ? "rotate-180" : ""
+                                    }`}
+                                />
+                            </button>
+                        </h3>
 
                         <AnimatePresence initial={false}>
                             {open && (

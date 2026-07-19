@@ -20,7 +20,8 @@ import { ScrollProgressBar } from "../components/motion/ScrollProgressBar";
 import { RevealGroup, RevealItem } from "../components/motion/Reveal";
 import { DURATION, EASE_OUT } from "../motion/tokens";
 import { useGoBack } from "../hooks/useGoBack";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { usePageMeta, SITE_ORIGIN } from "../hooks/usePageMeta";
+import { useJsonLd } from "../hooks/useJsonLd";
 
 /**
  * Case-study top bar that steps out of the way while reading: hides on
@@ -56,7 +57,50 @@ const HideOnScrollNav = ({ children }: { children: React.ReactNode }) => {
 const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
     const goBack = useGoBack();
-    usePageTitle(project?.title);
+    usePageMeta(
+        project
+            ? {
+                  title: project.title,
+                  description: project.subtitle,
+                  path: `/project/${project.id}`,
+                  ogType: "article",
+              }
+            : {},
+    );
+    useJsonLd(
+        project
+            ? {
+                  "@context": "https://schema.org",
+                  "@graph": [
+                      {
+                          "@type": "CreativeWork",
+                          name: project.title,
+                          headline: project.subtitle,
+                          description: project.description,
+                          url: `${SITE_ORIGIN}/project/${project.id}`,
+                          keywords: project.tags.join(", "),
+                          author: {
+                              "@type": "Person",
+                              name: "Stefan Thottunkal",
+                              url: SITE_ORIGIN,
+                          },
+                      },
+                      {
+                          "@type": "BreadcrumbList",
+                          itemListElement: [
+                              { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
+                              {
+                                  "@type": "ListItem",
+                                  position: 2,
+                                  name: project.title,
+                                  item: `${SITE_ORIGIN}/project/${project.id}`,
+                              },
+                          ],
+                      },
+                  ],
+              }
+            : null,
+    );
 
     // The compact title docks into the nav once the header card scrolls out.
     const headerRef = useRef<HTMLDivElement>(null);

@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { EASE_OUT, SPRING_SOFT } from "../motion/tokens";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export const NotFound = (): JSX.Element => {
-    usePageTitle("Page not found");
+    // noindex: the SPA rewrite answers every path with a 200, so unknown URLs
+    // would otherwise be crawled as soft-404 duplicates of the app shell.
+    usePageMeta({ title: "Page not found", noindex: true });
 
     return (
         <div className="min-h-[100svh] bg-white px-4 py-10">

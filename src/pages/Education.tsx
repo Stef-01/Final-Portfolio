@@ -7,7 +7,7 @@ import { FloatingBackButton } from "../components/FloatingBackButton";
 import { TeachingSection } from "../components/TeachingSection";
 import { StatValue } from "../components/CountUp";
 import { useGoBack } from "../hooks/useGoBack";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { educationRoles } from "../types/roles";
 
 const educationStats = [
@@ -18,7 +18,12 @@ const educationStats = [
 
 export function Education(): JSX.Element {
   const goBack = useGoBack();
-  usePageTitle("Education");
+  usePageMeta({
+    title: "Education",
+    path: "/education",
+    description:
+      "Teaching and curriculum: research methods at ANU, Stanford Medicine NOURISH clinical-nutrition curriculum, and the TLIA entrepreneurship bootcamp as Program Lead.",
+  });
   const [showTliaDetail, setShowTliaDetail] = useState(false);
   const tliaDetailRef = useRef<HTMLDivElement>(null);
 

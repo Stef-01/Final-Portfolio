@@ -6,7 +6,7 @@ import { RolesTimeline } from "../components/RolesTimeline";
 import { StatValue } from "../components/CountUp";
 import { policyRoles } from "../types/roles";
 import { useGoBack } from "../hooks/useGoBack";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const stats = [
   { value: "5", label: "policy and government roles" },
@@ -16,7 +16,12 @@ const stats = [
 
 export function Policy() {
   const goBack = useGoBack();
-  usePageTitle("Policy");
+  usePageMeta({
+    title: "Policy",
+    path: "/policy",
+    description:
+      "Australian public policy and government: three Department of Social Services teams (NDIS, National Redress Scheme), a Parliamentary Library internship, and Indigenous primary-care implementation research.",
+  });
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />

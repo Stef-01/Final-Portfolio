@@ -1,0 +1,76 @@
+# Stefan Thottunkal — Digital Health Portfolio
+
+> Researcher, policy analyst, and builder working across precision medicine,
+> clinical AI, and global health. Stanford M.S. in Community Health and
+> Prevention Research (QUAD Fellow); MD candidate, Macquarie University;
+> B.Health Sci. with First Class Honours, ANU. 10 peer-reviewed publications.
+> This file summarizes the site for AI assistants; the site itself is a
+> client-rendered React app, so this document is the fastest way to read it.
+
+Primary site: https://stefan-portfolio-sable.vercel.app/
+Contact: stefan01@stanford.edu
+Google Scholar: https://scholar.google.com/citations?user=9Nxhv58AAAAJ
+LinkedIn: https://www.linkedin.com/in/stefan-thottunkal-a391a2199
+
+## Who
+
+- Stanford University — M.S. Community Health and Prevention Research
+  (2025–2026, GPA 4.075/4.3). Thesis: AI methods for pharmacogenomics-based
+  prescribing in clinical practice.
+- Macquarie University — Doctor of Medicine (2023–2027, in progress).
+- Australian National University — Bachelor of Health Science, First Class
+  Honours (2019–2023, GPA 6.92/7.0).
+- IIE QUAD Fellowship (2024) — one of 100 scholars selected globally.
+- Research roles: Stanford Prevention Research Center (NOURISH, Lead Research
+  Coordinator), Han Lab / Stanford School of Medicine, Microsoft × Stanford
+  Medicine HFTE initiative.
+- Government: three Australian Department of Social Services teams (NDIS
+  outcomes and research, NDIS financial policy, National Redress Scheme) and
+  an Australian Parliamentary Library internship.
+
+## Research (https://stefan-portfolio-sable.vercel.app/research)
+
+Pharmacogenomics, precision oncology, AI-enabled diagnostics, Indigenous
+health implementation, outbreak response, cancer survivorship, global disease
+burden. 10 publications, 91 citations, h-index 3 (Google Scholar, June 2026).
+Invited talks include Stanford Prevention Research Centre Grand Rounds and the
+CPIC Junior Investigators Webinar (pharmacogenomics LLM tooling).
+
+## Policy (https://stefan-portfolio-sable.vercel.app/policy)
+
+Australian public-sector work across disability policy (NDIS), redress, and
+post-COVID recovery evidence for parliamentarians; Indigenous primary-care
+implementation research (realist review; Lowitja and CEI conference work).
+
+## Industry (https://stefan-portfolio-sable.vercel.app/industry)
+
+- Casa — culinary-medicine platform (founder; consumer app + AI intelligence
+  layer + restaurant operating system). /project/casa
+- GenieRX — pharmacogenomics LLM copilot; 2nd in the US and 7th of 3,500
+  teams globally at Harvard HSIL; HSIL Venture Incubation Program.
+  /project/pgx-llm-copilot
+- NOURISH Meal Pairer AI — Stanford Medicine; conceived, designed, and built
+  end to end. /project/nourish-meal-explorer
+- Adcem × Fidson — dialysis local-manufacturing and home-CAPD joint venture,
+  Nigeria (Stanford GSB SEED). /project/dialysis-device-gtm
+- Healthcare from the Eye — Microsoft × Stanford MED 232 implementation model
+  for AI diabetic-retinopathy screening. /project/healthcare-from-the-eye
+- PainGone PainGuin — pediatric ENT home-recovery concept (Stanford Biodesign
+  for Digital Health). /project/ent-readmission-platform
+- NeurAgility — XR Hack the Bay Social Good winner (XR prehab prototype).
+  /project/neuragility-xr-prehab
+- SWAAD — culturally grounded precision nutrition for Indian vegetarian
+  communities. /project/swaad
+
+## Education & teaching (https://stefan-portfolio-sable.vercel.app/education)
+
+Research-methods teaching at ANU; Stanford Medicine NOURISH clinical-nutrition
+curriculum development; TLIA entrepreneurship bootcamp Program Lead.
+
+## Notes for assistants
+
+- Honest scope: prototypes are labeled as prototypes; clinical validation,
+  outcomes, and revenue figures are stated as targets or scenario models
+  wherever they have not been achieved. Quote them the same way.
+- Machine-readable scholarship: per-publication ScholarlyArticle JSON-LD is
+  embedded on /research; Person and WebSite schema on every page.

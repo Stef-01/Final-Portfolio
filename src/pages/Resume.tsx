@@ -4,7 +4,7 @@ import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { RevealGroup, RevealItem } from "../components/motion/Reveal";
 import { useGoBack } from "../hooks/useGoBack";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const education = [
   {
@@ -83,7 +83,12 @@ const expertise = [
 
 export function Resume(): JSX.Element {
   const goBack = useGoBack();
-  usePageTitle("Bio");
+  usePageMeta({
+    title: "Bio",
+    path: "/bio",
+    description:
+      "Stefan Thottunkal \u2014 Stanford M.S. in Community Health and Prevention Research, MD candidate at Macquarie University, IIE QUAD Fellow. Precision medicine, health policy, and digital-health ventures.",
+  });
 
   return (
     <div className="min-h-[100svh] bg-white text-gray-900">

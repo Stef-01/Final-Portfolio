@@ -19,7 +19,7 @@ import { Magnetic } from "../components/motion/Magnetic";
 import { SplitTextReveal } from "../components/motion/SplitTextReveal";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import { useMagneticScroll } from "../hooks/useMagneticScroll";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { DURATION, EASE_OUT } from "../motion/tokens";
 
@@ -122,7 +122,12 @@ export const ScalehubStartupLp = (): JSX.Element => {
   const isPhoneLayout = usePhoneLayout();
   const prefersReducedMotion = usePrefersReducedMotion();
   useMagneticScroll();
-  usePageTitle("");
+  usePageMeta({
+    title: "",
+    path: "/",
+    description:
+      "Stefan Thottunkal — researcher, policy analyst, and builder across precision medicine, clinical AI, and global health. Stanford M.S., IIE QUAD Fellow, 10 peer-reviewed publications, Harvard HSIL finalist.",
+  });
 
   // The footer is pinned behind the page (sticky uncover), but the desktop
   // hero keeps a fixed full-viewport Spline layer at the same z plane — the
