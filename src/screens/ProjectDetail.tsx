@@ -15,6 +15,7 @@ import { NotFound } from "../components/NotFound";
 import { ImageWithFallback } from "../components/ImageWithFallback";
 import { ProjectPopout } from "../components/ProjectPopout";
 import { ProcessFlow } from "../components/ProcessFlow";
+import { SectionAccordion } from "../components/SectionAccordion";
 import { ScrollProgressBar } from "../components/motion/ScrollProgressBar";
 import { RevealGroup, RevealItem } from "../components/motion/Reveal";
 import { DURATION, EASE_OUT } from "../motion/tokens";
@@ -262,40 +263,10 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </div>
 
                     <div className="rounded-2xl bg-[#fafafa] p-6 md:p-8">
-                        <div className="space-y-8">
-                            {project.sections.map((section) => (
-                                <div key={section.title}>
-                                    <h2 className="text-xl font-bold tracking-tight text-black md:text-2xl">{section.title}</h2>
-                                    <div className="mt-4 space-y-4">
-                                        {section.body.map((paragraph) => (
-                                            <p key={paragraph} className="text-base leading-relaxed text-gray-600">
-                                                {paragraph}
-                                            </p>
-                                        ))}
-                                    </div>
-                                    {section.media && (
-                                        <figure className="mt-6 overflow-hidden rounded-2xl bg-[#f5f3ef]">
-                                            <div className={`${section.media.aspect === "16/9" ? "aspect-video" : section.media.aspect === "8/5" ? "aspect-[8/5]" : section.media.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden`}>
-                                                <ImageWithFallback
-                                                    src={section.media.src}
-                                                    alt={section.media.alt}
-                                                    fallbackInitial={project.title.charAt(0)}
-                                                    accent={project.accent}
-                                                    wrapperClassName="h-full w-full"
-                                                    className={`h-full w-full ${section.media.fit === "contain" ? "object-contain" : "object-cover"}`}
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                    sizes="(max-width: 1024px) 92vw, 54vw"
-                                                />
-                                            </div>
-                                            <figcaption className="border-t border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
-                                                {section.media.caption}
-                                            </figcaption>
-                                        </figure>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                        <SectionAccordion
+                            sections={project.sections}
+                            fallbackInitial={project.title.charAt(0)}
+                        />
                     </div>
                 </section>
 
