@@ -37,23 +37,20 @@ index) · tryhard labels removed ("Design rationale", "Execution evidence",
 
 ## Forward plan
 
-### Stage 4 — Broken and fragile assets (highest priority — functionality)
-Real defects, not polish:
-1. **Presentations files 404.** Every talk references `/files/*.pdf|mp4`; the
-   `public/files/` directory does not exist. Either add the files, or point
-   buttons at hosted URLs, or disable the viewer buttons with an honest
-   "available on request" state. Decide per talk — never ship a dead viewer.
-2. **Unsplash hotlinks (5 remaining)** on GenieRX and SWAAD heroes/galleries.
-   They gray-out under ad-blockers/proxies and add third-party weight. Replace
-   with owned assets (product screenshots or typographic covers in the accent
-   color; the NeurAgility title-card pattern works well).
-3. **`og:image` + `apple-touch-icon`** — still TODO in index.html. Produce a
-   1200×630 typographic card (name + "Digital Health Portfolio", black on
-   white) and a 180×180 monogram; re-add the meta tags.
-4. **Per-route meta descriptions** — extend `usePageTitle` into a
-   `usePageMeta` that also swaps `<meta name="description">`.
+### Stage 4 — Broken and fragile assets (SHIPPED)
+1. **Presentations files** *(done)* — viewer buttons HEAD-probe the file
+   first (the SPA rewrite 200s every path, so the probe rejects `text/html`);
+   missing files open an honest "Available on request" state with a mailto.
+   When real files land in `public/files/`, the viewer opens them with no
+   code change.
+2. **Unsplash hotlinks** *(done — zero remain)* — GenieRX hero + gallery
+   replaced with generated typographic cards in the project accent
+   (`src/assets/pgx/`); SWAAD hero now uses its local product screenshot.
+3. **`og:image` + `apple-touch-icon`** *(done in stage 8a)*.
+4. **Per-route meta descriptions** *(done in stage 8a — `usePageMeta`)*.
 
-Acceptance: no dead buttons, no third-party image hosts, rich link previews.
+Remaining follow-up: add the real talk PDFs/videos to `public/files/` when
+available — the request-state fallback covers them until then.
 
 ### Stage 5 — Text diet, part two (lane + secondary pages)
 Same editorial rules as stage 3, applied to the remaining prose:

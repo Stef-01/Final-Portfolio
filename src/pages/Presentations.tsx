@@ -192,8 +192,23 @@ export function Presentations() {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<ConferenceFile | null>(null);
 
-    const handleFileClick = (file: ConferenceFile) => {
-        setSelectedFile(file);
+    // Open the viewer only when the file actually exists — the SPA rewrite
+    // answers every path with index.html (200), so a dead link would render
+    // the app shell inside the PDF iframe. A cheap HEAD probe (content type
+    // must not be HTML) routes missing files to the honest
+    // available-on-request state instead.
+    const handleFileClick = async (file: ConferenceFile) => {
+        let available = false;
+        if (file.url) {
+            try {
+                const res = await fetch(file.url, { method: "HEAD" });
+                const type = res.headers.get("content-type") ?? "";
+                available = res.ok && !type.includes("text/html");
+            } catch {
+                available = false;
+            }
+        }
+        setSelectedFile(available ? file : { ...file, url: undefined });
         setModalOpen(true);
     };
 

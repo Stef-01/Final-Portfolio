@@ -46,6 +46,10 @@ import casaRestaurantCapacity from "../assets/casa/casa-restaurant-capacity.png"
 import casaSolutionPillars from "../assets/casa/casa-solution-pillars.png";
 import casaTwoSidedProblem from "../assets/casa/casa-two-sided-problem.png";
 import casaUnderstandMatchDeliver from "../assets/casa/casa-understand-match-deliver.png";
+import pgxHero from "../assets/pgx/pgx-hero.png";
+import pgxScope from "../assets/pgx/pgx-scope.png";
+import pgxCpic from "../assets/pgx/pgx-cpic.png";
+import pgxMoment from "../assets/pgx/pgx-moment.png";
 
 export interface ProjectStat {
     label: string;
@@ -263,7 +267,9 @@ export const projects: Project[] = [
         title: "SWAAD",
         subtitle: "A culturally grounded precision nutrition platform for Indian vegetarian communities.",
         description: "A behavior-change product that links local produce, diabetes-friendly meal discovery, and playful education so healthier decisions feel relevant, practical, and culturally fluent.",
-        image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop",
+        image: swaadMealExplorer,
+        heroFit: "contain",
+        heroAspect: "16/9",
         tags: ["Health Tech", "Nutrition", "Community Health"],
         role: "Product lead, UX designer, and public health researcher",
         client: "Self-initiated venture built with Logan Indian community members",
@@ -446,7 +452,9 @@ export const projects: Project[] = [
         title: "Pharmacogenomics LLM Copilot",
         subtitle: "GenieRX — an LLM tool for gene-guided prescribing. 2nd in the US and 7th of 3,500 teams globally at Harvard HSIL.",
         description: "An LLM tool that turns a patient's genotype into safer prescribing across commonly prescribed medications. Built with a five-person team at the Harvard HSIL hackathon, advanced through its Venture Incubation Program, and grounded in Stanford research on CPIC-guideline prescribing.",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
+        image: pgxHero,
+        heroFit: "contain",
+        heroAspect: "16/9",
         tags: ["Pharmacogenomics", "Clinical Decision Support", "LLM"],
         role: "GenieRX Team Leader → Director (Harvard HSIL); pharmacogenomics CDS researcher (Stanford Medicine)",
         client: "Harvard Health Systems Innovation Lab · Stanford Medicine",
@@ -489,9 +497,9 @@ export const projects: Project[] = [
             },
         ],
         media: [
-            { src: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=1600&auto=format&fit=crop", alt: "Assorted prescription medications", caption: "Gene-guided prescribing spans commonly prescribed medications across drug classes." },
-            { src: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1600&auto=format&fit=crop", alt: "Prescription blister packs", caption: "CPIC guidelines map specific gene variants to dose and drug-choice changes." },
-            { src: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=1600&auto=format&fit=crop", alt: "Medication capsules from a prescription bottle", caption: "The copilot surfaces that guidance at the moment a prescription is written." },
+            { src: pgxScope, alt: "GenieRX scope card: commonly prescribed medications across drug classes", caption: "Gene-guided prescribing spans commonly prescribed medications across drug classes.", fit: "contain", aspect: "16/9" },
+            { src: pgxCpic, alt: "GenieRX evidence card: CPIC guidelines applied to dose and drug choice", caption: "CPIC guidelines map specific gene variants to dose and drug-choice changes.", fit: "contain", aspect: "16/9" },
+            { src: pgxMoment, alt: "GenieRX workflow card: guidance at the moment of prescribing", caption: "The copilot surfaces that guidance at the moment a prescription is written.", fit: "contain", aspect: "16/9" },
         ],
     },
     {
