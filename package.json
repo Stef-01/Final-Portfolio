@@ -36,7 +36,7 @@
       },
       "scripts": {
             "dev": "vite",
-            "build": "vite build",
+            "build": "vite build && node scripts/generate-static-shells.mjs",
             "typecheck": "tsc --noEmit",
             "lint": "eslint ."
       }

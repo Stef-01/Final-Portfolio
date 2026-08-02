@@ -52,7 +52,7 @@ index) · tryhard labels removed ("Design rationale", "Execution evidence",
 Remaining follow-up: add the real talk PDFs/videos to `public/files/` when
 available — the request-state fallback covers them until then.
 
-### Stage 5 — Text diet, part two (lane + secondary pages)
+### Stage 5 — Text diet, part two (SHIPPED — role summaries; talk titles kept verbatim as quoted academic titles)
 Same editorial rules as stage 3, applied to the remaining prose:
 1. `types/roles.ts` — role summaries and deliverables across
    Research/Policy/Industry/Education (deliverable bullets ≤ 8 words,
@@ -66,7 +66,7 @@ Same editorial rules as stage 3, applied to the remaining prose:
 Acceptance: no paragraph over two sentences anywhere outside case-study
 narrative sections; lane pages scannable in one pass.
 
-### Stage 6 — Visual identity consolidation
+### Stage 6 — Visual identity consolidation (SHIPPED — Playfair self-hosted, lane accent tokens, publications restyle, orbit de-emoji; Clash Grotesk stays on Fontshare per license)
 1. **Type system**: commit to Clash Grotesk everywhere (Playfair appears only
    in the About signature — either make the serif a deliberate accent used
    3+ times, or drop it). Self-host both fonts with `font-display: swap` and
@@ -82,7 +82,7 @@ narrative sections; lane pages scannable in one pass.
 
 Acceptance: one typographic voice, one accent system, no emoji in chrome.
 
-### Stage 7 — Performance
+### Stage 7 — Performance (SHIPPED — 9.9MB→2.3MB image diet, phone/data-saver Spline gate, LCP priority image)
 1. **Spline cost**: `react-spline` + `three` + `physics` ≈ 5MB of lazy JS.
    Add a static hero poster (JPEG of the scene) shown immediately; boot
    Spline only on pointer-fine desktop with `saveData`/`deviceMemory` guards;
@@ -125,16 +125,19 @@ both search rankers and LLMs discount self-description and reward evidence.
 - `<noscript>` bio block with links; accordion titles are real `<h3>`s so the
   document outline survives progressive disclosure.
 
-**8b — Rendering strategy (next, highest-leverage remaining item)**
+**8b — Rendering strategy (SHIPPED as static shells; full prerender remains optional)**
 The single biggest AI-discoverability constraint is client-side rendering:
 GPTBot/ClaudeBot/PerplexityBot index the empty shell + static head only.
-Options, in order of preference:
-1. Build-time prerender of all 16 routes (e.g. vite-prerender-plugin or a
-   Playwright snapshot step writing static HTML per route) — no framework
-   change, full HTML for every crawler.
-2. Migrate to a framework with SSG (Astro/Next) — bigger lift, revisit only
-   if the site grows.
-Acceptance: `curl` of any route returns the visible text content.
+Implemented: `scripts/generate-static-shells.mjs` runs after `vite build`
+(node-only — the Vercel build image has no browser) and writes
+`dist/<route>/index.html` for all 14 non-home routes with per-route title,
+description, og tags, canonical (replaced in place — no duplicates), and a
+route-specific `<noscript>` summary. Vercel serves the static file before the
+SPA rewrite, so non-JS crawlers get real per-URL metadata + text; browsers
+hydrate the same app. Note: `vite preview` doesn't emulate directory-index
+resolution — verify shells with `http-server dist`.
+Remaining optional upgrade: full-content prerender (Playwright snapshot per
+route) or an SSG migration if the site grows.
 
 **8c — Off-site authority (user actions; the site can only support these)**
 - Google Search Console + Bing Webmaster: verify, submit sitemap.
