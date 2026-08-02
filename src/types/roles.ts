@@ -72,7 +72,7 @@ export const researchRoles: Role[] = [
     period: "Nov 2022 – Jan 2025",
     location: "Canberra, Australia",
     summary:
-      "Implementation-focused work on Aboriginal preventive chronic-disease care, plus TB meta-analysis and cancer-symptom-burden research. Mentored PhD students through publication.",
+      "Implementation research on Aboriginal preventive chronic-disease care, TB meta-analysis, and cancer-symptom burden; mentored PhD students through publication.",
     deliverables: [
       "3 peer-reviewed publications",
       "Meta-analysis protocols + PRISMA workflows",
@@ -88,7 +88,7 @@ export const researchRoles: Role[] = [
     period: "Jan 2022 – Nov 2022",
     location: "Remote / Geneva",
     summary:
-      "Contributed to GOARN 2022–26 Strategic Plan and WPSAR paper on ML-enabled infectious-disease surveillance — connecting counterterrorism analytical methods to public-health response.",
+      "Contributed to the GOARN 2022–26 Strategic Plan and a WPSAR paper on ML-enabled infectious-disease surveillance.",
     deliverables: [
       "GOARN 2022–26 Strategic Plan contributions",
       "WPSAR journal paper (2024)",
@@ -123,7 +123,7 @@ export const industryRoles: Role[] = [
     period: "Ongoing",
     location: "Distributed",
     summary:
-      "Consumer AI cooking-confidence platform. Users type a craving or photograph a dish; Casa turns that intent into practical meal directions, intelligently paired sides, and guided cooking.",
+      "Consumer AI cooking platform: a craving or a photo becomes practical meal directions, paired sides, and guided cooking.",
     deliverables: [
       "Craving parser + pairing engine",
       "Guided cook flow",
@@ -159,7 +159,7 @@ export const industryRoles: Role[] = [
     period: "Apr – Jun 2025",
     location: "Harvard T.H. Chan School of Public Health",
     summary:
-      "Led a five-person team building an LLM pharmacogenomics tool for gene-guided prescribing — placed 2nd nationally (USA) and 7th of 3,500 teams globally, then directed GenieRX through the HSIL Venture Incubation Program.",
+      "Led a five-person team building an LLM pharmacogenomics tool — 2nd in the US, 7th of 3,500 globally — then directed GenieRX through the HSIL Venture Incubation Program.",
     deliverables: [
       "LLM pharmacogenomics prescribing tool",
       "2nd nationally (USA) · 7th of 3,500 globally",
@@ -335,7 +335,7 @@ export const policyRoles: Role[] = [
     period: "2022",
     location: "Canberra, Australia",
     summary:
-      "Led development of protocols for policymaker–researcher partnerships, supported the establishment of a disability research advisory unit, advised on knowledge translation, and served on procurement panels.",
+      "Built protocols for policymaker–researcher partnerships, supported a disability research advisory unit, and served on procurement panels.",
     deliverables: [
       "Policymaker–researcher partnership protocols",
       "Support for a disability research advisory unit",
@@ -351,7 +351,7 @@ export const policyRoles: Role[] = [
     period: "2022",
     location: "Canberra, Australia",
     summary:
-      "Coordinated policy-proposal compliance and feedback with the Office of Best Practice to support the October 2022 NDIS budget, while producing ministerial briefs and new policy proposals.",
+      "Coordinated policy-proposal compliance for the October 2022 NDIS budget; produced ministerial briefs and new policy proposals.",
     deliverables: [
       "Policy-proposal compliance with the Office of Best Practice",
       "Support for the October 2022 NDIS budget",
@@ -367,7 +367,7 @@ export const policyRoles: Role[] = [
     period: "2021 – 2022",
     location: "Canberra, Australia",
     summary:
-      "Facilitated Commonwealth, state, and territory collaboration to expand redress for survivors of institutional child sexual abuse, and wrote briefs translating complex policy advice for senior executives and Attorneys-General.",
+      "Facilitated Commonwealth–state collaboration to expand redress for survivors of institutional child sexual abuse; wrote briefs for senior executives and Attorneys-General.",
     deliverables: [
       "Commonwealth–state–territory collaboration",
       "Expanded redress for institutional-abuse survivors",
