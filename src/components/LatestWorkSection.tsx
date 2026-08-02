@@ -72,6 +72,7 @@ export const LatestWorkSection = () => {
                                         imageFit={project.heroFit}
                                         imageAspect={project.heroAspect}
                                         className="bg-gray-50"
+                                        priority={index === 0}
                                     />
                                 </motion.div>
                             </div>

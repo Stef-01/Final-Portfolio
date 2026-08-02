@@ -71,6 +71,16 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
     useEffect(() => {
         if (prefersReducedMotion || !documentVisible) return;
 
+        // The Spline stack is ~5MB of lazy JS. Phones never pay it — the
+        // static gradient is the phone experience. Desktops on data-saver or
+        // low-memory devices get the same treatment.
+        if (isPhoneLayout) return;
+        type NetInfo = { saveData?: boolean };
+        const connection = (navigator as Navigator & { connection?: NetInfo }).connection;
+        const deviceMemory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+        if (connection?.saveData) return;
+        if (typeof deviceMemory === "number" && deviceMemory < 4) return;
+
         let cancelled = false;
         let timeoutId = 0;
         let idleId: number | null = null;
@@ -79,11 +89,11 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
         const startBoot = () => {
             timeoutId = window.setTimeout(() => {
                 if (!cancelled) setShouldBootSpline(true);
-            }, isPhoneLayout ? 1200 : 150);
+            }, 150);
         };
 
         if (typeof idleCallback === "function") {
-            idleId = idleCallback(() => startBoot(), { timeout: isPhoneLayout ? 2200 : 900 });
+            idleId = idleCallback(() => startBoot(), { timeout: 900 });
         } else {
             startBoot();
         }
@@ -150,7 +160,9 @@ export const SplineBackground: React.FC<SplineBackgroundProps> = ({ className = 
                     {(!isLoaded || !SplineComponent || prefersReducedMotion) && (
                         <div
                             className={`absolute inset-0 w-full h-full bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 ${
-                                prefersReducedMotion ? "" : "animate-pulse"
+                                shouldBootSpline && !isLoaded && !prefersReducedMotion
+                                    ? "animate-pulse"
+                                    : ""
                             }`}
                         />
                     )}

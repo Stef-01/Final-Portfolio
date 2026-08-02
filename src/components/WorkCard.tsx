@@ -14,6 +14,8 @@ interface WorkCardProps {
     imageFit?: "cover" | "contain";
     imageAspect?: "16/9" | "8/5";
     className?: string;
+    /** First card in the grid — its image is the likely LCP candidate. */
+    priority?: boolean;
 }
 
 const MotionLink = motion(Link);
@@ -27,6 +29,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
     imageFit = "cover",
     imageAspect = "16/9",
     className = "",
+    priority = false,
 }) => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -105,7 +108,8 @@ export const WorkCard: React.FC<WorkCardProps> = ({
                             fallbackInitial={title.charAt(0)}
                             wrapperClassName="w-full h-full"
                             className={`h-full w-full ${imageFit === "contain" ? "object-contain" : "object-cover"}`}
-                            loading="lazy"
+                            loading={priority ? "eager" : "lazy"}
+                            fetchPriority={priority ? "high" : undefined}
                             decoding="async"
                             sizes="(max-width: 768px) 92vw, 900px"
                         />
