@@ -43,7 +43,7 @@ export function Education(): JSX.Element {
           <button
             type="button"
             onClick={goBack}
-            className="group mb-12 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-emerald-600"
+            className="group mb-12 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-violet-600"
           >
             <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
             <span className="text-lg font-medium">Back</span>
@@ -125,7 +125,7 @@ export function Education(): JSX.Element {
                   <ul className="mt-5 space-y-2">
                     {role.deliverables.map((item) => (
                       <li key={item} className="flex gap-3 text-sm leading-relaxed text-gray-600">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/70" />
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500/70" />
                         <span>{item}</span>
                       </li>
                     ))}

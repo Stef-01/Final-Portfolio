@@ -67,7 +67,7 @@ export function Policy() {
         </div>
       </div>
 
-      <RolesTimeline roles={policyRoles} title="Inside the government work" />
+      <RolesTimeline roles={policyRoles} title="Inside the government work" accent="var(--lane-policy)" />
 
       <ContactSection />
     </div>

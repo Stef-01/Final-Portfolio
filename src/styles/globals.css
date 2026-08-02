@@ -261,6 +261,15 @@ html.snap-page {
   }
 }
 
+/* Lane accents — one hue per lane, used for spines, bullets, and hover
+   states so each section keeps a single consistent voice. */
+:root {
+  --lane-research: #2563eb;
+  --lane-policy: #f59e0b;
+  --lane-industry: #10b981;
+  --lane-education: #7c3aed;
+}
+
 /* Lane spotlight: hovering one lane dims its siblings. Scoped to
    hover-capable devices; plain CSS so there is no utility-order fight. */
 @media (hover: hover) {
