@@ -1,5 +1,6 @@
 import React, { useId, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { ProjectCaseStudyStep } from "../types/project";
 import { EASE_OUT } from "../motion/tokens";
@@ -26,6 +27,7 @@ export function ProcessFlow({ steps, accent }: ProcessFlowProps) {
         if (clamped === index) return;
         setDirection(clamped > index ? 1 : -1);
         setIndex(clamped);
+        track("process_step", { step: clamped + 1 });
     };
 
     const onKeyDown = (event: React.KeyboardEvent) => {
@@ -112,7 +114,7 @@ export function ProcessFlow({ steps, accent }: ProcessFlowProps) {
 
             {/* Stepper controls */}
             <div className="mt-4 flex items-center justify-between">
-                <p className="text-sm tabular-nums text-gray-400">
+                <p className="text-sm tabular-nums text-gray-500">
                     {String(index + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
                 </p>
                 <div className="flex gap-2">

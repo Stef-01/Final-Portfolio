@@ -1,5 +1,6 @@
 import React, { useId, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { ChevronDown } from "lucide-react";
 import type { ProjectSection } from "../types/project";
 import { ImageWithFallback } from "./ImageWithFallback";
@@ -35,12 +36,15 @@ export function SectionAccordion({ sections, fallbackInitial }: SectionAccordion
                                 type="button"
                                 aria-expanded={open}
                                 aria-controls={`${baseId}-panel-${index}`}
-                                onClick={() => setOpenIndex(open ? -1 : index)}
+                                onClick={() => {
+                                    setOpenIndex(open ? -1 : index);
+                                    if (!open) track("section_open", { section: section.title });
+                                }}
                                 className="group flex w-full items-center justify-between gap-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 rounded-sm"
                             >
                                 <span
                                     className={`text-lg font-bold tracking-tight transition-colors duration-200 md:text-xl ${
-                                        open ? "text-black" : "text-gray-400 group-hover:text-black"
+                                        open ? "text-black" : "text-gray-500 group-hover:text-black"
                                     }`}
                                 >
                                     {section.title}

@@ -10,7 +10,7 @@ export const NotFound = (): JSX.Element => {
     usePageMeta({ title: "Page not found", noindex: true });
 
     return (
-        <div className="min-h-[100svh] bg-white px-4 py-10">
+        <main className="min-h-[100svh] bg-white px-4 py-10">
             <div className="mx-auto flex min-h-[80svh] max-w-xl flex-col items-center justify-center rounded-2xl bg-[#fafafa] p-8 text-center">
                 <motion.p
                     initial={{ opacity: 0, scale: 0.7 }}
@@ -49,6 +49,6 @@ export const NotFound = (): JSX.Element => {
                     </Link>
                 </motion.div>
             </div>
-        </div>
+        </main>
     );
 };

@@ -46,7 +46,7 @@ export function Research() {
   const [showPublications, setShowPublications] = useState(false);
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:pt-20 md:px-8">
@@ -173,6 +173,6 @@ export function Research() {
       </section>
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

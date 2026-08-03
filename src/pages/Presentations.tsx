@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { ArrowLeft, Paperclip } from "lucide-react";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
@@ -208,12 +209,13 @@ export function Presentations() {
                 available = false;
             }
         }
+        track("file_click", { file: file.name, available });
         setSelectedFile(available ? file : { ...file, url: undefined });
         setModalOpen(true);
     };
 
     return (
-        <div className="min-h-[100svh] bg-white text-gray-900">
+        <main className="min-h-[100svh] bg-white text-gray-900">
             <FloatingBackButton />
 
             <header className="px-4 pt-16 md:px-8 md:pt-20">
@@ -283,6 +285,6 @@ export function Presentations() {
             )}
 
             <ContactSection />
-        </div>
+        </main>
     );
 }

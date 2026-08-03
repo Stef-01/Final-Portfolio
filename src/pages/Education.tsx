@@ -35,7 +35,7 @@ export function Education(): JSX.Element {
   };
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:px-8 md:pt-20">
@@ -198,6 +198,6 @@ export function Education(): JSX.Element {
       </AnimatePresence>
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

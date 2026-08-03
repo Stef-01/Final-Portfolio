@@ -91,7 +91,7 @@ export function Resume(): JSX.Element {
   });
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <header className="px-4 pt-16 md:px-8 md:pt-20">
@@ -238,6 +238,6 @@ export function Resume(): JSX.Element {
       </main>
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { X, Mail, Linkedin, Check } from "lucide-react";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import { SPRING_SOFT } from "../motion/tokens";
@@ -47,6 +48,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         document.body.style.overflow = "hidden";
         window.addEventListener("keydown", handleEscape);
         closeButtonRef.current?.focus();
+        track("contact_open");
 
         return () => {
             document.body.style.overflow = previousOverflow;

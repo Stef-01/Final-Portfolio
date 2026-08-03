@@ -24,7 +24,7 @@ export function Industry() {
       "Health-tech ventures and advisory: Casa, GenieRX (2nd in the US at Harvard HSIL), the Adcem\u2013Fidson dialysis joint venture in Nigeria, and Microsoft \u00d7 Stanford Medicine HFTE.",
   });
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:pt-20 md:px-8">
@@ -92,6 +92,6 @@ export function Industry() {
       />
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

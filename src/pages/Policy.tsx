@@ -23,7 +23,7 @@ export function Policy() {
       "Australian public policy and government: three Department of Social Services teams (NDIS, National Redress Scheme), a Parliamentary Library internship, and Indigenous primary-care implementation research.",
   });
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:pt-20 md:px-8">
@@ -70,6 +70,6 @@ export function Policy() {
       <RolesTimeline roles={policyRoles} title="Inside the government work" accent="var(--lane-policy)" />
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

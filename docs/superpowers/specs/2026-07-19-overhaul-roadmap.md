@@ -148,7 +148,7 @@ route) or an SSG migration if the site grows.
   backlinks are the strongest E-E-A-T signal available.
 - Conference organizers (CPIC, Lowitja, AMSA) listing talks with links.
 
-**8d — Accessibility + measurement (unchanged scope)**
+**8d — Accessibility + measurement (SHIPPED — skip link, main landmarks, contrast bump, analytics events; Lighthouse-per-PR remains open)**
 - Heading-order audit; landmark roles; skip link; contrast pass on gray-400.
 - Vercel Analytics custom events: process-flow steps, accordion opens,
   contact clicks, file-viewer opens.

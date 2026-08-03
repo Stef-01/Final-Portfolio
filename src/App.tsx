@@ -72,6 +72,9 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait" onExitComplete={resetScroll}>
       <motion.div
         key={location.pathname}
+        id="route-content"
+        tabIndex={-1}
+        className="outline-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -98,6 +101,13 @@ const RoutedApp = () => {
 
   return (
     <AppErrorBoundary key={location.pathname}>
+      {/* Keyboard skip link — visually hidden until focused. */}
+      <a
+        href="#route-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-black focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to content
+      </a>
       <Suspense fallback={<LoadingFallback />}>
         <AnimatedRoutes />
       </Suspense>
