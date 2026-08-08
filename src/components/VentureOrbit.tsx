@@ -1,5 +1,16 @@
 import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
+import {
+  Bot,
+  Building2,
+  ChefHat,
+  Eye,
+  Glasses,
+  Handshake,
+  Pill,
+  Sprout,
+  Stethoscope,
+} from "lucide-react";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 
 /**
@@ -27,7 +38,7 @@ const CAT_COLOR: Record<Cat, string> = {
 
 interface Venture {
   id: string;
-  emoji: string;
+  icon: typeof Handshake;
   name: string;
   role: string;
   cat: Cat;
@@ -36,15 +47,15 @@ interface Venture {
 }
 
 const RAW: Array<Omit<Venture, "x" | "y">> = [
-  { id: "coethia", emoji: "🤝", name: "Coethia", role: "Partnerships & Strategy Officer · concepts, tech, procurement", cat: "Building" },
-  { id: "casa", emoji: "🍳", name: "Casa", role: "Founder · cooking-confidence app", cat: "Building" },
-  { id: "genierx", emoji: "💊", name: "GenieRX", role: "Team Leader → Director · 2nd US, 7th of 3,500", cat: "Building" },
-  { id: "adcem", emoji: "🩺", name: "Adcem Fidson", role: "Product / BD Intern · dialysis JV, Nigeria", cat: "Building" },
-  { id: "aether", emoji: "🤖", name: "Aether AI", role: "Student Project Manager · clinical-AI viability", cat: "Consulting" },
-  { id: "hfte", emoji: "👁️", name: "Healthcare from the Eye", role: "Student Project Manager · oculomics device", cat: "Consulting" },
-  { id: "consulting", emoji: "🏥", name: "Stanford Consulting", role: "Student Consultant · readmissions reduction", cat: "Consulting" },
-  { id: "xr", emoji: "🥽", name: "Stanford XR", role: "Team Lead · 1st place, Social Good", cat: "Building" },
-  { id: "nora", emoji: "🌱", name: "NORA", role: "Advisor · early-stage health venture", cat: "Advising" },
+  { id: "coethia", icon: Handshake, name: "Coethia", role: "Partnerships & Strategy Officer · concepts, tech, procurement", cat: "Building" },
+  { id: "casa", icon: ChefHat, name: "Casa", role: "Founder · cooking-confidence app", cat: "Building" },
+  { id: "genierx", icon: Pill, name: "GenieRX", role: "Team Leader → Director · 2nd US, 7th of 3,500", cat: "Building" },
+  { id: "adcem", icon: Stethoscope, name: "Adcem Fidson", role: "Product / BD Intern · dialysis JV, Nigeria", cat: "Building" },
+  { id: "aether", icon: Bot, name: "Aether AI", role: "Student Project Manager · clinical-AI viability", cat: "Consulting" },
+  { id: "hfte", icon: Eye, name: "Healthcare from the Eye", role: "Student Project Manager · oculomics device", cat: "Consulting" },
+  { id: "consulting", icon: Building2, name: "Stanford Consulting", role: "Student Consultant · readmissions reduction", cat: "Consulting" },
+  { id: "xr", icon: Glasses, name: "Stanford XR", role: "Team Lead · 1st place, Social Good", cat: "Building" },
+  { id: "nora", icon: Sprout, name: "NORA", role: "Advisor · early-stage health venture", cat: "Advising" },
 ];
 
 const VB_W = 1000;
@@ -86,9 +97,7 @@ export function VentureOrbit() {
         <ul className="vo-m-list">
           {VENTURES.map((v) => (
             <li key={v.id} className="vo-m-row">
-              <span className="vo-m-emoji" aria-hidden="true">
-                {v.emoji}
-              </span>
+              <v.icon className="vo-m-emoji" aria-hidden="true" strokeWidth={1.75} />
               <div className="vo-m-text">
                 <span className="vo-m-name">{v.name}</span>
                 <span className="vo-m-role">{v.role}</span>
@@ -201,9 +210,15 @@ export function VentureOrbit() {
                     style={{ stroke: color, opacity: isActive ? 1 : 0.45 }}
                   />
                   <circle className="vo-disc" cx={v.x} cy={v.y} r={30} />
-                  <text className="vo-emoji" x={v.x} y={v.y} textAnchor="middle" dominantBaseline="central">
-                    {v.emoji}
-                  </text>
+                  <v.icon
+                    className="vo-emoji"
+                    x={v.x - 14}
+                    y={v.y - 14}
+                    width={28}
+                    height={28}
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
                   <text className="vo-lab" x={v.x} y={v.y + 49} textAnchor="middle">
                     {v.name}
                   </text>
@@ -260,7 +275,7 @@ const CSS = `
 .vo-node { cursor: pointer; outline: none; transition: opacity .18s; }
 .vo-node .vo-disc { fill: #f6faf8; stroke: rgba(15,40,30,0.08); stroke-width: 1; transition: transform .18s; transform-box: fill-box; transform-origin: center; }
 .vo-node .vo-ringlet { fill: none; stroke-width: 2.4; transition: opacity .18s, transform .18s; transform-box: fill-box; transform-origin: center; }
-.vo-node .vo-emoji { font-size: 30px; transition: transform .18s; transform-box: fill-box; transform-origin: center; }
+.vo-node .vo-emoji { color: #11362a; transition: transform .18s; transform-box: fill-box; transform-origin: center; }
 .vo-node .vo-lab { font: 600 12.5px ui-sans-serif, system-ui, sans-serif; fill: #2f4a40; }
 .vo-node.vo-active .vo-disc, .vo-node.vo-active .vo-emoji { transform: scale(1.12); }
 .vo-node.vo-active .vo-ringlet { transform: scale(1.06); }
@@ -287,7 +302,7 @@ const CSS = `
 /* ----- Mobile ----- */
 .vo-m-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .vo-m-row { display: flex; align-items: flex-start; gap: 11px; padding: 11px 13px; border-radius: 14px; background: #f4faf7; }
-.vo-m-emoji { font-size: 24px; line-height: 1.1; flex: 0 0 auto; }
+.vo-m-emoji { width: 22px; height: 22px; color: #11362a; flex: 0 0 auto; margin-top: 2px; }
 .vo-m-text { display: flex; flex-direction: column; min-width: 0; }
 .vo-m-name { font: 700 15px ui-sans-serif, system-ui, sans-serif; color: #11362a; }
 .vo-m-role { margin-top: 2px; font: 500 12.5px/1.4 ui-sans-serif, system-ui, sans-serif; color: #4f6a5f; }

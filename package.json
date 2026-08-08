@@ -4,6 +4,7 @@
       "private": true,
       "type": "module",
       "dependencies": {
+            "@fontsource/playfair-display": "^5.3.0",
             "@splinetool/react-spline": "^4.1.0",
             "@types/three": "^0.184.1",
             "@vercel/analytics": "^2.0.1",
@@ -35,7 +36,7 @@
       },
       "scripts": {
             "dev": "vite",
-            "build": "vite build",
+            "build": "vite build && node scripts/generate-static-shells.mjs && node scripts/generate-ai-content.mjs",
             "typecheck": "tsc --noEmit",
             "lint": "eslint ."
       }

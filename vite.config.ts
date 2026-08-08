@@ -14,6 +14,9 @@ export default defineConfig({
   build: {
     target: 'esnext',
     outDir: 'dist',
+    // The oversized chunks are the lazy Spline/three stack — split and
+    // loaded on demand (desktop only), not fixable by further chunking.
+    chunkSizeWarningLimit: 2100,
     rollupOptions: {
       output: {
         manualChunks: {

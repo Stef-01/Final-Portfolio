@@ -1,3 +1,6 @@
 @import 'tailwindcss';
 @plugin 'tailwindcss-animate';
+/* Self-hosted signature serif (italic only — used as a deliberate accent).
+   Clash Grotesk stays on Fontshare's CDN: its license keeps it off npm. */
+@import '@fontsource/playfair-display/700-italic.css';
 @import './styles/globals.css';

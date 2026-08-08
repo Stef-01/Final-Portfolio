@@ -1,0 +1,29 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npx --yes http-server dist -p 4173",
+      "startServerReadyPattern": "Available",
+      "url": [
+        "http://localhost:4173/",
+        "http://localhost:4173/research/",
+        "http://localhost:4173/project/casa/",
+        "http://localhost:4173/presentations/"
+      ],
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--no-sandbox --headless=new"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.6 }],
+        "categories:accessibility": ["error", { "minScore": 0.98 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 0.98 }]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

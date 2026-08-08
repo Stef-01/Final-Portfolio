@@ -3,20 +3,50 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight, ChevronDown } from "lucide-react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageMeta, SITE_ORIGIN } from "../hooks/usePageMeta";
+import { useJsonLd } from "../hooks/useJsonLd";
 import { ContactSection } from "../components/ContactSection";
 import { PublicationsSection } from "../components/PublicationsSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
 import { SystemsMapSection } from "../components/SystemsMapSection";
 import { RolesTimeline } from "../components/RolesTimeline";
+import { StatValue } from "../components/CountUp";
 import { researchRoles } from "../types/roles";
-import { googleScholarUrl, scholarMetrics } from "../types/publications";
+import { googleScholarUrl, publications, scholarMetrics } from "../types/publications";
 
 export function Research() {
   const goBack = useGoBack();
+  usePageMeta({
+    title: "Research",
+    path: "/research",
+    description:
+      "Clinical, precision, and population health research: pharmacogenomics, AI-enabled diagnostics, Indigenous health implementation. 10 peer-reviewed publications, 91 citations. Stanford Prevention Research Center.",
+  });
+  // Publications as machine-readable scholarship — search engines and AI
+  // assistants ingest ScholarlyArticle records directly.
+  useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Peer-reviewed publications by Stefan Thottunkal",
+    url: `${SITE_ORIGIN}/research`,
+    itemListElement: publications.map((pub, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "ScholarlyArticle",
+        headline: pub.title,
+        author: pub.authors,
+        datePublished: String(pub.year),
+        isPartOf: { "@type": "Periodical", name: pub.journal },
+        url: pub.paperUrl,
+        ...(pub.doi ? { sameAs: `https://doi.org/${pub.doi}` } : {}),
+      },
+    })),
+  });
   const [showPublications, setShowPublications] = useState(false);
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:pt-20 md:px-8">
@@ -52,7 +82,7 @@ export function Research() {
                 { k: scholarMetrics.i10Index, v: "i10-index" },
               ].map((stat) => (
                 <span key={stat.v} className="flex items-baseline gap-2">
-                  <span className="text-lg font-semibold text-black">{stat.k}</span>
+                  <StatValue value={stat.k} className="text-lg font-semibold text-black" />
                   <span className="text-sm text-gray-500">{stat.v}</span>
                 </span>
               ))}
@@ -143,6 +173,6 @@ export function Research() {
       </section>
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

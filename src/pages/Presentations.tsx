@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { track } from "@vercel/analytics";
 import { ArrowLeft, Paperclip } from "lucide-react";
 import { FileViewerModal } from "../components/FileViewerModal";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
+import { StatValue } from "../components/CountUp";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 interface ConferenceFile {
     url?: string;
@@ -136,8 +139,12 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
                         initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
-                        transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25) }}
-                        className="rounded-2xl bg-[#fafafa] p-6 md:p-8"
+                        transition={{
+                            duration: 0.5,
+                            delay: Math.min(index * 0.05, 0.25),
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="rounded-2xl bg-[#fafafa] p-6 transition-colors duration-300 hover:bg-[#f4f4f2] md:p-8"
                     >
                         <p className="text-sm font-medium text-gray-500">
                             {talk.date}
@@ -177,16 +184,38 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
 
 export function Presentations() {
     const goBack = useGoBack();
+    usePageMeta({
+        title: "Presentations",
+        path: "/presentations",
+        description:
+            "Conference presentations, posters, and invited talks: Stanford Grand Rounds, CPIC, Lowitja, AMSA Global Health, TETHICON, and the QUAD Fellowship Summit.",
+    });
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<ConferenceFile | null>(null);
 
-    const handleFileClick = (file: ConferenceFile) => {
-        setSelectedFile(file);
+    // Open the viewer only when the file actually exists — the SPA rewrite
+    // answers every path with index.html (200), so a dead link would render
+    // the app shell inside the PDF iframe. A cheap HEAD probe (content type
+    // must not be HTML) routes missing files to the honest
+    // available-on-request state instead.
+    const handleFileClick = async (file: ConferenceFile) => {
+        let available = false;
+        if (file.url) {
+            try {
+                const res = await fetch(file.url, { method: "HEAD" });
+                const type = res.headers.get("content-type") ?? "";
+                available = res.ok && !type.includes("text/html");
+            } catch {
+                available = false;
+            }
+        }
+        track("file_click", { file: file.name, available });
+        setSelectedFile(available ? file : { ...file, url: undefined });
         setModalOpen(true);
     };
 
     return (
-        <div className="min-h-[100svh] bg-white text-gray-900">
+        <main className="min-h-[100svh] bg-white text-gray-900">
             <FloatingBackButton />
 
             <header className="px-4 pt-16 md:px-8 md:pt-20">
@@ -214,19 +243,20 @@ export function Presentations() {
                             biosecurity.
                         </p>
 
-                        <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
+                        <ul className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
                             {[
                                 { k: String(conferences.length), v: "conference presentations" },
                                 { k: String(invited.length), v: "invited talks and grand rounds" },
                                 { k: "5+", v: "institutions across 3 countries" },
                             ].map((stat) => (
-                                <div key={stat.v} className="flex items-baseline gap-2">
-                                    <dt className="sr-only">{stat.v}</dt>
-                                    <dd className="text-lg font-semibold text-black">{stat.k}</dd>
+                                <li key={stat.v} className="flex items-baseline gap-2">
+                                    <span className="text-lg font-semibold text-black">
+                                        <StatValue value={stat.k} />
+                                    </span>
                                     <span className="text-sm text-gray-500">{stat.v}</span>
-                                </div>
+                                </li>
                             ))}
-                        </dl>
+                        </ul>
                     </motion.div>
                 </div>
             </header>
@@ -254,6 +284,6 @@ export function Presentations() {
             )}
 
             <ContactSection />
-        </div>
+        </main>
     );
 }

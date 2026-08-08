@@ -137,7 +137,7 @@ export const PrecisionMedicineSection = () => {
               onBlur={() => setHovered(null)}
               onClick={() => open(index)}
               className={`px-1 text-center text-[11px] md:text-sm font-semibold tracking-tight transition-colors focus-visible:outline-none focus-visible:text-blue-600 ${
-                activeIndex === index ? "text-blue-600" : "text-gray-400 hover:text-blue-600"
+                activeIndex === index ? "text-blue-600" : "text-gray-500 hover:text-blue-600"
               }`}
             >
               {category.shortLabel}

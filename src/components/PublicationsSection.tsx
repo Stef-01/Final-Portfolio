@@ -47,7 +47,7 @@ const PublicationCard = ({
     className="overflow-hidden rounded-2xl border border-black/10 bg-white"
   >
     <article className="grid md:grid-cols-[0.42fr_0.58fr]">
-      <div className="min-h-64 overflow-hidden bg-[#e8ece8] md:min-h-full">
+      <div className="min-h-64 overflow-hidden bg-[#f5f5f5] md:min-h-full">
         <img
           src={publication.image}
           alt={publication.imageAlt}
@@ -67,7 +67,7 @@ const PublicationCard = ({
           <span className="text-gray-500">{publication.topic}</span>
         </div>
 
-        <h3 className="mt-4 font-serif text-xl font-semibold leading-snug tracking-tight text-[#121820] md:text-2xl">
+        <h3 className="mt-4 text-xl font-bold leading-snug tracking-tight text-black md:text-2xl">
           {publication.title}
         </h3>
 
@@ -86,7 +86,7 @@ const PublicationCard = ({
             href={publication.paperUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#18395a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#102b45] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           >
             <FileText className="h-4 w-4" aria-hidden="true" />
             Open paper
@@ -171,7 +171,7 @@ export function PublicationsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-[0.68fr_0.32fr] lg:items-end">
           <div>
-            <h2 className="max-w-4xl font-serif t-h2 font-medium tracking-tight text-[#121820]">
+            <h2 className="max-w-4xl t-h2 font-bold tracking-tight text-black">
               Research you can inspect, cite, and read.
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600">
@@ -185,7 +185,7 @@ export function PublicationsSection() {
             href={googleScholarUrl}
             target="_blank"
             rel="noreferrer"
-            className="group inline-flex min-h-14 items-center justify-between gap-6 rounded-2xl border border-black/10 bg-white px-5 py-4 text-sm font-semibold text-[#18395a] transition-transform hover:-translate-y-1 hover:border-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            className="group inline-flex min-h-14 items-center justify-between gap-6 rounded-2xl border border-black/10 bg-white px-5 py-4 text-sm font-semibold text-black transition-transform hover:-translate-y-1 hover:border-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
           >
             View complete Google Scholar profile
             <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -205,7 +205,7 @@ export function PublicationsSection() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search publications"
-                className="h-12 w-full rounded-full border border-black/10 bg-[#f8f8f7] pl-12 pr-4 text-base text-black placeholder:text-gray-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20"
+                className="h-12 w-full rounded-full border border-black/10 bg-[#f8f8f7] pl-12 pr-4 text-base text-black placeholder:text-gray-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20"
               />
             </label>
 
@@ -220,7 +220,7 @@ export function PublicationsSection() {
                     onClick={() => setActiveFilter(filter)}
                     className={`min-h-12 rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 ${
                       active
-                        ? "bg-[#18395a] text-white"
+                        ? "bg-black text-white"
                         : "bg-[#f3f4f4] text-gray-600 hover:bg-[#e8edf1] hover:text-black"
                     }`}
                   >
@@ -256,7 +256,7 @@ export function PublicationsSection() {
                 setQuery("");
                 setActiveFilter("All publications");
               }}
-              className="mt-4 rounded-full bg-[#18395a] px-5 py-2.5 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="mt-4 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
             >
               Reset search and filters
             </button>

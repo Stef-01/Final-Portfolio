@@ -4,8 +4,10 @@ import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { RolesGrid } from "../components/RolesGrid";
 import { VentureOrbit } from "../components/VentureOrbit";
+import { StatValue } from "../components/CountUp";
 import { industryRoles } from "../types/roles";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const stats = [
   { value: "9", label: "ventures and advisory engagements" },
@@ -15,8 +17,14 @@ const stats = [
 
 export function Industry() {
   const goBack = useGoBack();
+  usePageMeta({
+    title: "Industry",
+    path: "/industry",
+    description:
+      "Health-tech ventures and advisory: Casa, GenieRX (2nd in the US at Harvard HSIL), the Adcem\u2013Fidson dialysis joint venture in Nigeria, and Microsoft \u00d7 Stanford Medicine HFTE.",
+  });
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:pt-20 md:px-8">
@@ -44,15 +52,16 @@ export function Industry() {
               Stanford Medicine HFTE; and the Stanford XR Hackathon.
             </p>
 
-            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
+            <ul className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
               {stats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-2">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">{stat.value}</dd>
+                <li key={stat.label} className="flex items-baseline gap-2">
+                  <span className="text-lg font-semibold text-black">
+                    <StatValue value={stat.value} />
+                  </span>
                   <span className="text-sm text-gray-500">{stat.label}</span>
-                </div>
+                </li>
               ))}
-            </dl>
+            </ul>
           </motion.div>
         </div>
       </div>
@@ -82,6 +91,6 @@ export function Industry() {
       />
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

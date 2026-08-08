@@ -44,3 +44,29 @@ export function CountUp({ to, duration = 1.4, className }: CountUpProps) {
         </span>
     );
 }
+
+interface StatValueProps {
+    /** Raw stat value; counts up when it is a plain integer ("12"), renders
+     *  as-is otherwise ("7th of 3,500", "1st", "ANU"). */
+    value: string | number;
+    className?: string;
+}
+
+/**
+ * Drop-in stat renderer for the lane-page metric rows: numeric values get the
+ * count-up treatment, non-numeric ones stay static text. `tabular-nums` keeps
+ * the layout from shifting while digits roll.
+ */
+export function StatValue({ value, className }: StatValueProps) {
+    const numeric =
+        typeof value === "number"
+            ? value
+            : /^\d+$/.test(value.trim())
+              ? Number(value.trim())
+              : null;
+
+    if (numeric === null) {
+        return <span className={className}>{value}</span>;
+    }
+    return <CountUp to={numeric} className={`tabular-nums ${className ?? ""}`} />;
+}

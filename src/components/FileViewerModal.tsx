@@ -38,11 +38,18 @@ const FileViewerContent = ({
     return (
       <div className="flex flex-col items-center justify-center h-full text-gray-400">
         <FileText className="w-20 h-20 mb-4" />
-        <p className="text-xl font-['Clash_Grotesk',_sans-serif] font-medium">
-          No file available
+        <p className="text-xl font-['Clash_Grotesk',_sans-serif] font-medium text-white">
+          Available on request
         </p>
-        <p className="text-base text-gray-500 mt-2">
-          Upload your presentation file to view it here
+        <p className="text-base text-gray-500 mt-2 max-w-md text-center">
+          This file isn't hosted here yet. Email{" "}
+          <a
+            href={`mailto:stefan01@stanford.edu?subject=${encodeURIComponent(`Requesting: ${fileName}`)}`}
+            className="text-[#EBFF57] underline underline-offset-4 hover:opacity-80"
+          >
+            stefan01@stanford.edu
+          </a>{" "}
+          and it will be shared directly.
         </p>
       </div>
     );

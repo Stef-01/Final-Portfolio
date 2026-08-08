@@ -11,7 +11,7 @@ interface RolesGridProps {
 }
 
 const cardClasses =
-  "group relative block rounded-2xl bg-[#fafafa] p-6 md:p-8 transition-transform";
+  "group relative block rounded-2xl bg-[#fafafa] p-6 md:p-8";
 
 export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
   return (
@@ -80,12 +80,20 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
 
             const animationProps = {
               initial: { opacity: 0, y: 24 },
-              whileInView: { opacity: 1, y: 0 },
-              viewport: { once: true, margin: "-60px" },
-              transition: {
-                duration: 0.5,
-                delay: Math.min(index * 0.05, 0.25),
+              whileInView: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.5,
+                  delay: Math.min(index * 0.05, 0.25),
+                  ease: [0.22, 1, 0.36, 1] as const,
+                },
               },
+              viewport: { once: true, margin: "-60px" },
+              // Default transition covers hover in/out with a spring; the
+              // reveal above carries its own timing so the entrance delay
+              // never leaks into hover response.
+              transition: { type: "spring", stiffness: 320, damping: 24 } as const,
             } as const;
 
             if (!role.link) {
@@ -110,7 +118,8 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...animationProps}
-                  className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
+                  whileHover={{ y: -5 }}
+                  className={`${cardClasses} cursor-pointer`}
                 >
                   {body}
                 </motion.a>
@@ -121,11 +130,12 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
               <motion.div
                 key={role.id}
                 {...animationProps}
-                className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
+                whileHover={{ y: -5 }}
+                className={`${cardClasses} cursor-pointer`}
               >
                 <Link
                   to={role.link}
-                  className="absolute inset-0 z-10"
+                  className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
                   aria-label={role.title}
                 />
                 {body}

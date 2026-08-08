@@ -3,8 +3,10 @@ import { ArrowLeft } from "lucide-react";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { ContactSection } from "../components/ContactSection";
 import { RolesTimeline } from "../components/RolesTimeline";
+import { StatValue } from "../components/CountUp";
 import { policyRoles } from "../types/roles";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const stats = [
   { value: "5", label: "policy and government roles" },
@@ -14,8 +16,14 @@ const stats = [
 
 export function Policy() {
   const goBack = useGoBack();
+  usePageMeta({
+    title: "Policy",
+    path: "/policy",
+    description:
+      "Australian public policy and government: three Department of Social Services teams (NDIS, National Redress Scheme), a Parliamentary Library internship, and Indigenous primary-care implementation research.",
+  });
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:pt-20 md:px-8">
@@ -44,22 +52,23 @@ export function Policy() {
               internship, and Indigenous primary-care implementation research.
             </p>
 
-            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
+            <ul className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
               {stats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-2">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">{stat.value}</dd>
+                <li key={stat.label} className="flex items-baseline gap-2">
+                  <span className="text-lg font-semibold text-black">
+                    <StatValue value={stat.value} />
+                  </span>
                   <span className="text-sm text-gray-500">{stat.label}</span>
-                </div>
+                </li>
               ))}
-            </dl>
+            </ul>
           </motion.div>
         </div>
       </div>
 
-      <RolesTimeline roles={policyRoles} title="Inside the government work" />
+      <RolesTimeline roles={policyRoles} title="Inside the government work" accent="var(--lane-policy)" />
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

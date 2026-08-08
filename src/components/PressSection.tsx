@@ -36,10 +36,15 @@ export function PressSection(): JSX.Element {
                 target="_blank"
                 rel="noreferrer"
                 initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.58, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] },
+                }}
+                whileHover={{ y: -4 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.58, delay: index * 0.08 }}
-                className="group flex flex-col items-center gap-6 rounded-2xl border border-black/10 bg-white p-6 text-center transition-all duration-500 hover:-translate-y-1 hover:border-black/30 md:p-8"
+                transition={{ type: "spring", stiffness: 320, damping: 24 }}
+                className="group flex flex-col items-center gap-6 rounded-2xl border border-black/10 bg-white p-6 text-center transition-colors duration-300 hover:border-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 md:p-8"
               >
                 <div>
                   <p className="text-sm font-medium text-gray-500">{item.outlet}</p>

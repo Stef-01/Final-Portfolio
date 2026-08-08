@@ -9,6 +9,8 @@ interface RolesTimelineProps {
     roles: Role[];
     title: string;
     intro?: string;
+    /** Lane accent (any CSS color; defaults to the research blue token). */
+    accent?: string;
 }
 
 interface TimelineRowProps {
@@ -22,7 +24,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
     const isExternal = !!role.link && /^https?:\/\//.test(role.link);
 
     return (
-        <li
+        <div
             id={`role-${role.id}`}
             onMouseEnter={onEnter}
             onFocus={onEnter}
@@ -33,22 +35,22 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
             {pulse && (
                 <span
                     aria-hidden="true"
-                    className="absolute left-[14px] md:left-[18px] top-2.5 z-10 h-3 w-3 rounded-full bg-blue-500/50 animate-ping"
+                    className="absolute left-[14px] md:left-[18px] top-2.5 z-10 h-3 w-3 rounded-full bg-[var(--rt-accent)] opacity-50 animate-ping"
                 />
             )}
             <span
                 aria-hidden="true"
                 className={`absolute left-[14px] md:left-[18px] top-2.5 z-10 h-3 w-3 rounded-full transition-colors duration-300 ${
                     expanded
-                        ? "bg-blue-600"
-                        : "bg-white border border-black/30 group-hover:bg-blue-600"
+                        ? "bg-[var(--rt-accent)]"
+                        : "bg-white border border-black/30 group-hover:bg-[var(--rt-accent)]"
                 }`}
                 style={{ boxShadow: "0 0 0 4px white" }}
             />
 
             <p
                 className={`text-sm font-medium transition-opacity duration-300 ${
-                    expanded ? "text-gray-500" : "text-gray-400"
+                    expanded ? "text-gray-600" : "text-gray-500"
                 }`}
             >
                 {role.period}
@@ -66,7 +68,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
             {/* Organization line, always visible but dimmed when collapsed */}
             <p
                 className={`mt-1.5 text-sm md:text-[15px] transition-opacity duration-300 ${
-                    expanded ? "text-gray-500" : "text-gray-400"
+                    expanded ? "text-gray-600" : "text-gray-500"
                 }`}
             >
                 {role.organization}
@@ -130,11 +132,11 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </li>
+        </div>
     );
 };
 
-export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
+export const RolesTimeline = ({ roles, title, intro, accent = "var(--lane-research)" }: RolesTimelineProps) => {
     // The "expanded" row defaults to the most recent (first) role, then the
     // scroll playhead drives it (with hover/tap as desktop overrides).
     const [hoveredId, setHoveredId] = useState<string | null>(roles[0]?.id ?? null);
@@ -142,7 +144,7 @@ export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
 
     // Scroll progress through the list drives the spine fill + comet.
     const containerRef = useRef<HTMLDivElement>(null);
-    const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const rowRefs = useRef<(HTMLLIElement | null)[]>([]);
     const recompute = useRef<() => void>(() => {});
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -180,7 +182,10 @@ export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
     }, [roles, prefersReducedMotion]);
 
     return (
-        <section className="w-full bg-white px-4 pt-20 pb-24 md:px-8">
+        <section
+            className="w-full bg-white px-4 pt-20 pb-24 md:px-8"
+            style={{ "--rt-accent": accent } as React.CSSProperties}
+        >
             <div className="mx-auto max-w-5xl">
                 <div className="mb-12 max-w-3xl">
                     <h2 className="t-h2 font-bold tracking-tight text-black">
@@ -204,18 +209,18 @@ export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
                     {prefersReducedMotion ? (
                         <div
                             aria-hidden="true"
-                            className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-blue-600"
+                            className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-[var(--rt-accent)]"
                         />
                     ) : (
                         <>
                             <motion.div
                                 aria-hidden="true"
-                                className="absolute left-[19px] md:left-[23px] top-0 w-px bg-blue-600"
+                                className="absolute left-[19px] md:left-[23px] top-0 w-px bg-[var(--rt-accent)]"
                                 style={{ height: spineHeight }}
                             />
                             <motion.div
                                 aria-hidden="true"
-                                className="absolute left-[14px] md:left-[18px] z-20 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-blue-600"
+                                className="absolute left-[14px] md:left-[18px] z-20 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[var(--rt-accent)]"
                                 style={{ top: spineHeight }}
                             />
                         </>
@@ -227,7 +232,7 @@ export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
                         onMouseLeave={() => recompute.current()}
                     >
                         {roles.map((role, index) => (
-                            <div
+                            <li
                                 key={role.id}
                                 ref={(el) => {
                                     rowRefs.current[index] = el;
@@ -240,7 +245,7 @@ export const RolesTimeline = ({ roles, title, intro }: RolesTimelineProps) => {
                                     pulse={hoveredId === role.id && !prefersReducedMotion}
                                     onEnter={() => setHoveredId(role.id)}
                                 />
-                            </div>
+                            </li>
                         ))}
                     </ol>
                 </div>

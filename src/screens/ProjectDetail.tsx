@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import {
+    AnimatePresence,
+    motion,
+    useInView,
+    useScroll,
+    useMotionValueEvent,
+} from "motion/react";
 import { ExternalLink } from "lucide-react";
 import { projects } from "../types/project";
 import { Button } from "../components/Button";
@@ -7,13 +14,97 @@ import { ContactSection } from "../components/ContactSection";
 import { NotFound } from "../components/NotFound";
 import { ImageWithFallback } from "../components/ImageWithFallback";
 import { ProjectPopout } from "../components/ProjectPopout";
+import { ProcessFlow } from "../components/ProcessFlow";
+import { SectionAccordion } from "../components/SectionAccordion";
+import { ScrollProgressBar } from "../components/motion/ScrollProgressBar";
+import { RevealGroup, RevealItem } from "../components/motion/Reveal";
+import { DURATION, EASE_OUT } from "../motion/tokens";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageMeta, SITE_ORIGIN } from "../hooks/usePageMeta";
+import { useJsonLd } from "../hooks/useJsonLd";
+
+/**
+ * Case-study top bar that steps out of the way while reading: hides on
+ * scroll-down past the header zone, returns on any scroll-up. The transform
+ * is disabled under reduced motion via MotionConfig, leaving the nav pinned.
+ */
+const HideOnScrollNav = ({ children }: { children: React.ReactNode }) => {
+    const { scrollY } = useScroll();
+    const [hidden, setHidden] = useState(false);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        if (latest > previous && latest > 220) {
+            setHidden(true);
+        } else if (latest < previous) {
+            setHidden(false);
+        }
+    });
+
+    return (
+        <motion.nav
+            animate={{ y: hidden ? "-100%" : "0%" }}
+            transition={{ duration: 0.32, ease: EASE_OUT }}
+            className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white"
+        >
+            {children}
+        </motion.nav>
+    );
+};
 
 // Inner component is keyed by `id` from the wrapper below, so its state
 // resets cleanly on URL change without a setState-in-effect anti-pattern.
 const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
     const goBack = useGoBack();
+    usePageMeta(
+        project
+            ? {
+                  title: project.title,
+                  description: project.subtitle,
+                  path: `/project/${project.id}`,
+                  ogType: "article",
+              }
+            : {},
+    );
+    useJsonLd(
+        project
+            ? {
+                  "@context": "https://schema.org",
+                  "@graph": [
+                      {
+                          "@type": "CreativeWork",
+                          name: project.title,
+                          headline: project.subtitle,
+                          description: project.description,
+                          url: `${SITE_ORIGIN}/project/${project.id}`,
+                          keywords: project.tags.join(", "),
+                          author: {
+                              "@type": "Person",
+                              name: "Stefan Thottunkal",
+                              url: SITE_ORIGIN,
+                          },
+                      },
+                      {
+                          "@type": "BreadcrumbList",
+                          itemListElement: [
+                              { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
+                              {
+                                  "@type": "ListItem",
+                                  position: 2,
+                                  name: project.title,
+                                  item: `${SITE_ORIGIN}/project/${project.id}`,
+                              },
+                          ],
+                      },
+                  ],
+              }
+            : null,
+    );
+
+    // The compact title docks into the nav once the header card scrolls out.
+    const headerRef = useRef<HTMLDivElement>(null);
+    const headerInView = useInView(headerRef, { margin: "-96px 0px 0px 0px" });
 
     if (!project) {
         return <NotFound />;
@@ -21,39 +112,61 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
     return (
         <div className="bg-white min-h-[100svh]">
-            <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white">
-                <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 pt-[env(safe-area-inset-top)] md:px-8">
+            <ScrollProgressBar color={project.accent} />
+            <HideOnScrollNav>
+                <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 pt-[env(safe-area-inset-top)] md:px-8">
                     <Link to="/" className="text-sm sm:text-xl font-bold tracking-tight text-black">
                         Stefan Thottunkal
                     </Link>
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-[38%] -translate-x-1/2 items-center justify-center overflow-hidden md:flex"
+                    >
+                        <AnimatePresence>
+                            {!headerInView && (
+                                <motion.span
+                                    initial={{ y: 18, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    exit={{ y: -18, opacity: 0 }}
+                                    transition={{ duration: 0.28, ease: EASE_OUT }}
+                                    className="truncate text-sm font-semibold text-gray-600"
+                                >
+                                    {project.title}
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
+                    </div>
                     <Button type="secondary" label="Back" className="w-auto min-w-[140px]" onClick={goBack} />
                 </div>
-            </nav>
+            </HideOnScrollNav>
 
             <main className="mx-auto max-w-7xl px-4 pb-20 pt-28 md:px-8 md:pt-32">
-                <div className="rounded-2xl bg-[#fafafa] p-6 md:p-10">
+                <div ref={headerRef} className="rounded-2xl bg-[#fafafa] p-6 md:p-10">
                     <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
-                        <div>
+                        <RevealGroup onMount stagger={0.09}>
                             <div className="mb-6 flex flex-wrap gap-2">
                                 {project.tags.map((tag) => (
-                                    <span
+                                    <RevealItem
                                         key={tag}
+                                        as="span"
+                                        y={12}
+                                        duration={DURATION.fast}
                                         className="rounded-full border border-black/10 bg-white px-3 py-1 text-sm font-medium text-gray-500"
                                     >
                                         {tag}
-                                    </span>
+                                    </RevealItem>
                                 ))}
                             </div>
-                            <h1 className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
+                            <RevealItem as="h1" y={26} className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
                                 {project.title}
-                            </h1>
-                            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-2xl">
+                            </RevealItem>
+                            <RevealItem as="p" y={20} className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-2xl">
                                 {project.subtitle}
-                            </p>
-                            <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
+                            </RevealItem>
+                            <RevealItem as="p" y={16} className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
                                 {project.description}
-                            </p>
-                        </div>
+                            </RevealItem>
+                        </RevealGroup>
 
                         <div className="grid gap-4">
                             <p className="text-sm font-medium text-gray-500">
@@ -97,26 +210,23 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </div>
                 </div>
 
-                <div className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
+                <RevealGroup stagger={0.07} className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
                     {project.stats.map((stat) => (
-                        <div key={stat.label}>
+                        <RevealItem key={stat.label} y={14} duration={DURATION.fast}>
                             <p className="text-lg font-semibold text-black">{stat.value}</p>
                             <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
-                        </div>
+                        </RevealItem>
                     ))}
-                </div>
+                </RevealGroup>
 
                 {project.caseStudy && (
-                    <section className="mt-10 grid gap-6 rounded-2xl bg-[#fafafa] p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">
-                        <p className="text-sm font-medium text-gray-500">Design question</p>
-                        <div>
-                            <h2 className="t-h2 font-bold leading-tight tracking-tight text-black">
-                                {project.caseStudy.question}
-                            </h2>
-                            <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
-                                {project.caseStudy.framing}
-                            </p>
-                        </div>
+                    <section className="mt-10 rounded-2xl bg-[#fafafa] p-6 md:p-10">
+                        <h2 className="max-w-4xl t-h2 font-bold leading-tight tracking-tight text-black">
+                            {project.caseStudy.question}
+                        </h2>
+                        <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-600">
+                            {project.caseStudy.framing}
+                        </p>
                     </section>
                 )}
 
@@ -178,8 +288,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
 
                 <section className="mt-16 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
                     <div className="self-start rounded-2xl bg-[#fafafa] p-6 md:p-8 lg:sticky lg:top-28">
-                        <p className="text-sm font-medium text-gray-500">Strategic priorities</p>
-                        <div className="mt-6 grid gap-6">
+                        <div className="grid gap-6">
                             {project.highlights.map((highlight) => (
                                 <div key={highlight.title}>
                                     <h3 className="text-xl font-bold tracking-tight text-black md:text-2xl">{highlight.title}</h3>
@@ -187,52 +296,21 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                 </div>
                             ))}
                         </div>
-                    </div>
 
-                    <div className="rounded-2xl bg-[#fafafa] p-6 md:p-8">
-                        <p className="text-sm font-medium text-gray-500">Methods and tools</p>
-                        <div className="mt-5 flex flex-wrap gap-2">
+                        <div className="mt-8 flex flex-wrap gap-2 border-t border-black/5 pt-6">
                             {project.tools.map((tool) => (
-                                <span key={tool} className="rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-medium text-gray-700">
+                                <span key={tool} className="rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-medium text-gray-600">
                                     {tool}
                                 </span>
                             ))}
                         </div>
+                    </div>
 
-                        <div className="mt-8 space-y-8">
-                            {project.sections.map((section) => (
-                                <div key={section.title}>
-                                    <h2 className="text-2xl font-bold tracking-tight text-black md:text-3xl">{section.title}</h2>
-                                    <div className="mt-4 space-y-4">
-                                        {section.body.map((paragraph) => (
-                                            <p key={paragraph} className="text-base leading-relaxed text-gray-600 md:text-lg">
-                                                {paragraph}
-                                            </p>
-                                        ))}
-                                    </div>
-                                    {section.media && (
-                                        <figure className="mt-6 overflow-hidden rounded-2xl bg-[#f5f3ef]">
-                                            <div className={`${section.media.aspect === "16/9" ? "aspect-video" : section.media.aspect === "8/5" ? "aspect-[8/5]" : section.media.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden`}>
-                                                <ImageWithFallback
-                                                    src={section.media.src}
-                                                    alt={section.media.alt}
-                                                    fallbackInitial={project.title.charAt(0)}
-                                                    accent={project.accent}
-                                                    wrapperClassName="h-full w-full"
-                                                    className={`h-full w-full ${section.media.fit === "contain" ? "object-contain" : "object-cover"}`}
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                    sizes="(max-width: 1024px) 92vw, 54vw"
-                                                />
-                                            </div>
-                                            <figcaption className="border-t border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
-                                                {section.media.caption}
-                                            </figcaption>
-                                        </figure>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                    <div className="rounded-2xl bg-[#fafafa] p-6 md:p-8">
+                        <SectionAccordion
+                            sections={project.sections}
+                            fallbackInitial={project.title.charAt(0)}
+                        />
                     </div>
                 </section>
 
@@ -240,44 +318,15 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     <section className="mt-16 rounded-2xl bg-[#fafafa] p-6 md:p-8">
                         <div className="grid gap-8 lg:grid-cols-[0.36fr_0.64fr]">
                             <div className="self-start lg:sticky lg:top-28">
-                                <p className="text-sm font-medium text-gray-500">
-                                    {project.caseStudy.processEyebrow}
-                                </p>
-                                <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
+                                <h2 className="t-h2 font-bold tracking-tight text-black">
                                     {project.caseStudy.processHeading}
                                 </h2>
-                                <p className="mt-5 text-base leading-relaxed text-gray-600 md:text-lg">
+                                <p className="mt-5 text-base leading-relaxed text-gray-600">
                                     {project.caseStudy.processSummary}
                                 </p>
                             </div>
 
-                            <ol className="grid gap-10">
-                                {project.caseStudy.steps.map((step, index) => (
-                                    <li key={`${step.phase}-${step.title}`} className="grid gap-5 md:grid-cols-[72px_1fr]">
-                                        <div>
-                                            <span className="flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: project.accent }}>
-                                                {String(index + 1).padStart(2, "0")}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-medium text-gray-500">
-                                                {step.phase}
-                                            </p>
-                                            <h3 className="mt-2 text-xl font-bold tracking-tight text-black md:text-2xl">{step.title}</h3>
-                                            <div className="mt-5 grid gap-4 md:grid-cols-2">
-                                                <div>
-                                                    <p className="text-sm font-medium text-gray-500">Design rationale</p>
-                                                    <p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">{step.rationale}</p>
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-medium text-gray-500">Execution evidence</p>
-                                                    <p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">{step.execution}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ol>
+                            <ProcessFlow steps={project.caseStudy.steps} accent={project.accent} />
                         </div>
                     </section>
                 )}
@@ -291,7 +340,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                             </p>
                         )}
                         <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
-                            {project.mediaHeading ?? "Design evidence"}
+                            {project.mediaHeading ?? "Gallery"}
                         </h2>
                     </div>
 

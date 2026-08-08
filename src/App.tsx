@@ -1,14 +1,13 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-import { AnimatePresence, MotionConfig } from "motion/react";
+import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { NotFound } from "./components/NotFound";
-import { ScrollToTop } from "./components/ScrollToTop";
 
 // Lazy load pages to improve initial load performance
 const ScalehubStartupLp = lazy(() =>
@@ -44,28 +43,55 @@ const Education = lazy(() =>
 
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-white">
-    <div className="animate-pulse flex flex-col items-center">
-      <div className="h-12 w-12 bg-gray-200 rounded-full mb-4"></div>
-      <div className="h-4 w-32 bg-gray-200 rounded"></div>
+    <div className="flex flex-col items-center gap-4">
+      <span className="animate-pulse text-2xl font-bold tracking-tight text-black">
+        ST
+      </span>
+      <span className="h-px w-12 overflow-hidden bg-black/10" aria-hidden="true" />
     </div>
   </div>
 );
 
+const resetScroll = () =>
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+
 const AnimatedRoutes = () => {
   const location = useLocation();
+
+  // Initial mount / full reload: land at the top, matching prior behavior.
+  useEffect(() => {
+    resetScroll();
+  }, []);
+
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<ScalehubStartupLp />} />
-        <Route path="/project/:id" element={<ProjectDetail />} />
-        <Route path="/bio" element={<Resume />} />
-        <Route path="/presentations" element={<Presentations />} />
-        <Route path="/policy" element={<Policy />} />
-        <Route path="/research" element={<Research />} />
-        <Route path="/industry" element={<Industry />} />
-        <Route path="/education" element={<Education />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+    // Fade-through page handoff. Opacity-only on purpose: a transform here
+    // would turn the wrapper into a containing block for position:fixed
+    // children (case-study nav, floating buttons) for the duration of the
+    // entrance. Scroll resets in onExitComplete so the outgoing page never
+    // visibly jumps to the top mid-fade.
+    <AnimatePresence mode="wait" onExitComplete={resetScroll}>
+      <motion.div
+        key={location.pathname}
+        id="route-content"
+        tabIndex={-1}
+        className="outline-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.22, ease: "easeOut" }}
+      >
+        <Routes location={location}>
+          <Route path="/" element={<ScalehubStartupLp />} />
+          <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="/bio" element={<Resume />} />
+          <Route path="/presentations" element={<Presentations />} />
+          <Route path="/policy" element={<Policy />} />
+          <Route path="/research" element={<Research />} />
+          <Route path="/industry" element={<Industry />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </motion.div>
     </AnimatePresence>
   );
 };
@@ -75,7 +101,13 @@ const RoutedApp = () => {
 
   return (
     <AppErrorBoundary key={location.pathname}>
-      <ScrollToTop />
+      {/* Keyboard skip link — visually hidden until focused. */}
+      <a
+        href="#route-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-black focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to content
+      </a>
       <Suspense fallback={<LoadingFallback />}>
         <AnimatedRoutes />
       </Suspense>

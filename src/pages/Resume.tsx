@@ -2,7 +2,9 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight, BookOpen, Mail } from "lucide-react";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
+import { RevealGroup, RevealItem } from "../components/motion/Reveal";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const education = [
   {
@@ -81,9 +83,15 @@ const expertise = [
 
 export function Resume(): JSX.Element {
   const goBack = useGoBack();
+  usePageMeta({
+    title: "Bio",
+    path: "/bio",
+    description:
+      "Stefan Thottunkal \u2014 Stanford M.S. in Community Health and Prevention Research, MD candidate at Macquarie University, IIE QUAD Fellow. Precision medicine, health policy, and digital-health ventures.",
+  });
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <header className="px-4 pt-16 md:px-8 md:pt-20">
@@ -168,13 +176,21 @@ export function Resume(): JSX.Element {
           <h2 className="mb-8 t-h2 font-bold tracking-tight text-black">
             Current research
           </h2>
-          <ul className="max-w-3xl divide-y divide-black/5">
-            {researchAreas.map((area) => (
-              <li key={area} className="py-4 text-base leading-relaxed text-gray-700 md:text-lg">
-                {area}
-              </li>
-            ))}
-          </ul>
+          <RevealGroup stagger={0.06} className="max-w-3xl">
+            <ul className="divide-y divide-black/5">
+              {researchAreas.map((area) => (
+                <RevealItem
+                  key={area}
+                  as="li"
+                  y={14}
+                  duration={0.45}
+                  className="py-4 text-base leading-relaxed text-gray-700 md:text-lg"
+                >
+                  {area}
+                </RevealItem>
+              ))}
+            </ul>
+          </RevealGroup>
         </section>
 
         <section>
@@ -205,20 +221,23 @@ export function Resume(): JSX.Element {
           <h2 className="mb-8 t-h2 font-bold tracking-tight text-black">
             Methods and subject matter
           </h2>
-          <div className="flex flex-wrap gap-3">
+          <RevealGroup stagger={0.035} className="flex flex-wrap gap-3">
             {expertise.map((skill) => (
-              <span
+              <RevealItem
                 key={skill}
-                className="rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-gray-700"
+                as="span"
+                y={12}
+                duration={0.4}
+                className="rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:border-black/30 hover:text-black"
               >
                 {skill}
-              </span>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </section>
       </main>
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

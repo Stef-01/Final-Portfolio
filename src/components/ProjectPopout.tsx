@@ -80,7 +80,7 @@ export const ProjectPopout = ({
                         type="button"
                         onClick={() => setIsOpen(false)}
                         aria-label={`Dismiss ${accessibleLabel}`}
-                        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-black/5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 motion-reduce:transition-none"
+                        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-black/5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 motion-reduce:transition-none"
                     >
                         <X className="h-4 w-4" aria-hidden="true" />
                     </button>

@@ -1,5 +1,12 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import { Button } from "../components/Button";
 import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
@@ -8,9 +15,13 @@ import { PressSection } from "../components/PressSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
 import { ContactModal } from "../components/ContactModal";
 import { FloatingSocials } from "../components/FloatingSocials";
+import { Magnetic } from "../components/motion/Magnetic";
+import { SplitTextReveal } from "../components/motion/SplitTextReveal";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import { useMagneticScroll } from "../hooks/useMagneticScroll";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { DURATION, EASE_OUT } from "../motion/tokens";
 
 // Lazy load heavy components
 const SplineBackground = lazy(() =>
@@ -24,11 +35,126 @@ const TimelineSection = lazy(() =>
   })),
 );
 
+const footerLinks = [
+  { to: "/research", label: "Research" },
+  { to: "/policy", label: "Policy" },
+  { to: "/industry", label: "Industry" },
+  { to: "/education", label: "Education" },
+  { to: "/bio", label: "Bio" },
+  { to: "/presentations", label: "Presentations" },
+];
+
+/** Editorial underline — grows from the left on hover, exits to the right. */
+const footerLinkClasses =
+  "group relative rounded-sm text-gray-400 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
+
+const FooterUnderline = () => (
+  <span
+    aria-hidden="true"
+    className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-white transition-transform duration-200 ease-out group-hover:origin-left group-hover:scale-x-100 motion-reduce:transition-none"
+  />
+);
+
+/** Fold affordance — a hairline with a falling dot, gone after first scroll. */
+const ScrollCue = ({ reduced }: { reduced: boolean }) => {
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 140], [1, 0]);
+
+  if (reduced) return null;
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      style={{ opacity }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.4, duration: 0.8 }}
+      className="pointer-events-none absolute bottom-[max(1.75rem,env(safe-area-inset-bottom))] left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-2.5"
+    >
+      <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-gray-500">
+        Scroll
+      </span>
+      <span className="relative block h-10 w-px overflow-hidden bg-black/15">
+        <motion.span
+          className="absolute left-0 top-0 h-3 w-px bg-black/70"
+          animate={{ y: [-12, 40], opacity: [0, 1, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </span>
+    </motion.div>
+  );
+};
+
+const heroItem = (delay: number) => ({
+  initial: { opacity: 0, y: 26 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: DURATION.slow, delay, ease: EASE_OUT },
+});
+
+const timeFormatter = new Intl.DateTimeFormat("en-US", {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+  timeZone: "America/Los_Angeles",
+});
+
+/** Live local time in the footer — the small "this site is alive" signal. */
+const LocalTime = () => {
+  const [now, setNow] = useState(() => timeFormatter.format(new Date()));
+
+  useEffect(() => {
+    const id = window.setInterval(
+      () => setNow(timeFormatter.format(new Date())),
+      30_000,
+    );
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <span className="tabular-nums" aria-label={`Local time in Stanford, California: ${now}`}>
+      Stanford, CA — {now}
+    </span>
+  );
+};
+
 export const ScalehubStartupLp = (): JSX.Element => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const isPhoneLayout = usePhoneLayout();
   const prefersReducedMotion = usePrefersReducedMotion();
   useMagneticScroll();
+  usePageMeta({
+    title: "",
+    path: "/",
+    description:
+      "Stefan Thottunkal — researcher, policy analyst, and builder across precision medicine, clinical AI, and global health. Stanford M.S., IIE QUAD Fellow, 10 peer-reviewed publications, Harvard HSIL finalist.",
+  });
+
+  // The footer is pinned behind the page (sticky uncover), but the desktop
+  // hero keeps a fixed full-viewport Spline layer at the same z plane — the
+  // pinned footer would bleed through the transparent hero at page top. Gate
+  // footer opacity on approach: it fades in while still fully covered by the
+  // opaque Press section, so the uncover itself looks untouched. This is
+  // visibility plumbing, not decoration — it runs under reduced motion too.
+  const pressRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: pressApproach } = useScroll({
+    target: pressRef,
+    offset: ["start end", "start 75%"],
+  });
+  const footerOpacity = useTransform(pressApproach, [0, 1], [0, 1]);
+
+  // Pointer parallax: the hero copy drifts a few px opposite the cursor,
+  // springs back to rest. Mouse-only by nature (mousemove), capped at ±7px.
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const parallaxX = useSpring(pointerX, { stiffness: 120, damping: 20 });
+  const parallaxY = useSpring(pointerY, { stiffness: 120, damping: 20 });
+
+  const handleHeroPointer = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || isPhoneLayout) return;
+    const { innerWidth, innerHeight } = window;
+    pointerX.set((event.clientX / innerWidth - 0.5) * -14);
+    pointerY.set((event.clientY / innerHeight - 0.5) * -10);
+  };
 
   const handleViewWork = () => {
     document
@@ -40,10 +166,17 @@ export const ScalehubStartupLp = (): JSX.Element => {
   };
 
   return (
-    <div className="bg-white flex flex-col w-full overflow-x-hidden">
+    <div className="bg-white flex flex-col w-full overflow-x-clip">
       <main>
       {/* Hero Section */}
-      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start snap-always">
+      <div
+        className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start snap-always"
+        onMouseMove={handleHeroPointer}
+        onMouseLeave={() => {
+          pointerX.set(0);
+          pointerY.set(0);
+        }}
+      >
         <Suspense
           fallback={
             <div
@@ -58,31 +191,55 @@ export const ScalehubStartupLp = (): JSX.Element => {
           />
         </Suspense>
 
-        <div className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20">
-          <h1 className="text-center t-display font-bold tracking-tight mb-6 max-w-4xl leading-[0.98]">
-            Stefan Thottunkal
-          </h1>
+        <motion.div
+          style={prefersReducedMotion ? undefined : { x: parallaxX, y: parallaxY }}
+          className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20"
+        >
+          <SplitTextReveal
+            as="h1"
+            text="Stefan Thottunkal"
+            splitBy="char"
+            onMount
+            delay={0.12}
+            stagger={0.032}
+            duration={0.65}
+            className="text-center t-display font-bold tracking-tight mb-6 max-w-4xl leading-[0.98]"
+          />
 
-          <p className="text-center text-base md:text-xl leading-relaxed text-gray-600 max-w-2xl mb-8">
+          <motion.p
+            initial={{ opacity: 0, y: 18, filter: "blur(7px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: DURATION.slow, delay: 0.32, ease: EASE_OUT }}
+            className="text-center text-base md:text-xl leading-relaxed text-gray-600 max-w-2xl mb-8"
+          >
             Researcher, policy analyst, and builder working across precision
             medicine, clinical AI, and global health.
-          </p>
+          </motion.p>
 
-          <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none">
-            <Button
-              type="primary"
-              label="View work"
-              onClick={handleViewWork}
-              className="w-full sm:w-[134px]"
-            />
-            <Button
-              type="secondary"
-              label="Contact"
-              onClick={() => setIsContactModalOpen(true)}
-              className="w-full sm:w-[134px]"
-            />
-          </div>
-        </div>
+          <motion.div
+            {...heroItem(0.5)}
+            className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none"
+          >
+            <Magnetic className="w-full sm:w-auto">
+              <Button
+                type="primary"
+                label="View work"
+                onClick={handleViewWork}
+                className="w-full sm:w-[134px]"
+              />
+            </Magnetic>
+            <Magnetic className="w-full sm:w-auto">
+              <Button
+                type="secondary"
+                label="Contact"
+                onClick={() => setIsContactModalOpen(true)}
+                className="w-full sm:w-[134px]"
+              />
+            </Magnetic>
+          </motion.div>
+        </motion.div>
+
+        <ScrollCue reduced={prefersReducedMotion} />
       </div>
 
       {/* Intro Section (Header) */}
@@ -113,66 +270,53 @@ export const ScalehubStartupLp = (): JSX.Element => {
         <AboutSection />
       </div>
 
-      <div className="relative z-10 bg-white">
+      <div ref={pressRef} className="relative z-10 bg-white">
         <PressSection />
       </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-black text-white py-20 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-          <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold mb-2">Stefan Thottunkal</h3>
-            <p className="text-gray-400">
-              Researcher & Health Systems Designer
+      {/* Footer — pinned behind the page and uncovered as the last section
+          scrolls away (sticky big-type reveal). Needs overflow-x-clip (not
+          hidden) on the page wrapper, or sticky would silently die. */}
+      <motion.footer
+        style={{ opacity: footerOpacity }}
+        className="sticky bottom-0 z-0 bg-black text-white"
+      >
+        <div className="mx-auto flex min-h-[56svh] max-w-7xl flex-col justify-between gap-12 px-4 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-16 md:px-8 md:pt-20">
+          <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+            <p className="max-w-md text-base leading-relaxed text-gray-400">
+              Researcher & Health Systems Designer — precision medicine,
+              clinical AI, and global health.
+            </p>
+            <nav
+              aria-label="Site sections"
+              className="flex flex-wrap gap-x-8 gap-y-3 text-sm md:justify-end"
+            >
+              {footerLinks.map((link) => (
+                <Link key={link.to} to={link.to} className={footerLinkClasses}>
+                  {link.label}
+                  <FooterUnderline />
+                </Link>
+              ))}
+              <a href="#press" className={footerLinkClasses}>
+                Press
+                <FooterUnderline />
+              </a>
+            </nav>
+          </div>
+
+          <div>
+            <p className="select-none whitespace-nowrap text-center font-bold leading-none tracking-tight text-white [font-size:clamp(1.9rem,9.4vw,8.25rem)]">
+              Stefan Thottunkal
+            </p>
+            <p className="mt-6 flex flex-wrap items-center justify-center gap-x-3 text-center text-xs text-gray-500">
+              <LocalTime />
+              <span aria-hidden="true">·</span>
+              <span>© {new Date().getFullYear()} Stefan Thottunkal</span>
             </p>
           </div>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
-            <Link
-              to="/research"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Research
-            </Link>
-            <Link
-              to="/policy"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Policy
-            </Link>
-            <Link
-              to="/industry"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Industry
-            </Link>
-            <Link
-              to="/education"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Education
-            </Link>
-            <Link
-              to="/bio"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Bio
-            </Link>
-            <Link
-              to="/presentations"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Presentations
-            </Link>
-            <a
-              href="#press"
-              className="text-gray-400 hover:text-white transition-colors"
-            >
-              Press
-            </a>
-          </div>
         </div>
-      </footer>
+      </motion.footer>
 
       {/* Contact Modal */}
       <ContactModal

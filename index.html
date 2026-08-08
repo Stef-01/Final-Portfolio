@@ -11,49 +11,96 @@
       <link rel="canonical" href="https://stefan-portfolio-sable.vercel.app/" />
 
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <link rel="apple-touch-icon" href="/favicon.svg" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
       <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Stefan Thottunkal" />
       <meta property="og:url" content="https://stefan-portfolio-sable.vercel.app/" />
       <meta property="og:title" content="Stefan Thottunkal | Digital Health Portfolio" />
       <meta property="og:description" content="Researcher, policy analyst, and builder working across precision medicine, clinical AI, and global health." />
-      <meta name="twitter:card" content="summary" />
+      <meta property="og:image" content="https://stefan-portfolio-sable.vercel.app/og-image.png" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Stefan Thottunkal — Digital Health Portfolio" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Stefan Thottunkal | Digital Health Portfolio" />
       <meta name="twitter:description" content="Researcher, policy analyst, and builder working across precision medicine, clinical AI, and global health." />
-      <!-- TODO: add /og-image.png (1200x630) and /apple-touch-icon.png (180x180), then re-add og:image and apple-touch-icon links -->
+      <meta name="twitter:image" content="https://stefan-portfolio-sable.vercel.app/og-image.png" />
 
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+      <link rel="preconnect" href="https://api.fontshare.com" />
+      <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+      <!-- Async font CSS (print-media swap): a slow or unreachable Fontshare
+           can never block first paint; display=swap covers the interim. -->
       <link
-        rel="stylesheet"
+        rel="preload"
+        as="style"
         href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600&display=swap"
       />
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap"
+        href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600&display=swap"
+        media="print"
+        onload="this.media='all'"
       />
+      <noscript>
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600&display=swap"
+        />
+      </noscript>
 
+      <!-- Static structured data: readable by every crawler, including
+           non-JS AI crawlers (GPTBot, ClaudeBot). See also /llms.txt. -->
       <script type="application/ld+json">
         {
           "@context": "https://schema.org",
-          "@type": "Person",
-          "name": "Stefan Thottunkal",
-          "url": "https://stefan-portfolio-sable.vercel.app/",
-          "jobTitle": "Researcher & Health Systems Designer",
-          "email": "mailto:stefan01@stanford.edu",
-          "description": "Researcher, policy analyst, and builder working across precision medicine, clinical AI, and global health.",
-          "knowsAbout": [
-            "Digital Health",
-            "Precision Medicine",
-            "Clinical AI",
-            "Health Systems Design",
-            "Health Policy",
-            "Implementation Science"
-          ],
-          "sameAs": [
-            "https://www.linkedin.com/in/stefan-thottunkal-a391a2199",
-            "https://scholar.google.com/citations?user=9Nxhv58AAAAJ"
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://stefan-portfolio-sable.vercel.app/#person",
+              "name": "Stefan Thottunkal",
+              "url": "https://stefan-portfolio-sable.vercel.app/",
+              "jobTitle": "Researcher & Health Systems Designer",
+              "email": "mailto:stefan01@stanford.edu",
+              "description": "Researcher, policy analyst, and builder working across precision medicine, clinical AI, and global health. Stanford M.S. in Community Health and Prevention Research; MD candidate at Macquarie University; IIE QUAD Fellow; 10 peer-reviewed publications.",
+              "affiliation": [
+                { "@type": "CollegeOrUniversity", "name": "Stanford University" },
+                { "@type": "CollegeOrUniversity", "name": "Macquarie University" }
+              ],
+              "alumniOf": [
+                { "@type": "CollegeOrUniversity", "name": "Australian National University" }
+              ],
+              "award": [
+                "IIE QUAD Fellowship (2024)",
+                "Harvard HSIL — 2nd in the US, 7th of 3,500 teams globally (GenieRX)",
+                "Stanford XR Hackathon — 1st place, Social Good (NeurAgility)"
+              ],
+              "knowsAbout": [
+                "Digital Health",
+                "Precision Medicine",
+                "Pharmacogenomics",
+                "Clinical AI",
+                "Health Systems Design",
+                "Health Policy",
+                "Implementation Science",
+                "Indigenous Health",
+                "Medical Device Regulation",
+                "Global Health",
+                "Biosecurity"
+              ],
+              "sameAs": [
+                "https://www.linkedin.com/in/stefan-thottunkal-a391a2199",
+                "https://scholar.google.com/citations?user=9Nxhv58AAAAJ"
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://stefan-portfolio-sable.vercel.app/#website",
+              "url": "https://stefan-portfolio-sable.vercel.app/",
+              "name": "Stefan Thottunkal | Digital Health Portfolio",
+              "author": { "@id": "https://stefan-portfolio-sable.vercel.app/#person" },
+              "inLanguage": "en"
+            }
           ]
         }
       </script>
@@ -61,6 +108,25 @@
 
     <body>
       <div id="root"></div>
+      <noscript>
+        <main style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6;">
+          <h1>Stefan Thottunkal</h1>
+          <p>
+            Researcher, policy analyst, and builder working across precision
+            medicine, clinical AI, and global health. Stanford M.S. in
+            Community Health and Prevention Research (IIE QUAD Fellow); MD
+            candidate, Macquarie University; B.Health Sci. with First Class
+            Honours, ANU. 10 peer-reviewed publications.
+          </p>
+          <p>
+            This site is an interactive application and needs JavaScript. A
+            plain-text summary lives at <a href="/llms.txt">/llms.txt</a>;
+            publications are on
+            <a href="https://scholar.google.com/citations?user=9Nxhv58AAAAJ">Google Scholar</a>;
+            contact <a href="mailto:stefan01@stanford.edu">stefan01@stanford.edu</a>.
+          </p>
+        </main>
+      </noscript>
       <script type="module" src="/src/main.tsx"></script>
     </body>
   </html>

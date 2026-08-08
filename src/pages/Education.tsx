@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import { ContactSection } from "../components/ContactSection";
 import { FloatingBackButton } from "../components/FloatingBackButton";
 import { TeachingSection } from "../components/TeachingSection";
+import { StatValue } from "../components/CountUp";
 import { useGoBack } from "../hooks/useGoBack";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { educationRoles } from "../types/roles";
 
 const educationStats = [
@@ -16,6 +18,12 @@ const educationStats = [
 
 export function Education(): JSX.Element {
   const goBack = useGoBack();
+  usePageMeta({
+    title: "Education",
+    path: "/education",
+    description:
+      "Teaching and curriculum: research methods at ANU, Stanford Medicine NOURISH clinical-nutrition curriculum, and the TLIA entrepreneurship bootcamp as Program Lead.",
+  });
   const [showTliaDetail, setShowTliaDetail] = useState(false);
   const tliaDetailRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +35,7 @@ export function Education(): JSX.Element {
   };
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
+    <main className="min-h-[100svh] bg-white text-gray-900">
       <FloatingBackButton />
 
       <div className="px-4 pt-16 md:px-8 md:pt-20">
@@ -35,7 +43,7 @@ export function Education(): JSX.Element {
           <button
             type="button"
             onClick={goBack}
-            className="group mb-12 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-emerald-600"
+            className="group mb-12 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-violet-600"
           >
             <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
             <span className="text-lg font-medium">Back</span>
@@ -55,15 +63,16 @@ export function Education(): JSX.Element {
               entrepreneurship education as TLIA Bootcamp Program Lead.
             </p>
 
-            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
+            <ul className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
               {educationStats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-2">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">{stat.value}</dd>
+                <li key={stat.label} className="flex items-baseline gap-2">
+                  <span className="text-lg font-semibold text-black">
+                    <StatValue value={stat.value} />
+                  </span>
                   <span className="text-sm text-gray-500">{stat.label}</span>
-                </div>
+                </li>
               ))}
-            </dl>
+            </ul>
           </motion.div>
         </div>
       </div>
@@ -82,10 +91,18 @@ export function Education(): JSX.Element {
                 <motion.article
                   key={role.id}
                   initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                      delay: Math.min(index * 0.06, 0.18),
+                      ease: [0.22, 1, 0.36, 1],
+                    },
+                  }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.18) }}
-                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 24 }}
+                  whileHover={isTlia ? { y: -6 } : undefined}
                   onClick={isTlia ? openTliaDetail : undefined}
                   className={`flex min-h-full flex-col rounded-2xl bg-[#fafafa] p-6 md:p-7 ${
                     isTlia ? "cursor-pointer transition-colors hover:bg-[#f4f4f2]" : ""
@@ -107,7 +124,7 @@ export function Education(): JSX.Element {
                   <ul className="mt-5 space-y-2">
                     {role.deliverables.map((item) => (
                       <li key={item} className="flex gap-3 text-sm leading-relaxed text-gray-600">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/70" />
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500/70" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -180,6 +197,6 @@ export function Education(): JSX.Element {
       </AnimatePresence>
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

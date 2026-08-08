@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { ChevronDown } from "lucide-react";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 import { usePhoneLayout } from "../hooks/usePhoneLayout";
+import { EASE_OUT } from "../motion/tokens";
 import svgPaths from "./timeline/imports/svg-a9d042udyz";
 
 import imgHopkinsPavaCenter from "../assets/timeline-upgraded/0ab6195dd58e68fba2b601597ac6a3d1c5449c8a.webp";
@@ -228,13 +230,26 @@ export const TimelineSection = () => {
                                                 />
                                             </div>
                                             <div className="p-5">
-                                                <div className="mb-2">
-                                                    <h3 className="text-xl font-bold tracking-tight text-black">{item.title}</h3>
-                                                    <p className="text-sm text-gray-500">{item.period}</p>
+                                                <div className="mb-2 flex items-start justify-between gap-3">
+                                                    <div>
+                                                        <h3 className="text-xl font-bold tracking-tight text-black">{item.title}</h3>
+                                                        <p className="text-sm text-gray-500">{item.period}</p>
+                                                    </div>
+                                                    <ChevronDown
+                                                        aria-hidden="true"
+                                                        className={`mt-1.5 h-4 w-4 shrink-0 text-gray-400 transition-transform duration-300 motion-reduce:transition-none ${isExpanded ? "rotate-180" : ""}`}
+                                                    />
                                                 </div>
-                                                <p className={`overflow-hidden text-base leading-relaxed text-gray-700 ${isExpanded ? "max-h-none" : "max-h-12"}`}>
-                                                    {item.description}
-                                                </p>
+                                                <motion.div
+                                                    initial={false}
+                                                    animate={{ height: isExpanded ? "auto" : 48 }}
+                                                    transition={{ duration: 0.34, ease: EASE_OUT }}
+                                                    className="overflow-hidden"
+                                                >
+                                                    <p className="text-base leading-relaxed text-gray-700">
+                                                        {item.description}
+                                                    </p>
+                                                </motion.div>
                                             </div>
                                         </div>
                                     </motion.button>
