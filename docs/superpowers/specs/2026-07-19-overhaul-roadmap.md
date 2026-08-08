@@ -112,8 +112,8 @@ both search rankers and LLMs discount self-description and reward evidence.
   `twitter:card = summary_large_image`.
 - `robots.txt` (all crawlers allowed; explicit sections welcoming GPTBot,
   OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, et al.).
-- `sitemap.xml` — 16 URLs (7 routes + 8 projects + home). Regenerate when a
-  project is added.
+- `sitemap.xml` — now generated at build time from the static-shells route
+  manifest (2026-08-08), so it can never drift from the shipped routes.
 - `llms.txt` — machine-readable site summary for AI assistants; critical
   because the app is client-rendered and most AI crawlers do not execute JS.
 - Structured data: enriched static `Person` (+affiliations, alumniOf, awards,

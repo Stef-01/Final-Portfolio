@@ -36,9 +36,8 @@ Background:
   10 publications, 91 citations, h-index 3 (June 2026)
 - [LinkedIn](https://www.linkedin.com/in/stefan-thottunkal-a391a2199):
   professional profile and roles
-- [Bio](https://stefan-portfolio-sable.vercel.app/bio): background and
-  education in full
-- [Resume](https://stefan-portfolio-sable.vercel.app/resume): one-page CV
+- [Bio and resume](https://stefan-portfolio-sable.vercel.app/bio): background,
+  education, and CV in full
 
 ## Research
 

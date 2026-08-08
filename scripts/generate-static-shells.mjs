@@ -172,4 +172,31 @@ for (const route of routes) {
   written += 1;
 }
 
-console.log(`static shells: wrote ${written} routes`);
+// sitemap.xml from the same manifest — one source of truth, so adding a
+// route here is the only step (no hand-maintained copy in public/ to drift).
+const lastmod = new Date().toISOString().slice(0, 10);
+const priorityFor = (p) =>
+  ["/research", "/policy", "/industry"].includes(p)
+    ? "0.9"
+    : ["/education", "/bio"].includes(p)
+      ? "0.8"
+      : "0.7";
+const sitemapEntries = [
+  { path: "/", priority: "1.0" },
+  ...routes.map((r) => ({ path: r.path, priority: priorityFor(r.path) })),
+];
+writeFileSync(
+  path.join(dist, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    sitemapEntries
+      .map(
+        (e) =>
+          `  <url><loc>${ORIGIN}${e.path === "/" ? "/" : e.path}</loc>` +
+          `<lastmod>${lastmod}</lastmod><priority>${e.priority}</priority></url>`,
+      )
+      .join("\n") +
+    `\n</urlset>\n`,
+);
+
+console.log(`static shells: wrote ${written} routes + sitemap.xml (${sitemapEntries.length} URLs)`);
