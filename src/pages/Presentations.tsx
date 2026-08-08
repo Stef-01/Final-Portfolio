@@ -243,21 +243,20 @@ export function Presentations() {
                             biosecurity.
                         </p>
 
-                        <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
+                        <ul className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
                             {[
                                 { k: String(conferences.length), v: "conference presentations" },
                                 { k: String(invited.length), v: "invited talks and grand rounds" },
                                 { k: "5+", v: "institutions across 3 countries" },
                             ].map((stat) => (
-                                <div key={stat.v} className="flex items-baseline gap-2">
-                                    <dt className="sr-only">{stat.v}</dt>
-                                    <dd className="text-lg font-semibold text-black">
+                                <li key={stat.v} className="flex items-baseline gap-2">
+                                    <span className="text-lg font-semibold text-black">
                                         <StatValue value={stat.k} />
-                                    </dd>
+                                    </span>
                                     <span className="text-sm text-gray-500">{stat.v}</span>
-                                </div>
+                                </li>
                             ))}
-                        </dl>
+                        </ul>
                     </motion.div>
                 </div>
             </header>

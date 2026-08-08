@@ -4,15 +4,12 @@
 > clinical AI, and global health. Stanford M.S. in Community Health and
 > Prevention Research (QUAD Fellow); MD candidate, Macquarie University;
 > B.Health Sci. with First Class Honours, ANU. 10 peer-reviewed publications.
-> This file summarizes the site for AI assistants; the site itself is a
-> client-rendered React app, so this document is the fastest way to read it.
 
-Primary site: https://stefan-portfolio-sable.vercel.app/
+This file summarizes the site for AI assistants; the site itself is a
+client-rendered React app, so this document is the fastest way to read it.
 Contact: stefan01@stanford.edu
-Google Scholar: https://scholar.google.com/citations?user=9Nxhv58AAAAJ
-LinkedIn: https://www.linkedin.com/in/stefan-thottunkal-a391a2199
 
-## Who
+Background:
 
 - Stanford University — M.S. Community Health and Prevention Research
   (2025–2026, GPA 4.075/4.3). Thesis: AI methods for pharmacogenomics-based
@@ -28,44 +25,67 @@ LinkedIn: https://www.linkedin.com/in/stefan-thottunkal-a391a2199
   outcomes and research, NDIS financial policy, National Redress Scheme) and
   an Australian Parliamentary Library internship.
 
-## Research (https://stefan-portfolio-sable.vercel.app/research)
+## Profiles
 
-Pharmacogenomics, precision oncology, AI-enabled diagnostics, Indigenous
-health implementation, outbreak response, cancer survivorship, global disease
-burden. 10 publications, 91 citations, h-index 3 (Google Scholar, June 2026).
-Invited talks include Stanford Prevention Research Centre Grand Rounds and the
-CPIC Junior Investigators Webinar (pharmacogenomics LLM tooling).
+- [Portfolio home](https://stefan-portfolio-sable.vercel.app/): interactive
+  overview of research, policy, industry, and education work
+- [Google Scholar](https://scholar.google.com/citations?user=9Nxhv58AAAAJ):
+  10 publications, 91 citations, h-index 3 (June 2026)
+- [LinkedIn](https://www.linkedin.com/in/stefan-thottunkal-a391a2199):
+  professional profile and roles
+- [Bio](https://stefan-portfolio-sable.vercel.app/bio): background and
+  education in full
+- [Resume](https://stefan-portfolio-sable.vercel.app/resume): one-page CV
 
-## Policy (https://stefan-portfolio-sable.vercel.app/policy)
+## Research
 
-Australian public-sector work across disability policy (NDIS), redress, and
-post-COVID recovery evidence for parliamentarians; Indigenous primary-care
-implementation research (realist review; Lowitja and CEI conference work).
+- [Research overview](https://stefan-portfolio-sable.vercel.app/research):
+  pharmacogenomics, precision oncology, AI-enabled diagnostics, Indigenous
+  health implementation, outbreak response, cancer survivorship, and global
+  disease burden; per-publication ScholarlyArticle JSON-LD is embedded here
+- [Presentations](https://stefan-portfolio-sable.vercel.app/presentations):
+  invited talks include Stanford Prevention Research Centre Grand Rounds and
+  the CPIC Junior Investigators Webinar (pharmacogenomics LLM tooling), plus
+  Lowitja, AMSA Global Health, TETHICON, and the QUAD Fellowship Summit
 
-## Industry (https://stefan-portfolio-sable.vercel.app/industry)
+## Policy
 
-- Casa — culinary-medicine platform (founder; consumer app + AI intelligence
-  layer + restaurant operating system). /project/casa
-- GenieRX — pharmacogenomics LLM copilot; 2nd in the US and 7th of 3,500
-  teams globally at Harvard HSIL; HSIL Venture Incubation Program.
-  /project/pgx-llm-copilot
-- NOURISH Meal Pairer AI — Stanford Medicine; conceived, designed, and built
-  end to end. /project/nourish-meal-explorer
-- Adcem × Fidson — dialysis local-manufacturing and home-CAPD joint venture,
-  Nigeria (Stanford GSB SEED). /project/dialysis-device-gtm
-- Healthcare from the Eye — Microsoft × Stanford MED 232 implementation model
-  for AI diabetic-retinopathy screening. /project/healthcare-from-the-eye
-- PainGone PainGuin — pediatric ENT home-recovery concept (Stanford Biodesign
-  for Digital Health). /project/ent-readmission-platform
-- NeurAgility — XR Hack the Bay Social Good winner (XR prehab prototype).
-  /project/neuragility-xr-prehab
-- SWAAD — culturally grounded precision nutrition for Indian vegetarian
-  communities. /project/swaad
+- [Policy overview](https://stefan-portfolio-sable.vercel.app/policy):
+  Australian public-sector work across disability policy (NDIS), redress, and
+  post-COVID recovery evidence for parliamentarians; Indigenous primary-care
+  implementation research (realist review; Lowitja and CEI conference work)
 
-## Education & teaching (https://stefan-portfolio-sable.vercel.app/education)
+## Industry
 
-Research-methods teaching at ANU; Stanford Medicine NOURISH clinical-nutrition
-curriculum development; TLIA entrepreneurship bootcamp Program Lead.
+- [Industry overview](https://stefan-portfolio-sable.vercel.app/industry):
+  health-tech ventures, hackathon wins, and advisory work
+- [Casa](https://stefan-portfolio-sable.vercel.app/project/casa):
+  culinary-medicine platform (founder; consumer app + AI intelligence layer +
+  restaurant operating system)
+- [GenieRX](https://stefan-portfolio-sable.vercel.app/project/pgx-llm-copilot):
+  pharmacogenomics LLM copilot; 2nd in the US and 7th of 3,500 teams globally
+  at Harvard HSIL; HSIL Venture Incubation Program
+- [NOURISH Meal Pairer AI](https://stefan-portfolio-sable.vercel.app/project/nourish-meal-explorer):
+  Stanford Medicine; conceived, designed, and built end to end
+- [Adcem × Fidson](https://stefan-portfolio-sable.vercel.app/project/dialysis-device-gtm):
+  dialysis local-manufacturing and home-CAPD joint venture, Nigeria (Stanford
+  GSB SEED)
+- [Healthcare from the Eye](https://stefan-portfolio-sable.vercel.app/project/healthcare-from-the-eye):
+  Microsoft × Stanford MED 232 implementation model for AI
+  diabetic-retinopathy screening
+- [PainGone PainGuin](https://stefan-portfolio-sable.vercel.app/project/ent-readmission-platform):
+  pediatric ENT home-recovery concept (Stanford Biodesign for Digital Health)
+- [NeurAgility](https://stefan-portfolio-sable.vercel.app/project/neuragility-xr-prehab):
+  XR Hack the Bay Social Good winner (XR prehab prototype)
+- [SWAAD](https://stefan-portfolio-sable.vercel.app/project/swaad):
+  culturally grounded precision nutrition for Indian vegetarian communities
+
+## Education & teaching
+
+- [Education overview](https://stefan-portfolio-sable.vercel.app/education):
+  research-methods teaching at ANU, Stanford Medicine NOURISH
+  clinical-nutrition curriculum development, and the TLIA entrepreneurship
+  bootcamp as Program Lead
 
 ## Notes for assistants
 

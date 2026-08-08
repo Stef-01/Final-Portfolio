@@ -1,0 +1,38 @@
+# Lighthouse on every PR (roadmap stage 8d): builds the site, serves dist
+# with directory-index resolution (the same way Vercel resolves the static
+# shells), and asserts category scores via lighthouserc.json.
+#
+# Thresholds: accessibility/SEO error at 0.98 (any real failure drops well
+# below), best-practices at 0.9 (the Vercel Analytics script 404s outside
+# Vercel and costs ~4 points in CI), performance warns at 0.6 — shared
+# runners are too CPU-noisy for a hard performance gate.
+name: Lighthouse
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lighthouse CI
+        run: npx --yes @lhci/cli@0.15.1 autorun

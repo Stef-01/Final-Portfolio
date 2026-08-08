@@ -63,17 +63,16 @@ export function Education(): JSX.Element {
               entrepreneurship education as TLIA Bootcamp Program Lead.
             </p>
 
-            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
+            <ul className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
               {educationStats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-2">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">
+                <li key={stat.label} className="flex items-baseline gap-2">
+                  <span className="text-lg font-semibold text-black">
                     <StatValue value={stat.value} />
-                  </dd>
+                  </span>
                   <span className="text-sm text-gray-500">{stat.label}</span>
-                </div>
+                </li>
               ))}
-            </dl>
+            </ul>
           </motion.div>
         </div>
       </div>

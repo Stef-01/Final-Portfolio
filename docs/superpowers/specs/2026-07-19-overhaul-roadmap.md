@@ -148,12 +148,27 @@ route) or an SSG migration if the site grows.
   backlinks are the strongest E-E-A-T signal available.
 - Conference organizers (CPIC, Lowitja, AMSA) listing talks with links.
 
-**8d — Accessibility + measurement (SHIPPED — skip link, main landmarks, contrast bump, analytics events; Lighthouse-per-PR remains open)**
+**8d — Accessibility + measurement (SHIPPED, incl. Lighthouse-per-PR)**
 - Heading-order audit; landmark roles; skip link; contrast pass on gray-400.
 - Vercel Analytics custom events: process-flow steps, accordion opens,
   contact clicks, file-viewer opens.
-- Lighthouse (or equivalent) recorded per PR; CWV as a ranking input ties
-  stage 7 performance work back into SEO.
+- Lighthouse-per-PR: `.github/workflows/lighthouse.yml` builds the site,
+  serves `dist` with directory-index resolution (matching how Vercel serves
+  the static shells), and runs `lhci autorun` on /, /research/,
+  /project/casa/, /presentations/ with category assertions from
+  `lighthouserc.json` — accessibility and SEO error below 0.98,
+  best-practices below 0.9, performance warns below 0.6 (shared runners are
+  too CPU-noisy for a hard perf gate).
+- Audit pass (2026-08-08, mobile emulation): accessibility 100 and SEO 100
+  on every audited route after fixing the roles-timeline list nesting
+  (`ol > div > li`), the stat rows' `<dl>` misuse on four pages, and
+  residual gray-400 text on white. `llms.txt` restructured into the
+  llmstxt.org link-list format (Lighthouse 13 agentic-browsing 67/33 → 100
+  across routes). Fontshare CSS now loads async via the print-media swap so
+  a slow or unreachable font CDN can never block first paint; hashed
+  `/assets/*` pinned `immutable` in vercel.json. Best-practices reads 96
+  only off-Vercel (the analytics script 404s outside Vercel); performance
+  64–76 under sandboxed mobile throttling, hence warn-only in CI.
 
 ---
 

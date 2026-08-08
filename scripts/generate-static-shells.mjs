@@ -147,9 +147,11 @@ for (const route of routes) {
     /(<link rel="canonical" href=")[^"]*(")/,
     `$1${url}$2`,
   );
-  // Route-specific noscript summary for non-JS crawlers.
+  // Route-specific noscript summary for non-JS crawlers. Anchored to the
+  // <main> body block — the head has a second <noscript> (font fallback)
+  // that must survive untouched.
   html = html.replace(
-    /<noscript>[\s\S]*?<\/noscript>/,
+    /<noscript>\s*<main[\s\S]*?<\/noscript>/,
     `<noscript>
         <main style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6;">
           <h1>${esc(route.title.replace(" — Stefan Thottunkal", ""))}</h1>

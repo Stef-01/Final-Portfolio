@@ -205,7 +205,7 @@ export function PublicationsSection() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search publications"
-                className="h-12 w-full rounded-full border border-black/10 bg-[#f8f8f7] pl-12 pr-4 text-base text-black placeholder:text-gray-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20"
+                className="h-12 w-full rounded-full border border-black/10 bg-[#f8f8f7] pl-12 pr-4 text-base text-black placeholder:text-gray-500 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20"
               />
             </label>
 

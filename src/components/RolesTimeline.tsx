@@ -24,7 +24,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
     const isExternal = !!role.link && /^https?:\/\//.test(role.link);
 
     return (
-        <li
+        <div
             id={`role-${role.id}`}
             onMouseEnter={onEnter}
             onFocus={onEnter}
@@ -50,7 +50,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
 
             <p
                 className={`text-sm font-medium transition-opacity duration-300 ${
-                    expanded ? "text-gray-500" : "text-gray-400"
+                    expanded ? "text-gray-600" : "text-gray-500"
                 }`}
             >
                 {role.period}
@@ -68,7 +68,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
             {/* Organization line, always visible but dimmed when collapsed */}
             <p
                 className={`mt-1.5 text-sm md:text-[15px] transition-opacity duration-300 ${
-                    expanded ? "text-gray-500" : "text-gray-400"
+                    expanded ? "text-gray-600" : "text-gray-500"
                 }`}
             >
                 {role.organization}
@@ -132,7 +132,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </li>
+        </div>
     );
 };
 
@@ -144,7 +144,7 @@ export const RolesTimeline = ({ roles, title, intro, accent = "var(--lane-resear
 
     // Scroll progress through the list drives the spine fill + comet.
     const containerRef = useRef<HTMLDivElement>(null);
-    const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const rowRefs = useRef<(HTMLLIElement | null)[]>([]);
     const recompute = useRef<() => void>(() => {});
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -232,7 +232,7 @@ export const RolesTimeline = ({ roles, title, intro, accent = "var(--lane-resear
                         onMouseLeave={() => recompute.current()}
                     >
                         {roles.map((role, index) => (
-                            <div
+                            <li
                                 key={role.id}
                                 ref={(el) => {
                                     rowRefs.current[index] = el;
@@ -245,7 +245,7 @@ export const RolesTimeline = ({ roles, title, intro, accent = "var(--lane-resear
                                     pulse={hoveredId === role.id && !prefersReducedMotion}
                                     onEnter={() => setHoveredId(role.id)}
                                 />
-                            </div>
+                            </li>
                         ))}
                     </ol>
                 </div>
