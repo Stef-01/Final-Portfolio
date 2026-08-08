@@ -136,8 +136,15 @@ route-specific `<noscript>` summary. Vercel serves the static file before the
 SPA rewrite, so non-JS crawlers get real per-URL metadata + text; browsers
 hydrate the same app. Note: `vite preview` doesn't emulate directory-index
 resolution — verify shells with `http-server dist`.
-Remaining optional upgrade: full-content prerender (Playwright snapshot per
-route) or an SSG migration if the site grows.
+Content gap closed without a prerender (2026-08-08):
+`scripts/generate-ai-content.mjs` bundles the real data modules with esbuild
+(asset imports stubbed) and writes `dist/llms-full.txt` — every case-study
+narrative, role, and publication as markdown, linked from llms.txt — plus
+static JSON-LD in the shells (CreativeWork + BreadcrumbList per project,
+the ScholarlyArticle ItemList on /research), mirroring what useJsonLd
+injects at runtime. Non-JS crawlers now get the full content and the full
+structured data. A DOM-level prerender or SSG migration remains possible
+later but no longer guards any unreachable content.
 
 **8c — Off-site authority (user actions; the site can only support these)**
 - Google Search Console + Bing Webmaster: verify, submit sitemap.

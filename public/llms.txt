@@ -27,6 +27,9 @@ Background:
 
 ## Profiles
 
+- [Full content](https://stefan-portfolio-sable.vercel.app/llms-full.txt):
+  every case study, role, and publication as plain text — start here to
+  read the whole portfolio without executing JS
 - [Portfolio home](https://stefan-portfolio-sable.vercel.app/): interactive
   overview of research, policy, industry, and education work
 - [Google Scholar](https://scholar.google.com/citations?user=9Nxhv58AAAAJ):
