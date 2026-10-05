@@ -179,7 +179,7 @@ export function AboutSection() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <p className="font-['Clash_Grotesk',_sans-serif] text-lg md:text-2xl text-gray-700 leading-relaxed">
-                            I work across three worlds that rarely talk to each other: Stanford labs, Australian government, and the clinics and communities that actually see patients.
+                            I work across three worlds that rarely talk to each other: Stanford labs, Australian government, and the clinics that see patients.
                         </p>
                     </motion.div>
 
@@ -190,7 +190,7 @@ export function AboutSection() {
                         transition={{ duration: 0.6, delay: 0.4 }}
                     >
                         <p className="font-['Clash_Grotesk',_sans-serif] font-medium text-lg md:text-2xl text-gray-900 leading-relaxed">
-                            My focus: getting good health technology to the people current systems leave out — remote Indigenous clinics, low-resource hospitals, and patients on medications no one has reconciled.
+                            My focus is health technology reaching the people systems leave out: remote Indigenous clinics, low-resource hospitals, and patients on medications no one has reconciled.
                         </p>
                     </motion.div>
 

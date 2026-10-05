@@ -141,8 +141,8 @@ export const projects: Project[] = [
     {
         id: "casa",
         title: "Casa",
-        subtitle: "A culinary-medicine platform that turns personalised guidance into health-optimised meal kits from restaurants people already know.",
-        description: "Casa is a free consumer app, an AI intelligence layer, and a restaurant operating system designed as one connected service. It learns household preferences, matches people to practical meals, and gives restaurant partners the planning infrastructure to produce recurring kits.",
+        subtitle: "A culinary-medicine platform: personalized guidance, delivered as meal kits from restaurants people already know.",
+        description: "A free consumer app, an AI layer, and a restaurant operating system built as one service. It learns household preferences, matches people to meals they will actually cook, and gives restaurants the planning tools to produce recurring kits.",
         image: casaPitchCover,
         heroFit: "contain",
         heroAspect: "16/9",
@@ -150,8 +150,8 @@ export const projects: Project[] = [
         role: "Founder, product lead, and venture architect",
         client: "Pre-seed venture concept",
         duration: "2026 · ongoing",
-        tools: ["Service blueprinting", "Consumer journey mapping", "Preference graph design", "AI and ML product architecture", "Recommendation systems", "Restaurant workflow design", "Marketplace business modelling", "Clinician referral pathway"],
-        outcome: "Defined the end-to-end product system across the consumer experience, intelligence layer, restaurant operations, product standardisation, and marketplace model.",
+        tools: ["Service blueprinting", "Consumer journey mapping", "Preference graph design", "AI and ML product architecture", "Recommendation systems", "Restaurant workflow design", "Marketplace business modeling", "Clinician referral pathway"],
+        outcome: "Defined the product system end to end: consumer experience, intelligence layer, restaurant operations, and marketplace model.",
         accent: "#6a101b",
         stats: [
             { label: "Consumer layer", value: "Planning, pantry support, guided cooking" },
@@ -177,9 +177,9 @@ export const projects: Project[] = [
                 title: "Make culinary medicine usable",
                 body: [
                     "The consumer offer combines practitioner-informed recipes, guided cooking, smart-pantry support, and restaurant-prepared kits. Users engage at the level that fits the night: learn and cook, cut shopping friction, or order a matched kit.",
-                    "The information architecture is deliberately progressive. Health guidance and meal planning remain accessible in the free app; paid fulfillment enters when convenience is the more important job.",
+                    "The information architecture is progressive. Health guidance and meal planning remain accessible in the free app; paid fulfillment enters when convenience is the more important job.",
                 ],
-                media: { src: casaSolutionPillars, alt: "Casa solution architecture showing health-optimised recipes, guided cooking, smart pantry, and meal kits", caption: "Three service pillars connect trusted meal guidance to practical household execution.", fit: "contain", aspect: "16/9" },
+                media: { src: casaSolutionPillars, alt: "Casa solution architecture showing health-optimized recipes, guided cooking, smart pantry, and meal kits", caption: "Three service pillars connect trusted meal guidance to practical household execution.", fit: "contain", aspect: "16/9" },
             },
             {
                 title: "Understand, match, deliver",
@@ -192,7 +192,7 @@ export const projects: Project[] = [
             {
                 title: "A coordinated product stack",
                 body: [
-                    "The consumer app is only the visible edge. Behind it, the restaurant OS supports build sheets, batch plans, labels, and analytics, while the product studio standardises recipes, nutrition data, and packaging.",
+                    "The consumer app is only the visible edge. Behind it, the restaurant OS supports build sheets, batch plans, labels, and analytics, while the product studio standardizes recipes, nutrition data, and packaging.",
                     "I mapped these as interdependent surfaces so the customer promise remains executable in the kitchen. A recommendation is only valuable when the supply-side workflow can produce it consistently.",
                 ],
                 media: { src: casaProductStack, alt: "Casa product stack showing the consumer app, AI intelligence layer, restaurant OS, and product studio", caption: "The stack links the experience layer to the operational infrastructure needed to fulfill it.", fit: "contain", aspect: "16/9" },
@@ -200,10 +200,10 @@ export const projects: Project[] = [
             {
                 title: "The intelligence and learning loop",
                 body: [
-                    "LLMs translate qualitative tastes into structured meal preferences. Ranking models prioritise kits by likely fit and completion. Agents surface demand and trend signals that restaurant partners can use in product decisions.",
-                    "The preference graph connects planning, personalisation, orders, subscriptions, recurring kits, and recipe-redesign sprints. Every interaction creates a signal that can improve the next household recommendation or supply decision.",
+                    "LLMs translate qualitative tastes into structured meal preferences. Ranking models prioritize kits by likely fit and completion. Agents surface demand and trend signals that restaurant partners can use in product decisions.",
+                    "The preference graph connects planning, personalization, orders, subscriptions, recurring kits, and recipe-redesign sprints. Every interaction creates a signal that can improve the next household recommendation or supply decision.",
                 ],
-                media: { src: casaAiIntelligenceLoop, alt: "Casa AI intelligence loop connecting meal planning, personalisation, trend signals, orders, and restaurant recipe redesign", caption: "The supplied intelligence-layer architecture shows how household and restaurant signals form a reinforcing learning loop.", fit: "contain", aspect: "16/9" },
+                media: { src: casaAiIntelligenceLoop, alt: "Casa AI intelligence loop connecting meal planning, personalization, trend signals, orders, and restaurant recipe redesign", caption: "The supplied intelligence-layer architecture shows how household and restaurant signals form a reinforcing learning loop.", fit: "contain", aspect: "16/9" },
             },
             {
                 title: "Unlock supply without building kitchens",
@@ -216,7 +216,7 @@ export const projects: Project[] = [
         ],
         caseStudy: {
             question: "How might we make culinary medicine workable on a busy weeknight while using restaurant capacity that already exists?",
-            framing: "Casa treats household decision fatigue and restaurant underutilisation as one system. The design connects personalised guidance, a clear consumer journey, an intelligence layer, and operational tools that let local kitchens fulfill the promise.",
+            framing: "Casa treats household decision fatigue and restaurant underutilization as one system. The design connects personalized guidance, a clear consumer journey, an intelligence layer, and operational tools that let local kitchens fulfill the promise.",
             processEyebrow: "Venture design method",
             processHeading: "From recurring failure point to operating system",
             processSummary: "The process moved from the household problem to a two-sided service blueprint, then tested whether product architecture, fulfillment, and economics could reinforce one another.",
@@ -224,25 +224,25 @@ export const projects: Project[] = [
                 {
                     phase: "Frame",
                     title: "Locate the real dinner breakdown",
-                    rationale: "Recipe discovery, trust, shopping, optimisation, and cooking are usually treated as separate tasks, even though users experience them as one exhausting chain.",
+                    rationale: "Recipe discovery, trust, shopping, optimization, and cooking are usually treated as separate tasks, even though users experience them as one exhausting chain.",
                     execution: "Mapped the end-to-end household journey and defined the design opportunity at the point where good intention repeatedly collapses into an expensive, opaque takeaway decision.",
                 },
                 {
                     phase: "Simplify",
                     title: "Turn a complex discipline into three user jobs",
-                    rationale: "Culinary medicine is inaccessible when people must interpret nutrition evidence, personalise it, and execute it alone.",
+                    rationale: "Culinary medicine is inaccessible when people must interpret nutrition evidence, personalize it, and execute it alone.",
                     execution: "Organised the experience around understand, match, and deliver, with progressive support from free guidance through to a restaurant-prepared kit.",
                 },
                 {
                     phase: "Connect",
                     title: "Design the intelligence as a feedback system",
-                    rationale: "Personalisation cannot depend on a static onboarding questionnaire; it must improve from actual choices, skips, orders, and completion signals.",
-                    execution: "Mapped LLM preference translation, ML ranking, agent-led trend discovery, and the preference graph that connects household behaviour to restaurant decisions.",
+                    rationale: "Personalization cannot depend on a static onboarding questionnaire; it must improve from actual choices, skips, orders, and completion signals.",
+                    execution: "Mapped LLM preference translation, ML ranking, agent-led trend discovery, and the preference graph that connects household behavior to restaurant decisions.",
                 },
                 {
                     phase: "Operationalise",
                     title: "Make the recommendation fulfillable",
-                    rationale: "A consumer promise fails if restaurant teams cannot standardise, forecast, batch, label, and analyse the product behind it.",
+                    rationale: "A consumer promise fails if restaurant teams cannot standardize, forecast, batch, label, and analyze the product behind it.",
                     execution: "Designed the four-layer stack across the consumer app, intelligence layer, restaurant OS, and product studio, then mapped kit production into restaurant capacity valleys.",
                 },
                 {
@@ -255,7 +255,7 @@ export const projects: Project[] = [
         },
         media: [
             { src: casaTwoSidedProblem, alt: "Casa two-sided problem frame comparing household dinner friction with restaurant operating friction", caption: "The venture begins with two connected unmet needs: households need lower-friction dinner decisions, while restaurants need predictable recurring demand.", fit: "contain", aspect: "16/9" },
-            { src: casaAiInputs, alt: "Casa AI model connecting household signals, restaurant capacity, trend intelligence, and creator content", caption: "The intelligence layer combines household, supply, trend, and content signals instead of treating personalisation as a consumer-only problem.", fit: "contain", aspect: "16/9" },
+            { src: casaAiInputs, alt: "Casa AI model connecting household signals, restaurant capacity, trend intelligence, and creator content", caption: "The intelligence layer combines household, supply, trend, and content signals instead of treating personalization as a consumer-only problem.", fit: "contain", aspect: "16/9" },
             { src: casaBusinessModel, alt: "Casa business model showing meal-kit subscriptions, brand consulting, and restaurant software", caption: "The commercial model keeps the consumer guidance layer free while monetising fulfillment and supply-side services.", fit: "contain", aspect: "16/9" },
             { src: casaGoToMarket, alt: "Casa go-to-market loop connecting clinician referral, app onboarding, and patient use", caption: "The initial go-to-market hypothesis uses clinician trust to reach people who need the service before expanding to a broader consumer market.", fit: "contain", aspect: "16/9" },
         ],
@@ -267,20 +267,20 @@ export const projects: Project[] = [
         id: "swaad",
         title: "SWAAD",
         subtitle: "A culturally grounded precision nutrition platform for Indian vegetarian communities.",
-        description: "A behavior-change product that links local produce, diabetes-friendly meal discovery, and playful education so healthier decisions feel relevant, practical, and culturally fluent.",
+        description: "A behavior-change product linking local produce, diabetes-friendly meal discovery, and playful education.",
         image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop",
         tags: ["Health Tech", "Nutrition", "Community Health"],
         role: "Product lead, UX designer, and public health researcher",
         client: "Self-initiated venture built with Logan Indian community members",
         duration: "Ongoing concept and prototype, initial design over 4 months",
         tools: ["Figma", "React", "Supabase", "OpenAI API", "Airtable"],
-        outcome: "Established a strong concept direction for a community-facing nutrition product that blends culturally specific meal planning with interactive chronic-disease education.",
+        outcome: "Set the concept direction for a community nutrition product that pairs culturally specific meal planning with interactive chronic-disease education.",
         accent: "#0f766e",
         popout: {
             url: "https://bud-hub-29-10.vercel.app/",
             eyebrow: "Live experience",
             heading: "Put SWAAD to the test",
-            description: "Explore the working prototype and test how the experience behaves beyond static screens.",
+            description: "Open the working prototype and test it beyond static screens.",
             ctaLabel: "Test SWAAD live",
             collapsedLabel: "Try SWAAD live",
             accessibleLabel: "Live SWAAD experience",
@@ -292,7 +292,7 @@ export const projects: Project[] = [
             { label: "Strength", value: "Culture-specific behavior change design" },
         ],
         highlights: [
-            { title: "Grounded in lived context", text: "The product concept starts from how families actually shop, cook, and discuss health, not from generic Western nutrition advice." },
+            { title: "Grounded in lived context", text: "The concept starts from how families shop, cook, and talk about health, not from generic Western nutrition advice." },
             { title: "Education embedded in use", text: "Instead of treating learning as a separate content layer, the product teaches through meal choices, swaps, and game mechanics." },
             { title: "Local and actionable", text: "Fresh produce, price-awareness, and recipe suggestions are tied to real household constraints rather than abstract health targets." },
         ],
@@ -308,19 +308,19 @@ export const projects: Project[] = [
                 title: "The response",
                 body: [
                     "SWAAD reframes precision nutrition as a culturally fluent digital experience. The concept combines produce discovery, recipe guidance, and lightweight interactive learning to help users make better decisions without feeling judged or medicalized.",
-                    "The product logic is structured around glycaemic load, fiber quality, sodium awareness, and meal composition, but it expresses those systems through approachable interactions rather than clinical language.",
+                    "The product logic is structured around glycemic load, fiber quality, sodium awareness, and meal composition, but it expresses those systems through approachable interactions rather than clinical language.",
                 ],
             },
             {
                 title: "Why it matters",
                 body: [
                     "The work translates public-health evidence, interface design, and community insight into a product that feels both serious and joyful.",
-                    "It is one of the clearest expressions of Stefan's broader thesis: digital health tools work better when they respect culture, motivation, and everyday behavior rather than assuming compliance.",
+                    "It carries my broader thesis: digital health tools work better when they respect culture, motivation, and everyday behavior rather than assuming compliance.",
                 ],
             },
         ],
         media: [
-            { src: swaadBranding, alt: "SWAAD branding", caption: "A vibrant visual system that positions metabolic health as inviting, modern, and culturally resonant." },
+            { src: swaadBranding, alt: "SWAAD branding", caption: "A visual system that positions metabolic health as inviting and culturally specific." },
             { src: swaadMealExplorer, alt: "SWAAD recipe flow", caption: "Meal discovery experience structured around preferences, pantry context, and health goals." },
             { src: swaadNutriserve, alt: "SWAAD educational game", caption: "Interactive nutrition learning translated into playful service mechanics." },
             { src: swaadGame, alt: "SWAAD game screen", caption: "Gamified interfaces designed to make tradeoffs in food decisions legible and memorable." },
@@ -329,8 +329,8 @@ export const projects: Project[] = [
     {
         id: "nourish-meal-explorer",
         title: "NOURISH Meal Pairer AI",
-        subtitle: "Turning familiar meals into balanced, culturally relevant plates through a health-literacy-aware pairing experience.",
-        description: "I conceived, designed, and built the Meal Explorer end to end — from the product thesis and AI-assisted pairing flow through interaction design, accessibility, and implementation. The current build uses placeholder recipes while the NOURISH team prepares its reviewed launch library.",
+        subtitle: "Turning familiar meals into balanced plates, designed for varied health literacy.",
+        description: "I built the Meal Explorer end to end: product thesis, AI-assisted pairing flow, interaction design, accessibility, and implementation. The current build uses placeholder recipes while the NOURISH team prepares its reviewed launch library.",
         image: nourishGeneratedPairing,
         heroFit: "contain",
         heroAspect: "8/5",
@@ -338,8 +338,8 @@ export const projects: Project[] = [
         role: "Product creator, UX/UI designer, and lead developer",
         client: "NOURISH · Stanford Medicine",
         duration: "Active development · release planned in the coming months",
-        tools: ["Human-centred design", "Nutrition research synthesis", "Low-health-literacy design", "Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Fuse.js", "Accessible interaction design"],
-        outcome: "Created the product concept and built the complete working platform to handoff. A technical specialist is now managing the institutional embedding work for the Stanford Medicine NOURISH website.",
+        tools: ["Human-centered design", "Nutrition research synthesis", "Low-health-literacy design", "Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Fuse.js", "Accessible interaction design"],
+        outcome: "Created the concept and built the working platform through to handoff. A technical specialist now manages the embedding work for the Stanford Medicine NOURISH site.",
         accent: "#315f46",
         links: [
             { label: "Test the working product", url: "https://nourish-meal-explorer.vercel.app/" },
@@ -349,7 +349,7 @@ export const projects: Project[] = [
             url: "https://nourish-meal-explorer.vercel.app/",
             eyebrow: "Working product",
             heading: "Build a plate and test the flow",
-            description: "Try the complete pairing experience—from a familiar main dish to complementary sides, whole-plate evaluation, and a shareable result. Recipe data is currently provisional.",
+            description: "Try the complete pairing flow: a familiar main dish, complementary sides, whole-plate evaluation, and a shareable result. Recipe data is currently provisional.",
             ctaLabel: "Test Meal Pairer live",
             collapsedLabel: "Try Meal Pairer",
             accessibleLabel: "Live NOURISH Meal Pairer experience",
@@ -367,16 +367,16 @@ export const projects: Project[] = [
         ],
         sections: [
             {
-                title: "The behavioural and nutrition problem",
+                title: "The behavioral and nutrition problem",
                 body: [
                     "Many nutrition tools begin with restriction, generic meal plans, or unfamiliar substitutions. That creates immediate friction for people who want practical guidance without abandoning culturally meaningful food.",
                     "The product reframes the decision from “What should I stop eating?” to “What can I add or adjust around the meal I already know?” This moves nutrition education into a concrete composition task instead of a lecture.",
                 ],
             },
             {
-                title: "Human-centred design across health-literacy levels",
+                title: "Human-centered design across health-literacy levels",
                 body: [
-                    "I applied a Stanford d.school-style human-centred cycle: start from the lived meal context, define the narrow decision people need to make, prototype the smallest understandable flow, and use the working interface to expose where explanation or control is missing.",
+                    "I applied a Stanford d.school-style human-centered cycle: start from the lived meal context, define the narrow decision people need to make, prototype the smallest understandable flow, and use the working interface to expose where explanation or control is missing.",
                     "To support people across health-literacy levels, the interface favors recognition over recall, one decision at a time, plain-language categories, visual meal composition, and optional detail. Nutrition reasoning remains available, but the user does not need to decode a nutrient dashboard before acting.",
                 ],
             },
@@ -391,13 +391,13 @@ export const projects: Project[] = [
                 title: "What I designed and built",
                 body: [
                     "I originated the product thesis, defined the information architecture and pairing journey, designed the responsive interface, structured the meal and side-dish content model, and implemented the complete application.",
-                    "The working build uses Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Fuse.js, and structured pairing data. It includes keyboard-operable cards and dialogs, visible focus treatment, semantic labelling, responsive layouts, and reduced-motion behaviour.",
+                    "The working build uses Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Fuse.js, and structured pairing data. It includes keyboard-operable cards and dialogs, visible focus treatment, semantic labelling, responsive layouts, and reduced-motion behavior.",
                 ],
             },
             {
                 title: "Current development state",
                 body: [
-                    "The application is functional, but the recipes and supporting data remain placeholders for testing interaction, content hierarchy, and pairing behaviour. The NOURISH team will replace them with reviewed recipes and program content before release.",
+                    "The application is functional, but the recipes and supporting data remain placeholders for testing interaction, content hierarchy, and pairing behavior. The NOURISH team will replace them with reviewed recipes and program content before release.",
                     "A technical specialist is handling the behind-the-scenes embedding work for the Stanford Medicine NOURISH website. My documented contribution covers concept creation, product design, and technical implementation; clinical validation, health outcomes, and launch adoption remain outside the current evidence.",
                 ],
             },
@@ -405,7 +405,7 @@ export const projects: Project[] = [
         caseStudy: {
             question: "How might an AI meal-pairing tool improve a familiar meal without demanding unfamiliar substitutions or specialist nutrition knowledge?",
             framing: "The design answer was to preserve the main dish, offer complementary sides as reversible choices, and explain balance only after the complete plate is visible. That principle shaped the product architecture, visual hierarchy, pairing logic, and accessibility decisions.",
-            processEyebrow: "Human-centred product method",
+            processEyebrow: "Human-centered product method",
             processHeading: "From familiar food to an explainable plate",
             processSummary: "Each phase converted a nutrition principle into a product decision and then into working software. The sequence shows both the design reasoning and what I personally executed.",
             steps: [
@@ -413,7 +413,7 @@ export const projects: Project[] = [
                     phase: "Empathize",
                     title: "Start from the meal people already choose",
                     rationale: "Culturally meaningful food is a source of identity and familiarity. Beginning with replacement would add emotional and cognitive friction before guidance starts.",
-                    execution: "Made free-text meal search and recognisable examples the first interaction, then kept the selected main dish visually dominant throughout the experience.",
+                    execution: "Made free-text meal search and recognizable examples the first interaction, then kept the selected main dish visually dominant throughout the experience.",
                 },
                 {
                     phase: "Define",
@@ -436,7 +436,7 @@ export const projects: Project[] = [
                 {
                     phase: "Deliver",
                     title: "Build for accessibility, portability, and institutional handoff",
-                    rationale: "A persuasive prototype still needs responsive behaviour, keyboard access, realistic content structures, and a path into the host institution.",
+                    rationale: "A persuasive prototype still needs responsive behavior, keyboard access, realistic content structures, and a path into the host institution.",
                     execution: "Implemented the full responsive product, accessible interactions, reduced-motion support, shareable output, repository, deployment, and handoff for Stanford Medicine embedding.",
                 },
             ],
@@ -452,15 +452,15 @@ export const projects: Project[] = [
     {
         id: "pgx-llm-copilot",
         title: "Pharmacogenomics LLM Copilot",
-        subtitle: "GenieRX — an LLM tool for gene-guided prescribing. 2nd in the US and 7th of 3,500 teams globally at Harvard HSIL.",
-        description: "An LLM tool that turns a patient's genotype into safer prescribing across commonly prescribed medications. Built with a five-person team at the Harvard HSIL hackathon, advanced through its Venture Incubation Program, and grounded in Stanford research on CPIC-guideline prescribing.",
+        subtitle: "An LLM tool for gene-guided prescribing. 2nd in the US, 7th of 3,500 globally at Harvard HSIL.",
+        description: "Turns a patient's genotype into safer prescribing across common medications. Built with a five-person team at the Harvard HSIL hackathon, then taken through its Venture Incubation Program, grounded in Stanford research on CPIC-guideline prescribing.",
         image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
         tags: ["Pharmacogenomics", "Clinical Decision Support", "LLM"],
         role: "GenieRX Team Leader → Director (Harvard HSIL); pharmacogenomics CDS researcher (Stanford Medicine)",
         client: "Harvard Health Systems Innovation Lab · Stanford Medicine",
         duration: "Hackathon + venture incubation; ongoing Stanford research",
         tools: ["LLM prompting", "CPIC guideline logic", "Clinical workflow mapping", "Figma"],
-        outcome: "Led a five-person team to 2nd nationally (USA) and 7th of 3,500 teams globally, then directed GenieRX through the HSIL Venture Incubation Program. The clinical-workflow direction is grounded in Stanford research on CPIC-guideline-based prescribing and translating pharmacogenomics into practice.",
+        outcome: "Led a five-person team to 2nd nationally and 7th of 3,500 globally, then directed GenieRX through the HSIL Venture Incubation Program. The clinical-workflow direction draws on Stanford research into CPIC-guideline prescribing.",
         accent: "#2563eb",
         stats: [
             { label: "Recognition", value: "2nd US · 7th / 3,500 global" },
@@ -478,7 +478,7 @@ export const projects: Project[] = [
                 title: "The problem",
                 body: [
                     "Clinicians prescribe under time pressure, with pharmacogenomic evidence scattered across guidelines and databases.",
-                    "GenieRX moves them from genotype to a concrete prescribing action, instead of just answering a question.",
+                    "GenieRX moves them from genotype to a prescribing action, not an answer to a question.",
                 ],
             },
             {
@@ -491,7 +491,7 @@ export const projects: Project[] = [
             {
                 title: "Why it matters",
                 body: [
-                    "Pharmacogenomics only improves safety when the guidance reaches the clinician while they prescribe — GenieRX delivers it there.",
+                    "Pharmacogenomics only improves safety when the guidance reaches the clinician while they prescribe. GenieRX puts it there.",
                     "It pairs a competition-tested build with Stanford research on how CPIC guidelines translate into real prescribing.",
                 ],
             },
@@ -505,8 +505,8 @@ export const projects: Project[] = [
     {
         id: "neuragility-xr-prehab",
         title: "NeurAgility XR Prehab",
-        subtitle: "XR Hack the Bay Social Good winner: a wearable-signal and immersive-training prototype for precision prehabilitation.",
-        description: "NeurAgility reframed prehab as an interactive feedback loop: wearable signals make body activation visible, while an XR environment turns repetitive movement into a guided, motivating task. It remains a hackathon prototype and has not been clinically validated.",
+        subtitle: "XR Hack the Bay Social Good winner: a wearable-signal and XR training prototype for prehab.",
+        description: "Wearable signals make body activation visible; an XR environment turns repetitive movement into a guided task. Still a hackathon prototype, not clinically validated.",
         image: neuragilityHero,
         heroFit: "contain",
         heroAspect: "16/9",
@@ -515,7 +515,7 @@ export const projects: Project[] = [
         client: "XR Hack the Bay",
         duration: "Hackathon prototype",
         tools: ["XR prototyping", "Wearable biosignal feedback", "Movement-based interaction design", "Rapid prototyping"],
-        outcome: "Won the Social Good category at XR Hack the Bay with a prototype positioning precision prehab as a clearer, more motivating interaction between body signals and immersive tasks.",
+        outcome: "Won the Social Good category at XR Hack the Bay.",
         accent: "#7c3aed",
         stats: [
             { label: "Recognition", value: "XR Hack the Bay · Social Good winner" },
@@ -526,7 +526,7 @@ export const projects: Project[] = [
         highlights: [
             { title: "Visible signals", text: "Muscle activation and movement feedback are shown to the user, not buried in instrumentation." },
             { title: "Movement as a task", text: "The XR environment turns repetitive prehab into a spatial task with visual goals and progression." },
-            { title: "Honest scope", text: "A hackathon-winning concept and working demo — no claims of clinical validation or deployment." },
+            { title: "Honest scope", text: "A hackathon-winning concept and working demo. No claims of clinical validation or deployment." },
         ],
         sections: [
             {
@@ -540,14 +540,14 @@ export const projects: Project[] = [
                 title: "How it works",
                 body: [
                     "Wearable signal capture drives an XR environment: the signal view proves movement is measured, and the immersive scene gives it a goal.",
-                    "Users never read raw biosignals — the prototype turns them into a visible, goal-oriented training loop.",
+                    "Users never read raw biosignals. The prototype turns them into a visible, goal-oriented training loop.",
                 ],
             },
             {
                 title: "Why it works",
                 body: [
-                    "The loop connects clinical need, user motivation, and trustworthy signals, not just a novel headset demo.",
-                    "XR sits as a behaviour layer around precision movement practice — closer to a care workflow than a standalone game.",
+                    "The loop connects clinical need, user motivation, and trustworthy signals rather than a novel headset demo.",
+                    "XR sits as a behavior layer around precision movement practice, closer to a care workflow than a standalone game.",
                 ],
             },
         ],
@@ -567,7 +567,7 @@ export const projects: Project[] = [
                 {
                     phase: "Instrument",
                     title: "Make activation visible",
-                    rationale: "A health-tech prototype needs evidence that movement is being sensed, not just animated. Signal visibility builds trust in the concept.",
+                    rationale: "A health-tech prototype needs evidence that movement is being sensed rather than animated. Signal visibility builds trust in the concept.",
                     execution: "Used demo footage showing wearable setup and signal changes between baseline and activation states as the primary evidence.",
                 },
                 {
@@ -585,7 +585,7 @@ export const projects: Project[] = [
                 {
                     phase: "Deliver",
                     title: "Ship a working social-good demo",
-                    rationale: "The prototype had to show clear social value and feasibility, not just a technical trick.",
+                    rationale: "The prototype had to show social value and feasibility, not a technical trick.",
                     execution: "Delivered a Social Good-winning demo that makes precision prehab clearer and more motivating, without claiming clinical efficacy.",
                 },
             ],
@@ -594,7 +594,7 @@ export const projects: Project[] = [
             { src: neuragilityHero, alt: "NeurAgility title frame reading Precision Prehab Made Easy", caption: "The demo positioned the prototype around a clear product promise: precision prehab made easier to understand and repeat.", fit: "contain", aspect: "16/9" },
             { src: neuragilityWearable, alt: "Person wearing an XR headset and biosignal setup during the NeurAgility demo", caption: "The physical setup links the immersive experience to body-signal sensing rather than treating the XR world as a standalone game.", fit: "cover", aspect: "16/9" },
             { src: neuragilitySignalBaseline, alt: "Baseline biosignal dashboard from the NeurAgility demo", caption: "A signal view establishes the evidence layer: movement can be detected and represented before it becomes user-facing feedback.", fit: "contain", aspect: "16/9" },
-            { src: neuragilitySignalActivation, alt: "Biosignal dashboard showing activation during the NeurAgility demo", caption: "The demo contrasts low activity with activation — feedback you can see.", fit: "contain", aspect: "16/9" },
+            { src: neuragilitySignalActivation, alt: "Biosignal dashboard showing activation during the NeurAgility demo", caption: "The demo contrasts low activity with activation: feedback you can see.", fit: "contain", aspect: "16/9" },
             { src: neuragilityShoulderContext, alt: "Shoulder anatomy and digital interface visual from the NeurAgility demo", caption: "The product is anchored in shoulder-focused movement and prehab rather than generic XR training.", fit: "cover", aspect: "16/9" },
             { src: neuragilityXrTraining, alt: "First-person XR environment with movement targets in the NeurAgility prototype", caption: "The immersive environment converts exercise into a spatial task with visual goals and progression cues.", fit: "cover", aspect: "16/9" },
             { src: neuragilityMovementDemo, alt: "Split-screen NeurAgility demo showing XR environment beside the person performing movement", caption: "The strongest proof-of-concept moment: the user moves in the room while the XR world represents the training task.", fit: "cover", aspect: "16/9" },
@@ -609,8 +609,8 @@ export const projects: Project[] = [
     {
         id: "healthcare-from-the-eye",
         title: "Healthcare from the Eye",
-        subtitle: "Designing an implementation model for AI-enabled diabetic-retinopathy screening across primary care, ophthalmology, payers, and technology partners.",
-        description: "As Student Project Manager for a Microsoft × Stanford MED 232 project focused on Topcon-enabled Healthcare from the Eye, I led a multidisciplinary team from needs finding through workflow design, stakeholder strategy, reimbursement analysis, and a scenario-based business model.",
+        subtitle: "An implementation model for AI-enabled diabetic-retinopathy screening in primary care.",
+        description: "As Student Project Manager on a Microsoft × Stanford MED 232 project, I led a team from needs finding through workflow design, stakeholder strategy, reimbursement analysis, and a scenario-based business model.",
         image: hfteDeviceWorkflow,
         heroFit: "contain",
         heroAspect: "16/9",
@@ -618,8 +618,8 @@ export const projects: Project[] = [
         role: "Student Project Manager and health-systems lead",
         client: "Microsoft × Stanford MED 232, with the Topcon-enabled HFTE ecosystem",
         duration: "2025",
-        tools: ["Stanford Biodesign", "Stakeholder interviews", "Literature synthesis", "Workflow mapping", "Business modelling", "Reimbursement analysis", "Strategic planning", "Manuscript development"],
-        outcome: "Produced a scenario-based revenue model, HFTE awareness paper, and strategic action plan, while contributing to manuscript development on HFTE's disruptive potential.",
+        tools: ["Stanford Biodesign", "Stakeholder interviews", "Literature synthesis", "Workflow mapping", "Business modeling", "Reimbursement analysis", "Strategic planning", "Manuscript development"],
+        outcome: "Produced a scenario revenue model, an awareness paper, and a staged action plan, and contributed to a manuscript on HFTE's disruptive potential.",
         accent: "#8c1515",
         stats: [
             { label: "Access focus", value: "Diabetic-retinopathy screening in rural and under-resourced settings" },
@@ -636,7 +636,7 @@ export const projects: Project[] = [
             {
                 title: "The need behind the technology",
                 body: [
-                    "Diabetic retinopathy is a major source of preventable blindness, yet the source deck identified a persistent screening gap and materially lower access among rural and underserved populations. The problem was not simply whether retinal AI could detect disease; it was whether the health system could reach people early enough and move positive findings into care.",
+                    "Diabetic retinopathy is a major source of preventable blindness, yet the source deck identified a persistent screening gap and materially lower access among rural and underserved populations. The problem was not whether retinal AI could detect disease; it was whether the health system could reach people early enough and move positive findings into care.",
                     "Healthcare from the Eye combines non-invasive retinal imaging, AI-supported risk stratification and triage, and patient engagement. That means the product boundary extends from a camera in primary care through cloud infrastructure, graded results, EHR integration, consultation, referral, and follow-up.",
                 ],
             },
@@ -644,7 +644,7 @@ export const projects: Project[] = [
                 title: "Biodesign as the operating method",
                 body: [
                     "I led the team through Stanford Biodesign's identify, invent, and implement phases. Needs finding combined stakeholder conversations with literature review; concept screening reframed HFTE around benefits and burdens across the ecosystem; implementation work converted those insights into concrete operating and business decisions.",
-                    "The work deliberately moved beyond an efficacy story. An FDA-cleared or technically effective tool still has to fit clinical routines, earn staff buy-in, connect to the EHR, protect data, support follow-up capacity, and produce a credible reason for practices and payers to participate.",
+                    "The work moved beyond an efficacy story. An FDA-cleared or technically effective tool still has to fit clinical routines, earn staff buy-in, connect to the EHR, protect data, support follow-up capacity, and produce a credible reason for practices and payers to participate.",
                 ],
             },
             {
@@ -658,14 +658,14 @@ export const projects: Project[] = [
                 title: "The system that has to move",
                 body: [
                     "The stakeholder map made implementation dependencies visible. Topcon and other imaging partners support oculomics; Microsoft provides connective cloud infrastructure; primary-care and eye-care organizations carry triage and treatment work; payers shape financial viability; and community and patient organizations influence awareness and uptake.",
-                    "Three scale barriers organized the strategy: workflow implementation, adoption, and reimbursement. Each demanded a different response—standardized workflows and training, lower-friction leasing and patient education, and a reimbursement narrative that positions screening as a gateway into appropriate care rather than a threat to downstream revenue.",
+                    "Three scale barriers organized the strategy: workflow implementation, adoption, and reimbursement. Each demanded a different response: standardized workflows and training, lower-friction leasing and patient education, and a reimbursement narrative that positions screening as a gateway into appropriate care rather than a threat to downstream revenue.",
                 ],
             },
             {
                 title: "A business case, not a promised outcome",
                 body: [
                     "The revenue model was built as a scenario tool, not as observed performance. It tested the economics of opportunistic screening using explicit assumptions about daily eligible patients, payer mix, reimbursement, equipment leasing, cloud and algorithm costs, and staff time.",
-                    "Under the deck's assumptions, the model estimated annual profit in the range of approximately $275,000 to $571,000 for 4,000–8,000 screened patients. Its purpose was to make the adoption conversation concrete and expose which assumptions require validation—not to claim realized revenue.",
+                    "Under the deck's assumptions, the model estimated annual profit in the range of approximately $275,000 to $571,000 for 4,000–8,000 screened patients. Its purpose was to make the adoption conversation concrete and expose which assumptions require validation, not to claim realized revenue.",
                 ],
             },
             {
@@ -698,7 +698,7 @@ export const projects: Project[] = [
                 {
                     phase: "Invent",
                     title: "Redesign the service around the fast scan",
-                    rationale: "The speed advantage matters only when image quality, grading, EHR export, consultation, referral, and follow-up are deliberately connected.",
+                    rationale: "The speed advantage matters only when image quality, grading, EHR export, consultation, referral, and follow-up are connected.",
                     execution: "Led comparison of specialist-dependent and primary-care pathways, then defined handoffs, result states, escalation routes, and follow-up requirements.",
                 },
                 {
@@ -729,7 +729,7 @@ export const projects: Project[] = [
         id: "ent-readmission-platform",
         title: "PainGone PainGuin",
         subtitle: "A two-sided home-recovery concept for children after tonsillectomy and adenoidectomy.",
-        description: "Completed through the Stanford Biodesign for Digital Health program, this concept pairs caregiver guidance and proactive risk monitoring with a child-facing companion designed to support hydration, nutrition, medication, and pain-management routines during the first seven days at home.",
+        description: "Built in the Stanford Biodesign for Digital Health program. Caregiver guidance and risk monitoring pair with a child-facing companion that supports hydration, nutrition, medication, and pain management through the first seven days at home.",
         image: entPainGonePainGuinConcept,
         heroFit: "contain",
         heroAspect: "16/9",
@@ -738,7 +738,7 @@ export const projects: Project[] = [
         client: "Stanford Biodesign for Digital Health · Team 6, Hospital at Home",
         duration: "10-week experiential program",
         tools: ["Clinical and end-user interviews", "Biodesign needs finding", "Need-statement development", "Literature synthesis", "Stakeholder mapping", "Concept generation and screening", "Care-pathway mapping", "Behavioral design", "Risk-escalation design", "Business-model assumptions", "Pilot planning"],
-        outcome: "Applied Stanford's needs-driven Biodesign process with ENT surgeons, hospital teams, children, and parents to develop an ENT-specific app-and-companion concept, home-recovery workflow, stakeholder value map, and staged validation plan.",
+        outcome: "Applied Stanford's needs-driven Biodesign process with ENT surgeons, hospital teams, children, and parents to produce the app-and-companion concept, home-recovery workflow, stakeholder value map, and staged validation plan.",
         accent: "#c52f47",
         links: [
             { label: "Stanford Biodesign process", url: "https://biodesign.stanford.edu/about-us/process.html" },
@@ -767,7 +767,7 @@ export const projects: Project[] = [
                 title: "From the teaching framework to fieldwork",
                 body: [
                     "The official framework moves through Identify, Invent, and Implement, with iteration inside every phase. In this project, classroom teaching was immediately applied to a live pediatric ENT challenge: observe and research the recovery problem, define and filter the need, generate and compare concepts, and then test whether the lead concept could fit a real care pathway.",
-                    "We interviewed ENT surgeons, worked with hospital teams, and engaged end users—including children who had experienced tonsillitis and parents managing tonsillitis at home. This combination prevented the project from being shaped by one perspective alone: clinical stakeholders described safety, escalation, and discharge constraints, while families exposed the practical and emotional work of hydration, food, medication, pain, and uncertainty outside the hospital.",
+                    "We interviewed ENT surgeons, worked with hospital teams, and engaged end users, including children who had experienced tonsillitis and parents managing tonsillitis at home. This combination prevented the project from being shaped by one perspective alone: clinical stakeholders described safety, escalation, and discharge constraints, while families exposed the practical and emotional work of hydration, food, medication, pain, and uncertainty outside the hospital.",
                 ],
             },
             {
@@ -781,7 +781,7 @@ export const projects: Project[] = [
                 title: "What the interviews changed",
                 body: [
                     "The interviews shifted the problem away from generic discharge education. Parents did need clearer information, but the daily recovery routine also depended on whether a child in pain would drink, eat, and take medication. The design therefore had to support caregiver comprehension and child cooperation at the same time.",
-                    "Hospital and ENT perspectives also made escalation part of the product boundary. Logging symptoms without a clear response would simply move uncertainty into a screen. The concept therefore connected daily tracking to explainable risk flags, next-step guidance, and a route back to the care team.",
+                    "Hospital and ENT perspectives also made escalation part of the product boundary. Logging symptoms without a clear response would move uncertainty into a screen. The concept therefore connected daily tracking to explainable risk flags, next-step guidance, and a route back to the care team.",
                 ],
             },
             {
@@ -815,7 +815,7 @@ export const projects: Project[] = [
         ],
         caseStudy: {
             question: "How might an ENT recovery system help caregivers know what to do while motivating children to drink, eat, and take medication during the highest-risk week at home?",
-            framing: "The design challenge was not simply to digitize discharge instructions. It was to connect comprehension, child behavior, daily monitoring, and clinical escalation in one low-friction recovery loop—then define what evidence would be required before deployment.",
+            framing: "The challenge was not digitizing discharge instructions. It was connecting comprehension, child behavior, daily monitoring, and clinical escalation in one low-friction recovery loop—then define what evidence would be required before deployment.",
             processEyebrow: "Stanford Biodesign for Digital Health",
             processHeading: "Teaching framework → field evidence → testable care concept",
             processSummary: "The project used Stanford Biodesign's Identify–Invent–Implement structure as an applied working method. Each phase shows how formal teaching was converted into interviews, design decisions, concept artifacts, and an evidence plan.",
@@ -867,7 +867,7 @@ export const projects: Project[] = [
         id: "dialysis-device-gtm",
         title: "Adcem × Fidson Dialysis Access",
         subtitle: "Building a local manufacturing and home peritoneal-dialysis pathway for Nigeria.",
-        description: "Through Stanford GSB SEED, I supported product management and business development for the Adcem Fidson joint venture—connecting manufacturing economics, a CR-CAPD home-therapy model, clinical implementation, validation design, and a route to scale.",
+        description: "Through Stanford GSB SEED, I supported product management and business development for the Adcem Fidson joint venture, connecting manufacturing economics, a CR-CAPD home-therapy model, clinical implementation, validation design, and a route to scale.",
         image: adcemLocalManufacturing,
         heroFit: "contain",
         heroAspect: "16/9",
@@ -875,8 +875,8 @@ export const projects: Project[] = [
         role: "Product Management and Business Development Intern",
         client: "Adcem Fidson Joint Venture · Stanford GSB SEED",
         duration: "April–December 2025",
-        tools: ["Product management", "Business development", "Renal-care pathway design", "Financial modelling", "Partnership design", "Pilot planning", "Supply-chain strategy", "Clinical advisory coordination", "Implementation strategy"],
-        outcome: "Translated the venture thesis into pilot and implementation plans, financial modelling, partnership documents, audits, and supply-chain strategy for a proposed Nigerian dialysis-manufacturing and home-CAPD platform.",
+        tools: ["Product management", "Business development", "Renal-care pathway design", "Financial modeling", "Partnership design", "Pilot planning", "Supply-chain strategy", "Clinical advisory coordination", "Implementation strategy"],
+        outcome: "Turned the venture thesis into pilot plans, financial models, partnership documents, audits, and supply-chain strategy for a proposed Nigerian dialysis-manufacturing and home-CAPD platform.",
         accent: "#0b4a9f",
         stats: [
             { label: "Venture model", value: "Adcem channels and technology transfer × Fidson manufacturing" },
@@ -928,7 +928,7 @@ export const projects: Project[] = [
             {
                 title: "My contribution and the scale pathway",
                 body: [
-                    "As Product Management and Business Development Intern, I worked across financial modelling, partnership documentation, pilot planning, implementation strategy, clinical advisory coordination, audits, and supply-chain planning.",
+                    "As Product Management and Business Development Intern, I worked across financial modeling, partnership documentation, pilot planning, implementation strategy, clinical advisory coordination, audits, and supply-chain planning.",
                     "The proposed scale pathway used the feasibility study to support clinical publication, engagement with nephrology leaders and policymakers, insurance advocacy, community outreach, and future replication. The evidence documents strategy and planned implementation; the pilot and projected clinical or commercial outcomes have not yet been achieved.",
                 ],
             },
@@ -944,13 +944,13 @@ export const projects: Project[] = [
                     phase: "Frame",
                     title: "Define the access problem beneath treatment demand",
                     rationale: "Renal-care demand alone does not explain access. Import dependence, urban concentration, recurring consumable costs, and limited local production shape whether treatment is reachable.",
-                    execution: "Synthesised proposal evidence into a market problem statement connecting clinical need, treatment economics, supply exposure, and manufacturing capacity.",
+                    execution: "Synthesized proposal evidence into a market problem statement connecting clinical need, treatment economics, supply exposure, and manufacturing capacity.",
                 },
                 {
                     phase: "Structure",
                     title: "Translate complementary assets into a joint operating model",
                     rationale: "A joint venture only becomes executable when technology transfer, production, quality, sourcing, training, off-take, and distribution responsibilities are explicit.",
-                    execution: "Supported partnership documentation, financial modelling, governance planning, and the division of work between Adcem's dialysis capabilities and Fidson's manufacturing platform.",
+                    execution: "Supported partnership documentation, financial modeling, governance planning, and the division of work between Adcem's dialysis capabilities and Fidson's manufacturing platform.",
                 },
                 {
                     phase: "Design",
@@ -973,7 +973,7 @@ export const projects: Project[] = [
             ],
         },
         media: [
-            { src: adcemDialysisMarket, alt: "Joint-venture proposal slide summarizing chronic kidney disease and dialysis demand estimates in Nigeria and across Africa", caption: "The proposal synthesised renal-care demand estimates to frame dialysis access as both a health-system and capacity problem.", fit: "contain", aspect: "16/9" },
+            { src: adcemDialysisMarket, alt: "Joint-venture proposal slide summarizing chronic kidney disease and dialysis demand estimates in Nigeria and across Africa", caption: "The proposal synthesized renal-care demand estimates to frame dialysis access as both a health-system and capacity problem.", fit: "contain", aspect: "16/9" },
             { src: adcemMarketPainPoints, alt: "Four-part analysis of Nigeria's fragmented medical-supply market, import reliance, limited local production, and sector complexity", caption: "The market diagnosis connected fragmented supply, import exposure, limited local production, and regulatory and workforce constraints.", fit: "contain", aspect: "16/9" },
             { src: adcemLocalManufacturing, alt: "Current-state and future-state model showing the shift from imported finished dialysis goods to local Nigerian manufacturing", caption: "The operating thesis is visible in one transition: import inputs, manufacture locally, and return cost savings to the care pathway.", fit: "contain", aspect: "16/9" },
         ],

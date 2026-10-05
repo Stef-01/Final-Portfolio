@@ -41,77 +41,77 @@ export const TimelineSection = () => {
             title: "BHLTH",
             period: "2019-2023",
             image: imgAustralianNationalUniversity,
-            description: "Bachelor of Health Science at ANU, grounding me in population health and equity.",
+            description: "Bachelor of Health Science at ANU: population health and equity.",
         },
         {
             id: "internships",
             title: "National Internships",
             period: "2022",
             image: imgNationalInternships,
-            description: "Parliamentary policy internship translating complex evidence into post COVID recovery recommendations.",
+            description: "Parliamentary policy internship translating evidence into post-COVID recovery recommendations.",
         },
         {
             id: "consulting",
             title: "180 Degrees Consulting",
             period: "2022",
             image: img180DegreesConsulting,
-            description: "Financial strategy advisory for a large education nonprofit, strengthening my analytical and client skills.",
+            description: "Financial strategy advisory for a large education nonprofit.",
         },
         {
             id: "md",
             title: "MD (II)",
             period: "2023-2027",
             image: imgMacquarieUniversity,
-            description: "Macquarie University MD training, building my clinical foundations for work with underserved communities.",
+            description: "Macquarie University MD training, aimed at work with underserved communities.",
         },
         {
             id: "ms",
             title: "M.S",
             period: "2025-2026",
             image: imgStanfordUniversityLogo,
-            description: "Community Health and Prevention Research at Stanford, focusing on precision medicine and health equity.",
+            description: "Community Health and Prevention Research at Stanford: precision medicine and health equity.",
         },
         {
             id: "biodesign",
             title: "Stanford Biodesign",
             period: "2025",
             image: imgStanfordBiodesign,
-            description: "Completed the application-only Stanford Biodesign for Digital Health program, applying its needs-driven method with ENT surgeons, hospital teams, children, and parents to develop PainGone PainGuin.",
+            description: "Stanford Biodesign for Digital Health. Applied its needs-driven method with ENT surgeons, hospital teams, children, and parents to build PainGone PainGuin.",
         },
         {
             id: "seed",
             title: "Stanford Seed",
             period: "2025",
             image: imgStanfordGsbSeed,
-            description: "Stanford Seed internship in Nigeria, advising go to market strategy and product management for a dialysis medical device.",
+            description: "Stanford Seed internship in Nigeria, on go-to-market and product management for a dialysis device.",
         },
         {
             id: "harvard",
             title: "Harvard Venture Building",
             period: "2025",
             image: imgHarvardUniversityLogo,
-            description: "Harvard Venture Building Program, a four week course taught by VCs and Harvard Business School and Harvard T H Chan faculty.",
+            description: "Harvard Venture Building Program, a four-week course taught by VCs and Harvard Business School and T.H. Chan faculty.",
         },
         {
             id: "hsil",
             title: "Harvard HSIL",
             period: "2025",
             image: imgHarvardHsil,
-            description: "Ten week HSIL competition where our team placed 7th of 3,500 after four national and international rounds, leading to invitation into the Venture Building Program.",
+            description: "Ten-week HSIL competition. Our team placed 7th of 3,500 across four rounds, which led to the Venture Building Program.",
         },
         {
             id: "hopkins",
             title: "Johns Hopkins",
             period: "2025",
             image: imgHopkinsUniversityLogo,
-            description: "Programming with Johns Hopkins University across its venture and entrepreneurship initiatives.",
+            description: "Venture and entrepreneurship programming with Johns Hopkins University.",
         },
         {
             id: "pava",
             title: "Hopkins Pava Center",
             period: "2025",
             image: imgHopkinsPavaCenter,
-            description: "Entrepreneurship training at the Pava Center, refining venture design for impactful health startups.",
+            description: "Entrepreneurship training at the Pava Center, focused on health venture design.",
         },
     ];
 
@@ -194,7 +194,7 @@ export const TimelineSection = () => {
             <section className="w-full bg-white px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))]">
                 <div className="max-w-md mx-auto">
                     <div className="mb-8 text-center">
-                        <h2 className="text-3xl font-bold tracking-tight text-black">How the path was built</h2>
+                        <h2 className="text-3xl font-bold tracking-tight text-black">How I got here</h2>
                     </div>
 
                     <div className="relative pl-6">
@@ -250,7 +250,7 @@ export const TimelineSection = () => {
     return (
         <div className="w-full overflow-hidden bg-white pt-20 pb-32" ref={timelineContainerRef}>
             <div className="mx-auto mb-12 max-w-5xl px-4 text-center">
-                <h2 className="t-h2 font-bold tracking-tight text-black">The environments that shaped the work</h2>
+                <h2 className="t-h2 font-bold tracking-tight text-black">How I got here</h2>
             </div>
             <div
                 style={{
@@ -568,7 +568,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'bhlth' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2468, top: 325, maxWidth: 600, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Bachelor of Health Science at ANU, grounding me in population health and equity.</p>
+                        <p className="text-xl">Bachelor of Health Science at ANU: population health and equity.</p>
                     </div>
 
                     {/* Hover Description - National Internships */}
@@ -576,7 +576,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'internships' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1505, top: 555, maxWidth: 700, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Parliamentary policy internship translating complex evidence into post COVID recovery recommendations.</p>
+                        <p className="text-xl">Parliamentary policy internship translating evidence into post-COVID recovery recommendations.</p>
                     </div>
 
                     {/* Hover Description - 180 Degrees Consulting */}
@@ -584,7 +584,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'consulting' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2341 - 100, top: 555, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Financial strategy advisory for a large education nonprofit, strengthening my analytical and client skills.</p>
+                        <p className="text-xl">Financial strategy advisory for a large education nonprofit.</p>
                     </div>
 
                     {/* Hover Description - MD */}
@@ -592,7 +592,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'md' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 496, maxWidth: 600, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Macquarie University MD training, building my clinical foundations for work with underserved communities.</p>
+                        <p className="text-xl">Macquarie University MD training, aimed at work with underserved communities.</p>
                     </div>
 
                     {/* Hover Description - M.S */}
@@ -600,7 +600,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'ms' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 1287, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Community Health and Prevention Research at Stanford, focusing on precision medicine and health equity.</p>
+                        <p className="text-xl">Community Health and Prevention Research at Stanford: precision medicine and health equity.</p>
                     </div>
 
                     {/* Hover Description - Stanford Biodesign */}
@@ -608,7 +608,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'biodesign' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1800, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Completed the application-only Stanford Biodesign for Digital Health program, applying its needs-driven method with ENT surgeons, hospital teams, children, and parents to develop PainGone PainGuin.</p>
+                        <p className="text-xl">Stanford Biodesign for Digital Health. Applied its needs-driven method with ENT surgeons, hospital teams, children, and parents to build PainGone PainGuin.</p>
                     </div>
 
                     {/* Hover Description - Stanford Seed */}
@@ -616,7 +616,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'seed' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2499 - 150, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Stanford Seed internship in Nigeria, advising go to market strategy and product management for a dialysis medical device.</p>
+                        <p className="text-xl">Stanford Seed internship in Nigeria, on go-to-market and product management for a dialysis device.</p>
                     </div>
 
                     {/* Hover Description - Harvard */}
@@ -624,7 +624,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'harvard' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1947, top: 1545, maxWidth: 700, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Harvard Venture Building Program, a four week course taught by VCs and Harvard Business School and Harvard T H Chan faculty.</p>
+                        <p className="text-xl">Harvard Venture Building Program, a four-week course taught by VCs and Harvard Business School and T.H. Chan faculty.</p>
                     </div>
 
                     {/* Hover Description - HSIL */}
@@ -632,7 +632,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'hsil' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1825, top: 1727, maxWidth: 800, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Ten week HSIL competition where our team placed 7th of 3,500 after four national and international rounds, leading to invitation into the Venture Building Program.</p>
+                        <p className="text-xl">Ten-week HSIL competition. Our team placed 7th of 3,500 across four rounds, which led to the Venture Building Program.</p>
                     </div>
 
                     {/* Hover Description - Hopkins */}
@@ -640,7 +640,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'hopkins' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1945, top: 2026, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Programming with Johns Hopkins University across its venture and entrepreneurship initiatives.</p>
+                        <p className="text-xl">Venture and entrepreneurship programming with Johns Hopkins University.</p>
                     </div>
 
                     {/* Hover Description - Pava Center */}
@@ -648,7 +648,7 @@ export const TimelineSection = () => {
                         className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'pava' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2108, top: 2165, maxWidth: 650, zIndex: 9999 }}
                     >
-                        <p className="text-xl">Entrepreneurship training at the Pava Center, refining venture design for impactful health startups.</p>
+                        <p className="text-xl">Entrepreneurship training at the Pava Center, focused on health venture design.</p>
                     </div>
                 </div>
             </div>

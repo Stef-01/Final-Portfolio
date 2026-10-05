@@ -17,7 +17,7 @@ const roleCards = [
   },
   {
     title: "Facilitation for creative savants",
-    text: "Taught entrepreneurship as a practical design discipline, helping learners turn lived context and creative strengths into testable venture opportunities.",
+    text: "Entrepreneurship taught as a design discipline: lived context and creative strengths turned into testable opportunities.",
   },
 ];
 
@@ -26,25 +26,25 @@ const methodCards = [
     title: "Curiosity to advantage",
     icon: Map,
     image: tliaCuriosityMap,
-    text: "Students begin by mapping interests, strengths, and lived context so venture ideas start from authentic unfair advantages rather than generic startup prompts.",
+    text: "Students map interests, strengths, and lived context first, so ideas start from a real advantage rather than a generic startup prompt.",
   },
   {
     title: "Needs before ideas",
     icon: Search,
     image: tliaNeedsFinding,
-    text: "The curriculum pushes learners into customer workflows, pain points, unmet needs, and opportunity lenses before they lock onto a solution.",
+    text: "Learners study customer workflows, pain points, and unmet needs before locking onto a solution.",
   },
   {
     title: "Validation discipline",
     icon: Lightbulb,
     image: tliaPainScoring,
-    text: "Problems are scored by urgency and impact, then translated into hypotheses, fast tests, and evidence standards before resources are committed.",
+    text: "Problems are scored by urgency and impact, then turned into hypotheses and fast tests before resources are committed.",
   },
   {
     title: "Pitch-ready synthesis",
     icon: Presentation,
     image: tliaPitching,
-    text: "The bootcamp closes by connecting customer, problem, market size, competitive advantage, economics, and positioning into concise pitch structures.",
+    text: "The bootcamp closes by pulling customer, problem, market, advantage, and economics into one pitch.",
   },
 ];
 

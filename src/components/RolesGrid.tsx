@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
 
@@ -11,7 +11,10 @@ interface RolesGridProps {
 }
 
 const cardClasses =
-  "group relative block rounded-2xl bg-[#fafafa] p-6 md:p-8 transition-transform";
+  "group relative block rounded-3xl border border-black/[0.07] bg-white p-6 md:p-8 shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-all duration-200";
+
+const hoverClasses =
+  "cursor-pointer hover:-translate-y-1 hover:border-black/[0.14] hover:shadow-[0_10px_28px_rgba(0,0,0,0.08)]";
 
 export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
   return (
@@ -30,13 +33,13 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
           {roles.map((role, index) => {
             const body = (
               <>
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <p className="text-sm font-medium text-gray-500">
-                    {role.period} · {role.organization}
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.09em] text-gray-400">
+                    {role.period}
                   </p>
                   {role.link && (
-                    <span className="relative z-20 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                      <ArrowUpRight className="h-4 w-4" />
+                    <span className="relative z-20 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/[0.07] bg-white text-gray-400 transition-colors group-hover:border-black/[0.14] group-hover:text-black">
+                      <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
                     </span>
                   )}
                 </div>
@@ -45,21 +48,19 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
                   {role.title}
                 </h3>
 
-                {role.location && (
-                  <div className="mt-2 inline-flex items-center gap-1.5 text-sm text-gray-500">
-                    <MapPin className="h-3.5 w-3.5" />
-                    {role.location}
-                  </div>
-                )}
+                <p className="mt-1.5 text-sm text-gray-500">
+                  {role.organization}
+                  {role.location ? `, ${role.location}` : ""}
+                </p>
 
-                <p className="mt-4 text-base leading-relaxed text-gray-700">
+                <p className="mt-4 text-[15px] leading-relaxed text-gray-600">
                   {role.summary}
                 </p>
 
-                <ul className="mt-5 space-y-2">
+                <ul className="mt-4 space-y-1.5">
                   {role.deliverables.map((item) => (
-                    <li key={item} className="flex gap-3 text-sm text-gray-600">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-black/40" />
+                    <li key={item} className="flex gap-2.5 text-sm text-gray-500">
+                      <span className="mt-[0.5em] h-1 w-1 shrink-0 rounded-full bg-black/20" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -69,7 +70,7 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
                   {role.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-gray-600"
+                      className="rounded-full border border-black/[0.07] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.07em] text-gray-500"
                     >
                       {tag}
                     </span>
@@ -110,7 +111,7 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   {...animationProps}
-                  className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
+                  className={`${cardClasses} ${hoverClasses}`}
                 >
                   {body}
                 </motion.a>
@@ -121,7 +122,7 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
               <motion.div
                 key={role.id}
                 {...animationProps}
-                className={`${cardClasses} cursor-pointer hover:-translate-y-1`}
+                className={`${cardClasses} ${hoverClasses}`}
               >
                 <Link
                   to={role.link}

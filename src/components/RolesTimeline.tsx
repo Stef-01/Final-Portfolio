@@ -70,7 +70,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
                 }`}
             >
                 {role.organization}
-                {role.location ? ` · ${role.location}` : ""}
+                {role.location ? `, ${role.location}` : ""}
             </p>
 
             {/* Expanded body — summary, tags, actions */}

@@ -82,7 +82,7 @@ const ROLES: Record<string, RoleRef[]> = {
   // Innovation & Supply
   // (Pharmaceuticals and Biotech intentionally left empty.)
   distributor: [
-    { title: "Product Mgmt / BD Intern", org: "Adcem Fidson JV — Stanford GSB SEED" },
+    { title: "Product Mgmt / BD Intern", org: "Adcem Fidson JV · Stanford SEED" },
   ],
   meddev: [
     { title: "Student Project Manager", org: "Microsoft / Stanford Medicine HFTE" },

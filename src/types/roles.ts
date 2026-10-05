@@ -18,11 +18,11 @@ export const researchRoles: Role[] = [
     title: "Lead Research Coordinator",
     organization: "NOURISH / Stanford Prevention Research Center",
     period: "Dec 2025 – present",
-    location: "Stanford, CA",
+    location: "USA",
     summary:
-      "Coordinating the teaching-kitchen intervention manuscript and precision-nutrition research agenda for a community-embedded behavior-change program.",
+      "Coordinating the teaching-kitchen manuscript and precision-nutrition agenda for a community behavior-change program.",
     deliverables: [
-      "Teaching kitchen manuscript (in prep) — lead authorship",
+      "Teaching-kitchen manuscript (in prep), lead author",
       "Recruitment + curriculum fidelity across cohorts",
       "Behavior-change evaluation frameworks",
     ],
@@ -36,9 +36,9 @@ export const researchRoles: Role[] = [
     title: "Research Assistant",
     organization: "Han Lab / Stanford School of Medicine",
     period: "Mar 2025 – present",
-    location: "Stanford, CA",
+    location: "USA",
     summary:
-      "Lung-cancer ML with Prof. Summer Han — EGFR tumor-burden annotation, turning model outputs into precision-care reasoning.",
+      "Lung-cancer ML with Prof. Summer Han: EGFR tumor-burden annotation, and turning model outputs into precision-care reasoning.",
     deliverables: [
       "Tumor burden annotation pipeline",
       "EGFR mutation sub-cohort analysis",
@@ -52,7 +52,7 @@ export const researchRoles: Role[] = [
     title: "Student Project Manager",
     organization: "Microsoft / Stanford Medicine HFTE Initiative",
     period: "Jan 2025 – present",
-    location: "Stanford, CA",
+    location: "USA",
     summary:
       "Led a student team on health-systems operations for an oculomics device, and co-wrote a manuscript on its potential in ophthalmology and primary care.",
     deliverables: [
@@ -70,13 +70,13 @@ export const researchRoles: Role[] = [
     title: "Research Assistant",
     organization: "ANU National Centre for Epidemiology & Population Health",
     period: "Nov 2022 – Jan 2025",
-    location: "Canberra, Australia",
+    location: "Australia",
     summary:
-      "Implementation-focused work on Aboriginal preventive chronic-disease care, plus TB meta-analysis and cancer-symptom-burden research. Mentored PhD students through publication.",
+      "Aboriginal preventive chronic-disease care, TB meta-analysis, and cancer-symptom-burden research. Mentored PhD students through publication.",
     deliverables: [
       "3 peer-reviewed publications",
       "Meta-analysis protocols + PRISMA workflows",
-      "PhD-student mentoring → first-author outputs",
+      "PhD mentoring to first-author outputs",
     ],
     tags: ["Indigenous Health", "Implementation", "Meta-analysis"],
     accent: "bg-teal-500",
@@ -86,9 +86,9 @@ export const researchRoles: Role[] = [
     title: "Research Consultant",
     organization: "WHO Global Outbreak Alert and Response Network",
     period: "Jan 2022 – Nov 2022",
-    location: "Remote / Geneva",
+    location: "Remote",
     summary:
-      "Contributed to GOARN 2022–26 Strategic Plan and WPSAR paper on ML-enabled infectious-disease surveillance — connecting counterterrorism analytical methods to public-health response.",
+      "Contributed to the GOARN 2022–26 Strategic Plan and a WPSAR paper on ML-enabled surveillance, adapting counterterrorism methods to public-health response.",
     deliverables: [
       "GOARN 2022–26 Strategic Plan contributions",
       "WPSAR journal paper (2024)",
@@ -103,14 +103,14 @@ export const industryRoles: Role[] = [
   {
     id: "coethia",
     title: "Partnerships & Strategy Officer",
-    organization: "Coethia Inc.",
+    organization: "Coethia",
     period: "Ongoing",
-    summary:
-      "Leading partnerships and strategy across product, technology, and procurement.",
+    location: "Remote",
+    summary: "Partnerships and strategy across product, tech, and procurement.",
     deliverables: [
-      "Business partnerships — mockups and interactive concepts for the Coethia Digest reports, and customer discovery",
-      "Technology — working alongside the technical team on the medical consensus project (ongoing)",
-      "Pitch & procurement — pitch decks and content for the procurement pipeline",
+      "Digest report concepts + customer discovery",
+      "Medical consensus project with the technical team",
+      "Pitch decks for the procurement pipeline",
     ],
     tags: ["Partnerships", "Strategy", "Product Design"],
     accent: "bg-emerald-500",
@@ -121,13 +121,12 @@ export const industryRoles: Role[] = [
     title: "Founder",
     organization: "Casa",
     period: "Ongoing",
-    location: "Distributed",
-    summary:
-      "Consumer AI cooking-confidence platform. Users type a craving or photograph a dish; Casa turns that intent into practical meal directions, intelligently paired sides, and guided cooking.",
+    location: "Remote",
+    summary: "Consumer AI that turns a craving or a photo into a cooked meal.",
     deliverables: [
       "Craving parser + pairing engine",
       "Guided cook flow",
-      "Skill-tree progression design",
+      "Skill-tree progression",
     ],
     tags: ["Consumer AI", "Product", "Vision"],
     accent: "bg-orange-500",
@@ -137,14 +136,13 @@ export const industryRoles: Role[] = [
   {
     id: "adcem-seed",
     title: "Product Management / BD Intern",
-    organization: "Adcem Fidson JV · Stanford GSB SEED",
+    organization: "Adcem Fidson JV · Stanford SEED",
     period: "Apr – Dec 2025",
     location: "Nigeria",
-    summary:
-      "Product and business development for an affordable home peritoneal-dialysis platform in Nigeria.",
+    summary: "Affordable home peritoneal dialysis, built for Nigeria.",
     deliverables: [
-      "Financial modelling + partnership documents",
-      "Pilot planning & implementation strategy",
+      "Financial model + partnership documents",
+      "Pilot plan and implementation strategy",
       "Supply-chain planning + audits",
     ],
     tags: ["Global Health", "Med Devices", "Implementation"],
@@ -155,14 +153,13 @@ export const industryRoles: Role[] = [
   {
     id: "genierx-hsil",
     title: "GenieRX Team Leader → Director",
-    organization: "Harvard HSIL — Hackathon + Venture Incubation",
+    organization: "Harvard HSIL",
     period: "Apr – Jun 2025",
-    location: "Harvard T.H. Chan School of Public Health",
-    summary:
-      "Led a five-person team building an LLM pharmacogenomics tool for gene-guided prescribing — placed 2nd nationally (USA) and 7th of 3,500 teams globally, then directed GenieRX through the HSIL Venture Incubation Program.",
+    location: "USA",
+    summary: "An LLM pharmacogenomics tool for gene-guided prescribing.",
     deliverables: [
-      "LLM pharmacogenomics prescribing tool",
-      "2nd nationally (USA) · 7th of 3,500 globally",
+      "2nd nationally · 7th of 3,500 globally",
+      "Five-person build team",
       "Venture Incubation Program (Director)",
     ],
     tags: ["PGx", "Clinical AI", "Venture"],
@@ -175,13 +172,12 @@ export const industryRoles: Role[] = [
     title: "Student Consultant",
     organization: "Stanford Health Consulting Group",
     period: "Mar – Jun 2025",
-    location: "Stanford Hospital · Hospital Medicine",
-    summary:
-      "Led a consulting project to reduce medical readmissions at Stanford Hospital, for Quality in Hospital Medicine.",
+    location: "USA",
+    summary: "Reducing medical readmissions at Stanford Hospital.",
     deliverables: [
       "Stakeholder interviews + survey analysis",
       "Workflow review",
-      "Strategic readmission-reduction recommendations",
+      "Readmission-reduction recommendations",
     ],
     tags: ["Consulting", "Readmissions", "Health Systems"],
     accent: "bg-blue-500",
@@ -189,14 +185,13 @@ export const industryRoles: Role[] = [
   {
     id: "aetherai-healthrex",
     title: "Student Project Manager",
-    organization: "Stanford Health Consulting Group · Aether AI",
+    organization: "Aether AI · Stanford HealthREx",
     period: "Jan – Mar 2025",
-    location: "Stanford HealthREx Lab",
-    summary:
-      "Led a consulting project evaluating the commercial viability of Aether AI.",
+    location: "USA",
+    summary: "Commercial viability of a clinical-AI tool.",
     deliverables: [
-      "Stakeholder interviews + clinician needs analysis",
-      "Commercial strategy & market positioning",
+      "Clinician needs analysis",
+      "Commercial strategy + positioning",
       "Regulatory considerations",
     ],
     tags: ["Clinical AI", "Commercial Strategy", "Consulting"],
@@ -205,15 +200,14 @@ export const industryRoles: Role[] = [
   {
     id: "microsoft-hfte-industry",
     title: "Student Project Manager",
-    organization: "Microsoft / Stanford Medicine HFTE Initiative",
+    organization: "Stanford Medicine HFTE · Microsoft",
     period: "Jan 2025 – present",
-    location: "Stanford, CA",
-    summary:
-      "Led a student team on health-systems operations for an oculomics device, and co-wrote a manuscript on its potential in ophthalmology and primary care.",
+    location: "USA",
+    summary: "Health-systems operations for an oculomics device.",
     deliverables: [
-      "Health-systems operations analysis",
+      "Operations analysis",
       "Student-team coordination",
-      "Manuscript on disruptive potential (ophthalmology + primary care)",
+      "Manuscript on disruptive potential",
     ],
     tags: ["Oculomics", "Health Systems", "Medical Devices"],
     accent: "bg-cyan-500",
@@ -224,13 +218,12 @@ export const industryRoles: Role[] = [
     title: "Team Lead",
     organization: "Stanford XR Hackathon",
     period: "2024",
-    location: "Stanford, CA",
-    summary:
-      "1st place Social Good, 3rd place BCI, Overall Finalist — built immersive health-tech prototypes in 48 hours with interdisciplinary teams.",
+    location: "USA",
+    summary: "Immersive health prototypes built in 48 hours.",
     deliverables: [
-      "1st place Social Good track",
-      "3rd place BCI track",
-      "Overall Finalist",
+      "1st place, Social Good",
+      "3rd place, BCI",
+      "Overall finalist",
     ],
     tags: ["XR", "BCI", "Hackathon"],
     accent: "bg-rose-500",
@@ -240,11 +233,10 @@ export const industryRoles: Role[] = [
     title: "Advisor",
     organization: "NORA",
     period: "Ongoing",
-    location: "Distributed",
-    summary:
-      "Early-stage startup advisory — product strategy, clinical partnerships, and fundraising narrative for a health-adjacent consumer concept.",
+    location: "Remote",
+    summary: "Early-stage advisory on product and fundraising.",
     deliverables: [
-      "Product/clinical strategy memos",
+      "Product and clinical strategy memos",
       "Fundraising narrative",
       "Partnership intros",
     ],
@@ -259,9 +251,9 @@ export const educationRoles: Role[] = [
     title: "Program Lead",
     organization: "TLIA Entrepreneurship Bootcamp",
     period: "2025",
-    location: "Nigeria / Remote",
+    location: "Nigeria",
     summary:
-      "Designed and delivered an applied entrepreneurship bootcamp for TLIA's creative savants — venture-building as structured, testable exercises.",
+      "An applied entrepreneurship bootcamp for TLIA's creative savants: venture-building as testable exercises.",
     deliverables: [
       "Bootcamp curriculum architecture and learning sequence",
       "Needs-finding, pain-scoring, validation, and pitch exercises",
@@ -276,7 +268,7 @@ export const educationRoles: Role[] = [
     title: "PhD Student Teaching & Research Mentoring",
     organization: "ANU National Centre for Epidemiology & Population Health",
     period: "2022 – 2025",
-    location: "Canberra, Australia",
+    location: "Australia",
     summary:
       "Taught and mentored PhD students through evidence-synthesis work, from meta-analysis to first-author publication.",
     deliverables: [
@@ -292,9 +284,9 @@ export const educationRoles: Role[] = [
     title: "Clinician Residency Curriculum Writer",
     organization: "NOURISH PFEME · Stanford Medicine",
     period: "Ongoing",
-    location: "Stanford, CA",
+    location: "USA",
     summary:
-      "Writing clinician-facing residency curriculum for the NOURISH PFEME program, translating nutrition and behavior-change principles for clinical learners.",
+      "Clinician-facing residency curriculum for NOURISH PFEME, translating nutrition and behavior-change principles for clinical learners.",
     deliverables: [
       "Clinician-residency curriculum writing",
       "Nutrition and behavior-change content translation",
@@ -317,9 +309,9 @@ export const policyRoles: Role[] = [
     title: "Research Officer",
     organization: "Australian National University",
     period: "2022 – 2023",
-    location: "Canberra, Australia",
+    location: "Australia",
     summary:
-      "Contributed to research on the implementation of preventive chronic-disease health checks in Aboriginal and Torres Strait Islander primary health care.",
+      "Implementation research on preventive chronic-disease health checks in Aboriginal and Torres Strait Islander primary care.",
     deliverables: [
       "Implementation research on preventive health checks",
       "Aboriginal & Torres Strait Islander primary care focus",
@@ -333,9 +325,9 @@ export const policyRoles: Role[] = [
     title: "Policy Officer",
     organization: "Australian Dept. of Social Services — NDIS Outcomes & Research Strategy",
     period: "2022",
-    location: "Canberra, Australia",
+    location: "Australia",
     summary:
-      "Led development of protocols for policymaker–researcher partnerships, supported the establishment of a disability research advisory unit, advised on knowledge translation, and served on procurement panels.",
+      "Built protocols for policymaker–researcher partnerships, helped establish a disability research advisory unit, advised on knowledge translation, and sat on procurement panels.",
     deliverables: [
       "Policymaker–researcher partnership protocols",
       "Support for a disability research advisory unit",
@@ -349,9 +341,9 @@ export const policyRoles: Role[] = [
     title: "Policy Officer",
     organization: "Australian Dept. of Social Services — NDIS Financial Policy & Strategy",
     period: "2022",
-    location: "Canberra, Australia",
+    location: "Australia",
     summary:
-      "Coordinated policy-proposal compliance and feedback with the Office of Best Practice to support the October 2022 NDIS budget, while producing ministerial briefs and new policy proposals.",
+      "Coordinated policy-proposal compliance with the Office of Best Practice for the October 2022 NDIS budget, and wrote ministerial briefs and new proposals.",
     deliverables: [
       "Policy-proposal compliance with the Office of Best Practice",
       "Support for the October 2022 NDIS budget",
@@ -365,9 +357,9 @@ export const policyRoles: Role[] = [
     title: "Policy Officer",
     organization: "Australian Dept. of Social Services — National Redress Scheme",
     period: "2021 – 2022",
-    location: "Canberra, Australia",
+    location: "Australia",
     summary:
-      "Facilitated Commonwealth, state, and territory collaboration to expand redress for survivors of institutional child sexual abuse, and wrote briefs translating complex policy advice for senior executives and Attorneys-General.",
+      "Coordinated Commonwealth, state, and territory work to expand redress for survivors of institutional child sexual abuse, and wrote briefs for senior executives and Attorneys-General.",
     deliverables: [
       "Commonwealth–state–territory collaboration",
       "Expanded redress for institutional-abuse survivors",
@@ -381,9 +373,9 @@ export const policyRoles: Role[] = [
     title: "Intern",
     organization: "Parliamentary Library, Parliament of Australia",
     period: "2021",
-    location: "Canberra, Australia",
+    location: "Australia",
     summary:
-      "Internship in the Parliamentary Library's Social Policy Division — building experience in parliamentary research, social policy analysis, and public-sector briefing.",
+      "Parliamentary research, social policy analysis, and briefing in the Library's Social Policy Division.",
     deliverables: [
       "Parliamentary research (Social Policy Division)",
       "Social policy analysis",

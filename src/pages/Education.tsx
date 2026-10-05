@@ -51,8 +51,8 @@ export function Education(): JSX.Element {
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
               Research-methods teaching at ANU, clinician-residency curriculum
-              development with Stanford Medicine NOURISH PFEME, and
-              entrepreneurship education as TLIA Bootcamp Program Lead.
+              for Stanford Medicine NOURISH PFEME, and the TLIA entrepreneurship
+              bootcamp.
             </p>
 
             <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
@@ -87,27 +87,30 @@ export function Education(): JSX.Element {
                   transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.18) }}
                   whileHover={{ y: -6 }}
                   onClick={isTlia ? openTliaDetail : undefined}
-                  className={`flex min-h-full flex-col rounded-2xl bg-[#fafafa] p-6 md:p-7 ${
-                    isTlia ? "cursor-pointer transition-colors hover:bg-[#f4f4f2]" : ""
+                  className={`flex min-h-full flex-col rounded-3xl border border-black/[0.07] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-all duration-200 md:p-7 ${
+                    isTlia
+                      ? "cursor-pointer hover:border-black/[0.14] hover:shadow-[0_10px_28px_rgba(0,0,0,0.08)]"
+                      : ""
                   }`}
                 >
-                  <p className="text-sm font-medium text-gray-500">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.09em] text-gray-400">
                     {role.period}
-                    {" · "}
-                    {role.organization}
-                    {role.location ? ` · ${role.location}` : ""}
                   </p>
-                  <h3 className="mt-3 text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
+                  <h3 className="mt-5 text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
                     {role.title}
                   </h3>
-                  <p className="mt-4 text-base leading-relaxed text-gray-700">
+                  <p className="mt-1.5 text-sm text-gray-500">
+                    {role.organization}
+                    {role.location ? `, ${role.location}` : ""}
+                  </p>
+                  <p className="mt-4 text-[15px] leading-relaxed text-gray-600">
                     {role.summary}
                   </p>
 
-                  <ul className="mt-5 space-y-2">
+                  <ul className="mt-4 space-y-1.5">
                     {role.deliverables.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm leading-relaxed text-gray-600">
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/70" />
+                      <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-gray-500">
+                        <span className="mt-[0.5em] h-1 w-1 shrink-0 rounded-full bg-black/20" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -117,7 +120,7 @@ export function Education(): JSX.Element {
                     {role.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-gray-600"
+                        className="rounded-full border border-black/[0.07] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.07em] text-gray-500"
                       >
                         {tag}
                       </span>

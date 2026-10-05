@@ -39,9 +39,8 @@ export function Research() {
               Clinical, precision, and population health research
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
-              Pharmacogenomics, precision oncology, AI-enabled diagnostics,
-              Indigenous health implementation, outbreak response, cancer
-              survivorship, and global disease burden.
+              Pharmacogenomics, precision oncology, AI-enabled diagnostics, and
+              Indigenous health implementation.
             </p>
 
             <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3">
@@ -72,7 +71,7 @@ export function Research() {
 
       <PrecisionMedicineSection />
 
-      <RolesTimeline roles={researchRoles} title="Research roles and collaborations" />
+      <RolesTimeline roles={researchRoles} title="Research roles" />
 
       <SystemsMapSection />
 
@@ -90,8 +89,8 @@ export function Research() {
                 Peer-reviewed publications
               </h2>
               <p className="mt-4 text-base leading-relaxed text-gray-600">
-                Ten publications spanning pharmacogenomics, global health,
-                implementation research, and clinical outcomes.
+                Ten publications across pharmacogenomics, global health,
+                implementation, and clinical outcomes.
               </p>
             </div>
 

@@ -48,7 +48,7 @@ const conferences: Talk[] = [
         title: "Stanford Centre for Innovation in Global Health Conference",
         venue: "Stanford University",
         role: "Presenter",
-        topic: "Microsoft Healthcare from the Eye, a new paradigm in Oculomics",
+        topic: "Microsoft Healthcare from the Eye: A New Paradigm in Oculomics",
         collaborators: "Thottunkal S., Chang K., Nag A., Fan J.",
         location: "Stanford, CA",
         date: "2025",
@@ -103,7 +103,7 @@ const invited: Talk[] = [
     {
         title: "QUAD Fellowship Summit",
         topic:
-            "Repurposing ML topic modelling techniques from counterterrorism approaches, for Infectious Disease Surveillance",
+            "Repurposing ML Topic-Modelling Techniques from Counterterrorism for Infectious-Disease Surveillance",
         collaborators: "Thottunkal S., Vigil B., Matsumoto S.",
         date: "2025",
         file: { url: "/files/QUAD_ML_Surveillance_Presentation.pdf", type: "pdf", name: "QUAD_ML_Surveillance_Presentation.pdf" },

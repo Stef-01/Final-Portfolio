@@ -38,10 +38,10 @@ export function Policy() {
               Public policy, government, and implementation
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
-              Australian public-sector work: three teams at the Department of
-              Social Services (NDIS outcomes and research, NDIS financial
-              policy, and the National Redress Scheme), a Parliamentary Library
-              internship, and Indigenous primary-care implementation research.
+              Three Department of Social Services teams (NDIS outcomes, NDIS
+              financial policy, the National Redress Scheme), a Parliamentary
+              Library internship, and Indigenous primary-care implementation
+              research.
             </p>
 
             <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
@@ -57,7 +57,7 @@ export function Policy() {
         </div>
       </div>
 
-      <RolesTimeline roles={policyRoles} title="Inside the government work" />
+      <RolesTimeline roles={policyRoles} title="Government work" />
 
       <ContactSection />
     </div>

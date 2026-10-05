@@ -36,12 +36,12 @@ export function Industry() {
             transition={{ duration: 0.7 }}
           >
             <h1 className="t-h1 font-bold tracking-tight text-black leading-[1.02]">
-              Founding, advising, and building health-tech ventures
+              Founding, building, and advising ventures
             </h1>
             <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
-              Coethia and Casa; GenieRX (2nd in the US at Harvard HSIL); the
-              Adcem–Fidson dialysis joint venture in Nigeria; Microsoft /
-              Stanford Medicine HFTE; and the Stanford XR Hackathon.
+              Coethia, Casa, GenieRX (2nd in the US at Harvard HSIL), the
+              Adcem–Fidson dialysis JV in Nigeria, Stanford Medicine HFTE with
+              Microsoft, and Stanford XR.
             </p>
 
             <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
@@ -59,12 +59,7 @@ export function Industry() {
 
       <section className="w-full bg-white px-4 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
-          <h2 className="t-h2 font-bold tracking-tight text-black">
-            Industry experience
-          </h2>
-
           <motion.div
-            className="mt-10"
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -78,7 +73,7 @@ export function Industry() {
       <RolesGrid
         roles={industryRoles}
         title="Founding and advisory work"
-        intro="Product creation, venture strategy, and operating-model design across nutrition, clinical decision support, diagnostics, and medical devices."
+        intro="Product, venture strategy, and operating models — nutrition, clinical decision support, diagnostics, devices."
       />
 
       <ContactSection />

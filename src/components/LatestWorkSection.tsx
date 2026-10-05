@@ -30,7 +30,7 @@ export const LatestWorkSection = () => {
                             transition={{ duration: 0.72, delay: 0.08 }}
                             className="t-h2 font-bold tracking-tight mb-5"
                         >
-                            Flagship projects across health, AI, and systems design
+                            Selected projects
                         </motion.h2>
 
                         <motion.div

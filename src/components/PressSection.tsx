@@ -51,7 +51,7 @@ export function PressSection(): JSX.Element {
                     {item.title}
                   </h3>
                   <span className="mt-6 inline-flex items-center rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-black transition-colors group-hover:bg-black group-hover:text-white">
-                    Read the Healio article
+                    Read the article
                     <ArrowUpRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
                   </span>
                 </div>

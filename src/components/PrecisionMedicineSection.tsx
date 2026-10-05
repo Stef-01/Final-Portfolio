@@ -16,7 +16,7 @@ const categories = [
     targetId: "role-han-lab",
     ctaLabel: "View research experience",
     blurb:
-      "Tumour-burden annotation with the Han Lab at Stanford Medicine — turning lung-cancer imaging into reasoning a clinician can act on.",
+      "Tumor-burden annotation with the Han Lab at Stanford Medicine, turning lung-cancer imaging into reasoning a clinician can act on.",
   },
   {
     id: "nourish-meal-explorer",
@@ -25,7 +25,7 @@ const categories = [
     route: "/project/nourish-meal-explorer",
     ctaLabel: "Open case study",
     blurb:
-      "NOURISH pairs behaviour-change design with recommendation systems so preventive nutrition actually sticks.",
+      "NOURISH pairs behavior-change design with recommendation systems so preventive nutrition holds.",
   },
   {
     id: "pgx-llm-copilot",
@@ -34,7 +34,7 @@ const categories = [
     route: "/project/pgx-llm-copilot",
     ctaLabel: "Open case study",
     blurb:
-      "GenieRX turns pharmacogenomic evidence and CPIC guidelines into safer, more legible prescribing at the point of care.",
+      "GenieRX turns pharmacogenomic evidence and CPIC guidelines into safer prescribing at the point of care.",
   },
 ];
 

@@ -41,7 +41,7 @@ export function IntroSection() {
                         variants={itemVariants}
                         className="font-bold tracking-tight leading-[1.05] text-black t-h1"
                     >
-                        I work where health ideas either translate or stall: between the lab, the policy room, the clinic, and the market.
+                        I work on the handoffs between the lab, the policy room, the clinic, and the market.
                     </motion.h2>
                 </motion.div>
             </div>

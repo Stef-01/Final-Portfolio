@@ -24,7 +24,7 @@ const education = [
     institution: "Australian National University",
     period: "2019–2023",
     detail: "GPA 6.92/7.0",
-    note: "Population health, research, and health-systems foundations.",
+    note: "Population health, research methods, and health systems.",
   },
 ];
 
@@ -40,7 +40,7 @@ const awards = [
   {
     title: "IIE QUAD Fellowship",
     period: "2024",
-    detail: "One of 100 scholars selected globally for the STEM leadership fellowship.",
+    detail: "One of 100 scholars selected globally.",
   },
   {
     title: "MQ Equity Merit Scholarship",
@@ -50,17 +50,17 @@ const awards = [
   {
     title: "Robert Menzies College Academic Scholarship",
     period: "2023",
-    detail: "Academic scholarship recognising university performance.",
+    detail: "Academic scholarship for university performance.",
   },
   {
     title: "ANU Chancellor’s Letter of Commendation",
     period: "2020 & 2022",
-    detail: "Recognition for academic achievement at the Australian National University.",
+    detail: "For academic achievement at ANU.",
   },
   {
     title: "ANU Plus Award",
     period: "2022",
-    detail: "Completed 100 hours of volunteering and a structured reflective community-service program.",
+    detail: "100 hours of volunteering and a reflective community-service program.",
   },
 ];
 
@@ -106,12 +106,11 @@ export function Resume(): JSX.Element {
               Stefan Thottunkal
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-xl">
-              Researcher, public servant, medical student, and digital-health builder.
+              Researcher, public servant, medical student, and builder.
             </p>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
-              Working across precision medicine, implementation science, public
-              policy, and venture design to move evidence into usable health
-              systems.
+              Precision medicine, implementation science, public policy, and
+              venture design.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
