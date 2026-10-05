@@ -1,6 +1,6 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "../components/Button";
+import { HeroBento } from "../components/HeroBento";
 import { IntroSection } from "../components/IntroSection";
 import { AboutSection } from "../components/AboutSection";
 import { ThreeLanesTeaser } from "../components/ThreeLanesTeaser";
@@ -8,16 +8,10 @@ import { PressSection } from "../components/PressSection";
 import { LatestWorkSection } from "../components/LatestWorkSection";
 import { ContactModal } from "../components/ContactModal";
 import { FloatingSocials } from "../components/FloatingSocials";
-import { usePhoneLayout } from "../hooks/usePhoneLayout";
 import { useMagneticScroll } from "../hooks/useMagneticScroll";
-import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { useWindowWidth } from "../hooks/useWindowWidth";
 
 // Lazy load heavy components
-const SplineBackground = lazy(() =>
-  import("../components/SplineBackground").then((module) => ({
-    default: module.SplineBackground,
-  })),
-);
 const TimelineSection = lazy(() =>
   import("../components/TimelineSection").then((module) => ({
     default: module.TimelineSection,
@@ -26,63 +20,35 @@ const TimelineSection = lazy(() =>
 
 export const ScalehubStartupLp = (): JSX.Element => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const isPhoneLayout = usePhoneLayout();
-  const prefersReducedMotion = usePrefersReducedMotion();
+  // The floating social icons would sit on top of the hero's bento cards, so
+  // they only appear once the hero has mostly scrolled away.
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [heroInView, setHeroInView] = useState(true);
+  // Below lg the bento stacks taller than the viewport; as a snap target the
+  // magnet would yank readers past the cards, so it only snaps side-by-side.
+  const heroSnaps = useWindowWidth() >= 1024;
   useMagneticScroll();
 
-  const handleViewWork = () => {
-    document
-      .getElementById("three-lanes")
-      ?.scrollIntoView({
-        behavior: prefersReducedMotion ? "instant" : "smooth",
-        block: "start",
-      });
-  };
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.isIntersecting),
+      { threshold: 0.15 },
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="bg-white flex flex-col w-full overflow-x-hidden">
       <main>
       {/* Hero Section */}
-      <div className="relative w-full min-h-[100svh] md:min-h-screen flex flex-col overflow-clip snap-start snap-always">
-        <Suspense
-          fallback={
-            <div
-              className={`${
-                isPhoneLayout ? "absolute" : "fixed"
-              } inset-0 z-0 bg-gray-50`}
-            />
-          }
-        >
-          <SplineBackground
-            className={isPhoneLayout ? "z-0 absolute" : "z-0 fixed"}
-          />
-        </Suspense>
-
-        <div className="relative z-10 flex flex-col items-center px-4 pt-[max(5.5rem,calc(env(safe-area-inset-top)+4rem))] pb-[max(2rem,env(safe-area-inset-bottom))] mb-12 md:mb-20">
-          <h1 className="text-center t-display font-bold tracking-tight mb-6 max-w-4xl leading-[0.98]">
-            Stefan Thottunkal
-          </h1>
-
-          <p className="text-center text-base md:text-xl leading-relaxed text-gray-600 max-w-2xl mb-8">
-            Researcher, policy analyst, and builder working across precision
-            medicine, clinical AI, and global health.
-          </p>
-
-          <div className="flex w-full sm:w-auto flex-col sm:flex-row gap-3 sm:gap-4 max-w-sm sm:max-w-none">
-            <Button
-              type="primary"
-              label="View work"
-              onClick={handleViewWork}
-              className="w-full sm:w-[134px]"
-            />
-            <Button
-              type="secondary"
-              label="Contact"
-              onClick={() => setIsContactModalOpen(true)}
-              className="w-full sm:w-[134px]"
-            />
-          </div>
-        </div>
+      <div
+        ref={heroRef}
+        className={`relative w-full ${heroSnaps ? "snap-start snap-always" : ""}`}
+      >
+        <HeroBento onContact={() => setIsContactModalOpen(true)} />
       </div>
 
       {/* Intro Section (Header) */}
@@ -124,7 +90,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
           <div className="text-center md:text-left">
             <h3 className="text-2xl font-bold mb-2">Stefan Thottunkal</h3>
             <p className="text-gray-400">
-              Researcher & Health Systems Designer
+              Researcher, policy analyst, and builder
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
@@ -181,7 +147,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
       />
 
       {/* LinkedIn + Google Scholar floating icons (replace footer clutter) */}
-      <FloatingSocials />
+      {!heroInView && <FloatingSocials />}
     </div>
   );
 };
