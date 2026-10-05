@@ -247,6 +247,19 @@ export const industryRoles: Role[] = [
 
 export const educationRoles: Role[] = [
   {
+    id: "shcg-teaching-faculty",
+    title: "Teaching Faculty",
+    organization: "Stanford Health Consulting Group · NOURISH project",
+    period: "Sep – Dec 2026",
+    location: "USA",
+    summary:
+      "Teaching faculty for the Stanford Health Consulting Group course, on the NOURISH project.",
+    deliverables: [],
+    tags: ["Teaching", "Health Consulting", "NOURISH"],
+    accent: "bg-emerald-500",
+    link: "/project/nourish-meal-explorer",
+  },
+  {
     id: "tlia-entrepreneurship-bootcamp",
     title: "Program Lead",
     organization: "TLIA Entrepreneurship Bootcamp",

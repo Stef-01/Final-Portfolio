@@ -7,7 +7,7 @@ import { TeachingSection } from "../components/TeachingSection";
 import { educationRoles } from "../types/roles";
 
 const educationStats = [
-  { value: "3", label: "teaching and curriculum roles" },
+  { value: String(educationRoles.length), label: "teaching and curriculum roles" },
   { value: "ANU", label: "research-methods teaching" },
   { value: "Stanford", label: "clinical nutrition curriculum" },
 ];
@@ -37,7 +37,7 @@ export function Education(): JSX.Element {
             Teaching and curriculum roles
           </h2>
 
-          <div className="grid gap-5 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2">
             {educationRoles.map((role, index) => {
               const isTlia = role.id === "tlia-entrepreneurship-bootcamp";
 
@@ -68,14 +68,16 @@ export function Education(): JSX.Element {
                     {role.summary}
                   </p>
 
-                  <ul className="mt-4 space-y-1.5">
-                    {role.deliverables.map((item) => (
-                      <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-gray-500">
-                        <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-tan" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {role.deliverables.length > 0 && (
+                    <ul className="mt-4 space-y-1.5">
+                      {role.deliverables.map((item) => (
+                        <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-gray-500">
+                          <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-tan" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
                   <div className="mt-6 flex flex-wrap gap-2">
                     {role.tags.map((tag) => (
