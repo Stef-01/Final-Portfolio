@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["vite", "--port", "5180"],
       "port": 5180
+    },
+    {
+      "name": "clin-practice",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "5199", "--directory", "/private/tmp/claude-501/-Users-devasiathottunkal-Portfolio/01579c98-d5fc-4f53-bd69-b85d5702b015/scratchpad/repo"],
+      "port": 5199
     }
   ]
 }
