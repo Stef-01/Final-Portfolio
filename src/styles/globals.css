@@ -5,7 +5,7 @@
      the heading tiers below use their own viewport-fluid px scale, so they
      stay put and only body/UI text scales with this. */
   --font-size: 15px;
-  --background: #ffffff;
+  --background: #f6f6f1;
   --foreground: #1a1a1a;
   --card: #ffffff;
   --card-foreground: #1a1a1a;
@@ -130,6 +130,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Site palette, taken from the homepage bento hero: warm paper page, white
+   cards, ink type, and three accents used sparingly. */
+@theme {
+  --color-paper: #f6f6f1;
+  --color-sand: #f7e9cb;
+  --color-tan: #c9a97a;
+  --color-tan-deep: #ad906c;
+  --color-oxblood: #8e2c36;
+  --color-oxblood-deep: #5c1820;
 }
 
 /**

@@ -17,7 +17,7 @@ const socials = [
 
 interface FloatingSocialsProps {
     /** Tailwind classes appended to the wrapper — useful for repositioning
-     *  on routes that also display a FloatingBackButton. */
+     *  on routes with other floating controls. */
     className?: string;
 }
 

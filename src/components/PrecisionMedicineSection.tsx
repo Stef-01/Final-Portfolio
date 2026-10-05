@@ -69,14 +69,14 @@ export const PrecisionMedicineSection = () => {
       orientation="horizontal"
       activeIndex={activeIndex}
       segments={categories.length}
-      accent="#2563eb"
+      accent="#8e2c36"
     />
   );
 
   return (
-    <section className="w-full bg-white px-4 py-20 md:px-8">
+    <section className="w-full px-4 py-20 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <h2 className="max-w-3xl t-h2 font-bold tracking-tight text-black">
+        <h2 className="max-w-3xl t-h2 font-bold tracking-[-0.03em] text-gray-900">
           Precision-care portfolio
         </h2>
       </div>
@@ -115,7 +115,7 @@ export const PrecisionMedicineSection = () => {
                   }}
                   onBlur={() => setHovered(null)}
                   onClick={() => open(index)}
-                  className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-inset"
+                  className="cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oxblood/40 focus-visible:ring-inset"
                 />
               ))}
             </div>
@@ -136,8 +136,8 @@ export const PrecisionMedicineSection = () => {
               }}
               onBlur={() => setHovered(null)}
               onClick={() => open(index)}
-              className={`px-1 text-center text-[11px] md:text-sm font-semibold tracking-tight transition-colors focus-visible:outline-none focus-visible:text-blue-600 ${
-                activeIndex === index ? "text-blue-600" : "text-gray-400 hover:text-blue-600"
+              className={`px-1 text-center text-[11px] md:text-sm font-semibold tracking-tight transition-colors focus-visible:outline-none focus-visible:text-oxblood ${
+                activeIndex === index ? "text-oxblood" : "text-gray-400 hover:text-oxblood"
               }`}
             >
               {category.shortLabel}
@@ -162,7 +162,7 @@ export const PrecisionMedicineSection = () => {
             <button
               type="button"
               onClick={() => open(activeIndex)}
-              className="group mt-5 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-blue-700 transition-colors hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/40 focus-visible:ring-offset-2"
+              className="group mt-5 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-gray-900 underline decoration-gray-900/20 underline-offset-4 transition-colors hover:decoration-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2"
             >
               {active.ctaLabel}
               <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

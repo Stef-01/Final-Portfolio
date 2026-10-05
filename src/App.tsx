@@ -43,10 +43,10 @@ const Education = lazy(() =>
 );
 
 const LoadingFallback = () => (
-  <div className="min-h-screen flex items-center justify-center bg-white">
+  <div className="min-h-screen flex items-center justify-center bg-paper">
     <div className="animate-pulse flex flex-col items-center">
-      <div className="h-12 w-12 bg-gray-200 rounded-full mb-4"></div>
-      <div className="h-4 w-32 bg-gray-200 rounded"></div>
+      <div className="h-12 w-12 bg-black/5 rounded-full mb-4"></div>
+      <div className="h-4 w-32 bg-black/5 rounded-full"></div>
     </div>
   </div>
 );

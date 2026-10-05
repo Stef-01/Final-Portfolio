@@ -67,7 +67,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
     if (failed) {
         return (
             <div
-                className={`bg-gray-100 ${wrapperClassName} ${className}`}
+                className={`bg-paper ${wrapperClassName} ${className}`}
                 style={style}
                 role="img"
                 aria-label={typeof alt === "string" ? alt : undefined}

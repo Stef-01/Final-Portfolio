@@ -1,11 +1,9 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import { ContactSection } from "../components/ContactSection";
-import { FloatingBackButton } from "../components/FloatingBackButton";
+import { PageIntro, PageShell } from "../components/PageShell";
 import { TeachingSection } from "../components/TeachingSection";
-import { useGoBack } from "../hooks/useGoBack";
 import { educationRoles } from "../types/roles";
 
 const educationStats = [
@@ -15,7 +13,6 @@ const educationStats = [
 ];
 
 export function Education(): JSX.Element {
-  const goBack = useGoBack();
   const [showTliaDetail, setShowTliaDetail] = useState(false);
   const tliaDetailRef = useRef<HTMLDivElement>(null);
 
@@ -27,50 +24,16 @@ export function Education(): JSX.Element {
   };
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
-      <FloatingBackButton />
+    <PageShell>
+      <PageIntro
+        title="Teaching research, clinical nutrition, and venture design"
+        description="Research-methods teaching at ANU, clinician-residency curriculum for Stanford Medicine NOURISH PFEME, and the TLIA entrepreneurship bootcamp."
+        stats={educationStats}
+      />
 
-      <div className="px-4 pt-16 md:px-8 md:pt-20">
+      <section className="w-full px-4 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
-          <button
-            type="button"
-            onClick={goBack}
-            className="group mb-12 inline-flex items-center gap-2 text-gray-500 transition-colors hover:text-emerald-600"
-          >
-            <ArrowLeft className="h-5 w-5 transition-transform group-hover:-translate-x-1" />
-            <span className="text-lg font-medium">Back</span>
-          </button>
-
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h1 className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
-              Teaching research, clinical nutrition, and venture design
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
-              Research-methods teaching at ANU, clinician-residency curriculum
-              for Stanford Medicine NOURISH PFEME, and the TLIA entrepreneurship
-              bootcamp.
-            </p>
-
-            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
-              {educationStats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-2">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">{stat.value}</dd>
-                  <span className="text-sm text-gray-500">{stat.label}</span>
-                </div>
-              ))}
-            </dl>
-          </motion.div>
-        </div>
-      </div>
-
-      <section className="w-full bg-white px-4 py-20 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="mb-12 t-h2 font-bold tracking-tight text-black">
+          <h2 className="mb-10 t-h2 font-bold tracking-[-0.03em] text-gray-900">
             Teaching and curriculum roles
           </h2>
 
@@ -87,16 +50,14 @@ export function Education(): JSX.Element {
                   transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.18) }}
                   whileHover={{ y: -6 }}
                   onClick={isTlia ? openTliaDetail : undefined}
-                  className={`flex min-h-full flex-col rounded-3xl border border-black/[0.07] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-all duration-200 md:p-7 ${
-                    isTlia
-                      ? "cursor-pointer hover:border-black/[0.14] hover:shadow-[0_10px_28px_rgba(0,0,0,0.08)]"
-                      : ""
+                  className={`flex min-h-full flex-col rounded-[28px] bg-white p-6 md:p-7 ${
+                    isTlia ? "cursor-pointer" : ""
                   }`}
                 >
-                  <p className="text-[11px] font-medium uppercase tracking-[0.09em] text-gray-400">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">
                     {role.period}
                   </p>
-                  <h3 className="mt-5 text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
+                  <h3 className="mt-5 text-xl font-bold leading-tight tracking-[-0.02em] text-gray-900 md:text-2xl">
                     {role.title}
                   </h3>
                   <p className="mt-1.5 text-sm text-gray-500">
@@ -110,7 +71,7 @@ export function Education(): JSX.Element {
                   <ul className="mt-4 space-y-1.5">
                     {role.deliverables.map((item) => (
                       <li key={item} className="flex gap-2.5 text-sm leading-relaxed text-gray-500">
-                        <span className="mt-[0.5em] h-1 w-1 shrink-0 rounded-full bg-black/20" />
+                        <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-tan" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -120,7 +81,7 @@ export function Education(): JSX.Element {
                     {role.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-black/[0.07] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.07em] text-gray-500"
+                        className="rounded-full bg-paper px-3 py-1 text-xs font-medium text-gray-600"
                       >
                         {tag}
                       </span>
@@ -137,7 +98,7 @@ export function Education(): JSX.Element {
                         }}
                         aria-expanded={showTliaDetail}
                         aria-controls="tlia-bootcamp-detail"
-                        className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                       >
                         {showTliaDetail ? "Hide curriculum" : "View curriculum"}
                         <ChevronDown
@@ -152,7 +113,7 @@ export function Education(): JSX.Element {
                     {role.link && !isTlia && (
                       <Link
                         to={role.link}
-                        className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                       >
                         Case study
                         <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -182,7 +143,6 @@ export function Education(): JSX.Element {
         )}
       </AnimatePresence>
 
-      <ContactSection />
-    </div>
+    </PageShell>
   );
 }

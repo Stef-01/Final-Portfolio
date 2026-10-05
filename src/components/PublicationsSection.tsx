@@ -44,10 +44,10 @@ const PublicationCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-80px" }}
     transition={{ duration: 0.45 }}
-    className="overflow-hidden rounded-2xl border border-black/10 bg-white"
+    className="overflow-hidden rounded-[28px] bg-white"
   >
     <article className="grid md:grid-cols-[0.42fr_0.58fr]">
-      <div className="min-h-64 overflow-hidden bg-[#e8ece8] md:min-h-full">
+      <div className="min-h-64 overflow-hidden bg-paper md:min-h-full">
         <img
           src={publication.image}
           alt={publication.imageAlt}
@@ -60,14 +60,14 @@ const PublicationCard = ({
 
       <div className="flex flex-col p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
-          <span className="text-blue-700">{publication.year}</span>
+          <span className="text-oxblood">{publication.year}</span>
           <span className="h-1 w-1 rounded-full bg-gray-300" />
           <span className="text-gray-500">{publication.authorRole}</span>
           <span className="h-1 w-1 rounded-full bg-gray-300" />
           <span className="text-gray-500">{publication.topic}</span>
         </div>
 
-        <h3 className="mt-4 font-serif text-xl font-semibold leading-snug tracking-tight text-[#121820] md:text-2xl">
+        <h3 className="mt-4 text-xl font-bold leading-snug tracking-[-0.02em] text-gray-900 md:text-2xl">
           {publication.title}
         </h3>
 
@@ -86,7 +86,7 @@ const PublicationCard = ({
             href={publication.paperUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#18395a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#102b45] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
           >
             <FileText className="h-4 w-4" aria-hidden="true" />
             Open paper
@@ -98,7 +98,7 @@ const PublicationCard = ({
               href={publication.documentUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/12 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:border-black/30 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
             >
               <FileText className="h-4 w-4" aria-hidden="true" />
               {publication.documentLabel ?? "View document"}
@@ -109,11 +109,11 @@ const PublicationCard = ({
             <button
               type="button"
               onClick={() => onCopy(publication)}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/12 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:border-black/30 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               aria-label={`Copy DOI for ${publication.title}`}
             >
               {copied ? (
-                <Check className="h-4 w-4 text-emerald-700" aria-hidden="true" />
+                <Check className="h-4 w-4 text-oxblood" aria-hidden="true" />
               ) : (
                 <Copy className="h-4 w-4" aria-hidden="true" />
               )}
@@ -125,7 +125,7 @@ const PublicationCard = ({
             href={googleScholarUrl}
             target="_blank"
             rel="noreferrer"
-            className="ml-auto inline-flex min-h-11 items-center gap-2 rounded-full bg-[#f3f5f6] px-4 py-2.5 text-sm font-semibold text-gray-600 transition-colors hover:bg-[#e8edf1] hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            className="ml-auto inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
             aria-label={`${publication.citations} Google Scholar citations for ${publication.title}`}
           >
             <BarChart3 className="h-4 w-4" aria-hidden="true" />
@@ -167,32 +167,9 @@ export function PublicationsSection() {
   };
 
   return (
-    <section id="publications" className="bg-[#f7f6f2] px-4 py-24 md:px-8">
+    <section id="publications">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 lg:grid-cols-[0.68fr_0.32fr] lg:items-end">
-          <div>
-            <h2 className="max-w-4xl font-serif t-h2 font-medium tracking-tight text-[#121820]">
-              Research you can inspect, cite, and read.
-            </h2>
-            <p className="mt-6 max-w-3xl text-base leading-relaxed text-gray-600">
-              Peer-reviewed work across precision medicine, global health,
-              implementation science, and health policy—paired with direct paper
-              links, documents, and current Google Scholar citation signals.
-            </p>
-          </div>
-
-          <a
-            href={googleScholarUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="group inline-flex min-h-14 items-center justify-between gap-6 rounded-2xl border border-black/10 bg-white px-5 py-4 text-sm font-semibold text-[#18395a] transition-transform hover:-translate-y-1 hover:border-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
-          >
-            View complete Google Scholar profile
-            <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
-
-        <div className="mt-12 rounded-2xl border border-black/10 bg-white p-4 md:p-5">
+        <div className="rounded-[28px] bg-white p-4 md:p-5">
           <div className="grid gap-4 lg:grid-cols-[1fr_auto]">
             <label className="relative block">
               <span className="sr-only">Search publications</span>
@@ -205,7 +182,7 @@ export function PublicationsSection() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search publications"
-                className="h-12 w-full rounded-full border border-black/10 bg-[#f8f8f7] pl-12 pr-4 text-base text-black placeholder:text-gray-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20"
+                className="h-12 w-full rounded-full bg-paper pl-12 pr-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black/15"
               />
             </label>
 
@@ -218,10 +195,10 @@ export function PublicationsSection() {
                     type="button"
                     aria-pressed={active}
                     onClick={() => setActiveFilter(filter)}
-                    className={`min-h-12 rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 ${
+                    className={`min-h-12 rounded-full px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 ${
                       active
-                        ? "bg-[#18395a] text-white"
-                        : "bg-[#f3f4f4] text-gray-600 hover:bg-[#e8edf1] hover:text-black"
+                        ? "bg-gray-900 text-white"
+                        : "bg-paper text-gray-600 hover:bg-sand hover:text-gray-900"
                     }`}
                   >
                     {filter}
@@ -248,15 +225,15 @@ export function PublicationsSection() {
             ))}
           </motion.ul>
         ) : (
-          <div className="mt-6 rounded-2xl border border-dashed border-black/15 bg-white px-6 py-16 text-center">
-            <p className="text-lg font-semibold text-black">No publications match that search.</p>
+          <div className="mt-6 rounded-[28px] bg-white px-6 py-16 text-center">
+            <p className="text-lg font-semibold text-gray-900">No publications match that search.</p>
             <button
               type="button"
               onClick={() => {
                 setQuery("");
                 setActiveFilter("All publications");
               }}
-              className="mt-4 rounded-full bg-[#18395a] px-5 py-2.5 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="mt-4 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
             >
               Reset search and filters
             </button>
@@ -265,14 +242,14 @@ export function PublicationsSection() {
 
         <div className="mt-20">
           <div className="mb-8">
-            <h2 className="t-h2 font-bold tracking-tight text-black">
+            <h2 className="t-h2 font-bold tracking-[-0.03em] text-gray-900">
               Work moving through the research pipeline
             </h2>
           </div>
 
           <div className="grid gap-4">
-            <details open className="group rounded-2xl border border-black/10 bg-white p-5 md:p-6">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-black">
+            <details open className="group rounded-[28px] bg-white p-5 md:p-6">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-gray-900">
                 Manuscripts and studies
                 <ChevronDown className="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" />
               </summary>
@@ -283,7 +260,7 @@ export function PublicationsSection() {
                       {item.status}
                     </span>
                     <div>
-                      <p className="font-semibold leading-snug text-black">{item.title}</p>
+                      <p className="font-semibold leading-snug text-gray-900">{item.title}</p>
                       <p className="mt-1 text-sm text-gray-500">{item.venue}</p>
                     </div>
                   </li>
@@ -291,8 +268,8 @@ export function PublicationsSection() {
               </ul>
             </details>
 
-            <details className="group rounded-2xl border border-black/10 bg-white p-5 md:p-6">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-black">
+            <details className="group rounded-[28px] bg-white p-5 md:p-6">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-gray-900">
                 Conferences
                 <ChevronDown className="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" />
               </summary>
@@ -305,8 +282,8 @@ export function PublicationsSection() {
               </ul>
             </details>
 
-            <details className="group rounded-2xl border border-black/10 bg-white p-5 md:p-6">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-black">
+            <details className="group rounded-[28px] bg-white p-5 md:p-6">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-xl font-semibold text-gray-900">
                 Invited and research presentations
                 <ChevronDown className="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" />
               </summary>

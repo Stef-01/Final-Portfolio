@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "./ImageWithFallback";
 
 interface WorkCardProps {
@@ -33,48 +34,34 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         <button
             type="button"
             onClick={handleClick}
-            className={`group relative grid w-full cursor-pointer overflow-hidden rounded-2xl border border-black/10 bg-[#f5f5f5] p-5 text-center transition-all duration-700 ease-out hover:scale-[1.01] hover:border-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 active:scale-[0.99] md:min-h-[min(78svh,720px)] md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:p-10 ${className}`}
+            className={`group relative grid w-full cursor-pointer overflow-hidden rounded-[28px] bg-white p-3 text-left transition-transform duration-700 ease-out hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 active:scale-[0.99] md:min-h-[min(78svh,720px)] md:grid-cols-[0.85fr_1.15fr] md:gap-3 ${className}`}
         >
-            {/* Arrow Icon */}
-            <div className="absolute top-4 right-4 md:top-6 md:right-6 w-9 h-9 flex items-center justify-center transition-all duration-500 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5">
-                <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-black opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-            </div>
-
             {/* Content */}
-            <div className="relative z-10 mx-auto mb-7 max-w-md px-5 md:mb-0 md:px-0">
-                <h3 className="text-xl font-bold leading-tight tracking-tight text-black md:text-2xl">
-                    {title}
-                </h3>
-                {subtitle && (
-                    <p className="mt-3 text-sm font-medium leading-relaxed text-gray-700">
-                        {subtitle}
+            <div className="order-2 flex flex-col justify-between p-4 md:order-1 md:p-7">
+                <div>
+                    <h3 className="text-[clamp(1.75rem,1.1rem+1.8vw,2.75rem)] font-bold leading-[0.98] tracking-[-0.04em] text-gray-900">
+                        {title}
+                    </h3>
+                    {subtitle && (
+                        <p className="mt-4 max-w-md text-base leading-snug text-gray-900 md:text-lg">
+                            {subtitle}
+                        </p>
+                    )}
+                    <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-600 md:text-[15px]">
+                        {description}
                     </p>
-                )}
-                <div className="mx-auto my-5 h-px w-10 bg-black/15" aria-hidden="true" />
-                <p className="text-sm leading-relaxed text-gray-600">
-                    {description}
-                </p>
+                </div>
+                <span className="mt-8 grid h-11 w-11 place-items-center rounded-full bg-gray-900 text-white transition-transform duration-500 group-hover:-rotate-45">
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </span>
             </div>
 
             {/* Image */}
             <div
-                className={`relative w-full overflow-hidden rounded-2xl transition-transform duration-700 ease-out group-hover:scale-[1.025] ${
+                className={`relative order-1 w-full overflow-hidden rounded-[20px] md:order-2 ${
                     imageFit === "contain"
-                        ? `${imageAspect === "8/5" ? "aspect-[8/5]" : "aspect-video"} self-center bg-white`
-                        : "h-[180px] md:h-full md:min-h-[420px]"
+                        ? `${imageAspect === "8/5" ? "aspect-[8/5]" : "aspect-video"} self-center bg-paper`
+                        : "h-[220px] md:h-full md:min-h-[420px]"
                 }`}
             >
                 <ImageWithFallback
@@ -82,13 +69,12 @@ export const WorkCard: React.FC<WorkCardProps> = ({
                     alt={title}
                     fallbackInitial={title.charAt(0)}
                     wrapperClassName="w-full h-full"
-                    className={`h-full w-full ${imageFit === "contain" ? "object-contain" : "object-cover"}`}
+                    className={`h-full w-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] ${imageFit === "contain" ? "object-contain" : "object-cover"}`}
                     loading="lazy"
                     decoding="async"
                     sizes="(max-width: 768px) 92vw, 900px"
                 />
             </div>
-
         </button>
     );
 };

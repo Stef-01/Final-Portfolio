@@ -1,50 +1,38 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { projects } from "../types/project";
-import { Button } from "../components/Button";
-import { ContactSection } from "../components/ContactSection";
+import { PageShell } from "../components/PageShell";
 import { NotFound } from "../components/NotFound";
 import { ImageWithFallback } from "../components/ImageWithFallback";
 import { ProjectPopout } from "../components/ProjectPopout";
-import { useGoBack } from "../hooks/useGoBack";
 
 // Inner component is keyed by `id` from the wrapper below, so its state
 // resets cleanly on URL change without a setState-in-effect anti-pattern.
 const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => {
     const project = projects.find((p) => p.id === id);
-    const goBack = useGoBack();
 
     if (!project) {
         return <NotFound />;
     }
 
     return (
-        <div className="bg-white min-h-[100svh]">
-            <nav className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-white">
-                <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 pt-[env(safe-area-inset-top)] md:px-8">
-                    <Link to="/" className="text-sm sm:text-xl font-bold tracking-tight text-black">
-                        Stefan Thottunkal
-                    </Link>
-                    <Button type="secondary" label="Back" className="w-auto min-w-[140px]" onClick={goBack} />
-                </div>
-            </nav>
-
-            <main className="mx-auto max-w-7xl px-4 pb-20 pt-28 md:px-8 md:pt-32">
-                <div className="rounded-2xl bg-[#fafafa] p-6 md:p-10">
+        <PageShell>
+            <main className="mx-auto max-w-7xl px-3 pt-8 md:px-5 md:pt-12">
+                <div className="rounded-[28px] bg-white p-6 md:p-10">
                     <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
                         <div>
                             <div className="mb-6 flex flex-wrap gap-2">
                                 {project.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="rounded-full border border-black/10 bg-white px-3 py-1 text-sm font-medium text-gray-500"
+                                        className="rounded-full bg-paper px-3 py-1 text-sm font-medium text-gray-600"
                                     >
                                         {tag}
                                     </span>
                                 ))}
                             </div>
-                            <h1 className="max-w-4xl t-h1 font-bold leading-[1.02] tracking-tight text-black">
+                            <h1 className="max-w-4xl t-h1 font-bold leading-[1] tracking-[-0.035em] text-gray-900">
                                 {project.title}
                             </h1>
                             <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700 md:text-2xl">
@@ -62,19 +50,19 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                             <div className="grid gap-4 sm:grid-cols-2">
                                 <div>
                                     <p className="text-sm font-medium text-gray-500">Role</p>
-                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.role}</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-gray-900">{project.role}</p>
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-gray-500">Duration</p>
-                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.duration}</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-gray-900">{project.duration}</p>
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-gray-500">Context</p>
-                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.client}</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-gray-900">{project.client}</p>
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-gray-500">Outcome</p>
-                                    <p className="mt-2 text-sm font-medium leading-relaxed text-black">{project.outcome}</p>
+                                    <p className="mt-2 text-sm font-medium leading-relaxed text-gray-900">{project.outcome}</p>
                                 </div>
                             </div>
                             {project.links && project.links.length > 0 && (
@@ -85,7 +73,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                             href={link.url}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                                            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                                         >
                                             {link.label}
                                             <ExternalLink className="h-4 w-4" aria-hidden="true" />
@@ -100,17 +88,17 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 <div className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
                     {project.stats.map((stat) => (
                         <div key={stat.label}>
-                            <p className="text-lg font-semibold text-black">{stat.value}</p>
+                            <p className="text-lg font-semibold text-gray-900">{stat.value}</p>
                             <p className="mt-1 text-sm text-gray-500">{stat.label}</p>
                         </div>
                     ))}
                 </div>
 
                 {project.caseStudy && (
-                    <section className="mt-10 grid gap-6 rounded-2xl bg-[#fafafa] p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">
+                    <section className="mt-10 grid gap-6 rounded-[28px] bg-white p-6 md:grid-cols-[0.34fr_0.66fr] md:p-8">
                         <p className="text-sm font-medium text-gray-500">Design question</p>
                         <div>
-                            <h2 className="t-h2 font-bold leading-tight tracking-tight text-black">
+                            <h2 className="t-h2 font-bold leading-tight tracking-[-0.03em] text-gray-900">
                                 {project.caseStudy.question}
                             </h2>
                             <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
@@ -120,7 +108,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                     </section>
                 )}
 
-                <div className="mt-14 overflow-hidden rounded-2xl bg-black">
+                <div className="mt-14 overflow-hidden rounded-[28px] bg-gray-900">
                     <ImageWithFallback
                         src={project.image}
                         alt={project.title}
@@ -135,7 +123,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 </div>
 
                 {project.video && (
-                    <section className="mt-16 overflow-hidden rounded-2xl bg-[#0f1115]">
+                    <section className="mt-16 overflow-hidden rounded-[28px] bg-gray-900">
                         <div className="grid gap-0 xl:grid-cols-[0.28fr_0.72fr]">
                             <div className="flex flex-col justify-between p-6 text-white md:p-8">
                                 <div>
@@ -153,7 +141,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                     href={project.video.src}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1115]"
+                                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                                 >
                                     Open video file
                                     <ExternalLink className="h-4 w-4" aria-hidden="true" />
@@ -177,23 +165,23 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 )}
 
                 <section className="mt-16 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-                    <div className="self-start rounded-2xl bg-[#fafafa] p-6 md:p-8 lg:sticky lg:top-28">
+                    <div className="self-start rounded-[28px] bg-white p-6 md:p-8 lg:sticky lg:top-28">
                         <p className="text-sm font-medium text-gray-500">Strategic priorities</p>
                         <div className="mt-6 grid gap-6">
                             {project.highlights.map((highlight) => (
                                 <div key={highlight.title}>
-                                    <h3 className="text-xl font-bold tracking-tight text-black md:text-2xl">{highlight.title}</h3>
+                                    <h3 className="text-xl font-bold tracking-[-0.03em] text-gray-900 md:text-2xl">{highlight.title}</h3>
                                     <p className="mt-3 text-base leading-relaxed text-gray-600">{highlight.text}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <div className="rounded-2xl bg-[#fafafa] p-6 md:p-8">
+                    <div className="rounded-[28px] bg-white p-6 md:p-8">
                         <p className="text-sm font-medium text-gray-500">Methods and tools</p>
                         <div className="mt-5 flex flex-wrap gap-2">
                             {project.tools.map((tool) => (
-                                <span key={tool} className="rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-medium text-gray-700">
+                                <span key={tool} className="rounded-full bg-paper px-3 py-2 text-sm font-medium text-gray-700">
                                     {tool}
                                 </span>
                             ))}
@@ -202,7 +190,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                         <div className="mt-8 space-y-8">
                             {project.sections.map((section) => (
                                 <div key={section.title}>
-                                    <h2 className="text-2xl font-bold tracking-tight text-black md:text-3xl">{section.title}</h2>
+                                    <h2 className="text-2xl font-bold tracking-[-0.03em] text-gray-900 md:text-3xl">{section.title}</h2>
                                     <div className="mt-4 space-y-4">
                                         {section.body.map((paragraph) => (
                                             <p key={paragraph} className="text-base leading-relaxed text-gray-600 md:text-lg">
@@ -211,7 +199,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                         ))}
                                     </div>
                                     {section.media && (
-                                        <figure className="mt-6 overflow-hidden rounded-2xl bg-[#f5f3ef]">
+                                        <figure className="mt-6 overflow-hidden rounded-[20px] bg-paper">
                                             <div className={`${section.media.aspect === "16/9" ? "aspect-video" : section.media.aspect === "8/5" ? "aspect-[8/5]" : section.media.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden`}>
                                                 <ImageWithFallback
                                                     src={section.media.src}
@@ -225,7 +213,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                                     sizes="(max-width: 1024px) 92vw, 54vw"
                                                 />
                                             </div>
-                                            <figcaption className="border-t border-black/5 bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
+                                            <figcaption className="bg-white px-5 py-4 text-sm leading-relaxed text-gray-600">
                                                 {section.media.caption}
                                             </figcaption>
                                         </figure>
@@ -237,13 +225,13 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 </section>
 
                 {project.caseStudy && (
-                    <section className="mt-16 rounded-2xl bg-[#fafafa] p-6 md:p-8">
+                    <section className="mt-16 rounded-[28px] bg-white p-6 md:p-8">
                         <div className="grid gap-8 lg:grid-cols-[0.36fr_0.64fr]">
                             <div className="self-start lg:sticky lg:top-28">
                                 <p className="text-sm font-medium text-gray-500">
                                     {project.caseStudy.processEyebrow}
                                 </p>
-                                <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
+                                <h2 className="mt-3 t-h2 font-bold tracking-[-0.03em] text-gray-900">
                                     {project.caseStudy.processHeading}
                                 </h2>
                                 <p className="mt-5 text-base leading-relaxed text-gray-600 md:text-lg">
@@ -263,7 +251,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                             <p className="text-sm font-medium text-gray-500">
                                                 {step.phase}
                                             </p>
-                                            <h3 className="mt-2 text-xl font-bold tracking-tight text-black md:text-2xl">{step.title}</h3>
+                                            <h3 className="mt-2 text-xl font-bold tracking-[-0.03em] text-gray-900 md:text-2xl">{step.title}</h3>
                                             <div className="mt-5 grid gap-4 md:grid-cols-2">
                                                 <div>
                                                     <p className="text-sm font-medium text-gray-500">Design rationale</p>
@@ -290,15 +278,15 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                 {project.mediaEyebrow}
                             </p>
                         )}
-                        <h2 className="mt-3 t-h2 font-bold tracking-tight text-black">
+                        <h2 className="mt-3 t-h2 font-bold tracking-[-0.03em] text-gray-900">
                             {project.mediaHeading ?? "Design evidence"}
                         </h2>
                     </div>
 
                     <div className={`grid gap-6 md:grid-cols-2 ${project.mediaLayout === "editorial" ? "" : "xl:grid-cols-3"}`}>
                         {project.media.map((item) => (
-                            <figure key={item.caption} className="overflow-hidden rounded-2xl bg-[#fafafa]">
-                                <div className={`${item.aspect === "16/9" ? "aspect-video" : item.aspect === "8/5" ? "aspect-[8/5]" : item.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden bg-[#f5f5f5]`}>
+                            <figure key={item.caption} className="overflow-hidden rounded-[28px] bg-white">
+                                <div className={`${item.aspect === "16/9" ? "aspect-video" : item.aspect === "8/5" ? "aspect-[8/5]" : item.aspect === "9/16" ? "aspect-[9/16]" : "aspect-[4/3]"} overflow-hidden bg-paper`}>
                                     <ImageWithFallback
                                         src={item.src}
                                         alt={item.alt}
@@ -337,8 +325,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                 />
             )}
 
-            <ContactSection />
-        </div>
+        </PageShell>
     );
 };
 

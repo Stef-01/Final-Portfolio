@@ -26,7 +26,7 @@ interface DnaHelixProps {
 export function DnaHelix({
     activeIndex,
     segments,
-    accent = "#2563eb",
+    accent = "#8e2c36",
     orientation = "vertical",
     onHoverSegment,
     className,
@@ -97,7 +97,7 @@ export function DnaHelix({
                 for (let i = 1; i <= 80; i++) {
                     const p = pointAt(i / 80, offset);
                     const alpha = 0.3 + ((p.depth + 1) / 2) * 0.55;
-                    ctx.strokeStyle = `rgba(37,99,235,${alpha})`;
+                    ctx.strokeStyle = `rgba(142,44,54,${alpha})`;
                     ctx.lineWidth = 2.2;
                     ctx.beginPath();
                     ctx.moveTo(prev.x, prev.y);

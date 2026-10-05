@@ -32,7 +32,7 @@ export function AboutSection() {
     ];
 
     return (
-        <section className="relative min-h-[100svh] bg-white flex flex-col items-center justify-center py-10 md:py-8 px-4 md:px-8 overflow-hidden">
+        <section className="relative min-h-[100svh] flex flex-col items-center justify-center py-10 md:py-8 px-4 md:px-8 overflow-hidden">
 
             <div className="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
 

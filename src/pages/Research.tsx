@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowUpRight, ChevronDown } from "lucide-react";
-import { FloatingBackButton } from "../components/FloatingBackButton";
-import { useGoBack } from "../hooks/useGoBack";
-import { ContactSection } from "../components/ContactSection";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { PageIntro, PageShell } from "../components/PageShell";
 import { PublicationsSection } from "../components/PublicationsSection";
 import { PrecisionMedicineSection } from "../components/PrecisionMedicineSection";
 import { SystemsMapSection } from "../components/SystemsMapSection";
@@ -12,62 +10,30 @@ import { researchRoles } from "../types/roles";
 import { googleScholarUrl, scholarMetrics } from "../types/publications";
 
 export function Research() {
-  const goBack = useGoBack();
   const [showPublications, setShowPublications] = useState(false);
 
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
-      <FloatingBackButton />
-
-      <div className="px-4 pt-16 md:pt-20 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <button
-            type="button"
-            onClick={goBack}
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
-          >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-lg font-medium">Back</span>
-          </button>
-
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h1 className="t-h1 font-bold tracking-tight text-black leading-[1.02]">
-              Clinical, precision, and population health research
-            </h1>
-            <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
-              Pharmacogenomics, precision oncology, AI-enabled diagnostics, and
-              Indigenous health implementation.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3">
-              {[
-                { k: scholarMetrics.publications, v: "publications" },
-                { k: scholarMetrics.citations, v: "citations" },
-                { k: scholarMetrics.hIndex, v: "h-index" },
-                { k: scholarMetrics.i10Index, v: "i10-index" },
-              ].map((stat) => (
-                <span key={stat.v} className="flex items-baseline gap-2">
-                  <span className="text-lg font-semibold text-black">{stat.k}</span>
-                  <span className="text-sm text-gray-500">{stat.v}</span>
-                </span>
-              ))}
-              <a
-                href={googleScholarUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-700 transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
-              >
-                Google Scholar
-                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
+    <PageShell>
+      <PageIntro
+        title="Clinical, precision, and population health research"
+        description="Pharmacogenomics, precision oncology, AI-enabled diagnostics, and Indigenous health implementation."
+        stats={[
+          { value: scholarMetrics.publications, label: "publications" },
+          { value: scholarMetrics.citations, label: "citations" },
+          { value: scholarMetrics.hIndex, label: "h-index" },
+          { value: scholarMetrics.i10Index, label: "i10-index" },
+        ]}
+      >
+        <a
+          href={googleScholarUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gray-900 underline decoration-gray-900/20 underline-offset-4 transition-colors hover:decoration-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-2"
+        >
+          Google Scholar
+          <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+        </a>
+      </PageIntro>
 
       <PrecisionMedicineSection />
 
@@ -75,7 +41,7 @@ export function Research() {
 
       <SystemsMapSection />
 
-      <section className="bg-white px-4 py-20 md:px-8">
+      <section className="px-4 py-20 md:px-8">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -85,7 +51,7 @@ export function Research() {
             className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
           >
             <div className="max-w-3xl">
-              <h2 className="t-h2 font-bold tracking-tight text-black">
+              <h2 className="t-h2 font-bold tracking-[-0.03em] text-gray-900">
                 Peer-reviewed publications
               </h2>
               <p className="mt-4 text-base leading-relaxed text-gray-600">
@@ -100,7 +66,7 @@ export function Research() {
                 aria-expanded={showPublications}
                 aria-controls="publications-panel"
                 onClick={() => setShowPublications((visible) => !visible)}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               >
                 {showPublications ? "Hide publications" : "View publications"}
                 <ChevronDown
@@ -115,7 +81,7 @@ export function Research() {
                 href={googleScholarUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/15 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:border-black/40 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               >
                 Google Scholar
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -132,7 +98,7 @@ export function Research() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-8 overflow-hidden rounded-2xl"
+                className="mt-8 overflow-hidden rounded-[28px]"
               >
                 <PublicationsSection />
               </motion.div>
@@ -141,7 +107,6 @@ export function Research() {
         </div>
       </section>
 
-      <ContactSection />
-    </div>
+    </PageShell>
   );
 }

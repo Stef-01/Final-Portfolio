@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, Paperclip } from "lucide-react";
+import { Paperclip } from "lucide-react";
 import { FileViewerModal } from "../components/FileViewerModal";
-import { ContactSection } from "../components/ContactSection";
-import { FloatingBackButton } from "../components/FloatingBackButton";
-import { useGoBack } from "../hooks/useGoBack";
+import { PageIntro, PageShell } from "../components/PageShell";
 
 interface ConferenceFile {
     url?: string;
@@ -123,9 +121,9 @@ interface TalkSectionProps {
 }
 
 const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
-    <section className="w-full bg-white px-4 pt-10 pb-12 md:px-8 md:pt-16 md:pb-20">
+    <section className="w-full px-4 pt-10 pb-8 md:px-8 md:pt-16 md:pb-12">
         <div className="mx-auto max-w-6xl">
-            <h2 className="mb-10 t-h2 font-bold tracking-tight text-black">
+            <h2 className="mb-10 t-h2 font-bold tracking-[-0.03em] text-gray-900">
                 {title}
             </h2>
 
@@ -137,36 +135,38 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
                         transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.25) }}
-                        className="rounded-2xl bg-[#fafafa] p-6 md:p-8"
+                        className="flex flex-col rounded-[28px] bg-white p-6 md:p-8"
                     >
-                        <p className="text-sm font-medium text-gray-500">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">
                             {talk.date}
                             {talk.location ? ` · ${talk.location}` : ""}
                             {talk.role ? ` · ${talk.role}` : ""}
                         </p>
 
-                        <h3 className="mt-3 text-xl md:text-2xl font-bold tracking-tight text-black leading-tight">
+                        <h3 className="mt-4 text-xl font-bold leading-tight tracking-[-0.02em] text-gray-900 md:text-2xl">
                             {talk.title}
                         </h3>
                         {talk.venue && (
                             <p className="mt-1 text-sm text-gray-500">{talk.venue}</p>
                         )}
 
-                        <p className="mt-4 text-base leading-relaxed text-gray-700">{talk.topic}</p>
+                        <p className="mt-4 text-base leading-relaxed text-gray-600">{talk.topic}</p>
 
                         {talk.collaborators && (
                             <p className="mt-3 text-sm text-gray-500">{talk.collaborators}</p>
                         )}
 
                         {talk.file?.url && (
-                            <button
-                                type="button"
-                                onClick={() => onFileClick(talk.file)}
-                                className="mt-6 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
-                            >
-                                <Paperclip className="h-3.5 w-3.5" />
-                                {fileLabel[talk.file.type]}
-                            </button>
+                            <div className="mt-auto pt-6">
+                                <button
+                                    type="button"
+                                    onClick={() => onFileClick(talk.file)}
+                                    className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                >
+                                    <Paperclip className="h-3.5 w-3.5" />
+                                    {fileLabel[talk.file.type]}
+                                </button>
+                            </div>
                         )}
                     </motion.div>
                 ))}
@@ -176,7 +176,6 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
 );
 
 export function Presentations() {
-    const goBack = useGoBack();
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState<ConferenceFile | null>(null);
 
@@ -186,50 +185,16 @@ export function Presentations() {
     };
 
     return (
-        <div className="min-h-[100svh] bg-white text-gray-900">
-            <FloatingBackButton />
-
-            <header className="px-4 pt-16 md:px-8 md:pt-20">
-                <div className="mx-auto max-w-6xl">
-                    <button
-                        type="button"
-                        onClick={goBack}
-                        className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors mb-12 group"
-                    >
-                        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-                        <span className="text-lg font-medium">Back</span>
-                    </button>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 28 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7 }}
-                    >
-                        <h1 className="t-h1 font-bold tracking-tight text-black leading-[1.02]">
-                            Talks, posters, and grand rounds
-                        </h1>
-                        <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
-                            Conference presentations and invited talks across precision
-                            medicine, pharmacogenomics, oculomics, Indigenous health, and
-                            biosecurity.
-                        </p>
-
-                        <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
-                            {[
-                                { k: String(conferences.length), v: "conference presentations" },
-                                { k: String(invited.length), v: "invited talks and grand rounds" },
-                                { k: "5+", v: "institutions across 3 countries" },
-                            ].map((stat) => (
-                                <div key={stat.v} className="flex items-baseline gap-2">
-                                    <dt className="sr-only">{stat.v}</dt>
-                                    <dd className="text-lg font-semibold text-black">{stat.k}</dd>
-                                    <span className="text-sm text-gray-500">{stat.v}</span>
-                                </div>
-                            ))}
-                        </dl>
-                    </motion.div>
-                </div>
-            </header>
+        <PageShell>
+            <PageIntro
+                title="Talks, posters, and grand rounds"
+                description="Conference presentations and invited talks across precision medicine, pharmacogenomics, oculomics, Indigenous health, and biosecurity."
+                stats={[
+                    { value: String(conferences.length), label: "conference presentations" },
+                    { value: String(invited.length), label: "invited talks and grand rounds" },
+                    { value: "5+", label: "institutions across 3 countries" },
+                ]}
+            />
 
             <TalkSection
                 title="Conference presentations"
@@ -253,7 +218,6 @@ export function Presentations() {
                 />
             )}
 
-            <ContactSection />
-        </div>
+        </PageShell>
     );
 }

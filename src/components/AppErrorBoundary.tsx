@@ -28,10 +28,10 @@ export class AppErrorBoundary extends React.Component<AppErrorBoundaryProps, App
     render() {
         if (this.state.hasError) {
             return (
-                <div className="min-h-[100svh] bg-white px-4 py-10">
-                    <div className="mx-auto flex min-h-[80svh] max-w-xl flex-col items-center justify-center rounded-2xl bg-[#fafafa] p-8 text-center">
-                        <p className="text-sm font-medium text-gray-500">Recovery mode</p>
-                        <h1 className="mt-4 text-3xl font-bold tracking-tight text-black md:text-5xl">
+                <div className="min-h-[100svh] bg-paper px-3 py-3 md:px-5 md:py-5">
+                    <div className="mx-auto flex min-h-[calc(100svh-1.5rem)] max-w-3xl flex-col items-center justify-center rounded-[28px] bg-white p-8 text-center md:min-h-[calc(100svh-2.5rem)]">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">Recovery mode</p>
+                        <h1 className="mt-4 text-balance text-3xl font-bold tracking-[-0.035em] text-gray-900 md:text-5xl">
                             This view hit a rendering issue.
                         </h1>
                         <p className="mt-4 text-base leading-relaxed text-gray-600">
@@ -39,7 +39,7 @@ export class AppErrorBoundary extends React.Component<AppErrorBoundaryProps, App
                         </p>
                         <Link
                             to="/"
-                            className="mt-8 inline-flex items-center justify-center rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+                            className="mt-8 inline-flex h-11 items-center justify-center rounded-full bg-gray-900 px-6 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
                         >
                             Return home
                         </Link>

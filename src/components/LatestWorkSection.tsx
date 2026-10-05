@@ -4,23 +4,11 @@ import { WorkCard } from "./WorkCard";
 import { projects } from "../types/project";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
-const capabilityLanes = [
-    {
-        title: "Products",
-    },
-    {
-        title: "Systems",
-    },
-    {
-        title: "Advisory",
-    },
-];
-
 export const LatestWorkSection = () => {
     const prefersReducedMotion = usePrefersReducedMotion();
 
     return (
-        <section className="relative overflow-hidden px-4 md:px-8 bg-white" id="work">
+        <section className="relative overflow-hidden px-3 md:px-5" id="work">
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="flex min-h-[100svh] snap-start snap-always flex-col items-center justify-center py-16 text-center md:py-20">
                         <motion.h2
@@ -28,31 +16,13 @@ export const LatestWorkSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.72, delay: 0.08 }}
-                            className="t-h2 font-bold tracking-tight mb-5"
+                            className="t-h1 font-bold leading-none tracking-[-0.04em] text-gray-900"
                         >
-                            Selected projects
+                            Selected{" "}
+                            <span className="font-['Playfair_Display',_serif] font-semibold italic text-oxblood">
+                                projects
+                            </span>
                         </motion.h2>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="mx-auto mt-8 flex flex-wrap items-center justify-center gap-3"
-                        >
-                            {capabilityLanes.map((lane, index) => (
-                                <motion.div
-                                    key={lane.title}
-                                    className="rounded-full border border-black/10 bg-white px-5 py-2.5 text-center"
-                                    initial={{ opacity: 0, y: prefersReducedMotion ? 10 : 22 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-80px" }}
-                                    transition={{ duration: 0.48, delay: 0.3 + index * 0.05 }}
-                                >
-                                    <p className="text-sm font-medium text-gray-500">{lane.title}</p>
-                                </motion.div>
-                            ))}
-                        </motion.div>
                     </div>
 
                     <div className="grid grid-cols-1">
@@ -76,7 +46,6 @@ export const LatestWorkSection = () => {
                                         image={project.image}
                                         imageFit={project.heroFit}
                                         imageAspect={project.heroAspect}
-                                        className="bg-gray-50"
                                     />
                                 </motion.div>
                             </div>

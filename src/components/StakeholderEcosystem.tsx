@@ -246,10 +246,10 @@ export function StakeholderEcosystem() {
         >
           <title>Healthcare stakeholder ecosystem</title>
 
-          <rect x={37} y={82} width={1045} height={160} rx={16} fill="#eff2f6" stroke="#dde3ea" />
-          <rect x={37} y={254} width={375} height={456} rx={16} fill="#e6ecf3" stroke="#dde3ea" />
-          <rect x={428} y={254} width={375} height={456} rx={16} fill="#ebeff4" stroke="#dde3ea" />
-          <rect x={819} y={256} width={263} height={456} rx={16} fill="#e8edf3" stroke="#dde3ea" />
+          <rect x={37} y={82} width={1045} height={160} rx={28} fill="#ffffff" />
+          <rect x={37} y={254} width={375} height={456} rx={28} fill="#ffffff" />
+          <rect x={428} y={254} width={375} height={456} rx={28} fill="#ffffff" />
+          <rect x={819} y={256} width={263} height={456} rx={28} fill="#ffffff" />
 
           <text className="se-h" x={560} y={112} textAnchor="middle">Financing · Oversight · Public Health</text>
           <text className="se-h" x={224} y={284} textAnchor="middle">Innovation &amp; Supply</text>
@@ -315,7 +315,7 @@ export function StakeholderEcosystem() {
                     ))}
                   </text>
                   {roles && (
-                    <circle className="se-dot" cx={n.x + 21} cy={n.y - 21} r={4.5} fill="#6f86a3" stroke="#fff" strokeWidth={1.5} />
+                    <circle className="se-dot" cx={n.x + 21} cy={n.y - 21} r={4.5} fill="#ad906c" stroke="#fff" strokeWidth={1.5} />
                   )}
                 </g>
               );
@@ -342,21 +342,21 @@ const CSS = `
 .se-wrap { width: 100%; }
 .se-stage { position: relative; width: 100%; max-width: 960px; margin: 0 auto; }
 .se-map { display: block; width: 100%; height: auto; }
-.se-node { cursor: pointer; outline: none; filter: saturate(0.7); transition: filter .18s, opacity .18s; }
-.se-node .se-disc { fill: #f4f6f9; transition: transform .18s; transform-box: fill-box; transform-origin: center; }
+.se-node { cursor: pointer; outline: none; filter: grayscale(0.85); transition: filter .18s, opacity .18s; }
+.se-node .se-disc { fill: #f6f6f1; transition: transform .18s; transform-box: fill-box; transform-origin: center; }
 .se-node .se-ring { fill: none; stroke: transparent; stroke-width: 2.5; transition: stroke .18s; transform-box: fill-box; transform-origin: center; }
 .se-node .se-emoji { font-size: 30px; transition: transform .18s; transform-box: fill-box; transform-origin: center; }
-.se-node .se-lab { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: #3a4856; }
-.se-node:hover, .se-node.se-active { filter: saturate(1.12); }
-.se-node:focus-visible .se-disc { stroke: #6f86a3; stroke-width: 1.5; }
+.se-node .se-lab { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: #374151; }
+.se-node:hover, .se-node.se-active { filter: grayscale(0); }
+.se-node:focus-visible .se-disc { stroke: #8e2c36; stroke-width: 1.5; }
 .se-node.se-active .se-disc, .se-node.se-active .se-emoji { transform: scale(1.1); }
-.se-node.se-active .se-ring { stroke: #6f86a3; }
-.se-node.se-near { filter: saturate(1); }
+.se-node.se-active .se-ring { stroke: #8e2c36; }
+.se-node.se-near { filter: grayscale(0.3); }
 .se-map.se-dim .se-node:not(.se-active):not(.se-near) { opacity: .4; }
-.se-edge { stroke: #8c939c; stroke-width: 1.5; opacity: .55; transition: stroke .18s, opacity .18s; }
-.se-edge.se-on { stroke: #6f86a3; stroke-width: 2.2; opacity: .95; }
+.se-edge { stroke: #c9c1b1; stroke-width: 1.5; opacity: .8; transition: stroke .18s, opacity .18s; }
+.se-edge.se-on { stroke: #8e2c36; stroke-width: 2; opacity: .9; }
 .se-map.se-dim .se-edge:not(.se-on) { opacity: .12; }
-.se-h { font: 700 14px ui-sans-serif, system-ui, sans-serif; fill: #5b6a78; }
+.se-h { font: 600 11px ui-sans-serif, system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; fill: #6b7280; }
 /* Hover card stack — up to 3 solid boxes near the node */
 .se-cardstack {
   position: absolute; z-index: 5; pointer-events: none;
@@ -366,27 +366,26 @@ const CSS = `
 }
 .se-cardstack.se-show { opacity: 1; }
 .se-card {
-  padding: 8px 12px; border-radius: 12px;
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.1);
-  box-shadow: 0 10px 30px rgba(20,30,45,0.22);
+  padding: 9px 13px; border-radius: 14px;
+  background: #111827;
+  box-shadow: 0 12px 30px rgba(17,24,39,0.18);
 }
-.se-card .se-title { font: 700 12.5px/1.25 ui-sans-serif, system-ui, sans-serif; color: #16273a; }
-.se-card .se-org { margin-top: 2px; font: 500 10.5px/1.3 ui-sans-serif, system-ui, sans-serif; color: #51616f; }
+.se-card .se-title { font: 700 12.5px/1.25 ui-sans-serif, system-ui, sans-serif; color: #ffffff; }
+.se-card .se-org { margin-top: 2px; font: 500 10.5px/1.3 ui-sans-serif, system-ui, sans-serif; color: rgba(255,255,255,0.6); }
 
 /* ----- Mobile layout ----- */
 .se-m { display: flex; flex-direction: column; gap: 14px; }
-.se-m-zone { border-radius: 16px; background: #f6f8fb; padding: 14px 14px 6px; }
-.se-m-ztitle { font: 700 12px ui-sans-serif, system-ui, sans-serif; color: #5b6a78; margin-bottom: 10px; }
+.se-m-zone { border-radius: 28px; background: #ffffff; padding: 18px 18px 8px; }
+.se-m-ztitle { font: 600 11px ui-sans-serif, system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #6b7280; margin-bottom: 10px; }
 .se-m-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .se-m-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 2px; margin-bottom: 8px; }
-.se-m-emoji { font-size: 22px; line-height: 1.2; flex: 0 0 auto; }
+.se-m-emoji { font-size: 22px; line-height: 1.2; flex: 0 0 auto; filter: grayscale(0.85); }
 .se-m-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
-.se-m-name { font: 600 14px ui-sans-serif, system-ui, sans-serif; color: #22384a; }
+.se-m-name { font: 600 14px ui-sans-serif, system-ui, sans-serif; color: #111827; }
 .se-m-roles { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
 .se-m-rolebox { display: flex; flex-direction: column; }
-.se-m-rt { font: 700 12.5px ui-sans-serif, system-ui, sans-serif; color: #16273a; }
-.se-m-ro { margin-top: 1px; font: 500 11px ui-sans-serif, system-ui, sans-serif; color: #51616f; }
+.se-m-rt { font: 700 12.5px ui-sans-serif, system-ui, sans-serif; color: #111827; }
+.se-m-ro { margin-top: 1px; font: 500 11px ui-sans-serif, system-ui, sans-serif; color: #6b7280; }
 
 @media (prefers-reduced-motion: reduce) {
   .se-node, .se-node .se-disc, .se-node .se-emoji, .se-edge, .se-cardstack { transition: none; }

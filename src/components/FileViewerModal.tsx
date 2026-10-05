@@ -13,7 +13,7 @@ interface FileViewerModalProps {
 const Spinner = () => (
   <div className="absolute inset-0 flex items-center justify-center bg-[#0a0a0c]">
     <motion.div
-      className="w-16 h-16 border-4 border-[#EBFF57] border-t-transparent rounded-full"
+      className="w-16 h-16 border-4 border-sand border-t-transparent rounded-full"
       animate={{ rotate: 360 }}
       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
     />
@@ -160,7 +160,7 @@ export function FileViewerModal({
               role="dialog"
               aria-modal="true"
               aria-label={fileName}
-              className="relative w-full max-w-[1400px] h-[90vh] bg-[#0a0a0c] rounded-2xl border border-[rgba(255,255,255,0.1)] overflow-hidden pointer-events-auto"
+              className="relative w-full max-w-[1400px] h-[90vh] bg-[#0a0a0c] rounded-[28px] border border-[rgba(255,255,255,0.1)] overflow-hidden pointer-events-auto"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -170,9 +170,9 @@ export function FileViewerModal({
               <div className="absolute top-0 left-0 right-0 z-10 bg-[#0a0a0c] border-b border-[rgba(255,255,255,0.1)] px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   {fileType === "video" ? (
-                    <Video className="w-6 h-6 text-[#EBFF57]" />
+                    <Video className="w-6 h-6 text-sand" />
                   ) : (
-                    <FileText className="w-6 h-6 text-[#EBFF57]" />
+                    <FileText className="w-6 h-6 text-sand" />
                   )}
                   <h3 className="font-['Clash_Grotesk',_sans-serif] font-semibold text-2xl text-white">
                     {fileName}
@@ -183,7 +183,7 @@ export function FileViewerModal({
                   {fileUrl && (
                     <motion.button
                       onClick={handleDownload}
-                      className="flex items-center gap-2 px-4 py-2 bg-[#EBFF57] text-black rounded-lg hover:bg-[#d4e84f] transition-colors"
+                      className="flex items-center gap-2 rounded-full bg-sand px-4 py-2 text-gray-900 transition-colors hover:bg-white"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >

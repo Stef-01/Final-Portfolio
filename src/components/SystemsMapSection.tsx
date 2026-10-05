@@ -3,9 +3,9 @@ import { StakeholderEcosystem } from "./StakeholderEcosystem";
 
 export const SystemsMapSection = () => {
   return (
-    <section className="w-full bg-white px-4 py-20 md:px-8">
+    <section className="w-full px-4 py-20 md:px-8">
       <div className="mx-auto max-w-6xl">
-        <h2 className="t-h2 font-bold tracking-tight text-black">
+        <h2 className="t-h2 font-bold tracking-[-0.03em] text-gray-900">
           The system the work sits in
         </h2>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-600">

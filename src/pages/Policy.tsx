@@ -1,10 +1,6 @@
-import { motion } from "motion/react";
-import { ArrowLeft } from "lucide-react";
-import { FloatingBackButton } from "../components/FloatingBackButton";
-import { ContactSection } from "../components/ContactSection";
+import { PageIntro, PageShell } from "../components/PageShell";
 import { RolesTimeline } from "../components/RolesTimeline";
 import { policyRoles } from "../types/roles";
-import { useGoBack } from "../hooks/useGoBack";
 
 const stats = [
   { value: "5", label: "policy and government roles" },
@@ -13,53 +9,15 @@ const stats = [
 ];
 
 export function Policy() {
-  const goBack = useGoBack();
   return (
-    <div className="min-h-[100svh] bg-white text-gray-900">
-      <FloatingBackButton />
-
-      <div className="px-4 pt-16 md:pt-20 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          <button
-            type="button"
-            onClick={goBack}
-            className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors mb-12 group"
-          >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-lg font-medium">Back</span>
-          </button>
-
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h1 className="t-h1 font-bold tracking-tight text-black leading-[1.02]">
-              Public policy, government, and implementation
-            </h1>
-            <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-gray-600">
-              Three Department of Social Services teams (NDIS outcomes, NDIS
-              financial policy, the National Redress Scheme), a Parliamentary
-              Library internship, and Indigenous primary-care implementation
-              research.
-            </p>
-
-            <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
-              {stats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-2">
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="text-lg font-semibold text-black">{stat.value}</dd>
-                  <span className="text-sm text-gray-500">{stat.label}</span>
-                </div>
-              ))}
-            </dl>
-          </motion.div>
-        </div>
-      </div>
+    <PageShell>
+      <PageIntro
+        title="Public policy, government, and implementation"
+        description="Three Department of Social Services teams (NDIS outcomes, NDIS financial policy, the National Redress Scheme), a Parliamentary Library internship, and Indigenous primary-care implementation research."
+        stats={stats}
+      />
 
       <RolesTimeline roles={policyRoles} title="Government work" />
-
-      <ContactSection />
-    </div>
+    </PageShell>
   );
 }

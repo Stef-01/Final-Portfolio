@@ -104,14 +104,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="contact-modal-title"
-                className={`relative w-full bg-white rounded-2xl shadow-xl animate-in fade-in zoom-in duration-300 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
+                className={`relative w-full bg-white rounded-[28px] shadow-xl animate-in fade-in zoom-in duration-300 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}
                 <button
                     ref={closeButtonRef}
                     onClick={onClose}
-                    className={`absolute w-12 h-12 bg-white rounded-full border border-black/10 hover:bg-gray-100 transition-colors flex items-center justify-center z-10 ${isPhoneLayout ? "top-3 right-3" : "-top-4 -right-4"}`}
+                    className={`absolute w-12 h-12 bg-paper rounded-full hover:bg-sand transition-colors flex items-center justify-center z-10 ${isPhoneLayout ? "top-3 right-3" : "-top-4 -right-4"}`}
                     aria-label="Close"
                 >
                     <X className="w-5 h-5" />
@@ -124,7 +124,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                         onClick={handleEmailClick}
                         className="flex flex-col items-center gap-3 group"
                     >
-                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-black text-white rounded-full hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center`}>
+                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-gray-900 text-white rounded-full hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center`}>
                             {emailCopied ? (
                                 <>
                                     <Check className="w-12 h-12 text-white mb-1" />
@@ -141,7 +141,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
                     {/* Center text */}
                     <div className="text-center px-4">
-                        <p id="contact-modal-title" className="text-2xl font-bold text-gray-800 whitespace-nowrap">Get in<br />touch</p>
+                        <p id="contact-modal-title" className="text-2xl font-bold tracking-[-0.03em] text-gray-900 whitespace-nowrap">Get in<br /><span className="font-['Playfair_Display',_serif] font-semibold italic text-oxblood">touch.</span></p>
                     </div>
 
                     {/* LinkedIn link */}
@@ -151,7 +151,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                         rel="noopener noreferrer"
                         className="flex flex-col items-center gap-3 group"
                     >
-                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-black text-white rounded-full hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center`}>
+                        <div className={`${isPhoneLayout ? "w-28 h-28" : "w-32 h-32"} bg-gray-900 text-white rounded-full hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-center`}>
                             <Linkedin className="w-12 h-12 text-white mb-1" />
                             <span className="text-white font-semibold text-sm">LinkedIn</span>
                         </div>
@@ -159,7 +159,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 </div>
 
                 {/* Email display */}
-                <div className="bg-gray-100 rounded-2xl px-6 py-4 text-center">
+                <div className="bg-paper rounded-full px-6 py-4 text-center">
                     <p className="text-base font-medium text-gray-900">{email}</p>
                 </div>
             </div>

@@ -288,7 +288,7 @@ const CSS = `
 .vo-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
 .vo-line { stroke: rgba(0,0,0,0.09); stroke-width: 1; transition: stroke .2s ease; }
 .vo-stage.vo-dim .vo-line { stroke: rgba(0,0,0,0.045); }
-.vo-line.vo-on { stroke: rgba(0,0,0,0.34); }
+.vo-line.vo-on { stroke: #8e2c36; }
 
 /* Only the title is centerd on the hub, so the caption can grow from one line
    to three on hover without nudging it. */
@@ -331,20 +331,18 @@ const CSS = `
   width: 100%;
   height: 100%;
   padding: 0;
-  border: 1px solid rgba(0,0,0,0.07);
+  border: 0;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
   cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  transition: transform .2s ease, background-color .2s ease;
 }
 .vo-bubble:hover, .vo-node.vo-active .vo-bubble {
   transform: translateY(-3px);
-  border-color: rgba(0,0,0,0.14);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  background: #f7e9cb;
 }
 .vo-bubble:focus-visible { outline: 2px solid #111111; outline-offset: 3px; }
-.vo-ico { width: 26px; height: 26px; color: #111111; }
+.vo-ico { width: 26px; height: 26px; color: #111827; }
 
 .vo-label {
   position: absolute;
@@ -377,9 +375,8 @@ const CSS = `
 .vo-m-mark {
   display: grid; place-items: center;
   width: 44px; height: 44px; flex: 0 0 auto;
-  border: 1px solid rgba(0,0,0,0.07); border-radius: 50%;
+  border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .vo-m-mark .vo-ico { width: 20px; height: 20px; }
 .vo-m-text { display: flex; flex-direction: column; min-width: 0; }

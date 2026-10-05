@@ -1,40 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import headshot from "../assets/stefan-headshot.webp";
 import pgxClinicImage from "../assets/publications/pharmacogenomics-clinicians.webp";
 import { scholarMetrics } from "../types/publications";
-import {
-    educationRoles,
-    industryRoles,
-    policyRoles,
-    researchRoles,
-} from "../types/roles";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { SiteHeader } from "./SiteHeader";
 
-// Palette taken from the CoLabs hero reference.
-const PAGE = "#F6F6F1";
 const CARD = "#FFFFFF";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const CORNER_RADIUS = 28;
 const PORTRAIT_BACKDROP = "linear-gradient(180deg, #E1E1D9 0%, #D9DBD6 45%, #CFD5D3 100%)";
-
-const navItems = [
-    { label: "Research", to: "/research" },
-    { label: "Policy", to: "/policy" },
-    { label: "Industry", to: "/industry" },
-    { label: "Education", to: "/education" },
-    { label: "Bio", to: "/bio" },
-];
-
-const countries = Array.from(
-    new Set(
-        [...researchRoles, ...industryRoles, ...educationRoles, ...policyRoles]
-            .map((role) => role.location)
-            .filter((location): location is string => !!location && location !== "Remote"),
-    ),
-);
 
 const stats = [
     { value: "2nd", label: "in the US at Harvard HSIL" },
@@ -42,7 +18,6 @@ const stats = [
         value: String(scholarMetrics.citations),
         label: `citations across ${scholarMetrics.publications} papers`,
     },
-    { value: String(countries.length), label: `countries: ${countries.join(", ")}` },
 ];
 
 const features = [
@@ -167,60 +142,9 @@ export function HeroBento({ onContact }: HeroBentoProps) {
 
     return (
         <section
-            className="relative flex w-full flex-col gap-3 px-3 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] md:gap-4 md:px-5 md:pb-5 md:pt-4 lg:h-[100svh] lg:min-h-[640px]"
-            style={{ backgroundColor: PAGE }}
+            className="relative flex w-full flex-col gap-3 bg-paper px-3 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] md:gap-4 md:px-5 md:pb-5 md:pt-4 lg:h-[100svh] lg:min-h-[640px]"
         >
-            {/* Header */}
-            <header className="flex h-14 shrink-0 items-center justify-between gap-4">
-                <motion.div {...rise(0)}>
-                    <Link
-                        to="/"
-                        className="group flex items-center gap-2.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-4"
-                    >
-                        <span className="grid h-10 w-10 place-items-center rounded-full bg-black text-[13px] font-bold tracking-tight text-white transition-transform duration-500 group-hover:rotate-[-8deg]">
-                            ST
-                        </span>
-                        <span className="flex flex-col leading-none">
-                            <span className="text-[15px] font-bold tracking-tight text-gray-900">
-                                Stefan Thottunkal
-                            </span>
-                            <span className="mt-1 text-[11px] tracking-wide text-gray-600">
-                                Stanford · Australia
-                            </span>
-                        </span>
-                    </Link>
-                </motion.div>
-
-                <motion.nav
-                    {...rise(0.08)}
-                    aria-label="Primary"
-                    className="hidden items-center gap-0.5 rounded-full bg-[#F7E9CB] p-1.5 md:flex"
-                >
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.to}
-                            to={item.to}
-                            className="rounded-full px-4 py-2 text-sm font-medium text-gray-800 transition-colors duration-300 hover:bg-white/50 focus-visible:bg-white/50 focus-visible:outline-none"
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
-                </motion.nav>
-
-                <motion.div {...rise(0.16)}>
-                    <button
-                        type="button"
-                        onClick={onContact}
-                        className="group inline-flex h-11 items-center gap-1.5 rounded-full bg-gray-900 pl-5 pr-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
-                    >
-                        Contact
-                        <ArrowUpRight
-                            className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                            aria-hidden="true"
-                        />
-                    </button>
-                </motion.div>
-            </header>
+            <SiteHeader onContact={onContact} />
 
             {/* Bento */}
             <div className="flex min-h-0 flex-1 flex-col gap-3 md:gap-4 lg:flex-row">
@@ -305,7 +229,7 @@ export function HeroBento({ onContact }: HeroBentoProps) {
                     <motion.div
                         {...rise(0.3)}
                         {...stat.pauseHandlers}
-                        className="@container relative isolate flex aspect-square w-full shrink-0 flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#C9A97A] to-[#AD906C] p-[10%] text-center text-gray-900"
+                        className="@container relative isolate flex aspect-square w-full shrink-0 flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-tan to-tan-deep p-[10%] text-center text-gray-900"
                     >
                         <AnimatePresence mode="wait" initial={false}>
                             <motion.div key={stat.index} {...swap} className="flex flex-col items-center">
@@ -362,7 +286,7 @@ export function HeroBento({ onContact }: HeroBentoProps) {
                     <motion.div
                         {...rise(0.5)}
                         {...feature.pauseHandlers}
-                        className="relative col-span-2 flex min-h-[210px] flex-col justify-between overflow-hidden rounded-[28px] p-5 bg-gradient-to-b from-[#30C68D] to-[#2C8863] text-white md:col-span-1 md:aspect-square md:min-h-0 lg:aspect-auto lg:min-h-[180px] lg:flex-1"
+                        className="relative col-span-2 flex min-h-[210px] flex-col justify-between overflow-hidden rounded-[28px] p-5 bg-gradient-to-b from-oxblood to-oxblood-deep text-white md:col-span-1 md:aspect-square md:min-h-0 lg:aspect-auto lg:min-h-[180px] lg:flex-1"
                     >
                         <AnimatePresence mode="wait" initial={false}>
                             <motion.a
@@ -371,14 +295,14 @@ export function HeroBento({ onContact }: HeroBentoProps) {
                                 href={activeFeature.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-4 focus-visible:ring-offset-[#2C8863]"
+                                className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-4 focus-visible:ring-offset-oxblood-deep"
                             >
                                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">
                                     {activeFeature.kicker}
                                 </p>
                                 <h2 className="mt-2 text-lg font-bold leading-[1.2] tracking-tight md:text-[1.15rem]">
                                     {activeFeature.title}{" "}
-                                    <span className="font-['Playfair_Display',_serif] text-[1.12em] font-semibold italic whitespace-nowrap text-[#90EBC8]">
+                                    <span className="font-['Playfair_Display',_serif] text-[1.12em] font-semibold italic whitespace-nowrap text-sand">
                                         {activeFeature.highlight}
                                     </span>
                                 </h2>
@@ -398,7 +322,7 @@ export function HeroBento({ onContact }: HeroBentoProps) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={`Open: ${activeFeature.title} ${activeFeature.highlight}`}
-                                className="group grid h-10 w-10 place-items-center rounded-full bg-gray-900 text-white transition-colors duration-300 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#2C8863]"
+                                className="group grid h-10 w-10 place-items-center rounded-full bg-sand text-gray-900 transition-colors duration-300 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-oxblood-deep"
                             >
                                 <ArrowUpRight
                                     className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"

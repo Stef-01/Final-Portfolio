@@ -37,7 +37,7 @@ export const ProjectPopout = ({
                     onClick={() => setIsOpen(true)}
                     aria-expanded="false"
                     aria-label={`Open ${accessibleLabel}`}
-                    className="group inline-flex items-center gap-3 rounded-full border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black shadow-xl transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 motion-reduce:transition-none"
+                    className="group inline-flex items-center gap-3 rounded-full bg-white px-4 py-3 text-sm font-semibold text-gray-900 shadow-xl transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2 motion-reduce:transition-none"
                 >
                     <span
                         className="flex h-8 w-8 items-center justify-center rounded-full text-white"
@@ -59,10 +59,10 @@ export const ProjectPopout = ({
         <aside
             aria-label={accessibleLabel}
             data-testid="project-popout"
-            className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 z-[60] overflow-hidden rounded-2xl border border-black/10 bg-white shadow-xl sm:left-auto sm:w-[390px] md:bottom-6 md:right-6"
+            className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 right-4 z-[60] overflow-hidden rounded-[28px] bg-white shadow-xl sm:left-auto sm:w-[390px] md:bottom-6 md:right-6"
         >
             <div className="sm:grid sm:grid-cols-[108px_1fr]">
-                <div className="relative hidden min-h-[174px] overflow-hidden bg-[#f3f3f3] sm:block">
+                <div className="relative hidden min-h-[174px] overflow-hidden bg-paper sm:block">
                     <ImageWithFallback
                         src={image}
                         alt=""
@@ -80,7 +80,7 @@ export const ProjectPopout = ({
                         type="button"
                         onClick={() => setIsOpen(false)}
                         aria-label={`Dismiss ${accessibleLabel}`}
-                        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-black/5 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 motion-reduce:transition-none"
+                        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-paper hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 motion-reduce:transition-none"
                     >
                         <X className="h-4 w-4" aria-hidden="true" />
                     </button>
@@ -88,7 +88,7 @@ export const ProjectPopout = ({
                     <p className="text-sm font-medium text-gray-500">
                         {eyebrow}
                     </p>
-                    <h2 className="mt-2 text-xl font-semibold tracking-tight text-black">
+                    <h2 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-gray-900">
                         {heading}
                     </h2>
                     <p className="mt-2 text-sm leading-relaxed text-gray-600">

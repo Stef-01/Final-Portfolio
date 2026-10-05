@@ -28,7 +28,7 @@ export function IntroSection() {
     };
 
     return (
-        <section className="relative bg-white flex min-h-[100svh] flex-col items-center justify-center px-6 md:px-10">
+        <section className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 md:px-10">
             <div className="relative z-10 mx-auto w-full max-w-5xl text-center">
                 <motion.div
                     variants={containerVariants}
@@ -39,9 +39,13 @@ export function IntroSection() {
                 >
                     <motion.h2
                         variants={itemVariants}
-                        className="font-bold tracking-tight leading-[1.05] text-black t-h1"
+                        className="text-balance font-bold leading-[1.05] tracking-[-0.035em] text-gray-900 t-h1"
                     >
-                        I work on the handoffs between the lab, the policy room, the clinic, and the market.
+                        I work on the{" "}
+                        <span className="font-['Playfair_Display',_serif] font-semibold italic text-oxblood">
+                            handoffs
+                        </span>{" "}
+                        between the lab, the policy room, the clinic, and the market.
                     </motion.h2>
                 </motion.div>
             </div>

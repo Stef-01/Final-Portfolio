@@ -10,10 +10,10 @@ interface DnaModelProps {
     className?: string;
 }
 
-// Default colour + per-segment "filter" colours (blue family) + dim grey.
-const BASE = 0x2563eb;
-const SEG_COLORS = [0x2563eb, 0x0ea5e9, 0x6366f1]; // blue / sky / indigo
-const DIM = 0xcbd5e1;
+// Default colour + per-segment "filter" colours (site palette) + dim paper.
+const BASE = 0x8e2c36;
+const SEG_COLORS = [0x8e2c36, 0xad906c, 0x5c1820]; // oxblood / tan / deep oxblood
+const DIM = 0xe2dccf;
 
 const IDLE = 0.00252; // idle spin — 80% quicker than the previous 0.0014
 const HOVER = IDLE * 0.5; // hovering SLOWS the spin by 50% (opposite of before)
@@ -70,7 +70,7 @@ export function DnaModel({ hovered, segments, reducedMotion, className }: DnaMod
             const key = new THREE.DirectionalLight(0xffffff, 1.4);
             key.position.set(3, 4, 5);
             scene.add(key);
-            const rim = new THREE.DirectionalLight(0x93c5fd, 0.7);
+            const rim = new THREE.DirectionalLight(0xf7e9cb, 0.7);
             rim.position.set(-4, -2, -3);
             scene.add(rim);
 

@@ -124,10 +124,12 @@ export const TimelineSection = () => {
     // Scale based on a target content width of ~2000px (or window width if smaller)
     // This ensures the text is readable but zoomed out enough to see more context
     const targetContentWidth = 2000;
-    const scale = Math.min(1.2, windowWidth / targetContentWidth); // Cap at 1.2x zoom for very large screens
+    // The canvas sits in an inset card (mx-3 / md:mx-5), so measure against its width.
+    const cardWidth = windowWidth - (windowWidth >= 768 ? 40 : 24);
+    const scale = Math.min(1.2, cardWidth / targetContentWidth); // Cap at 1.2x zoom for very large screens
 
     // Calculate offset to center the timeline spine
-    const xOffset = (windowWidth / 2) - (contentCenter * scale);
+    const xOffset = (cardWidth / 2) - (contentCenter * scale);
 
     // Scroll-based line animation
     const { scrollYProgress } = useScroll({
@@ -191,14 +193,14 @@ export const TimelineSection = () => {
 
     if (isPhoneLayout) {
         return (
-            <section className="w-full bg-white px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))]">
+            <section className="w-full px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))]">
                 <div className="max-w-md mx-auto">
                     <div className="mb-8 text-center">
-                        <h2 className="text-3xl font-bold tracking-tight text-black">How I got here</h2>
+                        <h2 className="text-3xl font-bold tracking-[-0.03em] text-gray-900">How I got here</h2>
                     </div>
 
                     <div className="relative pl-6">
-                        <div className="absolute left-[11px] top-0 bottom-0 w-px bg-gray-200" />
+                        <div className="absolute left-[11px] top-0 bottom-0 w-px bg-black/10" />
                         <div className="space-y-5">
                             {mobileTimelineItems.map((item, index) => {
                                 const isExpanded = expandedItem === item.id;
@@ -207,7 +209,7 @@ export const TimelineSection = () => {
                                     <motion.button
                                         key={item.id}
                                         type="button"
-                                        className="relative block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-4 rounded-2xl"
+                                        className="relative block w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-4 rounded-[28px]"
                                         initial={{ opacity: 0, y: 24 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: "-60px" }}
@@ -216,8 +218,8 @@ export const TimelineSection = () => {
                                         aria-expanded={isExpanded}
                                         aria-label={`${isExpanded ? "Collapse" : "Expand"} timeline item ${item.title}`}
                                     >
-                                        <span className="absolute left-[-20px] top-5 h-3 w-3 rounded-full bg-black ring-4 ring-white" />
-                                        <div className="overflow-hidden rounded-2xl border border-black/10 bg-white hover:border-black/30">
+                                        <span className="absolute left-[-20px] top-5 h-3 w-3 rounded-full bg-oxblood ring-4 ring-paper" />
+                                        <div className="overflow-hidden rounded-[28px] bg-white">
                                             <div className="aspect-[4/3] overflow-hidden bg-white">
                                                 <img
                                                     src={item.image}
@@ -229,7 +231,7 @@ export const TimelineSection = () => {
                                             </div>
                                             <div className="p-5">
                                                 <div className="mb-2">
-                                                    <h3 className="text-xl font-bold tracking-tight text-black">{item.title}</h3>
+                                                    <h3 className="text-xl font-bold tracking-[-0.02em] text-gray-900">{item.title}</h3>
                                                     <p className="text-sm text-gray-500">{item.period}</p>
                                                 </div>
                                                 <p className={`overflow-hidden text-base leading-relaxed text-gray-700 ${isExpanded ? "max-h-none" : "max-h-12"}`}>
@@ -248,9 +250,9 @@ export const TimelineSection = () => {
     }
 
     return (
-        <div className="w-full overflow-hidden bg-white pt-20 pb-32" ref={timelineContainerRef}>
+        <div className="mx-3 overflow-hidden rounded-[28px] bg-white pt-16 pb-24 md:mx-5" ref={timelineContainerRef}>
             <div className="mx-auto mb-12 max-w-5xl px-4 text-center">
-                <h2 className="t-h2 font-bold tracking-tight text-black">How I got here</h2>
+                <h2 className="t-h2 font-bold tracking-[-0.03em] text-gray-900">How I got here</h2>
             </div>
             <div
                 style={{
@@ -565,7 +567,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - BHLTH */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'bhlth' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'bhlth' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2468, top: 325, maxWidth: 600, zIndex: 9999 }}
                     >
                         <p className="text-xl">Bachelor of Health Science at ANU: population health and equity.</p>
@@ -573,7 +575,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - National Internships */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'internships' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'internships' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1505, top: 555, maxWidth: 700, zIndex: 9999 }}
                     >
                         <p className="text-xl">Parliamentary policy internship translating evidence into post-COVID recovery recommendations.</p>
@@ -581,7 +583,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - 180 Degrees Consulting */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'consulting' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'consulting' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2341 - 100, top: 555, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Financial strategy advisory for a large education nonprofit.</p>
@@ -589,7 +591,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - MD */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'md' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'md' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 496, maxWidth: 600, zIndex: 9999 }}
                     >
                         <p className="text-xl">Macquarie University MD training, aimed at work with underserved communities.</p>
@@ -597,7 +599,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - M.S */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'ms' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'ms' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 1287, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Community Health and Prevention Research at Stanford: precision medicine and health equity.</p>
@@ -605,7 +607,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Stanford Biodesign */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'biodesign' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'biodesign' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1800, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
                         <p className="text-xl">Stanford Biodesign for Digital Health. Applied its needs-driven method with ENT surgeons, hospital teams, children, and parents to build PainGone PainGuin.</p>
@@ -613,7 +615,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Stanford Seed */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'seed' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'seed' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2499 - 150, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
                         <p className="text-xl">Stanford Seed internship in Nigeria, on go-to-market and product management for a dialysis device.</p>
@@ -621,7 +623,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Harvard */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'harvard' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'harvard' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1947, top: 1545, maxWidth: 700, zIndex: 9999 }}
                     >
                         <p className="text-xl">Harvard Venture Building Program, a four-week course taught by VCs and Harvard Business School and T.H. Chan faculty.</p>
@@ -629,7 +631,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - HSIL */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'hsil' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'hsil' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1825, top: 1727, maxWidth: 800, zIndex: 9999 }}
                     >
                         <p className="text-xl">Ten-week HSIL competition. Our team placed 7th of 3,500 across four rounds, which led to the Venture Building Program.</p>
@@ -637,7 +639,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Hopkins */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'hopkins' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'hopkins' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1945, top: 2026, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Venture and entrepreneurship programming with Johns Hopkins University.</p>
@@ -645,7 +647,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Pava Center */}
                     <div
-                        className={`absolute bg-black/90 text-white px-8 py-4 rounded-xl shadow-xl transition-all duration-300 ${hoveredItem === 'pava' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'pava' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2108, top: 2165, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Entrepreneurship training at the Pava Center, focused on health venture design.</p>

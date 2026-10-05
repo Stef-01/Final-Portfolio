@@ -50,8 +50,8 @@ const methodCards = [
 
 export function TeachingSection(): JSX.Element {
   return (
-    <section id="tlia-bootcamp" className="relative overflow-hidden bg-white px-6 py-20 md:px-12 md:py-28">
-      <div className="relative z-10 mx-auto max-w-7xl">
+    <section id="tlia-bootcamp" className="relative overflow-hidden px-4 py-16 md:px-8 md:py-20">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[0.46fr_0.54fr] lg:items-end">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
@@ -59,7 +59,7 @@ export function TeachingSection(): JSX.Element {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="max-w-3xl t-h2 font-bold tracking-tight text-black">
+            <h2 className="max-w-3xl t-h2 font-bold tracking-[-0.03em] text-gray-900">
               Teaching entrepreneurship like a design discipline
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600">
@@ -72,13 +72,13 @@ export function TeachingSection(): JSX.Element {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.62, delay: 0.08 }}
-            className="overflow-hidden rounded-2xl bg-black"
+            className="overflow-hidden rounded-[28px] bg-gray-900"
           >
             <ImageWithFallback
               src={tliaTitle}
               alt="TLIA Entrepreneurship Bootcamp title slide identifying Stefan Thottunkal as Entrepreneurship Bootcamp Lead"
               fallbackInitial="T"
-              accent="#0f766e"
+              accent="#8e2c36"
               wrapperClassName="aspect-video w-full"
               className="h-full w-full object-cover opacity-95"
               loading="lazy"
@@ -96,9 +96,9 @@ export function TeachingSection(): JSX.Element {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.55, delay: index * 0.07 }}
-              className="rounded-2xl bg-[#fafafa] p-6 md:p-7"
+              className="rounded-[28px] bg-white p-6 md:p-7"
             >
-              <h3 className="text-xl font-bold tracking-tight text-black md:text-2xl">{card.title}</h3>
+              <h3 className="text-xl font-bold leading-tight tracking-[-0.02em] text-gray-900 md:text-2xl">{card.title}</h3>
               <p className="mt-4 text-base leading-relaxed text-gray-600">{card.text}</p>
             </motion.div>
           ))}
@@ -110,20 +110,20 @@ export function TeachingSection(): JSX.Element {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.58 }}
-            className="self-start rounded-2xl bg-[#fafafa] p-6 lg:sticky lg:top-28"
+            className="self-start rounded-[28px] bg-white p-6 lg:sticky lg:top-28"
           >
-            <h3 className="text-xl font-bold tracking-tight text-black md:text-2xl">
+            <h3 className="text-xl font-bold leading-tight tracking-[-0.02em] text-gray-900 md:text-2xl">
               From curiosity to a testable venture thesis
             </h3>
             <p className="mt-4 text-base leading-relaxed text-gray-600">
               The TLIA deck turns startup education into a sequence of hands-on exercises, from mapping identity to a pitch-ready thesis.
             </p>
-            <div className="mt-6 overflow-hidden rounded-lg">
+            <div className="mt-6 overflow-hidden rounded-2xl">
               <ImageWithFallback
                 src={tliaAdvantage}
                 alt="TLIA Advantage slide describing an inclusive venture-building framework"
                 fallbackInitial="T"
-                accent="#0f766e"
+                accent="#8e2c36"
                 wrapperClassName="aspect-video w-full"
                 className="h-full w-full object-cover"
                 loading="lazy"
@@ -143,14 +143,14 @@ export function TeachingSection(): JSX.Element {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.55, delay: index * 0.06 }}
-                  className="overflow-hidden rounded-2xl bg-[#fafafa]"
+                  className="overflow-hidden rounded-[28px] bg-white"
                 >
-                  <div className="aspect-video overflow-hidden bg-[#f5f5f5]">
+                  <div className="aspect-video overflow-hidden bg-paper">
                     <ImageWithFallback
                       src={card.image}
                       alt={`${card.title} slide from the TLIA Entrepreneurship Bootcamp deck`}
                       fallbackInitial="T"
-                      accent="#0f766e"
+                      accent="#8e2c36"
                       wrapperClassName="h-full w-full"
                       className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                       loading="lazy"
@@ -160,8 +160,8 @@ export function TeachingSection(): JSX.Element {
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-3">
-                      <Icon className="h-5 w-5 text-[#0f3b32]" aria-hidden="true" />
-                      <h4 className="text-xl font-semibold tracking-tight text-black">{card.title}</h4>
+                      <Icon className="h-5 w-5 text-oxblood" aria-hidden="true" />
+                      <h4 className="text-xl font-semibold tracking-[-0.02em] text-gray-900">{card.title}</h4>
                     </div>
                     <p className="mt-3 text-base leading-relaxed text-gray-600">{card.text}</p>
                   </div>
@@ -176,13 +176,13 @@ export function TeachingSection(): JSX.Element {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.58 }}
-          className="mt-8 overflow-hidden rounded-2xl bg-black"
+          className="mt-8 overflow-hidden rounded-[28px] bg-gray-900"
         >
           <ImageWithFallback
             src={tliaInnovationLenses}
             alt="TLIA slide showing process, technology, narrative, and business model innovation lenses"
             fallbackInitial="T"
-            accent="#0f766e"
+            accent="#8e2c36"
             wrapperClassName="aspect-video w-full"
             className="h-full w-full object-cover opacity-95"
             loading="lazy"
