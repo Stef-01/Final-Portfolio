@@ -1,6 +1,8 @@
 import { motion } from "motion/react";
 import { ArrowUpRight, BookOpen, Mail } from "lucide-react";
 import { PageShell } from "../components/PageShell";
+import { RevealText } from "../components/RevealText";
+import { EASE_OUT } from "../lib/motion";
 
 const education = [
   {
@@ -82,14 +84,14 @@ export function Resume(): JSX.Element {
     <PageShell>
       <div className="px-4 pt-14 md:px-8 md:pt-24">
         <div className="mx-auto max-w-6xl">
+          <h1 className="max-w-5xl t-display font-bold leading-[0.95] tracking-[-0.04em] text-gray-900">
+            <RevealText text="Stefan Thottunkal" onMount delay={0.05} />
+          </h1>
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT }}
           >
-            <h1 className="max-w-5xl t-display font-bold leading-[0.95] tracking-[-0.04em] text-gray-900">
-              Stefan Thottunkal
-            </h1>
             <p className="mt-5 max-w-3xl text-lg leading-relaxed text-gray-900 md:text-xl">
               Researcher, public servant, medical student, and builder.
             </p>
@@ -101,7 +103,7 @@ export function Resume(): JSX.Element {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="mailto:stefan01@stanford.edu"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
                 Email
@@ -110,7 +112,7 @@ export function Resume(): JSX.Element {
                 href="https://scholar.google.com/citations?user=9Nxhv58AAAAJ&hl=en"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-[color,background-color,transform] active:scale-[0.97] hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               >
                 <BookOpen className="h-4 w-4" aria-hidden="true" />
                 Google Scholar

@@ -8,6 +8,7 @@ import { SystemsMapSection } from "../components/SystemsMapSection";
 import { RolesTimeline } from "../components/RolesTimeline";
 import { researchRoles } from "../types/roles";
 import { googleScholarUrl, scholarMetrics } from "../types/publications";
+import { EASE_OUT } from "../lib/motion";
 
 export function Research() {
   const [showPublications, setShowPublications] = useState(false);
@@ -66,7 +67,7 @@ export function Research() {
                 aria-expanded={showPublications}
                 aria-controls="publications-panel"
                 onClick={() => setShowPublications((visible) => !visible)}
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               >
                 {showPublications ? "Hide publications" : "View publications"}
                 <ChevronDown
@@ -81,7 +82,7 @@ export function Research() {
                 href={googleScholarUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-[color,background-color,transform] active:scale-[0.97] hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               >
                 Google Scholar
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -97,7 +98,7 @@ export function Research() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.35, ease: EASE_OUT }}
                 className="mt-8 overflow-hidden rounded-[28px]"
               >
                 <PublicationsSection />

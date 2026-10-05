@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Linkedin, GraduationCap } from "lucide-react";
+import { EASE_OUT } from "../lib/motion";
 
 const socials = [
     {
@@ -31,7 +32,7 @@ export const FloatingSocials: React.FC<FloatingSocialsProps> = ({ className = ""
         aria-label="Social links"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.5, delay: 0.6, ease: EASE_OUT }}
         className={`fixed bottom-6 right-6 z-40 flex flex-col gap-2 ${className}`}
     >
         {socials.map(({ href, label, icon: Icon }) => (
@@ -42,7 +43,7 @@ export const FloatingSocials: React.FC<FloatingSocialsProps> = ({ className = ""
                 rel="noopener noreferrer"
                 aria-label={label}
                 title={label}
-                className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-gray-500 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.25)] backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-black hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-gray-500 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.25)] backdrop-blur-sm transition-[transform,border-color,color] duration-200 hover:-translate-y-0.5 hover:border-black hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
             >
                 <Icon className="h-4 w-4" strokeWidth={1.5} />
             </a>

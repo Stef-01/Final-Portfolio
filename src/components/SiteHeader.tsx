@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useId, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { ContactModal } from "./ContactModal";
+import { EASE_OUT, SPRING } from "../lib/motion";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+// The header is on every page; its entrance plays once per visit, not on
+// every route change.
+let headerHasEntered = false;
 
 const navItems = [
     { label: "Research", to: "/research" },
@@ -22,22 +25,61 @@ interface SiteHeaderProps {
     mobileNav?: boolean;
 }
 
+/** Section links with a highlight that slides to the hovered link and rests
+ *  on the current page. */
+function NavPill({ className, label }: { className: string; label: string }) {
+    const { pathname } = useLocation();
+    const indicatorId = useId();
+    const [hovered, setHovered] = useState<string | null>(null);
+    const activeTo = navItems.find((item) => pathname.startsWith(item.to))?.to ?? null;
+    const highlighted = hovered ?? activeTo;
+
+    return (
+        <nav aria-label={label} className={className} onMouseLeave={() => setHovered(null)}>
+            {navItems.map((item) => (
+                <NavLink
+                    key={item.to}
+                    to={item.to}
+                    onMouseEnter={() => setHovered(item.to)}
+                    onFocus={() => setHovered(item.to)}
+                    onBlur={() => setHovered(null)}
+                    className="relative isolate shrink-0 rounded-full px-4 py-2 text-sm font-medium text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/25"
+                >
+                    {highlighted === item.to && (
+                        <motion.span
+                            layoutId={indicatorId}
+                            transition={SPRING}
+                            className={`absolute inset-0 -z-10 rounded-full ${
+                                item.to === activeTo ? "bg-white" : "bg-white/60"
+                            }`}
+                        />
+                    )}
+                    {item.label}
+                </NavLink>
+            ))}
+        </nav>
+    );
+}
+
 /** Logo, section pill, and Contact button shared by every page. */
 export function SiteHeader({ onContact, mobileNav = false }: SiteHeaderProps) {
     const prefersReducedMotion = usePrefersReducedMotion();
     const [isContactOpen, setIsContactOpen] = useState(false);
+    const [playEntrance] = useState(() => !headerHasEntered);
     const openContact = onContact ?? (() => setIsContactOpen(true));
 
-    const rise = (delay: number) => ({
-        initial: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.7, delay, ease: EASE },
-    });
+    useEffect(() => {
+        headerHasEntered = true;
+    }, []);
 
-    const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-        `shrink-0 rounded-full px-4 py-2 text-sm font-medium text-gray-800 transition-colors duration-300 focus-visible:outline-none focus-visible:bg-white/50 ${
-            isActive ? "bg-white" : "hover:bg-white/50"
-        }`;
+    const rise = (delay: number) =>
+        playEntrance
+            ? {
+                  initial: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 0.7, delay, ease: EASE_OUT },
+              }
+            : {};
 
     return (
         <>
@@ -61,23 +103,15 @@ export function SiteHeader({ onContact, mobileNav = false }: SiteHeaderProps) {
                     </Link>
                 </motion.div>
 
-                <motion.nav
-                    {...rise(0.08)}
-                    aria-label="Primary"
-                    className="hidden items-center gap-0.5 rounded-full bg-sand p-1.5 md:flex"
-                >
-                    {navItems.map((item) => (
-                        <NavLink key={item.to} to={item.to} className={navLinkClass}>
-                            {item.label}
-                        </NavLink>
-                    ))}
-                </motion.nav>
+                <motion.div {...rise(0.08)} className="hidden md:block">
+                    <NavPill label="Primary" className="flex items-center gap-0.5 rounded-full bg-sand p-1.5" />
+                </motion.div>
 
                 <motion.div {...rise(0.16)}>
                     <button
                         type="button"
                         onClick={openContact}
-                        className="group inline-flex h-11 items-center gap-1.5 rounded-full bg-gray-900 pl-5 pr-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                        className="group inline-flex h-11 items-center gap-1.5 rounded-full bg-gray-900 pl-5 pr-4 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] duration-150 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                     >
                         Contact
                         <ArrowUpRight
@@ -89,17 +123,12 @@ export function SiteHeader({ onContact, mobileNav = false }: SiteHeaderProps) {
             </header>
 
             {mobileNav && (
-                <motion.nav
-                    {...rise(0.12)}
-                    aria-label="Sections"
-                    className="mt-2 flex gap-0.5 overflow-x-auto rounded-full bg-sand p-1.5 [scrollbar-width:none] md:hidden [&::-webkit-scrollbar]:hidden"
-                >
-                    {navItems.map((item) => (
-                        <NavLink key={item.to} to={item.to} className={navLinkClass}>
-                            {item.label}
-                        </NavLink>
-                    ))}
-                </motion.nav>
+                <motion.div {...rise(0.12)} className="mt-2 md:hidden">
+                    <NavPill
+                        label="Sections"
+                        className="flex gap-0.5 overflow-x-auto rounded-full bg-sand p-1.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                    />
+                </motion.div>
             )}
 
             {!onContact && (

@@ -141,6 +141,15 @@
   --color-tan-deep: #ad906c;
   --color-oxblood: #8e2c36;
   --color-oxblood-deep: #5c1820;
+
+  /* Strong ease-out for every transition: fast start, soft landing. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::selection {
+  background: var(--color-sand);
+  color: #111827;
 }
 
 /**

@@ -5,7 +5,8 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { AnimatePresence, MotionConfig } from "motion/react";
+import { AnimatePresence, MotionConfig, motion } from "motion/react";
+import { EASE_OUT } from "./lib/motion";
 import { AppErrorBoundary } from "./components/AppErrorBoundary";
 import { NotFound } from "./components/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -55,17 +56,24 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<ScalehubStartupLp />} />
-        <Route path="/project/:id" element={<ProjectDetail />} />
-        <Route path="/bio" element={<Resume />} />
-        <Route path="/presentations" element={<Presentations />} />
-        <Route path="/policy" element={<Policy />} />
-        <Route path="/research" element={<Research />} />
-        <Route path="/industry" element={<Industry />} />
-        <Route path="/education" element={<Education />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25, ease: EASE_OUT }}
+      >
+        <Routes location={location}>
+          <Route path="/" element={<ScalehubStartupLp />} />
+          <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="/bio" element={<Resume />} />
+          <Route path="/presentations" element={<Presentations />} />
+          <Route path="/policy" element={<Policy />} />
+          <Route path="/research" element={<Research />} />
+          <Route path="/industry" element={<Industry />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </motion.div>
     </AnimatePresence>
   );
 };

@@ -36,7 +36,7 @@ export function PressSection(): JSX.Element {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.58, delay: index * 0.08 }}
-              className="group flex items-center justify-between gap-6 rounded-[28px] bg-white p-6 transition-colors duration-500 hover:bg-sand focus-visible:bg-sand focus-visible:outline-none md:p-8"
+              className="group flex items-center justify-between gap-6 rounded-[28px] bg-white p-6 transition-colors duration-300 hover:bg-sand focus-visible:bg-sand focus-visible:outline-none md:p-8"
             >
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">

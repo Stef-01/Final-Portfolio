@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { PageIntro, PageShell } from "../components/PageShell";
 import { TeachingSection } from "../components/TeachingSection";
 import { educationRoles } from "../types/roles";
+import { EASE_OUT } from "../lib/motion";
 
 const educationStats = [
   { value: String(educationRoles.length), label: "teaching and curriculum roles" },
@@ -48,7 +49,7 @@ export function Education(): JSX.Element {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.18) }}
-                  whileHover={{ y: -6 }}
+                  whileHover={isTlia ? { y: -6 } : undefined}
                   onClick={isTlia ? openTliaDetail : undefined}
                   className={`flex min-h-full flex-col rounded-[28px] bg-white p-6 md:p-7 ${
                     isTlia ? "cursor-pointer" : ""
@@ -100,7 +101,7 @@ export function Education(): JSX.Element {
                         }}
                         aria-expanded={showTliaDetail}
                         aria-controls="tlia-bootcamp-detail"
-                        className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                       >
                         {showTliaDetail ? "Hide curriculum" : "View curriculum"}
                         <ChevronDown
@@ -115,7 +116,7 @@ export function Education(): JSX.Element {
                     {role.link && !isTlia && (
                       <Link
                         to={role.link}
-                        className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                        className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                       >
                         Case study
                         <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -138,7 +139,7 @@ export function Education(): JSX.Element {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.35, ease: EASE_OUT }}
           >
             <TeachingSection />
           </motion.div>

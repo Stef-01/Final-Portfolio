@@ -161,7 +161,7 @@ const TalkSection = ({ title, talks, onFileClick }: TalkSectionProps) => (
                                 <button
                                     type="button"
                                     onClick={() => onFileClick(talk.file)}
-                                    className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                    className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                                 >
                                     <Paperclip className="h-3.5 w-3.5" />
                                     {fileLabel[talk.file.type]}

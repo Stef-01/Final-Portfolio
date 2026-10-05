@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "motion/react";
 import { ContactSection } from "./ContactSection";
 import { SiteHeader } from "./SiteHeader";
+import { RevealText } from "./RevealText";
+import { EASE_OUT } from "../lib/motion";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
 interface PageShellProps {
@@ -28,28 +30,32 @@ interface PageIntroProps {
     children?: React.ReactNode;
 }
 
-/** Title, one-line description, and an optional row of figures. */
+/** Title, one-line description, and an optional row of figures. The title
+ *  rises word by word; the rest follows in a short stagger. */
 export function PageIntro({ title, description, stats, children }: PageIntroProps) {
     const prefersReducedMotion = usePrefersReducedMotion();
+    const rise = (delay: number) => ({
+        initial: { opacity: 0, y: prefersReducedMotion ? 0 : 16 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay, ease: EASE_OUT },
+    });
 
     return (
         <div className="px-4 pt-14 md:px-8 md:pt-24">
-            <motion.div
-                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="mx-auto max-w-6xl"
-            >
+            <div className="mx-auto max-w-6xl">
                 <h1 className="max-w-4xl text-balance t-h1 font-bold leading-[1] tracking-[-0.035em] text-gray-900">
-                    {title}
+                    {typeof title === "string" ? <RevealText text={title} onMount delay={0.05} /> : title}
                 </h1>
                 {description && (
-                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
+                    <motion.p
+                        {...rise(0.3)}
+                        className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg"
+                    >
                         {description}
-                    </p>
+                    </motion.p>
                 )}
                 {stats && stats.length > 0 && (
-                    <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
+                    <motion.dl {...rise(0.38)} className="mt-8 flex flex-wrap gap-x-10 gap-y-3">
                         {stats.map((stat) => (
                             <div key={stat.label} className="flex items-baseline gap-2">
                                 <dt className="sr-only">{stat.label}</dt>
@@ -59,10 +65,10 @@ export function PageIntro({ title, description, stats, children }: PageIntroProp
                                 </span>
                             </div>
                         ))}
-                    </dl>
+                    </motion.dl>
                 )}
-                {children}
-            </motion.div>
+                {children && <motion.div {...rise(0.44)}>{children}</motion.div>}
+            </div>
         </div>
     );
 }

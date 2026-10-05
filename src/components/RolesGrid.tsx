@@ -38,7 +38,7 @@ export const RolesGrid = ({ roles, title, intro }: RolesGridProps) => {
                     {role.period}
                   </p>
                   {role.link && (
-                    <span className="relative z-20 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-paper text-gray-900 transition-colors duration-300 group-hover:bg-gray-900 group-hover:text-white">
+                    <span className="relative z-20 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-paper text-gray-900 transition-[color,background-color,transform] active:scale-[0.97] duration-150 group-hover:bg-gray-900 group-hover:text-white">
                       <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
                     </span>
                   )}

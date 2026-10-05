@@ -6,9 +6,9 @@ import pgxClinicImage from "../assets/publications/pharmacogenomics-clinicians.w
 import { scholarMetrics } from "../types/publications";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { SiteHeader } from "./SiteHeader";
+import { EASE_OUT } from "../lib/motion";
 
 const CARD = "#FFFFFF";
-const EASE = [0.22, 1, 0.36, 1] as const;
 const CORNER_RADIUS = 28;
 const PORTRAIT_BACKDROP = "linear-gradient(180deg, #E1E1D9 0%, #D9DBD6 45%, #CFD5D3 100%)";
 
@@ -85,7 +85,7 @@ function Dots({
                     className="group/dot grid h-6 place-items-center px-0.5 focus-visible:outline-none"
                 >
                     <span
-                        className={`block h-1.5 rounded-full transition-all duration-500 group-focus-visible/dot:ring-2 group-focus-visible/dot:ring-current ${
+                        className={`block h-1.5 rounded-full transition-[width,background-color] duration-300 group-focus-visible/dot:ring-2 group-focus-visible/dot:ring-current ${
                             i === active ? `w-5 ${on}` : `w-1.5 ${off}`
                         }`}
                     />
@@ -122,14 +122,14 @@ export function HeroBento({ onContact }: HeroBentoProps) {
     const rise = (delay: number) => ({
         initial: { opacity: 0, y: prefersReducedMotion ? 0 : 24 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.8, delay, ease: EASE },
+        transition: { duration: 0.8, delay, ease: EASE_OUT },
     });
 
     const swap = {
         initial: { opacity: 0, y: prefersReducedMotion ? 0 : 10, filter: "blur(6px)" },
         animate: { opacity: 1, y: 0, filter: "blur(0px)" },
         exit: { opacity: 0, y: prefersReducedMotion ? 0 : -10, filter: "blur(6px)" },
-        transition: { duration: 0.45, ease: EASE },
+        transition: { duration: 0.45, ease: EASE_OUT },
     };
 
     const scrollToWork = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -158,7 +158,7 @@ export function HeroBento({ onContact }: HeroBentoProps) {
                                 : `inset(4% 3% 4% 3% round ${CORNER_RADIUS}px)`,
                         }}
                         animate={{ opacity: 1, clipPath: `inset(0% 0% 0% 0% round ${CORNER_RADIUS}px)` }}
-                        transition={{ duration: 1.1, delay: 0.1, ease: EASE }}
+                        transition={{ duration: 1.1, delay: 0.1, ease: EASE_OUT }}
                         className="absolute inset-0 overflow-hidden"
                         style={{ borderRadius: CORNER_RADIUS }}
                     >
@@ -205,7 +205,7 @@ export function HeroBento({ onContact }: HeroBentoProps) {
                                         className="block"
                                         initial={{ y: prefersReducedMotion ? 0 : "105%", opacity: prefersReducedMotion ? 0 : 1 }}
                                         animate={{ y: 0, opacity: 1 }}
-                                        transition={{ duration: 1, delay: 0.5 + i * 0.09, ease: EASE }}
+                                        transition={{ duration: 1, delay: 0.5 + i * 0.09, ease: EASE_OUT }}
                                     >
                                         {line}
                                     </motion.span>
@@ -264,7 +264,7 @@ export function HeroBento({ onContact }: HeroBentoProps) {
                             alt=""
                             loading="eager"
                             decoding="async"
-                            className="absolute inset-0 -z-10 h-full w-full object-cover object-[68%_30%] transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+                            className="absolute inset-0 -z-10 h-full w-full object-cover object-[68%_30%] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                         />
                         <div
                             aria-hidden="true"

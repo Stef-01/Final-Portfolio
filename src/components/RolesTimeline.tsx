@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Role } from "../types/roles";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { EASE_OUT } from "../lib/motion";
 
 interface RolesTimelineProps {
     roles: Role[];
@@ -81,7 +82,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.35, ease: EASE_OUT }}
                         className="overflow-hidden"
                     >
                         <div className="pt-4">
@@ -110,7 +111,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
                                             href={role.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] duration-150 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                                         >
                                             Open case study
                                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
@@ -118,7 +119,7 @@ const TimelineRow = ({ role, expanded, pulse, onEnter }: TimelineRowProps) => {
                                     ) : (
                                         <Link
                                             to={role.link}
-                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                            className="group/action inline-flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] duration-150 hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                                         >
                                             Open case study
                                             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />

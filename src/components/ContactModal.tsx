@@ -104,7 +104,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="contact-modal-title"
-                className={`relative w-full bg-white rounded-[28px] shadow-xl animate-in fade-in zoom-in duration-300 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
+                className={`relative w-full bg-white rounded-[28px] shadow-xl animate-in fade-in zoom-in-95 duration-200 ${isPhoneLayout ? "max-w-sm p-5" : "max-w-3xl p-8"}`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close button */}

@@ -16,7 +16,7 @@ export const NotFound = (): JSX.Element => {
                 </p>
                 <Link
                     to="/"
-                    className="mt-8 inline-flex h-11 items-center justify-center rounded-full bg-gray-900 px-6 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
+                    className="mt-8 inline-flex h-11 items-center justify-center rounded-full bg-gray-900 px-6 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800"
                 >
                     Return home
                 </Link>

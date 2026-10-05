@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
+import { RevealText } from "./RevealText";
 import { WorkCard } from "./WorkCard";
 import { projects } from "../types/project";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
@@ -11,18 +12,17 @@ export const LatestWorkSection = () => {
         <section className="relative overflow-hidden px-3 md:px-5" id="work">
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="flex min-h-[100svh] snap-start snap-always flex-col items-center justify-center py-16 text-center md:py-20">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ duration: 0.72, delay: 0.08 }}
-                            className="t-h1 font-bold leading-none tracking-[-0.04em] text-gray-900"
-                        >
-                            Selected{" "}
-                            <span className="font-['Playfair_Display',_serif] font-semibold italic text-oxblood">
-                                projects
-                            </span>
-                        </motion.h2>
+                        <h2 className="t-h1 font-bold leading-none tracking-[-0.04em] text-gray-900">
+                            <RevealText
+                                text={[
+                                    { text: "Selected" },
+                                    {
+                                        text: "projects",
+                                        className: "font-['Playfair_Display',_serif] font-semibold italic text-oxblood",
+                                    },
+                                ]}
+                            />
+                        </h2>
                     </div>
 
                     <div className="grid grid-cols-1">

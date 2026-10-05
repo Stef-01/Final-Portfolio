@@ -86,7 +86,7 @@ const PublicationCard = ({
             href={publication.paperUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
           >
             <FileText className="h-4 w-4" aria-hidden="true" />
             Open paper
@@ -98,7 +98,7 @@ const PublicationCard = ({
               href={publication.documentUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-sm font-semibold text-gray-900 transition-[color,background-color,transform] active:scale-[0.97] hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
             >
               <FileText className="h-4 w-4" aria-hidden="true" />
               {publication.documentLabel ?? "View document"}
@@ -109,7 +109,7 @@ const PublicationCard = ({
             <button
               type="button"
               onClick={() => onCopy(publication)}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-sm font-semibold text-gray-900 transition-[color,background-color,transform] active:scale-[0.97] hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
               aria-label={`Copy DOI for ${publication.title}`}
             >
               {copied ? (
@@ -125,7 +125,7 @@ const PublicationCard = ({
             href={googleScholarUrl}
             target="_blank"
             rel="noreferrer"
-            className="ml-auto inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-gray-500 transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+            className="ml-auto inline-flex min-h-11 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-gray-500 transition-[color,background-color,transform] active:scale-[0.97] hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
             aria-label={`${publication.citations} Google Scholar citations for ${publication.title}`}
           >
             <BarChart3 className="h-4 w-4" aria-hidden="true" />

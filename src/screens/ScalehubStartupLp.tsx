@@ -20,10 +20,12 @@ const TimelineSection = lazy(() =>
 
 export const ScalehubStartupLp = (): JSX.Element => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  // The floating social icons would sit on top of the hero's bento cards, so
-  // they only appear once the hero has mostly scrolled away.
+  // The floating social icons would sit on top of the hero's bento cards and
+  // the footer's links, so they only show between the two.
   const heroRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
   const [heroInView, setHeroInView] = useState(true);
+  const [footerInView, setFooterInView] = useState(false);
   // Below lg the bento stacks taller than the viewport; as a snap target the
   // magnet would yank readers past the cards, so it only snaps side-by-side.
   const heroSnaps = useWindowWidth() >= 1024;
@@ -31,12 +33,19 @@ export const ScalehubStartupLp = (): JSX.Element => {
 
   useEffect(() => {
     const hero = heroRef.current;
-    if (!hero) return;
+    const footer = footerRef.current;
+    if (!hero || !footer) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setHeroInView(entry.isIntersecting),
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.target === hero) setHeroInView(entry.isIntersecting);
+          else setFooterInView(entry.isIntersecting);
+        }
+      },
       { threshold: 0.15 },
     );
     observer.observe(hero);
+    observer.observe(footer);
     return () => observer.disconnect();
   }, []);
 
@@ -84,7 +93,9 @@ export const ScalehubStartupLp = (): JSX.Element => {
       </div>
       </main>
 
-      <ContactSection />
+      <div ref={footerRef}>
+        <ContactSection />
+      </div>
 
       {/* Contact Modal */}
       <ContactModal
@@ -93,7 +104,7 @@ export const ScalehubStartupLp = (): JSX.Element => {
       />
 
       {/* LinkedIn + Google Scholar floating icons (replace footer clutter) */}
-      {!heroInView && <FloatingSocials />}
+      {!heroInView && !footerInView && <FloatingSocials />}
     </div>
   );
 };

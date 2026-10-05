@@ -329,8 +329,8 @@ export const TimelineSection = () => {
                             style={{ width: 650, height: 81, left: 1615 - 1505, top: 387 - 35 }}
                             tabIndex={0}
                             role="button"
-                            initial={{ scale: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
-                            animate={visibility.internships ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
+                            initial={{ scale: 0.4, opacity: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
+                            animate={visibility.internships ? { scale: 1, opacity: 1, x: 0, y: 0 } : { scale: 0.4, opacity: 0, x: (2221 - 1615) - 325, y: (221 - 387) + 40.5 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('internships')}
                             onMouseLeave={() => setHoveredItem(null)}
@@ -349,8 +349,8 @@ export const TimelineSection = () => {
                             style={{ width: 443, height: 140, left: 2441 - 1505, top: 387 - 35 }}
                             tabIndex={0}
                             role="button"
-                            initial={{ scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
-                            animate={visibility.consulting ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
+                            initial={{ scale: 0.4, opacity: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
+                            animate={visibility.consulting ? { scale: 1, opacity: 1, x: 0, y: 0 } : { scale: 0.4, opacity: 0, x: -(2441 - 2221 - 145.5) + 221.5, y: -(387 - 35 - 226.5) + 70 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             onMouseEnter={() => setHoveredItem('consulting')}
                             onMouseLeave={() => setHoveredItem(null)}
@@ -445,8 +445,8 @@ export const TimelineSection = () => {
                         <motion.div
                             className="absolute cursor-pointer"
                             style={{ width: 432, height: 203, left: 1800 - 1800, top: 1396 - 1067 }}
-                            initial={{ scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
-                            animate={visibility.biodesign ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
+                            initial={{ scale: 0.4, opacity: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
+                            animate={visibility.biodesign ? { scale: 1, opacity: 1, x: 0, y: 0 } : { scale: 0.4, opacity: 0, x: (2201 - 1800) + 164.5 - 216, y: (1067 - 1067) + 164.5 - 101.5 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             tabIndex={0}
                             role="button"
@@ -463,8 +463,8 @@ export const TimelineSection = () => {
                         <motion.div
                             className="absolute cursor-pointer"
                             style={{ width: 482, height: 176, left: 2499 - 1800, top: 1409 - 1067 }}
-                            initial={{ scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
-                            animate={visibility.seed ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
+                            initial={{ scale: 0.4, opacity: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
+                            animate={visibility.seed ? { scale: 1, opacity: 1, x: 0, y: 0 } : { scale: 0.4, opacity: 0, x: -(2499 - 2201 - 164.5) + 241, y: -(1409 - 1067 - 164.5) + 88 }}
                             transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                             tabIndex={0}
                             role="button"
@@ -513,8 +513,8 @@ export const TimelineSection = () => {
                         style={{ width: 285, height: 285, left: 1875, top: 1877 }}
                         tabIndex={0}
                         role="button"
-                        initial={{ scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
-                        animate={visibility.hsil ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
+                        initial={{ scale: 0.4, opacity: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
+                        animate={visibility.hsil ? { scale: 1, opacity: 1, x: 0, y: 0 } : { scale: 0.4, opacity: 0, x: (2247 - 1875) + 119 - 142.5, y: (1645 - 1877) + 116 - 142.5 }}
                         transition={{ duration: 1.2, delay: 0.1, type: "spring", stiffness: 60, damping: 10 }}
                         onMouseEnter={() => setHoveredItem('hsil')}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -551,8 +551,8 @@ export const TimelineSection = () => {
                         style={{ width: 185, height: 185, left: 2608, top: 2265 }}
                         tabIndex={0}
                         role="button"
-                        initial={{ scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
-                        animate={visibility.pava ? { scale: 1, x: 0, y: 0 } : { scale: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
+                        initial={{ scale: 0.4, opacity: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
+                        animate={visibility.pava ? { scale: 1, opacity: 1, x: 0, y: 0 } : { scale: 0.4, opacity: 0, x: (2245 - 2608) + 123 - 92.5, y: (2126 - 2265) + 116 - 92.5 }}
                         transition={{ duration: 1.8, delay: 0.1, type: "spring", stiffness: 40, damping: 12 }}
                         onMouseEnter={() => setHoveredItem('pava')}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -567,7 +567,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - BHLTH */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'bhlth' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'bhlth' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2468, top: 325, maxWidth: 600, zIndex: 9999 }}
                     >
                         <p className="text-xl">Bachelor of Health Science at ANU: population health and equity.</p>
@@ -575,7 +575,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - National Internships */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'internships' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'internships' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1505, top: 555, maxWidth: 700, zIndex: 9999 }}
                     >
                         <p className="text-xl">Parliamentary policy internship translating evidence into post-COVID recovery recommendations.</p>
@@ -583,7 +583,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - 180 Degrees Consulting */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'consulting' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'consulting' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2341 - 100, top: 555, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Financial strategy advisory for a large education nonprofit.</p>
@@ -591,7 +591,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - MD */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'md' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'md' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 496, maxWidth: 600, zIndex: 9999 }}
                     >
                         <p className="text-xl">Macquarie University MD training, aimed at work with underserved communities.</p>
@@ -599,7 +599,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - M.S */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'ms' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'ms' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2481, top: 1287, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Community Health and Prevention Research at Stanford: precision medicine and health equity.</p>
@@ -607,7 +607,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Stanford Biodesign */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'biodesign' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'biodesign' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1800, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
                         <p className="text-xl">Stanford Biodesign for Digital Health. Applied its needs-driven method with ENT surgeons, hospital teams, children, and parents to build PainGone PainGuin.</p>
@@ -615,7 +615,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Stanford Seed */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'seed' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'seed' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2499 - 150, top: 1607, maxWidth: 750, zIndex: 9999 }}
                     >
                         <p className="text-xl">Stanford Seed internship in Nigeria, on go-to-market and product management for a dialysis device.</p>
@@ -623,7 +623,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Harvard */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'harvard' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'harvard' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1947, top: 1545, maxWidth: 700, zIndex: 9999 }}
                     >
                         <p className="text-xl">Harvard Venture Building Program, a four-week course taught by VCs and Harvard Business School and T.H. Chan faculty.</p>
@@ -631,7 +631,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - HSIL */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'hsil' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'hsil' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1825, top: 1727, maxWidth: 800, zIndex: 9999 }}
                     >
                         <p className="text-xl">Ten-week HSIL competition. Our team placed 7th of 3,500 across four rounds, which led to the Venture Building Program.</p>
@@ -639,7 +639,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Hopkins */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'hopkins' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'hopkins' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 1945, top: 2026, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Venture and entrepreneurship programming with Johns Hopkins University.</p>
@@ -647,7 +647,7 @@ export const TimelineSection = () => {
 
                     {/* Hover Description - Pava Center */}
                     <div
-                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-all duration-300 ${hoveredItem === 'pava' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
+                        className={`absolute bg-gray-900 text-white px-8 py-4 rounded-2xl shadow-xl transition-[opacity,transform] duration-200 ${hoveredItem === 'pava' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}
                         style={{ left: 2108, top: 2165, maxWidth: 650, zIndex: 9999 }}
                     >
                         <p className="text-xl">Entrepreneurship training at the Pava Center, focused on health venture design.</p>

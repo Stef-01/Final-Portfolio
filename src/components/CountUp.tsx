@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { animate, useInView } from "motion/react";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
+import { EASE_OUT } from "../lib/motion";
 
 interface CountUpProps {
     /** Final value to count to. */
@@ -30,7 +31,7 @@ export function CountUp({ to, duration = 1.4, className }: CountUpProps) {
         if (!inView) return;
         const controls = animate(0, to, {
             duration,
-            ease: [0.22, 1, 0.36, 1],
+            ease: EASE_OUT,
             onUpdate: (value) => {
                 node.textContent = String(Math.round(value));
             },

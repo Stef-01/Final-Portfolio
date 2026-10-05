@@ -73,7 +73,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                             href={link.url}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
+                                            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 focus-visible:ring-offset-2"
                                         >
                                             {link.label}
                                             <ExternalLink className="h-4 w-4" aria-hidden="true" />
@@ -141,7 +141,7 @@ const ProjectDetailInner = ({ id }: { id: string | undefined }): JSX.Element => 
                                     href={project.video.src}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-semibold text-white transition-[color,background-color,transform] active:scale-[0.97] hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                                 >
                                     Open video file
                                     <ExternalLink className="h-4 w-4" aria-hidden="true" />

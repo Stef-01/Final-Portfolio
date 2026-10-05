@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { EASE_OUT } from "../lib/motion";
 
 type Lane = {
   id: string;
@@ -26,11 +27,11 @@ export function ThreeLanesTeaser() {
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, delay: index * 0.08, ease: EASE_OUT }}
           >
             <Link
               to={lane.to}
-              className="group flex aspect-[4/5] flex-col justify-between rounded-[28px] bg-white p-5 transition-colors duration-500 hover:bg-sand focus-visible:bg-sand focus-visible:outline-none md:aspect-[3/4] md:p-6"
+              className="group flex aspect-[4/5] flex-col justify-between rounded-[28px] bg-white p-5 transition-colors duration-300 hover:bg-sand focus-visible:bg-sand focus-visible:outline-none md:aspect-[3/4] md:p-6"
             >
               <div className="flex items-start justify-between">
                 <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">
